@@ -15080,6 +15080,24 @@ declare class WorldPSCPool {
 	static C(Other: UObject | any): WorldPSCPool;
 }
 
+declare class AudioInputDeviceInfo { 
+	DeviceName: string;
+	DeviceID: string;
+	InputChannels: number;
+	PreferredSampleRate: number;
+	bSupportsHardwareAEC: boolean;
+	clone() : AudioInputDeviceInfo;
+	static C(Other: UObject | any): AudioInputDeviceInfo;
+	Conv_AudioInputDeviceInfoToString(): string;
+	static Conv_AudioInputDeviceInfoToString(Info: AudioInputDeviceInfo): string;
+}
+
+declare class ActorLayer { 
+	Name: string;
+	clone() : ActorLayer;
+	static C(Other: UObject | any): ActorLayer;
+}
+
 declare class LevelSequenceObjectReferenceMap { 
 	clone() : LevelSequenceObjectReferenceMap;
 	static C(Other: UObject | any): LevelSequenceObjectReferenceMap;
@@ -16555,24 +16573,6 @@ declare class MovieSceneUserImportFBXSettings extends UObject {
 	static GetDefaultObject(): MovieSceneUserImportFBXSettings;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneUserImportFBXSettings;
 	static C(Other: UObject | any): MovieSceneUserImportFBXSettings;
-}
-
-declare class AudioInputDeviceInfo { 
-	DeviceName: string;
-	DeviceID: string;
-	InputChannels: number;
-	PreferredSampleRate: number;
-	bSupportsHardwareAEC: boolean;
-	clone() : AudioInputDeviceInfo;
-	static C(Other: UObject | any): AudioInputDeviceInfo;
-	Conv_AudioInputDeviceInfoToString(): string;
-	static Conv_AudioInputDeviceInfoToString(Info: AudioInputDeviceInfo): string;
-}
-
-declare class ActorLayer { 
-	Name: string;
-	clone() : ActorLayer;
-	static C(Other: UObject | any): ActorLayer;
 }
 
 declare class ConstraintTickFunction extends TickFunction { 

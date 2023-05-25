@@ -13,6 +13,11 @@ class AsurvivaludemyGameMode : public AGameModeBase
 
 public:
 	AsurvivaludemyGameMode();
+
+
+
+	UPROPERTY(BlueprintReadWrite)
+	int NumberOfPagesCollect;
 };
 
 

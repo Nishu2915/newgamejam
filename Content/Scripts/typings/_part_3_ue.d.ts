@@ -14038,663 +14038,6 @@ declare class WaterWavesAssetReference extends WaterWavesBase {
 	static C(Other: UObject | any): WaterWavesAssetReference;
 }
 
-declare class WmfMediaSettings extends UObject { 
-	AllowNonStandardCodecs: boolean;
-	LowLatency: boolean;
-	NativeAudioOut: boolean;
-	HardwareAcceleratedVideoDecoding: boolean;
-	static Load(ResourceName: string): WmfMediaSettings;
-	static Find(Outer: UObject, ResourceName: string): WmfMediaSettings;
-	static GetDefaultObject(): WmfMediaSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): WmfMediaSettings;
-	static C(Other: UObject | any): WmfMediaSettings;
-}
-
-declare class NamedInterface { 
-	InterfaceName: string;
-	InterfaceObject: UObject;
-	clone() : NamedInterface;
-	static C(Other: UObject | any): NamedInterface;
-}
-
-declare class NamedInterfaceDef { 
-	InterfaceName: string;
-	InterfaceClassName: string;
-	clone() : NamedInterfaceDef;
-	static C(Other: UObject | any): NamedInterfaceDef;
-}
-
-declare class NamedInterfaces extends UObject { 
-	NamedInterfaces: NamedInterface[];
-	NamedInterfaceDefs: NamedInterfaceDef[];
-	static Load(ResourceName: string): NamedInterfaces;
-	static Find(Outer: UObject, ResourceName: string): NamedInterfaces;
-	static GetDefaultObject(): NamedInterfaces;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): NamedInterfaces;
-	static C(Other: UObject | any): NamedInterfaces;
-}
-
-declare class TurnBasedMatchInterface extends Interface { 
-	static Load(ResourceName: string): TurnBasedMatchInterface;
-	static Find(Outer: UObject, ResourceName: string): TurnBasedMatchInterface;
-	static GetDefaultObject(): TurnBasedMatchInterface;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TurnBasedMatchInterface;
-	OnMatchReceivedTurn(Match: string,bDidBecomeActive: boolean): void;
-	OnMatchEnded(Match: string): void;
-	static C(Other: UObject | any): TurnBasedMatchInterface;
-}
-
-declare class AchievementBlueprintLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): AchievementBlueprintLibrary;
-	static Find(Outer: UObject, ResourceName: string): AchievementBlueprintLibrary;
-	static GetDefaultObject(): AchievementBlueprintLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AchievementBlueprintLibrary;
-	static GetCachedAchievementProgress(WorldContextObject: UObject,PlayerController: PlayerController,AchievementID: string,bFoundID?: boolean,Progress?: number): {bFoundID: boolean, Progress: number};
-	static GetCachedAchievementDescription(WorldContextObject: UObject,PlayerController: PlayerController,AchievementID: string,bFoundID?: boolean,Title?: string,LockedDescription?: string,UnlockedDescription?: string,bHidden?: boolean): {bFoundID: boolean, Title: string, LockedDescription: string, UnlockedDescription: string, bHidden: boolean};
-	static C(Other: UObject | any): AchievementBlueprintLibrary;
-}
-
-declare class AchievementQueryCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
-	OnFailure: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): AchievementQueryCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): AchievementQueryCallbackProxy;
-	static GetDefaultObject(): AchievementQueryCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AchievementQueryCallbackProxy;
-	static CacheAchievements(WorldContextObject: UObject,PlayerController: PlayerController): AchievementQueryCallbackProxy;
-	static CacheAchievementDescriptions(WorldContextObject: UObject,PlayerController: PlayerController): AchievementQueryCallbackProxy;
-	static C(Other: UObject | any): AchievementQueryCallbackProxy;
-}
-
-declare class AchievementWriteCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<(WrittenAchievementName: string, WrittenProgress: number, WrittenUserTag: number) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(WrittenAchievementName: string, WrittenProgress: number, WrittenUserTag: number) => void>;
-	static Load(ResourceName: string): AchievementWriteCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): AchievementWriteCallbackProxy;
-	static GetDefaultObject(): AchievementWriteCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AchievementWriteCallbackProxy;
-	static WriteAchievementProgress(WorldContextObject: UObject,PlayerController: PlayerController,AchievementName: string,Progress: number,UserTag: number): AchievementWriteCallbackProxy;
-	static C(Other: UObject | any): AchievementWriteCallbackProxy;
-}
-
-declare class ConnectionCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<(ErrorCode: number) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(ErrorCode: number) => void>;
-	static Load(ResourceName: string): ConnectionCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): ConnectionCallbackProxy;
-	static GetDefaultObject(): ConnectionCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ConnectionCallbackProxy;
-	static ConnectToService(WorldContextObject: UObject,PlayerController: PlayerController): ConnectionCallbackProxy;
-	static C(Other: UObject | any): ConnectionCallbackProxy;
-}
-
-declare class CreateSessionCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
-	OnFailure: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): CreateSessionCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): CreateSessionCallbackProxy;
-	static GetDefaultObject(): CreateSessionCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CreateSessionCallbackProxy;
-	static CreateSession(WorldContextObject: UObject,PlayerController: PlayerController,PublicConnections: number,bUseLAN: boolean): CreateSessionCallbackProxy;
-	static C(Other: UObject | any): CreateSessionCallbackProxy;
-}
-
-declare class DestroySessionCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
-	OnFailure: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): DestroySessionCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): DestroySessionCallbackProxy;
-	static GetDefaultObject(): DestroySessionCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): DestroySessionCallbackProxy;
-	static DestroySession(WorldContextObject: UObject,PlayerController: PlayerController): DestroySessionCallbackProxy;
-	static C(Other: UObject | any): DestroySessionCallbackProxy;
-}
-
-declare class EndMatchCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
-	OnFailure: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): EndMatchCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): EndMatchCallbackProxy;
-	static GetDefaultObject(): EndMatchCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EndMatchCallbackProxy;
-	static C(Other: UObject | any): EndMatchCallbackProxy;
-}
-
-declare class EndTurnCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
-	OnFailure: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): EndTurnCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): EndTurnCallbackProxy;
-	static GetDefaultObject(): EndTurnCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EndTurnCallbackProxy;
-	static C(Other: UObject | any): EndTurnCallbackProxy;
-}
-
-declare class BlueprintSessionResult { 
-	clone() : BlueprintSessionResult;
-	static C(Other: UObject | any): BlueprintSessionResult;
-}
-
-declare class FindSessionsCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<(Results: BlueprintSessionResult[]) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(Results: BlueprintSessionResult[]) => void>;
-	static Load(ResourceName: string): FindSessionsCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): FindSessionsCallbackProxy;
-	static GetDefaultObject(): FindSessionsCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): FindSessionsCallbackProxy;
-	static GetServerName(Result: BlueprintSessionResult): string;
-	static GetPingInMs(Result: BlueprintSessionResult): number;
-	static GetMaxPlayers(Result: BlueprintSessionResult): number;
-	static GetCurrentPlayers(Result: BlueprintSessionResult): number;
-	static FindSessions(WorldContextObject: UObject,PlayerController: PlayerController,MaxResults: number,bUseLAN: boolean): FindSessionsCallbackProxy;
-	static C(Other: UObject | any): FindSessionsCallbackProxy;
-}
-
-declare class FindTurnBasedMatchCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<(MatchID: string) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(MatchID: string) => void>;
-	static Load(ResourceName: string): FindTurnBasedMatchCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): FindTurnBasedMatchCallbackProxy;
-	static GetDefaultObject(): FindTurnBasedMatchCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): FindTurnBasedMatchCallbackProxy;
-	static C(Other: UObject | any): FindTurnBasedMatchCallbackProxy;
-}
-
-declare type EInAppPurchaseStatus = 'Invalid' | 'Failed' | 'Deferred' | 'Canceled' | 'Purchased' | 'Restored' | 'EInAppPurchaseStatus_MAX';
-declare var EInAppPurchaseStatus : { Invalid:'Invalid',Failed:'Failed',Deferred:'Deferred',Canceled:'Canceled',Purchased:'Purchased',Restored:'Restored',EInAppPurchaseStatus_MAX:'EInAppPurchaseStatus_MAX', };
-declare class InAppPurchaseReceiptInfo2 { 
-	ItemName: string;
-	ItemId: string;
-	ValidationInfo: string;
-	clone() : InAppPurchaseReceiptInfo2;
-	static C(Other: UObject | any): InAppPurchaseReceiptInfo2;
-}
-
-declare class InAppPurchaseProductRequest2 { 
-	ProductIdentifier: string;
-	bIsConsumable: boolean;
-	clone() : InAppPurchaseProductRequest2;
-	static C(Other: UObject | any): InAppPurchaseProductRequest2;
-}
-
-declare class InAppPurchaseCallbackProxy2 extends UObject { 
-	OnSuccess: UnrealEngineMulticastDelegate<(PurchaseStatus: EInAppPurchaseStatus, InAppPurchaseReceipts: InAppPurchaseReceiptInfo2[]) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(PurchaseStatus: EInAppPurchaseStatus, InAppPurchaseReceipts: InAppPurchaseReceiptInfo2[]) => void>;
-	static Load(ResourceName: string): InAppPurchaseCallbackProxy2;
-	static Find(Outer: UObject, ResourceName: string): InAppPurchaseCallbackProxy2;
-	static GetDefaultObject(): InAppPurchaseCallbackProxy2;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InAppPurchaseCallbackProxy2;
-	static CreateProxyObjectForInAppPurchaseUnprocessedPurchases(PlayerController: PlayerController): InAppPurchaseCallbackProxy2;
-	static CreateProxyObjectForInAppPurchaseQueryOwned(PlayerController: PlayerController): InAppPurchaseCallbackProxy2;
-	static CreateProxyObjectForInAppPurchase(PlayerController: PlayerController,ProductRequest: InAppPurchaseProductRequest2): InAppPurchaseCallbackProxy2;
-	static C(Other: UObject | any): InAppPurchaseCallbackProxy2;
-}
-
-declare type EOnlineProxyStoreOfferDiscountType = 'NotOnSale' | 'Percentage' | 'DiscountAmount' | 'PayAmount' | 'EOnlineProxyStoreOfferDiscountType_MAX';
-declare var EOnlineProxyStoreOfferDiscountType : { NotOnSale:'NotOnSale',Percentage:'Percentage',DiscountAmount:'DiscountAmount',PayAmount:'PayAmount',EOnlineProxyStoreOfferDiscountType_MAX:'EOnlineProxyStoreOfferDiscountType_MAX', };
-declare class OnlineProxyStoreOffer { 
-	OfferId: string;
-	Title: string;
-	Description: string;
-	LongDescription: string;
-	RegularPriceText: string;
-	RegularPrice: number;
-	PriceText: string;
-	NumericPrice: number;
-	CurrencyCode: string;
-	ReleaseDate: DateTime;
-	ExpirationDate: DateTime;
-	DiscountType: EOnlineProxyStoreOfferDiscountType;
-	DynamicFields: Map<string, string>;
-	clone() : OnlineProxyStoreOffer;
-	static C(Other: UObject | any): OnlineProxyStoreOffer;
-}
-
-declare class InAppPurchaseQueryCallbackProxy2 extends UObject { 
-	OnSuccess: UnrealEngineMulticastDelegate<(InAppOfferInformation: OnlineProxyStoreOffer[]) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(InAppOfferInformation: OnlineProxyStoreOffer[]) => void>;
-	static Load(ResourceName: string): InAppPurchaseQueryCallbackProxy2;
-	static Find(Outer: UObject, ResourceName: string): InAppPurchaseQueryCallbackProxy2;
-	static GetDefaultObject(): InAppPurchaseQueryCallbackProxy2;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InAppPurchaseQueryCallbackProxy2;
-	static CreateProxyObjectForInAppPurchaseQuery(PlayerController: PlayerController,ProductIdentifiers: string[]): InAppPurchaseQueryCallbackProxy2;
-	static C(Other: UObject | any): InAppPurchaseQueryCallbackProxy2;
-}
-
-declare class InAppPurchaseRestoreInfo2 { 
-	ItemName: string;
-	ItemId: string;
-	ValidationInfo: string;
-	clone() : InAppPurchaseRestoreInfo2;
-	static C(Other: UObject | any): InAppPurchaseRestoreInfo2;
-}
-
-declare class InAppPurchaseRestoreCallbackProxy2 extends UObject { 
-	OnSuccess: UnrealEngineMulticastDelegate<(PurchaseStatus: EInAppPurchaseStatus, InAppPurchaseRestoreInfo: InAppPurchaseRestoreInfo2[]) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(PurchaseStatus: EInAppPurchaseStatus, InAppPurchaseRestoreInfo: InAppPurchaseRestoreInfo2[]) => void>;
-	static Load(ResourceName: string): InAppPurchaseRestoreCallbackProxy2;
-	static Find(Outer: UObject, ResourceName: string): InAppPurchaseRestoreCallbackProxy2;
-	static GetDefaultObject(): InAppPurchaseRestoreCallbackProxy2;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InAppPurchaseRestoreCallbackProxy2;
-	static CreateProxyObjectForInAppPurchaseRestore(ConsumableProductFlags: InAppPurchaseProductRequest2[],PlayerController: PlayerController): InAppPurchaseRestoreCallbackProxy2;
-	static C(Other: UObject | any): InAppPurchaseRestoreCallbackProxy2;
-}
-
-declare class IpConnection extends NetConnection { 
-	SocketErrorDisconnectDelay: number;
-	static Load(ResourceName: string): IpConnection;
-	static Find(Outer: UObject, ResourceName: string): IpConnection;
-	static GetDefaultObject(): IpConnection;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IpConnection;
-	static C(Other: UObject | any): IpConnection;
-}
-
-declare class IpNetDriver extends NetDriver { 
-	LogPortUnreach: boolean;
-	AllowPlayerPortUnreach: boolean;
-	MaxPortCountToTry: number;
-	ServerDesiredSocketReceiveBufferBytes: number;
-	ServerDesiredSocketSendBufferBytes: number;
-	ClientDesiredSocketReceiveBufferBytes: number;
-	ClientDesiredSocketSendBufferBytes: number;
-	MaxSecondsInReceive: number;
-	NbPacketsBetweenReceiveTimeTest: number;
-	ResolutionConnectionTimeout: number;
-	static Load(ResourceName: string): IpNetDriver;
-	static Find(Outer: UObject, ResourceName: string): IpNetDriver;
-	static GetDefaultObject(): IpNetDriver;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IpNetDriver;
-	static C(Other: UObject | any): IpNetDriver;
-}
-
-declare class JoinSessionCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
-	OnFailure: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): JoinSessionCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): JoinSessionCallbackProxy;
-	static GetDefaultObject(): JoinSessionCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JoinSessionCallbackProxy;
-	static JoinSession(WorldContextObject: UObject,PlayerController: PlayerController,SearchResult: BlueprintSessionResult): JoinSessionCallbackProxy;
-	static C(Other: UObject | any): JoinSessionCallbackProxy;
-}
-
-declare class LeaderboardBlueprintLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): LeaderboardBlueprintLibrary;
-	static Find(Outer: UObject, ResourceName: string): LeaderboardBlueprintLibrary;
-	static GetDefaultObject(): LeaderboardBlueprintLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LeaderboardBlueprintLibrary;
-	static WriteLeaderboardInteger(PlayerController: PlayerController,StatName: string,StatValue: number): boolean;
-	static C(Other: UObject | any): LeaderboardBlueprintLibrary;
-}
-
-declare class LeaderboardFlushCallbackProxy extends UObject { 
-	OnSuccess: UnrealEngineMulticastDelegate<(SessionName: string) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(SessionName: string) => void>;
-	static Load(ResourceName: string): LeaderboardFlushCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): LeaderboardFlushCallbackProxy;
-	static GetDefaultObject(): LeaderboardFlushCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LeaderboardFlushCallbackProxy;
-	static CreateProxyObjectForFlush(PlayerController: PlayerController,SessionName: string): LeaderboardFlushCallbackProxy;
-	static C(Other: UObject | any): LeaderboardFlushCallbackProxy;
-}
-
-declare class LeaderboardQueryCallbackProxy extends UObject { 
-	OnSuccess: UnrealEngineMulticastDelegate<(LeaderboardValue: number) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(LeaderboardValue: number) => void>;
-	static Load(ResourceName: string): LeaderboardQueryCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): LeaderboardQueryCallbackProxy;
-	static GetDefaultObject(): LeaderboardQueryCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LeaderboardQueryCallbackProxy;
-	static CreateProxyObjectForIntQuery(PlayerController: PlayerController,StatName: string): LeaderboardQueryCallbackProxy;
-	static C(Other: UObject | any): LeaderboardQueryCallbackProxy;
-}
-
-declare class LogoutCallbackProxy extends BlueprintAsyncActionBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<(PlayerController: PlayerController) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(PlayerController: PlayerController) => void>;
-	static Load(ResourceName: string): LogoutCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): LogoutCallbackProxy;
-	static GetDefaultObject(): LogoutCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LogoutCallbackProxy;
-	static Logout(WorldContextObject: UObject,PlayerController: PlayerController): LogoutCallbackProxy;
-	static C(Other: UObject | any): LogoutCallbackProxy;
-}
-
-declare class OnlineBeacon extends Actor { 
-	BeaconConnectionInitialTimeout: number;
-	BeaconConnectionTimeout: number;
-	NetDriver: NetDriver;
-	static GetDefaultObject(): OnlineBeacon;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineBeacon;
-	static C(Other: UObject | any): OnlineBeacon;
-}
-
-declare class OnlineBeaconHostObject extends Actor { 
-	BeaconTypeName: string;
-	ClientBeaconActorClass: UnrealEngineClass;
-	ClientActors: OnlineBeaconClient[];
-	static GetDefaultObject(): OnlineBeaconHostObject;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineBeaconHostObject;
-	static C(Other: UObject | any): OnlineBeaconHostObject;
-}
-
-declare type EBeaconConnectionState = 'Invalid' | 'Closed' | 'Pending' | 'Open' | 'EBeaconConnectionState_MAX';
-declare var EBeaconConnectionState : { Invalid:'Invalid',Closed:'Closed',Pending:'Pending',Open:'Open',EBeaconConnectionState_MAX:'EBeaconConnectionState_MAX', };
-declare class OnlineBeaconClient extends OnlineBeacon { 
-	BeaconOwner: OnlineBeaconHostObject;
-	BeaconConnection: NetConnection;
-	ConnectionState: EBeaconConnectionState;
-	static GetDefaultObject(): OnlineBeaconClient;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineBeaconClient;
-	ClientOnConnected(): void;
-	static C(Other: UObject | any): OnlineBeaconClient;
-}
-
-declare class OnlineBeaconHost extends OnlineBeacon { 
-	ListenPort: number;
-	bAuthRequired: boolean;
-	MaxAuthTokenSize: number;
-	ClientActors: OnlineBeaconClient[];
-	static GetDefaultObject(): OnlineBeaconHost;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineBeaconHost;
-	static C(Other: UObject | any): OnlineBeaconHost;
-}
-
-declare class OnlineEngineInterfaceImpl extends OnlineEngineInterface { 
-	MappedUniqueNetIdTypes: Map<string, string>;
-	CompatibleUniqueNetIdTypes: string[];
-	VoiceSubsystemNameOverride: string;
-	static Load(ResourceName: string): OnlineEngineInterfaceImpl;
-	static Find(Outer: UObject, ResourceName: string): OnlineEngineInterfaceImpl;
-	static GetDefaultObject(): OnlineEngineInterfaceImpl;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineEngineInterfaceImpl;
-	static C(Other: UObject | any): OnlineEngineInterfaceImpl;
-}
-
-declare class PIELoginSettingsInternal { 
-	ID: string;
-	Token: string;
-	Type: string;
-	TokenBytes: number[];
-	clone() : PIELoginSettingsInternal;
-	static C(Other: UObject | any): PIELoginSettingsInternal;
-}
-
-declare class OnlinePIESettings extends DeveloperSettings { 
-	bOnlinePIEEnabled: boolean;
-	Logins: PIELoginSettingsInternal[];
-	static Load(ResourceName: string): OnlinePIESettings;
-	static Find(Outer: UObject, ResourceName: string): OnlinePIESettings;
-	static GetDefaultObject(): OnlinePIESettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlinePIESettings;
-	static C(Other: UObject | any): OnlinePIESettings;
-}
-
-declare class OnlineServicesEngineInterfaceImpl extends OnlineEngineInterface { 
-	static Load(ResourceName: string): OnlineServicesEngineInterfaceImpl;
-	static Find(Outer: UObject, ResourceName: string): OnlineServicesEngineInterfaceImpl;
-	static GetDefaultObject(): OnlineServicesEngineInterfaceImpl;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineServicesEngineInterfaceImpl;
-	static C(Other: UObject | any): OnlineServicesEngineInterfaceImpl;
-}
-
-declare class OnlineSessionClient extends OnlineSession { 
-	bIsFromInvite: boolean;
-	bHandlingDisconnect: boolean;
-	static Load(ResourceName: string): OnlineSessionClient;
-	static Find(Outer: UObject, ResourceName: string): OnlineSessionClient;
-	static GetDefaultObject(): OnlineSessionClient;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineSessionClient;
-	static C(Other: UObject | any): OnlineSessionClient;
-}
-
-declare class PlayerReservation { 
-	UniqueId: UniqueNetIdRepl;
-	ValidationStr: string;
-	Platform: string;
-	bAllowCrossplay: boolean;
-	ElapsedTime: number;
-	clone() : PlayerReservation;
-	static C(Other: UObject | any): PlayerReservation;
-}
-
-declare class PartyReservation { 
-	TeamNum: number;
-	PartyLeader: UniqueNetIdRepl;
-	PartyMembers: PlayerReservation[];
-	RemovedPartyMembers: PlayerReservation[];
-	clone() : PartyReservation;
-	static C(Other: UObject | any): PartyReservation;
-}
-
-declare type EClientRequestType = 'NonePending' | 'ExistingSessionReservation' | 'ReservationUpdate' | 'EmptyServerReservation' | 'Reconnect' | 'Abandon' | 'ReservationRemoveMembers' | 'AddOrUpdateReservation' | 'EClientRequestType_MAX';
-declare var EClientRequestType : { NonePending:'NonePending',ExistingSessionReservation:'ExistingSessionReservation',ReservationUpdate:'ReservationUpdate',EmptyServerReservation:'EmptyServerReservation',Reconnect:'Reconnect',Abandon:'Abandon',ReservationRemoveMembers:'ReservationRemoveMembers',AddOrUpdateReservation:'AddOrUpdateReservation',EClientRequestType_MAX:'EClientRequestType_MAX', };
-declare type EPartyReservationResult = 'NoResult' | 'RequestPending' | 'GeneralError' | 'PartyLimitReached' | 'IncorrectPlayerCount' | 'RequestTimedOut' | 'ReservationDuplicate' | 'ReservationNotFound' | 'ReservationAccepted' | 'ReservationDenied' | 'ReservationDenied_CrossPlayRestriction' | 'ReservationDenied_Banned' | 'ReservationRequestCanceled' | 'ReservationInvalid' | 'BadSessionId' | 'ReservationDenied_ContainsExistingPlayers' | 'EPartyReservationResult_MAX';
-declare var EPartyReservationResult : { NoResult:'NoResult',RequestPending:'RequestPending',GeneralError:'GeneralError',PartyLimitReached:'PartyLimitReached',IncorrectPlayerCount:'IncorrectPlayerCount',RequestTimedOut:'RequestTimedOut',ReservationDuplicate:'ReservationDuplicate',ReservationNotFound:'ReservationNotFound',ReservationAccepted:'ReservationAccepted',ReservationDenied:'ReservationDenied',ReservationDenied_CrossPlayRestriction:'ReservationDenied_CrossPlayRestriction',ReservationDenied_Banned:'ReservationDenied_Banned',ReservationRequestCanceled:'ReservationRequestCanceled',ReservationInvalid:'ReservationInvalid',BadSessionId:'BadSessionId',ReservationDenied_ContainsExistingPlayers:'ReservationDenied_ContainsExistingPlayers',EPartyReservationResult_MAX:'EPartyReservationResult_MAX', };
-declare class PartyBeaconClient extends OnlineBeaconClient { 
-	DestSessionId: string;
-	PendingReservation: PartyReservation;
-	RequestType: EClientRequestType;
-	bPendingReservationSent: boolean;
-	bCancelReservation: boolean;
-	static GetDefaultObject(): PartyBeaconClient;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PartyBeaconClient;
-	ServerUpdateReservationRequest(SessionId: string,ReservationUpdate: PartyReservation): void;
-	ServerReservationRequest(SessionId: string,Reservation: PartyReservation): void;
-	ServerRemoveMemberFromReservationRequest(SessionId: string,ReservationUpdate: PartyReservation): void;
-	ServerCancelReservationRequest(PartyLeader: UniqueNetIdRepl): void;
-	ServerAddOrUpdateReservationRequest(SessionId: string,Reservation: PartyReservation): void;
-	ClientSendReservationUpdates(NumRemainingReservations: number): void;
-	ClientSendReservationFull(): void;
-	ClientReservationResponse(ReservationResponse: EPartyReservationResult): void;
-	ClientCancelReservationResponse(ReservationResponse: EPartyReservationResult): void;
-	static C(Other: UObject | any): PartyBeaconClient;
-}
-
-declare class PartyBeaconCrossplayPlatformMapping { 
-	PlatformName: string;
-	PlatformType: string;
-	clone() : PartyBeaconCrossplayPlatformMapping;
-	static C(Other: UObject | any): PartyBeaconCrossplayPlatformMapping;
-}
-
-declare class PartyBeaconState extends UObject { 
-	SessionName: string;
-	NumConsumedReservations: number;
-	MaxReservations: number;
-	NumTeams: number;
-	NumPlayersPerTeam: number;
-	TeamAssignmentMethod: string;
-	ReservedHostTeamNum: number;
-	ForceTeamNum: number;
-	bRestrictCrossConsole: boolean;
-	PlatformCrossplayRestrictions: string[];
-	PlatformTypeMapping: PartyBeaconCrossplayPlatformMapping[];
-	bEnableRemovalRequests: boolean;
-	Reservations: PartyReservation[];
-	static Load(ResourceName: string): PartyBeaconState;
-	static Find(Outer: UObject, ResourceName: string): PartyBeaconState;
-	static GetDefaultObject(): PartyBeaconState;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PartyBeaconState;
-	static C(Other: UObject | any): PartyBeaconState;
-}
-
-declare class PartyBeaconHost extends OnlineBeaconHostObject { 
-	State: PartyBeaconState;
-	bLogoutOnSessionTimeout: boolean;
-	SessionTimeoutSecs: number;
-	TravelSessionTimeoutSecs: number;
-	static GetDefaultObject(): PartyBeaconHost;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PartyBeaconHost;
-	static C(Other: UObject | any): PartyBeaconHost;
-}
-
-declare type EMPMatchOutcome = 'None' | 'Quit' | 'Won' | 'Lost' | 'Tied' | 'TimeExpired' | 'First' | 'Second' | 'Third' | 'Fourth' | 'EMPMatchOutcome_MAX';
-declare var EMPMatchOutcome : { None:'None',Quit:'Quit',Won:'Won',Lost:'Lost',Tied:'Tied',TimeExpired:'TimeExpired',First:'First',Second:'Second',Third:'Third',Fourth:'Fourth',EMPMatchOutcome_MAX:'EMPMatchOutcome_MAX', };
-declare class QuitMatchCallbackProxy extends OnlineBlueprintCallProxyBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
-	OnFailure: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): QuitMatchCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): QuitMatchCallbackProxy;
-	static GetDefaultObject(): QuitMatchCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): QuitMatchCallbackProxy;
-	static QuitMatch(WorldContextObject: UObject,PlayerController: PlayerController,MatchID: string,Outcome: EMPMatchOutcome,TurnTimeoutInSeconds: number): QuitMatchCallbackProxy;
-	static C(Other: UObject | any): QuitMatchCallbackProxy;
-}
-
-declare class ShowLoginUICallbackProxy extends BlueprintAsyncActionBase { 
-	OnSuccess: UnrealEngineMulticastDelegate<(PlayerController: PlayerController) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(PlayerController: PlayerController) => void>;
-	static Load(ResourceName: string): ShowLoginUICallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): ShowLoginUICallbackProxy;
-	static GetDefaultObject(): ShowLoginUICallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ShowLoginUICallbackProxy;
-	static ShowExternalLoginUI(WorldContextObject: UObject,InPlayerController: PlayerController): ShowLoginUICallbackProxy;
-	static C(Other: UObject | any): ShowLoginUICallbackProxy;
-}
-
-declare class SpectatorReservation { 
-	SpectatorId: UniqueNetIdRepl;
-	Spectator: PlayerReservation;
-	clone() : SpectatorReservation;
-	static C(Other: UObject | any): SpectatorReservation;
-}
-
-declare type ESpectatorClientRequestType = 'NonePending' | 'ExistingSessionReservation' | 'ReservationUpdate' | 'EmptyServerReservation' | 'Reconnect' | 'Abandon' | 'ESpectatorClientRequestType_MAX';
-declare var ESpectatorClientRequestType : { NonePending:'NonePending',ExistingSessionReservation:'ExistingSessionReservation',ReservationUpdate:'ReservationUpdate',EmptyServerReservation:'EmptyServerReservation',Reconnect:'Reconnect',Abandon:'Abandon',ESpectatorClientRequestType_MAX:'ESpectatorClientRequestType_MAX', };
-declare type ESpectatorReservationResult = 'NoResult' | 'RequestPending' | 'GeneralError' | 'SpectatorLimitReached' | 'IncorrectPlayerCount' | 'RequestTimedOut' | 'ReservationDuplicate' | 'ReservationNotFound' | 'ReservationAccepted' | 'ReservationDenied' | 'ReservationDenied_CrossPlayRestriction' | 'ReservationDenied_Banned' | 'ReservationRequestCanceled' | 'ReservationInvalid' | 'BadSessionId' | 'ReservationDenied_ContainsExistingPlayers' | 'ESpectatorReservationResult_MAX';
-declare var ESpectatorReservationResult : { NoResult:'NoResult',RequestPending:'RequestPending',GeneralError:'GeneralError',SpectatorLimitReached:'SpectatorLimitReached',IncorrectPlayerCount:'IncorrectPlayerCount',RequestTimedOut:'RequestTimedOut',ReservationDuplicate:'ReservationDuplicate',ReservationNotFound:'ReservationNotFound',ReservationAccepted:'ReservationAccepted',ReservationDenied:'ReservationDenied',ReservationDenied_CrossPlayRestriction:'ReservationDenied_CrossPlayRestriction',ReservationDenied_Banned:'ReservationDenied_Banned',ReservationRequestCanceled:'ReservationRequestCanceled',ReservationInvalid:'ReservationInvalid',BadSessionId:'BadSessionId',ReservationDenied_ContainsExistingPlayers:'ReservationDenied_ContainsExistingPlayers',ESpectatorReservationResult_MAX:'ESpectatorReservationResult_MAX', };
-declare class SpectatorBeaconClient extends OnlineBeaconClient { 
-	DestSessionId: string;
-	PendingReservation: SpectatorReservation;
-	RequestType: ESpectatorClientRequestType;
-	bPendingReservationSent: boolean;
-	bCancelReservation: boolean;
-	static GetDefaultObject(): SpectatorBeaconClient;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SpectatorBeaconClient;
-	ServerReservationRequest(SessionId: string,Reservation: SpectatorReservation): void;
-	ServerCancelReservationRequest(Spectator: UniqueNetIdRepl): void;
-	ClientSendReservationUpdates(NumRemainingReservations: number): void;
-	ClientSendReservationFull(): void;
-	ClientReservationResponse(ReservationResponse: ESpectatorReservationResult): void;
-	ClientCancelReservationResponse(ReservationResponse: ESpectatorReservationResult): void;
-	static C(Other: UObject | any): SpectatorBeaconClient;
-}
-
-declare class SpectatorBeaconState extends UObject { 
-	SessionName: string;
-	NumConsumedReservations: number;
-	MaxReservations: number;
-	bRestrictCrossConsole: boolean;
-	Reservations: SpectatorReservation[];
-	static Load(ResourceName: string): SpectatorBeaconState;
-	static Find(Outer: UObject, ResourceName: string): SpectatorBeaconState;
-	static GetDefaultObject(): SpectatorBeaconState;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SpectatorBeaconState;
-	static C(Other: UObject | any): SpectatorBeaconState;
-}
-
-declare class SpectatorBeaconHost extends OnlineBeaconHostObject { 
-	State: SpectatorBeaconState;
-	bLogoutOnSessionTimeout: boolean;
-	SessionTimeoutSecs: number;
-	TravelSessionTimeoutSecs: number;
-	static GetDefaultObject(): SpectatorBeaconHost;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SpectatorBeaconHost;
-	static C(Other: UObject | any): SpectatorBeaconHost;
-}
-
-declare class TestBeaconClient extends OnlineBeaconClient { 
-	static GetDefaultObject(): TestBeaconClient;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TestBeaconClient;
-	ServerPong(): void;
-	ClientPing(): void;
-	static C(Other: UObject | any): TestBeaconClient;
-}
-
-declare class TestBeaconHost extends OnlineBeaconHostObject { 
-	static GetDefaultObject(): TestBeaconHost;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TestBeaconHost;
-	static C(Other: UObject | any): TestBeaconHost;
-}
-
-declare class TurnBasedBlueprintLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): TurnBasedBlueprintLibrary;
-	static Find(Outer: UObject, ResourceName: string): TurnBasedBlueprintLibrary;
-	static GetDefaultObject(): TurnBasedBlueprintLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TurnBasedBlueprintLibrary;
-	static RegisterTurnBasedMatchInterfaceObject(WorldContextObject: UObject,PlayerController: PlayerController,UObject: UObject): void;
-	static GetPlayerDisplayName(WorldContextObject: UObject,PlayerController: PlayerController,MatchID: string,PlayerIndex: number,PlayerDisplayName?: string): {PlayerDisplayName: string};
-	static GetMyPlayerIndex(WorldContextObject: UObject,PlayerController: PlayerController,MatchID: string,PlayerIndex?: number): {PlayerIndex: number};
-	static GetIsMyTurn(WorldContextObject: UObject,PlayerController: PlayerController,MatchID: string,bIsMyTurn?: boolean): {bIsMyTurn: boolean};
-	static C(Other: UObject | any): TurnBasedBlueprintLibrary;
-}
-
-declare class VoipListenerSynthComponent extends SynthComponent { 
-	static Load(ResourceName: string): VoipListenerSynthComponent;
-	static Find(Outer: UObject, ResourceName: string): VoipListenerSynthComponent;
-	static GetDefaultObject(): VoipListenerSynthComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): VoipListenerSynthComponent;
-	IsIdling(): boolean;
-	static C(Other: UObject | any): VoipListenerSynthComponent;
-}
-
-declare class K2Node_InAppPurchase2 extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_InAppPurchase2;
-	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchase2;
-	static GetDefaultObject(): K2Node_InAppPurchase2;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchase2;
-	static C(Other: UObject | any): K2Node_InAppPurchase2;
-}
-
-declare class K2Node_InAppPurchaseQuery2 extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_InAppPurchaseQuery2;
-	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchaseQuery2;
-	static GetDefaultObject(): K2Node_InAppPurchaseQuery2;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchaseQuery2;
-	static C(Other: UObject | any): K2Node_InAppPurchaseQuery2;
-}
-
-declare class K2Node_InAppPurchaseQueryOwned2 extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_InAppPurchaseQueryOwned2;
-	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchaseQueryOwned2;
-	static GetDefaultObject(): K2Node_InAppPurchaseQueryOwned2;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchaseQueryOwned2;
-	static C(Other: UObject | any): K2Node_InAppPurchaseQueryOwned2;
-}
-
-declare class K2Node_InAppPurchaseRestore2 extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_InAppPurchaseRestore2;
-	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchaseRestore2;
-	static GetDefaultObject(): K2Node_InAppPurchaseRestore2;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchaseRestore2;
-	static C(Other: UObject | any): K2Node_InAppPurchaseRestore2;
-}
-
-declare class K2Node_InAppPurchaseUnprocessed2 extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_InAppPurchaseUnprocessed2;
-	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchaseUnprocessed2;
-	static GetDefaultObject(): K2Node_InAppPurchaseUnprocessed2;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchaseUnprocessed2;
-	static C(Other: UObject | any): K2Node_InAppPurchaseUnprocessed2;
-}
-
-declare class K2Node_LeaderboardFlush extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_LeaderboardFlush;
-	static Find(Outer: UObject, ResourceName: string): K2Node_LeaderboardFlush;
-	static GetDefaultObject(): K2Node_LeaderboardFlush;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_LeaderboardFlush;
-	static C(Other: UObject | any): K2Node_LeaderboardFlush;
-}
-
-declare class K2Node_LeaderboardQuery extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_LeaderboardQuery;
-	static Find(Outer: UObject, ResourceName: string): K2Node_LeaderboardQuery;
-	static GetDefaultObject(): K2Node_LeaderboardQuery;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_LeaderboardQuery;
-	static C(Other: UObject | any): K2Node_LeaderboardQuery;
-}
-
 declare class VariantDependency { 
 	VariantSet: VariantSet;
 	Variant: Variant;
@@ -15815,6 +15158,663 @@ declare class GLTFStaticMeshExporter extends GLTFExporter {
 	static GetDefaultObject(): GLTFStaticMeshExporter;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GLTFStaticMeshExporter;
 	static C(Other: UObject | any): GLTFStaticMeshExporter;
+}
+
+declare class WmfMediaSettings extends UObject { 
+	AllowNonStandardCodecs: boolean;
+	LowLatency: boolean;
+	NativeAudioOut: boolean;
+	HardwareAcceleratedVideoDecoding: boolean;
+	static Load(ResourceName: string): WmfMediaSettings;
+	static Find(Outer: UObject, ResourceName: string): WmfMediaSettings;
+	static GetDefaultObject(): WmfMediaSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): WmfMediaSettings;
+	static C(Other: UObject | any): WmfMediaSettings;
+}
+
+declare class NamedInterface { 
+	InterfaceName: string;
+	InterfaceObject: UObject;
+	clone() : NamedInterface;
+	static C(Other: UObject | any): NamedInterface;
+}
+
+declare class NamedInterfaceDef { 
+	InterfaceName: string;
+	InterfaceClassName: string;
+	clone() : NamedInterfaceDef;
+	static C(Other: UObject | any): NamedInterfaceDef;
+}
+
+declare class NamedInterfaces extends UObject { 
+	NamedInterfaces: NamedInterface[];
+	NamedInterfaceDefs: NamedInterfaceDef[];
+	static Load(ResourceName: string): NamedInterfaces;
+	static Find(Outer: UObject, ResourceName: string): NamedInterfaces;
+	static GetDefaultObject(): NamedInterfaces;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): NamedInterfaces;
+	static C(Other: UObject | any): NamedInterfaces;
+}
+
+declare class TurnBasedMatchInterface extends Interface { 
+	static Load(ResourceName: string): TurnBasedMatchInterface;
+	static Find(Outer: UObject, ResourceName: string): TurnBasedMatchInterface;
+	static GetDefaultObject(): TurnBasedMatchInterface;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TurnBasedMatchInterface;
+	OnMatchReceivedTurn(Match: string,bDidBecomeActive: boolean): void;
+	OnMatchEnded(Match: string): void;
+	static C(Other: UObject | any): TurnBasedMatchInterface;
+}
+
+declare class AchievementBlueprintLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): AchievementBlueprintLibrary;
+	static Find(Outer: UObject, ResourceName: string): AchievementBlueprintLibrary;
+	static GetDefaultObject(): AchievementBlueprintLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AchievementBlueprintLibrary;
+	static GetCachedAchievementProgress(WorldContextObject: UObject,PlayerController: PlayerController,AchievementID: string,bFoundID?: boolean,Progress?: number): {bFoundID: boolean, Progress: number};
+	static GetCachedAchievementDescription(WorldContextObject: UObject,PlayerController: PlayerController,AchievementID: string,bFoundID?: boolean,Title?: string,LockedDescription?: string,UnlockedDescription?: string,bHidden?: boolean): {bFoundID: boolean, Title: string, LockedDescription: string, UnlockedDescription: string, bHidden: boolean};
+	static C(Other: UObject | any): AchievementBlueprintLibrary;
+}
+
+declare class AchievementQueryCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
+	OnFailure: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): AchievementQueryCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): AchievementQueryCallbackProxy;
+	static GetDefaultObject(): AchievementQueryCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AchievementQueryCallbackProxy;
+	static CacheAchievements(WorldContextObject: UObject,PlayerController: PlayerController): AchievementQueryCallbackProxy;
+	static CacheAchievementDescriptions(WorldContextObject: UObject,PlayerController: PlayerController): AchievementQueryCallbackProxy;
+	static C(Other: UObject | any): AchievementQueryCallbackProxy;
+}
+
+declare class AchievementWriteCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<(WrittenAchievementName: string, WrittenProgress: number, WrittenUserTag: number) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(WrittenAchievementName: string, WrittenProgress: number, WrittenUserTag: number) => void>;
+	static Load(ResourceName: string): AchievementWriteCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): AchievementWriteCallbackProxy;
+	static GetDefaultObject(): AchievementWriteCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AchievementWriteCallbackProxy;
+	static WriteAchievementProgress(WorldContextObject: UObject,PlayerController: PlayerController,AchievementName: string,Progress: number,UserTag: number): AchievementWriteCallbackProxy;
+	static C(Other: UObject | any): AchievementWriteCallbackProxy;
+}
+
+declare class ConnectionCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<(ErrorCode: number) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(ErrorCode: number) => void>;
+	static Load(ResourceName: string): ConnectionCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): ConnectionCallbackProxy;
+	static GetDefaultObject(): ConnectionCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ConnectionCallbackProxy;
+	static ConnectToService(WorldContextObject: UObject,PlayerController: PlayerController): ConnectionCallbackProxy;
+	static C(Other: UObject | any): ConnectionCallbackProxy;
+}
+
+declare class CreateSessionCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
+	OnFailure: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): CreateSessionCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): CreateSessionCallbackProxy;
+	static GetDefaultObject(): CreateSessionCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CreateSessionCallbackProxy;
+	static CreateSession(WorldContextObject: UObject,PlayerController: PlayerController,PublicConnections: number,bUseLAN: boolean): CreateSessionCallbackProxy;
+	static C(Other: UObject | any): CreateSessionCallbackProxy;
+}
+
+declare class DestroySessionCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
+	OnFailure: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): DestroySessionCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): DestroySessionCallbackProxy;
+	static GetDefaultObject(): DestroySessionCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): DestroySessionCallbackProxy;
+	static DestroySession(WorldContextObject: UObject,PlayerController: PlayerController): DestroySessionCallbackProxy;
+	static C(Other: UObject | any): DestroySessionCallbackProxy;
+}
+
+declare class EndMatchCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
+	OnFailure: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): EndMatchCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): EndMatchCallbackProxy;
+	static GetDefaultObject(): EndMatchCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EndMatchCallbackProxy;
+	static C(Other: UObject | any): EndMatchCallbackProxy;
+}
+
+declare class EndTurnCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
+	OnFailure: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): EndTurnCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): EndTurnCallbackProxy;
+	static GetDefaultObject(): EndTurnCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EndTurnCallbackProxy;
+	static C(Other: UObject | any): EndTurnCallbackProxy;
+}
+
+declare class BlueprintSessionResult { 
+	clone() : BlueprintSessionResult;
+	static C(Other: UObject | any): BlueprintSessionResult;
+}
+
+declare class FindSessionsCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<(Results: BlueprintSessionResult[]) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(Results: BlueprintSessionResult[]) => void>;
+	static Load(ResourceName: string): FindSessionsCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): FindSessionsCallbackProxy;
+	static GetDefaultObject(): FindSessionsCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): FindSessionsCallbackProxy;
+	static GetServerName(Result: BlueprintSessionResult): string;
+	static GetPingInMs(Result: BlueprintSessionResult): number;
+	static GetMaxPlayers(Result: BlueprintSessionResult): number;
+	static GetCurrentPlayers(Result: BlueprintSessionResult): number;
+	static FindSessions(WorldContextObject: UObject,PlayerController: PlayerController,MaxResults: number,bUseLAN: boolean): FindSessionsCallbackProxy;
+	static C(Other: UObject | any): FindSessionsCallbackProxy;
+}
+
+declare class FindTurnBasedMatchCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<(MatchID: string) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(MatchID: string) => void>;
+	static Load(ResourceName: string): FindTurnBasedMatchCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): FindTurnBasedMatchCallbackProxy;
+	static GetDefaultObject(): FindTurnBasedMatchCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): FindTurnBasedMatchCallbackProxy;
+	static C(Other: UObject | any): FindTurnBasedMatchCallbackProxy;
+}
+
+declare type EInAppPurchaseStatus = 'Invalid' | 'Failed' | 'Deferred' | 'Canceled' | 'Purchased' | 'Restored' | 'EInAppPurchaseStatus_MAX';
+declare var EInAppPurchaseStatus : { Invalid:'Invalid',Failed:'Failed',Deferred:'Deferred',Canceled:'Canceled',Purchased:'Purchased',Restored:'Restored',EInAppPurchaseStatus_MAX:'EInAppPurchaseStatus_MAX', };
+declare class InAppPurchaseReceiptInfo2 { 
+	ItemName: string;
+	ItemId: string;
+	ValidationInfo: string;
+	clone() : InAppPurchaseReceiptInfo2;
+	static C(Other: UObject | any): InAppPurchaseReceiptInfo2;
+}
+
+declare class InAppPurchaseProductRequest2 { 
+	ProductIdentifier: string;
+	bIsConsumable: boolean;
+	clone() : InAppPurchaseProductRequest2;
+	static C(Other: UObject | any): InAppPurchaseProductRequest2;
+}
+
+declare class InAppPurchaseCallbackProxy2 extends UObject { 
+	OnSuccess: UnrealEngineMulticastDelegate<(PurchaseStatus: EInAppPurchaseStatus, InAppPurchaseReceipts: InAppPurchaseReceiptInfo2[]) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(PurchaseStatus: EInAppPurchaseStatus, InAppPurchaseReceipts: InAppPurchaseReceiptInfo2[]) => void>;
+	static Load(ResourceName: string): InAppPurchaseCallbackProxy2;
+	static Find(Outer: UObject, ResourceName: string): InAppPurchaseCallbackProxy2;
+	static GetDefaultObject(): InAppPurchaseCallbackProxy2;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InAppPurchaseCallbackProxy2;
+	static CreateProxyObjectForInAppPurchaseUnprocessedPurchases(PlayerController: PlayerController): InAppPurchaseCallbackProxy2;
+	static CreateProxyObjectForInAppPurchaseQueryOwned(PlayerController: PlayerController): InAppPurchaseCallbackProxy2;
+	static CreateProxyObjectForInAppPurchase(PlayerController: PlayerController,ProductRequest: InAppPurchaseProductRequest2): InAppPurchaseCallbackProxy2;
+	static C(Other: UObject | any): InAppPurchaseCallbackProxy2;
+}
+
+declare type EOnlineProxyStoreOfferDiscountType = 'NotOnSale' | 'Percentage' | 'DiscountAmount' | 'PayAmount' | 'EOnlineProxyStoreOfferDiscountType_MAX';
+declare var EOnlineProxyStoreOfferDiscountType : { NotOnSale:'NotOnSale',Percentage:'Percentage',DiscountAmount:'DiscountAmount',PayAmount:'PayAmount',EOnlineProxyStoreOfferDiscountType_MAX:'EOnlineProxyStoreOfferDiscountType_MAX', };
+declare class OnlineProxyStoreOffer { 
+	OfferId: string;
+	Title: string;
+	Description: string;
+	LongDescription: string;
+	RegularPriceText: string;
+	RegularPrice: number;
+	PriceText: string;
+	NumericPrice: number;
+	CurrencyCode: string;
+	ReleaseDate: DateTime;
+	ExpirationDate: DateTime;
+	DiscountType: EOnlineProxyStoreOfferDiscountType;
+	DynamicFields: Map<string, string>;
+	clone() : OnlineProxyStoreOffer;
+	static C(Other: UObject | any): OnlineProxyStoreOffer;
+}
+
+declare class InAppPurchaseQueryCallbackProxy2 extends UObject { 
+	OnSuccess: UnrealEngineMulticastDelegate<(InAppOfferInformation: OnlineProxyStoreOffer[]) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(InAppOfferInformation: OnlineProxyStoreOffer[]) => void>;
+	static Load(ResourceName: string): InAppPurchaseQueryCallbackProxy2;
+	static Find(Outer: UObject, ResourceName: string): InAppPurchaseQueryCallbackProxy2;
+	static GetDefaultObject(): InAppPurchaseQueryCallbackProxy2;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InAppPurchaseQueryCallbackProxy2;
+	static CreateProxyObjectForInAppPurchaseQuery(PlayerController: PlayerController,ProductIdentifiers: string[]): InAppPurchaseQueryCallbackProxy2;
+	static C(Other: UObject | any): InAppPurchaseQueryCallbackProxy2;
+}
+
+declare class InAppPurchaseRestoreInfo2 { 
+	ItemName: string;
+	ItemId: string;
+	ValidationInfo: string;
+	clone() : InAppPurchaseRestoreInfo2;
+	static C(Other: UObject | any): InAppPurchaseRestoreInfo2;
+}
+
+declare class InAppPurchaseRestoreCallbackProxy2 extends UObject { 
+	OnSuccess: UnrealEngineMulticastDelegate<(PurchaseStatus: EInAppPurchaseStatus, InAppPurchaseRestoreInfo: InAppPurchaseRestoreInfo2[]) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(PurchaseStatus: EInAppPurchaseStatus, InAppPurchaseRestoreInfo: InAppPurchaseRestoreInfo2[]) => void>;
+	static Load(ResourceName: string): InAppPurchaseRestoreCallbackProxy2;
+	static Find(Outer: UObject, ResourceName: string): InAppPurchaseRestoreCallbackProxy2;
+	static GetDefaultObject(): InAppPurchaseRestoreCallbackProxy2;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InAppPurchaseRestoreCallbackProxy2;
+	static CreateProxyObjectForInAppPurchaseRestore(ConsumableProductFlags: InAppPurchaseProductRequest2[],PlayerController: PlayerController): InAppPurchaseRestoreCallbackProxy2;
+	static C(Other: UObject | any): InAppPurchaseRestoreCallbackProxy2;
+}
+
+declare class IpConnection extends NetConnection { 
+	SocketErrorDisconnectDelay: number;
+	static Load(ResourceName: string): IpConnection;
+	static Find(Outer: UObject, ResourceName: string): IpConnection;
+	static GetDefaultObject(): IpConnection;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IpConnection;
+	static C(Other: UObject | any): IpConnection;
+}
+
+declare class IpNetDriver extends NetDriver { 
+	LogPortUnreach: boolean;
+	AllowPlayerPortUnreach: boolean;
+	MaxPortCountToTry: number;
+	ServerDesiredSocketReceiveBufferBytes: number;
+	ServerDesiredSocketSendBufferBytes: number;
+	ClientDesiredSocketReceiveBufferBytes: number;
+	ClientDesiredSocketSendBufferBytes: number;
+	MaxSecondsInReceive: number;
+	NbPacketsBetweenReceiveTimeTest: number;
+	ResolutionConnectionTimeout: number;
+	static Load(ResourceName: string): IpNetDriver;
+	static Find(Outer: UObject, ResourceName: string): IpNetDriver;
+	static GetDefaultObject(): IpNetDriver;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IpNetDriver;
+	static C(Other: UObject | any): IpNetDriver;
+}
+
+declare class JoinSessionCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
+	OnFailure: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): JoinSessionCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): JoinSessionCallbackProxy;
+	static GetDefaultObject(): JoinSessionCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JoinSessionCallbackProxy;
+	static JoinSession(WorldContextObject: UObject,PlayerController: PlayerController,SearchResult: BlueprintSessionResult): JoinSessionCallbackProxy;
+	static C(Other: UObject | any): JoinSessionCallbackProxy;
+}
+
+declare class LeaderboardBlueprintLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): LeaderboardBlueprintLibrary;
+	static Find(Outer: UObject, ResourceName: string): LeaderboardBlueprintLibrary;
+	static GetDefaultObject(): LeaderboardBlueprintLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LeaderboardBlueprintLibrary;
+	static WriteLeaderboardInteger(PlayerController: PlayerController,StatName: string,StatValue: number): boolean;
+	static C(Other: UObject | any): LeaderboardBlueprintLibrary;
+}
+
+declare class LeaderboardFlushCallbackProxy extends UObject { 
+	OnSuccess: UnrealEngineMulticastDelegate<(SessionName: string) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(SessionName: string) => void>;
+	static Load(ResourceName: string): LeaderboardFlushCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): LeaderboardFlushCallbackProxy;
+	static GetDefaultObject(): LeaderboardFlushCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LeaderboardFlushCallbackProxy;
+	static CreateProxyObjectForFlush(PlayerController: PlayerController,SessionName: string): LeaderboardFlushCallbackProxy;
+	static C(Other: UObject | any): LeaderboardFlushCallbackProxy;
+}
+
+declare class LeaderboardQueryCallbackProxy extends UObject { 
+	OnSuccess: UnrealEngineMulticastDelegate<(LeaderboardValue: number) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(LeaderboardValue: number) => void>;
+	static Load(ResourceName: string): LeaderboardQueryCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): LeaderboardQueryCallbackProxy;
+	static GetDefaultObject(): LeaderboardQueryCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LeaderboardQueryCallbackProxy;
+	static CreateProxyObjectForIntQuery(PlayerController: PlayerController,StatName: string): LeaderboardQueryCallbackProxy;
+	static C(Other: UObject | any): LeaderboardQueryCallbackProxy;
+}
+
+declare class LogoutCallbackProxy extends BlueprintAsyncActionBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<(PlayerController: PlayerController) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(PlayerController: PlayerController) => void>;
+	static Load(ResourceName: string): LogoutCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): LogoutCallbackProxy;
+	static GetDefaultObject(): LogoutCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LogoutCallbackProxy;
+	static Logout(WorldContextObject: UObject,PlayerController: PlayerController): LogoutCallbackProxy;
+	static C(Other: UObject | any): LogoutCallbackProxy;
+}
+
+declare class OnlineBeacon extends Actor { 
+	BeaconConnectionInitialTimeout: number;
+	BeaconConnectionTimeout: number;
+	NetDriver: NetDriver;
+	static GetDefaultObject(): OnlineBeacon;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineBeacon;
+	static C(Other: UObject | any): OnlineBeacon;
+}
+
+declare class OnlineBeaconHostObject extends Actor { 
+	BeaconTypeName: string;
+	ClientBeaconActorClass: UnrealEngineClass;
+	ClientActors: OnlineBeaconClient[];
+	static GetDefaultObject(): OnlineBeaconHostObject;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineBeaconHostObject;
+	static C(Other: UObject | any): OnlineBeaconHostObject;
+}
+
+declare type EBeaconConnectionState = 'Invalid' | 'Closed' | 'Pending' | 'Open' | 'EBeaconConnectionState_MAX';
+declare var EBeaconConnectionState : { Invalid:'Invalid',Closed:'Closed',Pending:'Pending',Open:'Open',EBeaconConnectionState_MAX:'EBeaconConnectionState_MAX', };
+declare class OnlineBeaconClient extends OnlineBeacon { 
+	BeaconOwner: OnlineBeaconHostObject;
+	BeaconConnection: NetConnection;
+	ConnectionState: EBeaconConnectionState;
+	static GetDefaultObject(): OnlineBeaconClient;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineBeaconClient;
+	ClientOnConnected(): void;
+	static C(Other: UObject | any): OnlineBeaconClient;
+}
+
+declare class OnlineBeaconHost extends OnlineBeacon { 
+	ListenPort: number;
+	bAuthRequired: boolean;
+	MaxAuthTokenSize: number;
+	ClientActors: OnlineBeaconClient[];
+	static GetDefaultObject(): OnlineBeaconHost;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineBeaconHost;
+	static C(Other: UObject | any): OnlineBeaconHost;
+}
+
+declare class OnlineEngineInterfaceImpl extends OnlineEngineInterface { 
+	MappedUniqueNetIdTypes: Map<string, string>;
+	CompatibleUniqueNetIdTypes: string[];
+	VoiceSubsystemNameOverride: string;
+	static Load(ResourceName: string): OnlineEngineInterfaceImpl;
+	static Find(Outer: UObject, ResourceName: string): OnlineEngineInterfaceImpl;
+	static GetDefaultObject(): OnlineEngineInterfaceImpl;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineEngineInterfaceImpl;
+	static C(Other: UObject | any): OnlineEngineInterfaceImpl;
+}
+
+declare class PIELoginSettingsInternal { 
+	ID: string;
+	Token: string;
+	Type: string;
+	TokenBytes: number[];
+	clone() : PIELoginSettingsInternal;
+	static C(Other: UObject | any): PIELoginSettingsInternal;
+}
+
+declare class OnlinePIESettings extends DeveloperSettings { 
+	bOnlinePIEEnabled: boolean;
+	Logins: PIELoginSettingsInternal[];
+	static Load(ResourceName: string): OnlinePIESettings;
+	static Find(Outer: UObject, ResourceName: string): OnlinePIESettings;
+	static GetDefaultObject(): OnlinePIESettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlinePIESettings;
+	static C(Other: UObject | any): OnlinePIESettings;
+}
+
+declare class OnlineServicesEngineInterfaceImpl extends OnlineEngineInterface { 
+	static Load(ResourceName: string): OnlineServicesEngineInterfaceImpl;
+	static Find(Outer: UObject, ResourceName: string): OnlineServicesEngineInterfaceImpl;
+	static GetDefaultObject(): OnlineServicesEngineInterfaceImpl;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineServicesEngineInterfaceImpl;
+	static C(Other: UObject | any): OnlineServicesEngineInterfaceImpl;
+}
+
+declare class OnlineSessionClient extends OnlineSession { 
+	bIsFromInvite: boolean;
+	bHandlingDisconnect: boolean;
+	static Load(ResourceName: string): OnlineSessionClient;
+	static Find(Outer: UObject, ResourceName: string): OnlineSessionClient;
+	static GetDefaultObject(): OnlineSessionClient;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineSessionClient;
+	static C(Other: UObject | any): OnlineSessionClient;
+}
+
+declare class PlayerReservation { 
+	UniqueId: UniqueNetIdRepl;
+	ValidationStr: string;
+	Platform: string;
+	bAllowCrossplay: boolean;
+	ElapsedTime: number;
+	clone() : PlayerReservation;
+	static C(Other: UObject | any): PlayerReservation;
+}
+
+declare class PartyReservation { 
+	TeamNum: number;
+	PartyLeader: UniqueNetIdRepl;
+	PartyMembers: PlayerReservation[];
+	RemovedPartyMembers: PlayerReservation[];
+	clone() : PartyReservation;
+	static C(Other: UObject | any): PartyReservation;
+}
+
+declare type EClientRequestType = 'NonePending' | 'ExistingSessionReservation' | 'ReservationUpdate' | 'EmptyServerReservation' | 'Reconnect' | 'Abandon' | 'ReservationRemoveMembers' | 'AddOrUpdateReservation' | 'EClientRequestType_MAX';
+declare var EClientRequestType : { NonePending:'NonePending',ExistingSessionReservation:'ExistingSessionReservation',ReservationUpdate:'ReservationUpdate',EmptyServerReservation:'EmptyServerReservation',Reconnect:'Reconnect',Abandon:'Abandon',ReservationRemoveMembers:'ReservationRemoveMembers',AddOrUpdateReservation:'AddOrUpdateReservation',EClientRequestType_MAX:'EClientRequestType_MAX', };
+declare type EPartyReservationResult = 'NoResult' | 'RequestPending' | 'GeneralError' | 'PartyLimitReached' | 'IncorrectPlayerCount' | 'RequestTimedOut' | 'ReservationDuplicate' | 'ReservationNotFound' | 'ReservationAccepted' | 'ReservationDenied' | 'ReservationDenied_CrossPlayRestriction' | 'ReservationDenied_Banned' | 'ReservationRequestCanceled' | 'ReservationInvalid' | 'BadSessionId' | 'ReservationDenied_ContainsExistingPlayers' | 'EPartyReservationResult_MAX';
+declare var EPartyReservationResult : { NoResult:'NoResult',RequestPending:'RequestPending',GeneralError:'GeneralError',PartyLimitReached:'PartyLimitReached',IncorrectPlayerCount:'IncorrectPlayerCount',RequestTimedOut:'RequestTimedOut',ReservationDuplicate:'ReservationDuplicate',ReservationNotFound:'ReservationNotFound',ReservationAccepted:'ReservationAccepted',ReservationDenied:'ReservationDenied',ReservationDenied_CrossPlayRestriction:'ReservationDenied_CrossPlayRestriction',ReservationDenied_Banned:'ReservationDenied_Banned',ReservationRequestCanceled:'ReservationRequestCanceled',ReservationInvalid:'ReservationInvalid',BadSessionId:'BadSessionId',ReservationDenied_ContainsExistingPlayers:'ReservationDenied_ContainsExistingPlayers',EPartyReservationResult_MAX:'EPartyReservationResult_MAX', };
+declare class PartyBeaconClient extends OnlineBeaconClient { 
+	DestSessionId: string;
+	PendingReservation: PartyReservation;
+	RequestType: EClientRequestType;
+	bPendingReservationSent: boolean;
+	bCancelReservation: boolean;
+	static GetDefaultObject(): PartyBeaconClient;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PartyBeaconClient;
+	ServerUpdateReservationRequest(SessionId: string,ReservationUpdate: PartyReservation): void;
+	ServerReservationRequest(SessionId: string,Reservation: PartyReservation): void;
+	ServerRemoveMemberFromReservationRequest(SessionId: string,ReservationUpdate: PartyReservation): void;
+	ServerCancelReservationRequest(PartyLeader: UniqueNetIdRepl): void;
+	ServerAddOrUpdateReservationRequest(SessionId: string,Reservation: PartyReservation): void;
+	ClientSendReservationUpdates(NumRemainingReservations: number): void;
+	ClientSendReservationFull(): void;
+	ClientReservationResponse(ReservationResponse: EPartyReservationResult): void;
+	ClientCancelReservationResponse(ReservationResponse: EPartyReservationResult): void;
+	static C(Other: UObject | any): PartyBeaconClient;
+}
+
+declare class PartyBeaconCrossplayPlatformMapping { 
+	PlatformName: string;
+	PlatformType: string;
+	clone() : PartyBeaconCrossplayPlatformMapping;
+	static C(Other: UObject | any): PartyBeaconCrossplayPlatformMapping;
+}
+
+declare class PartyBeaconState extends UObject { 
+	SessionName: string;
+	NumConsumedReservations: number;
+	MaxReservations: number;
+	NumTeams: number;
+	NumPlayersPerTeam: number;
+	TeamAssignmentMethod: string;
+	ReservedHostTeamNum: number;
+	ForceTeamNum: number;
+	bRestrictCrossConsole: boolean;
+	PlatformCrossplayRestrictions: string[];
+	PlatformTypeMapping: PartyBeaconCrossplayPlatformMapping[];
+	bEnableRemovalRequests: boolean;
+	Reservations: PartyReservation[];
+	static Load(ResourceName: string): PartyBeaconState;
+	static Find(Outer: UObject, ResourceName: string): PartyBeaconState;
+	static GetDefaultObject(): PartyBeaconState;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PartyBeaconState;
+	static C(Other: UObject | any): PartyBeaconState;
+}
+
+declare class PartyBeaconHost extends OnlineBeaconHostObject { 
+	State: PartyBeaconState;
+	bLogoutOnSessionTimeout: boolean;
+	SessionTimeoutSecs: number;
+	TravelSessionTimeoutSecs: number;
+	static GetDefaultObject(): PartyBeaconHost;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PartyBeaconHost;
+	static C(Other: UObject | any): PartyBeaconHost;
+}
+
+declare type EMPMatchOutcome = 'None' | 'Quit' | 'Won' | 'Lost' | 'Tied' | 'TimeExpired' | 'First' | 'Second' | 'Third' | 'Fourth' | 'EMPMatchOutcome_MAX';
+declare var EMPMatchOutcome : { None:'None',Quit:'Quit',Won:'Won',Lost:'Lost',Tied:'Tied',TimeExpired:'TimeExpired',First:'First',Second:'Second',Third:'Third',Fourth:'Fourth',EMPMatchOutcome_MAX:'EMPMatchOutcome_MAX', };
+declare class QuitMatchCallbackProxy extends OnlineBlueprintCallProxyBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<() => void>;
+	OnFailure: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): QuitMatchCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): QuitMatchCallbackProxy;
+	static GetDefaultObject(): QuitMatchCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): QuitMatchCallbackProxy;
+	static QuitMatch(WorldContextObject: UObject,PlayerController: PlayerController,MatchID: string,Outcome: EMPMatchOutcome,TurnTimeoutInSeconds: number): QuitMatchCallbackProxy;
+	static C(Other: UObject | any): QuitMatchCallbackProxy;
+}
+
+declare class ShowLoginUICallbackProxy extends BlueprintAsyncActionBase { 
+	OnSuccess: UnrealEngineMulticastDelegate<(PlayerController: PlayerController) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(PlayerController: PlayerController) => void>;
+	static Load(ResourceName: string): ShowLoginUICallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): ShowLoginUICallbackProxy;
+	static GetDefaultObject(): ShowLoginUICallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ShowLoginUICallbackProxy;
+	static ShowExternalLoginUI(WorldContextObject: UObject,InPlayerController: PlayerController): ShowLoginUICallbackProxy;
+	static C(Other: UObject | any): ShowLoginUICallbackProxy;
+}
+
+declare class SpectatorReservation { 
+	SpectatorId: UniqueNetIdRepl;
+	Spectator: PlayerReservation;
+	clone() : SpectatorReservation;
+	static C(Other: UObject | any): SpectatorReservation;
+}
+
+declare type ESpectatorClientRequestType = 'NonePending' | 'ExistingSessionReservation' | 'ReservationUpdate' | 'EmptyServerReservation' | 'Reconnect' | 'Abandon' | 'ESpectatorClientRequestType_MAX';
+declare var ESpectatorClientRequestType : { NonePending:'NonePending',ExistingSessionReservation:'ExistingSessionReservation',ReservationUpdate:'ReservationUpdate',EmptyServerReservation:'EmptyServerReservation',Reconnect:'Reconnect',Abandon:'Abandon',ESpectatorClientRequestType_MAX:'ESpectatorClientRequestType_MAX', };
+declare type ESpectatorReservationResult = 'NoResult' | 'RequestPending' | 'GeneralError' | 'SpectatorLimitReached' | 'IncorrectPlayerCount' | 'RequestTimedOut' | 'ReservationDuplicate' | 'ReservationNotFound' | 'ReservationAccepted' | 'ReservationDenied' | 'ReservationDenied_CrossPlayRestriction' | 'ReservationDenied_Banned' | 'ReservationRequestCanceled' | 'ReservationInvalid' | 'BadSessionId' | 'ReservationDenied_ContainsExistingPlayers' | 'ESpectatorReservationResult_MAX';
+declare var ESpectatorReservationResult : { NoResult:'NoResult',RequestPending:'RequestPending',GeneralError:'GeneralError',SpectatorLimitReached:'SpectatorLimitReached',IncorrectPlayerCount:'IncorrectPlayerCount',RequestTimedOut:'RequestTimedOut',ReservationDuplicate:'ReservationDuplicate',ReservationNotFound:'ReservationNotFound',ReservationAccepted:'ReservationAccepted',ReservationDenied:'ReservationDenied',ReservationDenied_CrossPlayRestriction:'ReservationDenied_CrossPlayRestriction',ReservationDenied_Banned:'ReservationDenied_Banned',ReservationRequestCanceled:'ReservationRequestCanceled',ReservationInvalid:'ReservationInvalid',BadSessionId:'BadSessionId',ReservationDenied_ContainsExistingPlayers:'ReservationDenied_ContainsExistingPlayers',ESpectatorReservationResult_MAX:'ESpectatorReservationResult_MAX', };
+declare class SpectatorBeaconClient extends OnlineBeaconClient { 
+	DestSessionId: string;
+	PendingReservation: SpectatorReservation;
+	RequestType: ESpectatorClientRequestType;
+	bPendingReservationSent: boolean;
+	bCancelReservation: boolean;
+	static GetDefaultObject(): SpectatorBeaconClient;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SpectatorBeaconClient;
+	ServerReservationRequest(SessionId: string,Reservation: SpectatorReservation): void;
+	ServerCancelReservationRequest(Spectator: UniqueNetIdRepl): void;
+	ClientSendReservationUpdates(NumRemainingReservations: number): void;
+	ClientSendReservationFull(): void;
+	ClientReservationResponse(ReservationResponse: ESpectatorReservationResult): void;
+	ClientCancelReservationResponse(ReservationResponse: ESpectatorReservationResult): void;
+	static C(Other: UObject | any): SpectatorBeaconClient;
+}
+
+declare class SpectatorBeaconState extends UObject { 
+	SessionName: string;
+	NumConsumedReservations: number;
+	MaxReservations: number;
+	bRestrictCrossConsole: boolean;
+	Reservations: SpectatorReservation[];
+	static Load(ResourceName: string): SpectatorBeaconState;
+	static Find(Outer: UObject, ResourceName: string): SpectatorBeaconState;
+	static GetDefaultObject(): SpectatorBeaconState;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SpectatorBeaconState;
+	static C(Other: UObject | any): SpectatorBeaconState;
+}
+
+declare class SpectatorBeaconHost extends OnlineBeaconHostObject { 
+	State: SpectatorBeaconState;
+	bLogoutOnSessionTimeout: boolean;
+	SessionTimeoutSecs: number;
+	TravelSessionTimeoutSecs: number;
+	static GetDefaultObject(): SpectatorBeaconHost;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SpectatorBeaconHost;
+	static C(Other: UObject | any): SpectatorBeaconHost;
+}
+
+declare class TestBeaconClient extends OnlineBeaconClient { 
+	static GetDefaultObject(): TestBeaconClient;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TestBeaconClient;
+	ServerPong(): void;
+	ClientPing(): void;
+	static C(Other: UObject | any): TestBeaconClient;
+}
+
+declare class TestBeaconHost extends OnlineBeaconHostObject { 
+	static GetDefaultObject(): TestBeaconHost;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TestBeaconHost;
+	static C(Other: UObject | any): TestBeaconHost;
+}
+
+declare class TurnBasedBlueprintLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): TurnBasedBlueprintLibrary;
+	static Find(Outer: UObject, ResourceName: string): TurnBasedBlueprintLibrary;
+	static GetDefaultObject(): TurnBasedBlueprintLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TurnBasedBlueprintLibrary;
+	static RegisterTurnBasedMatchInterfaceObject(WorldContextObject: UObject,PlayerController: PlayerController,UObject: UObject): void;
+	static GetPlayerDisplayName(WorldContextObject: UObject,PlayerController: PlayerController,MatchID: string,PlayerIndex: number,PlayerDisplayName?: string): {PlayerDisplayName: string};
+	static GetMyPlayerIndex(WorldContextObject: UObject,PlayerController: PlayerController,MatchID: string,PlayerIndex?: number): {PlayerIndex: number};
+	static GetIsMyTurn(WorldContextObject: UObject,PlayerController: PlayerController,MatchID: string,bIsMyTurn?: boolean): {bIsMyTurn: boolean};
+	static C(Other: UObject | any): TurnBasedBlueprintLibrary;
+}
+
+declare class VoipListenerSynthComponent extends SynthComponent { 
+	static Load(ResourceName: string): VoipListenerSynthComponent;
+	static Find(Outer: UObject, ResourceName: string): VoipListenerSynthComponent;
+	static GetDefaultObject(): VoipListenerSynthComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): VoipListenerSynthComponent;
+	IsIdling(): boolean;
+	static C(Other: UObject | any): VoipListenerSynthComponent;
+}
+
+declare class K2Node_InAppPurchase2 extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_InAppPurchase2;
+	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchase2;
+	static GetDefaultObject(): K2Node_InAppPurchase2;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchase2;
+	static C(Other: UObject | any): K2Node_InAppPurchase2;
+}
+
+declare class K2Node_InAppPurchaseQuery2 extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_InAppPurchaseQuery2;
+	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchaseQuery2;
+	static GetDefaultObject(): K2Node_InAppPurchaseQuery2;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchaseQuery2;
+	static C(Other: UObject | any): K2Node_InAppPurchaseQuery2;
+}
+
+declare class K2Node_InAppPurchaseQueryOwned2 extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_InAppPurchaseQueryOwned2;
+	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchaseQueryOwned2;
+	static GetDefaultObject(): K2Node_InAppPurchaseQueryOwned2;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchaseQueryOwned2;
+	static C(Other: UObject | any): K2Node_InAppPurchaseQueryOwned2;
+}
+
+declare class K2Node_InAppPurchaseRestore2 extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_InAppPurchaseRestore2;
+	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchaseRestore2;
+	static GetDefaultObject(): K2Node_InAppPurchaseRestore2;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchaseRestore2;
+	static C(Other: UObject | any): K2Node_InAppPurchaseRestore2;
+}
+
+declare class K2Node_InAppPurchaseUnprocessed2 extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_InAppPurchaseUnprocessed2;
+	static Find(Outer: UObject, ResourceName: string): K2Node_InAppPurchaseUnprocessed2;
+	static GetDefaultObject(): K2Node_InAppPurchaseUnprocessed2;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_InAppPurchaseUnprocessed2;
+	static C(Other: UObject | any): K2Node_InAppPurchaseUnprocessed2;
+}
+
+declare class K2Node_LeaderboardFlush extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_LeaderboardFlush;
+	static Find(Outer: UObject, ResourceName: string): K2Node_LeaderboardFlush;
+	static GetDefaultObject(): K2Node_LeaderboardFlush;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_LeaderboardFlush;
+	static C(Other: UObject | any): K2Node_LeaderboardFlush;
+}
+
+declare class K2Node_LeaderboardQuery extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_LeaderboardQuery;
+	static Find(Outer: UObject, ResourceName: string): K2Node_LeaderboardQuery;
+	static GetDefaultObject(): K2Node_LeaderboardQuery;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_LeaderboardQuery;
+	static C(Other: UObject | any): K2Node_LeaderboardQuery;
 }
 
 declare type EDefaultGraphicsRHI = 'DefaultGraphicsRHI_Default' | 'DefaultGraphicsRHI_DX11' | 'DefaultGraphicsRHI_DX12' | 'DefaultGraphicsRHI_Vulkan' | 'DefaultGraphicsRHI_MAX';

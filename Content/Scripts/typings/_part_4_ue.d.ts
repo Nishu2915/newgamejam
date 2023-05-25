@@ -1,3 +1,499 @@
+declare class ControlRigAnimNodeEventName { 
+	EventName: string;
+	clone() : ControlRigAnimNodeEventName;
+	static C(Other: UObject | any): ControlRigAnimNodeEventName;
+}
+
+declare class AnimNode_ControlRigBase extends AnimNode_CustomProperty { 
+	Source: PoseLink;
+	bResetInputPoseToInitial: boolean;
+	bTransferInputPose: boolean;
+	bTransferInputCurves: boolean;
+	bTransferPoseInGlobalSpace: boolean;
+	InputBonesToTransfer: BoneReference[];
+	NodeMappingContainer: NodeMappingContainer;
+	InputSettings: ControlRigIOSettings;
+	OutputSettings: ControlRigIOSettings;
+	bExecute: boolean;
+	EventQueue: ControlRigAnimNodeEventName[];
+	clone() : AnimNode_ControlRigBase;
+	static C(Other: UObject | any): AnimNode_ControlRigBase;
+}
+
+declare class AnimNode_ControlRig extends AnimNode_ControlRigBase { 
+	ControlRigClass: UnrealEngineClass;
+	ControlRig: ControlRig;
+	Alpha: number;
+	AlphaInputType: EAnimAlphaInputType;
+	bAlphaBoolEnabled: boolean;
+	bSetRefPoseFromSkeleton: boolean;
+	AlphaScaleBias: InputScaleBias;
+	AlphaBoolBlend: InputAlphaBoolBlend;
+	AlphaCurveName: string;
+	AlphaScaleBiasClamp: InputScaleBiasClamp;
+	InputMapping: Map<string, string>;
+	OutputMapping: Map<string, string>;
+	LODThreshold: number;
+	clone() : AnimNode_ControlRig;
+	static C(Other: UObject | any): AnimNode_ControlRig;
+}
+
+declare class AnimGraphNode_ControlRig extends AnimGraphNode_CustomProperty { 
+	UNode: AnimNode_ControlRig;
+	static Load(ResourceName: string): AnimGraphNode_ControlRig;
+	static Find(Outer: UObject, ResourceName: string): AnimGraphNode_ControlRig;
+	static GetDefaultObject(): AnimGraphNode_ControlRig;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimGraphNode_ControlRig;
+	static C(Other: UObject | any): AnimGraphNode_ControlRig;
+}
+
+declare class ControlRigGraphNode extends EdGraphNode { 
+	ModelNodePath: string;
+	CachedModelNode: RigVMNode;
+	CachedModelPins: Map<string, RigVMPin>;
+	PropertyName: string;
+	StructPath: string;
+	PinType: EdGraphPinType;
+	ParameterType: number;
+	ExpandedPins: string[];
+	static Load(ResourceName: string): ControlRigGraphNode;
+	static Find(Outer: UObject, ResourceName: string): ControlRigGraphNode;
+	static GetDefaultObject(): ControlRigGraphNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigGraphNode;
+	static C(Other: UObject | any): ControlRigGraphNode;
+}
+
+declare class ControlRigGraphSchema extends EdGraphSchema { 
+	static Load(ResourceName: string): ControlRigGraphSchema;
+	static Find(Outer: UObject, ResourceName: string): ControlRigGraphSchema;
+	static GetDefaultObject(): ControlRigGraphSchema;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigGraphSchema;
+	static C(Other: UObject | any): ControlRigGraphSchema;
+}
+
+declare class EdGraphNode_Reference extends EdGraphNode { 
+	static Load(ResourceName: string): EdGraphNode_Reference;
+	static Find(Outer: UObject, ResourceName: string): EdGraphNode_Reference;
+	static GetDefaultObject(): EdGraphNode_Reference;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EdGraphNode_Reference;
+	static C(Other: UObject | any): EdGraphNode_Reference;
+}
+
+declare class EdGraph_ReferenceViewer extends EdGraph { 
+	static Load(ResourceName: string): EdGraph_ReferenceViewer;
+	static Find(Outer: UObject, ResourceName: string): EdGraph_ReferenceViewer;
+	static GetDefaultObject(): EdGraph_ReferenceViewer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EdGraph_ReferenceViewer;
+	static C(Other: UObject | any): EdGraph_ReferenceViewer;
+}
+
+declare class ReferenceViewerSchema extends EdGraphSchema { 
+	static Load(ResourceName: string): ReferenceViewerSchema;
+	static Find(Outer: UObject, ResourceName: string): ReferenceViewerSchema;
+	static GetDefaultObject(): ReferenceViewerSchema;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ReferenceViewerSchema;
+	static C(Other: UObject | any): ReferenceViewerSchema;
+}
+
+declare class ilterState { 
+	FilterPath: TopLevelAssetPath;
+	bIsEnabled: boolean;
+	clone() : ilterState;
+	static C(Other: UObject | any): ilterState;
+}
+
+declare class ReferenceViewerSettings extends UObject { 
+	bLimitSearchDepth: boolean;
+	bIsShowReferencers: boolean;
+	MaxSearchReferencerDepth: number;
+	bIsShowDependencies: boolean;
+	MaxSearchDependencyDepth: number;
+	bLimitSearchBreadth: boolean;
+	MaxSearchBreadth: number;
+	bEnableCollectionFilter: boolean;
+	bIsShowSoftReferences: boolean;
+	bIsShowHardReferences: boolean;
+	bIsShowEditorOnlyReferences: boolean;
+	bIsShowManagementReferences: boolean;
+	bIsShowSearchableNames: boolean;
+	bIsShowCodePackages: boolean;
+	bIsShowDuplicates: boolean;
+	bIsShowFilteredPackagesOnly: boolean;
+	bIsCompactMode: boolean;
+	bIsShowPath: boolean;
+	bFiltersEnabled: boolean;
+	bAutoUpdateFilters: boolean;
+	UserFilters: ilterState[];
+	static Load(ResourceName: string): ReferenceViewerSettings;
+	static Find(Outer: UObject, ResourceName: string): ReferenceViewerSettings;
+	static GetDefaultObject(): ReferenceViewerSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ReferenceViewerSettings;
+	static C(Other: UObject | any): ReferenceViewerSettings;
+}
+
+declare class InternationalizationExportSettings extends UObject { 
+	CulturesToGenerate: string[];
+	CommandletClass: string;
+	SourcePath: string;
+	DestinationPath: string;
+	PortableObjectName: string;
+	ManifestName: string;
+	ArchiveName: string;
+	bExportLoc: boolean;
+	bImportLoc: boolean;
+	bUseCultureDirectory: boolean;
+	static Load(ResourceName: string): InternationalizationExportSettings;
+	static Find(Outer: UObject, ResourceName: string): InternationalizationExportSettings;
+	static GetDefaultObject(): InternationalizationExportSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InternationalizationExportSettings;
+	static C(Other: UObject | any): InternationalizationExportSettings;
+}
+
+declare class TranslationPickerSettings extends UObject { 
+	bSubmitTranslationPickerChangesToLocalizationService: boolean;
+	static Load(ResourceName: string): TranslationPickerSettings;
+	static Find(Outer: UObject, ResourceName: string): TranslationPickerSettings;
+	static GetDefaultObject(): TranslationPickerSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TranslationPickerSettings;
+	static C(Other: UObject | any): TranslationPickerSettings;
+}
+
+declare class TranslationChange { 
+	Version: string;
+	DateAndTime: DateTime;
+	Source: string;
+	Translation: string;
+	clone() : TranslationChange;
+	static C(Other: UObject | any): TranslationChange;
+}
+
+declare class TranslationContextInfo { 
+	Key: string;
+	Context: string;
+	Changes: TranslationChange[];
+	clone() : TranslationContextInfo;
+	static C(Other: UObject | any): TranslationContextInfo;
+}
+
+declare class TranslationUnit extends UObject { 
+	Namespace: string;
+	Key: string;
+	Source: string;
+	Translation: string;
+	Contexts: TranslationContextInfo[];
+	HasBeenReviewed: boolean;
+	TranslationBeforeImport: string;
+	LocresPath: string;
+	static Load(ResourceName: string): TranslationUnit;
+	static Find(Outer: UObject, ResourceName: string): TranslationUnit;
+	static GetDefaultObject(): TranslationUnit;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TranslationUnit;
+	static C(Other: UObject | any): TranslationUnit;
+}
+
+declare class UndoHistorySettings extends UObject { 
+	bShowTransactionDetails: boolean;
+	static Load(ResourceName: string): UndoHistorySettings;
+	static Find(Outer: UObject, ResourceName: string): UndoHistorySettings;
+	static GetDefaultObject(): UndoHistorySettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): UndoHistorySettings;
+	static C(Other: UObject | any): UndoHistorySettings;
+}
+
+declare class LevelAssetEditor extends AssetEditor { 
+	static Load(ResourceName: string): LevelAssetEditor;
+	static Find(Outer: UObject, ResourceName: string): LevelAssetEditor;
+	static GetDefaultObject(): LevelAssetEditor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LevelAssetEditor;
+	static C(Other: UObject | any): LevelAssetEditor;
+}
+
+declare class PixelInspectorView extends UObject { 
+	FinalColor: LinearColor;
+	SceneColor: LinearColor;
+	PreExposure: number;
+	Luminance: number;
+	HdrColor: LinearColor;
+	Normal: Vector;
+	PerObjectGBufferData: number;
+	Metallic: number;
+	Specular: number;
+	Roughness: number;
+	MaterialShadingModel: EMaterialShadingModel;
+	SelectiveOutputMask: number;
+	BaseColor: LinearColor;
+	IndirectIrradiance: number;
+	AmbientOcclusion: number;
+	SubsurfaceColor: LinearColor;
+	SubsurfaceProfile: Vector;
+	Opacity: number;
+	ClearCoat: number;
+	ClearCoatRoughness: number;
+	WorldNormal: Vector;
+	Backlit: number;
+	Cloth: number;
+	EyeTangent: Vector;
+	IrisMask: number;
+	IrisDistance: number;
+	static Load(ResourceName: string): PixelInspectorView;
+	static Find(Outer: UObject, ResourceName: string): PixelInspectorView;
+	static GetDefaultObject(): PixelInspectorView;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PixelInspectorView;
+	static C(Other: UObject | any): PixelInspectorView;
+}
+
+declare class EditorUtilityObject extends UObject { 
+	static Load(ResourceName: string): EditorUtilityObject;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityObject;
+	static GetDefaultObject(): EditorUtilityObject;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityObject;
+	Run(): void;
+	static C(Other: UObject | any): EditorUtilityObject;
+}
+
+declare class ActorActionUtility extends EditorUtilityObject { 
+	static Load(ResourceName: string): ActorActionUtility;
+	static Find(Outer: UObject, ResourceName: string): ActorActionUtility;
+	static GetDefaultObject(): ActorActionUtility;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorActionUtility;
+	GetSupportedClass(): UnrealEngineClass;
+	static C(Other: UObject | any): ActorActionUtility;
+}
+
+declare class AssetActionUtility extends EditorUtilityObject { 
+	static Load(ResourceName: string): AssetActionUtility;
+	static Find(Outer: UObject, ResourceName: string): AssetActionUtility;
+	static GetDefaultObject(): AssetActionUtility;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AssetActionUtility;
+	IsActionForBlueprints(): boolean;
+	GetSupportedClass(): UnrealEngineClass;
+	static C(Other: UObject | any): AssetActionUtility;
+}
+
+declare class AsyncCaptureScene extends BlueprintAsyncActionBase { 
+	Complete: UnrealEngineMulticastDelegate<(Texture: TextureRenderTarget2D) => void>;
+	SceneCapture: SceneCapture2D;
+	SceneCaptureRT: TextureRenderTarget2D;
+	static Load(ResourceName: string): AsyncCaptureScene;
+	static Find(Outer: UObject, ResourceName: string): AsyncCaptureScene;
+	static GetDefaultObject(): AsyncCaptureScene;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AsyncCaptureScene;
+	static CaptureSceneWithWarmupAsync(ViewCamera: CameraComponent,SceneCaptureClass: UnrealEngineClass,ResX: number,ResY: number,WarmUpFrames: number): AsyncCaptureScene;
+	static CaptureSceneAsync(ViewCamera: CameraComponent,SceneCaptureClass: UnrealEngineClass,ResX: number,ResY: number): AsyncCaptureScene;
+	static C(Other: UObject | any): AsyncCaptureScene;
+}
+
+declare class AsyncImageExport extends BlueprintAsyncActionBase { 
+	Complete: UnrealEngineMulticastDelegate<(bSuccess: boolean) => void>;
+	TextureToExport: Texture;
+	Quality: number;
+	TargetFile: string;
+	static Load(ResourceName: string): AsyncImageExport;
+	static Find(Outer: UObject, ResourceName: string): AsyncImageExport;
+	static GetDefaultObject(): AsyncImageExport;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AsyncImageExport;
+	static ExportImageAsync(Texture: Texture,OutputFile: string,Quality: number): AsyncImageExport;
+	static C(Other: UObject | any): AsyncImageExport;
+}
+
+declare class EditorUtilityWidget extends UserWidget { 
+	HelpText: string;
+	bAlwaysReregisterWithWindowsMenu: boolean;
+	bAutoRunDefaultAction: boolean;
+	static Load(ResourceName: string): EditorUtilityWidget;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityWidget;
+	static GetDefaultObject(): EditorUtilityWidget;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityWidget;
+	Run(): void;
+	static C(Other: UObject | any): EditorUtilityWidget;
+}
+
+declare class EditorUtilityWidgetBlueprint extends WidgetBlueprint { 
+	CreatedUMGWidget: EditorUtilityWidget;
+	static Load(ResourceName: string): EditorUtilityWidgetBlueprint;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityWidgetBlueprint;
+	static GetDefaultObject(): EditorUtilityWidgetBlueprint;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityWidgetBlueprint;
+	static C(Other: UObject | any): EditorUtilityWidgetBlueprint;
+}
+
+declare class EditorUtilitySubsystem extends EditorSubsystem { 
+	LoadedUIs: SoftObjectPath[];
+	StartupObjects: SoftObjectPath[];
+	OnBeginPIE: UnrealEngineMulticastDelegate<(bIsSimulating: boolean) => void>;
+	OnEndPIE: UnrealEngineMulticastDelegate<(bIsSimulating: boolean) => void>;
+	ObjectInstances: Map<UObject, UObject>;
+	ActiveTaskStack: EditorUtilityTask[];
+	ReferencedObjects: Set<UObject>;
+	static Load(ResourceName: string): EditorUtilitySubsystem;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilitySubsystem;
+	static GetDefaultObject(): EditorUtilitySubsystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilitySubsystem;
+	TryRun(Asset: UObject): boolean;
+	SpawnRegisteredTabByID(NewTabID: string): boolean;
+	SpawnAndRegisterTabWithId(InBlueprint: EditorUtilityWidgetBlueprint,InTabID: string): EditorUtilityWidget;
+	SpawnAndRegisterTabAndGetID(InBlueprint: EditorUtilityWidgetBlueprint,NewTabID?: string): {NewTabID: string, $: EditorUtilityWidget};
+	SpawnAndRegisterTab(InBlueprint: EditorUtilityWidgetBlueprint): EditorUtilityWidget;
+	ReleaseInstanceOfAsset(Asset: UObject): void;
+	RegisterTabAndGetID(InBlueprint: EditorUtilityWidgetBlueprint,NewTabID?: string): {NewTabID: string};
+	RegisterAndExecuteTask(NewTask: EditorUtilityTask,OptionalParentTask: EditorUtilityTask): void;
+	FindUtilityWidgetFromBlueprint(InBlueprint: EditorUtilityWidgetBlueprint): EditorUtilityWidget;
+	DoesTabExist(NewTabID: string): boolean;
+	CloseTabByID(NewTabID: string): boolean;
+	CanRun(Asset: UObject): boolean;
+	static C(Other: UObject | any): EditorUtilitySubsystem;
+}
+
+declare class EditorUtilityTask extends UObject { 
+	MyTaskManager: EditorUtilitySubsystem;
+	MyParentTask: EditorUtilityTask;
+	bCancelRequested: boolean;
+	static Load(ResourceName: string): EditorUtilityTask;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityTask;
+	static GetDefaultObject(): EditorUtilityTask;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityTask;
+	WasCancelRequested(): boolean;
+	SetTaskNotificationText(Text: string): void;
+	Run(): void;
+	ReceiveCancelRequested(): void;
+	ReceiveBeginExecution(): void;
+	FinishExecutingTask(): void;
+	static C(Other: UObject | any): EditorUtilityTask;
+}
+
+declare class AsyncRegisterAndExecuteTask extends BlueprintAsyncActionBase { 
+	OnFinished: UnrealEngineMulticastDelegate<(Task: EditorUtilityTask) => void>;
+	static Load(ResourceName: string): AsyncRegisterAndExecuteTask;
+	static Find(Outer: UObject, ResourceName: string): AsyncRegisterAndExecuteTask;
+	static GetDefaultObject(): AsyncRegisterAndExecuteTask;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AsyncRegisterAndExecuteTask;
+	static RegisterAndExecuteTask(Task: EditorUtilityTask,OptionalParentTask: EditorUtilityTask): AsyncRegisterAndExecuteTask;
+	static C(Other: UObject | any): AsyncRegisterAndExecuteTask;
+}
+
+declare class EditorUtilityExtension extends Interface { 
+	static Load(ResourceName: string): EditorUtilityExtension;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityExtension;
+	static GetDefaultObject(): EditorUtilityExtension;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityExtension;
+	static C(Other: UObject | any): EditorUtilityExtension;
+}
+
+declare class EditorUtilityActor extends Actor { 
+	EditorOnlyInputComponent: InputComponent;
+	bReceivesEditorInput: boolean;
+	static GetDefaultObject(): EditorUtilityActor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityActor;
+	SetReceivesEditorInput(bInValue: boolean): void;
+	Run(): void;
+	GetReceivesEditorInput(): boolean;
+	GetInputComponent(): InputComponent;
+	static C(Other: UObject | any): EditorUtilityActor;
+}
+
+declare class EditorUtilityActorComponent extends ActorComponent { 
+	static Load(ResourceName: string): EditorUtilityActorComponent;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityActorComponent;
+	static GetDefaultObject(): EditorUtilityActorComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityActorComponent;
+	static C(Other: UObject | any): EditorUtilityActorComponent;
+}
+
+declare class EditorUtilityBlueprint extends Blueprint { 
+	static Load(ResourceName: string): EditorUtilityBlueprint;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityBlueprint;
+	static GetDefaultObject(): EditorUtilityBlueprint;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityBlueprint;
+	static C(Other: UObject | any): EditorUtilityBlueprint;
+}
+
+declare class EditorUtilityBlueprintFactory extends Factory { 
+	ParentClass: UnrealEngineClass;
+	static Load(ResourceName: string): EditorUtilityBlueprintFactory;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityBlueprintFactory;
+	static GetDefaultObject(): EditorUtilityBlueprintFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityBlueprintFactory;
+	static C(Other: UObject | any): EditorUtilityBlueprintFactory;
+}
+
+declare class EditorUtilityCamera extends CameraActor { 
+	static GetDefaultObject(): EditorUtilityCamera;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityCamera;
+	static C(Other: UObject | any): EditorUtilityCamera;
+}
+
+declare class EditorUtilityBlueprintAsyncActionBase extends BlueprintAsyncActionBase { 
+	static Load(ResourceName: string): EditorUtilityBlueprintAsyncActionBase;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityBlueprintAsyncActionBase;
+	static GetDefaultObject(): EditorUtilityBlueprintAsyncActionBase;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityBlueprintAsyncActionBase;
+	static C(Other: UObject | any): EditorUtilityBlueprintAsyncActionBase;
+}
+
+declare class AsyncEditorDelay extends EditorUtilityBlueprintAsyncActionBase { 
+	Complete: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): AsyncEditorDelay;
+	static Find(Outer: UObject, ResourceName: string): AsyncEditorDelay;
+	static GetDefaultObject(): AsyncEditorDelay;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AsyncEditorDelay;
+	static AsyncEditorDelay(Seconds: number,MinimumFrames: number): AsyncEditorDelay;
+	static C(Other: UObject | any): AsyncEditorDelay;
+}
+
+declare class AsyncEditorWaitForGameWorld extends EditorUtilityBlueprintAsyncActionBase { 
+	Complete: UnrealEngineMulticastDelegate<(World: World) => void>;
+	static Load(ResourceName: string): AsyncEditorWaitForGameWorld;
+	static Find(Outer: UObject, ResourceName: string): AsyncEditorWaitForGameWorld;
+	static GetDefaultObject(): AsyncEditorWaitForGameWorld;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AsyncEditorWaitForGameWorld;
+	static AsyncWaitForGameWorld(Index: number,Server: boolean): AsyncEditorWaitForGameWorld;
+	static C(Other: UObject | any): AsyncEditorWaitForGameWorld;
+}
+
+declare class AsyncEditorOpenMapAndFocusActor extends EditorUtilityBlueprintAsyncActionBase { 
+	Complete: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): AsyncEditorOpenMapAndFocusActor;
+	static Find(Outer: UObject, ResourceName: string): AsyncEditorOpenMapAndFocusActor;
+	static GetDefaultObject(): AsyncEditorOpenMapAndFocusActor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AsyncEditorOpenMapAndFocusActor;
+	static AsyncEditorOpenMapAndFocusActor(Map: SoftObjectPath,FocusActorName: string): AsyncEditorOpenMapAndFocusActor;
+	static C(Other: UObject | any): AsyncEditorOpenMapAndFocusActor;
+}
+
+declare class EditorUtilityLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): EditorUtilityLibrary;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityLibrary;
+	static GetDefaultObject(): EditorUtilityLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityLibrary;
+	static SyncBrowserToFolders(FolderList: string[]): void;
+	static RenameAsset(Asset: UObject,NewName: string): void;
+	static GetSelectionSet(): Actor[];
+	static GetSelectionBounds(Origin?: Vector,BoxExtent?: Vector,SphereRadius?: number): {Origin: Vector, BoxExtent: Vector, SphereRadius: number};
+	static GetSelectedFolderPaths(): string[];
+	static GetSelectedBlueprintClasses(): UnrealEngineClass[];
+	static GetSelectedAssets(): UObject[];
+	static GetSelectedAssetData(): AssetData[];
+	static GetCurrentContentBrowserPath(OutPath?: string): {OutPath: string, $: boolean};
+	GetActorReference(PathToActor: string): Actor;
+	static C(Other: UObject | any): EditorUtilityLibrary;
+}
+
+declare class EditorUtilityToolMenuEntry extends ToolMenuEntryScript { 
+	static Load(ResourceName: string): EditorUtilityToolMenuEntry;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityToolMenuEntry;
+	static GetDefaultObject(): EditorUtilityToolMenuEntry;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityToolMenuEntry;
+	static C(Other: UObject | any): EditorUtilityToolMenuEntry;
+}
+
+declare class EditorUtilityToolMenuSection extends ToolMenuSectionDynamic { 
+	static Load(ResourceName: string): EditorUtilityToolMenuSection;
+	static Find(Outer: UObject, ResourceName: string): EditorUtilityToolMenuSection;
+	static GetDefaultObject(): EditorUtilityToolMenuSection;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EditorUtilityToolMenuSection;
+	static C(Other: UObject | any): EditorUtilityToolMenuSection;
+}
+
 declare class EditorUtilityWidgetBlueprintFactory extends Factory { 
 	BlueprintType: EBlueprintType;
 	ParentClass: UnrealEngineClass;
@@ -185,568 +681,6 @@ declare class FacialAnimationBulkImporterSettings extends UObject {
 	static C(Other: UObject | any): FacialAnimationBulkImporterSettings;
 }
 
-declare type EIKRigGoalTransformSource = 'Manual' | 'Bone' | 'ActorComponent' | 'EIKRigGoalTransformSource_MAX';
-declare var EIKRigGoalTransformSource : { Manual:'Manual',Bone:'Bone',ActorComponent:'ActorComponent',EIKRigGoalTransformSource_MAX:'EIKRigGoalTransformSource_MAX', };
-declare type EIKRigGoalSpace = 'Component' | 'Additive' | 'World' | 'EIKRigGoalSpace_MAX';
-declare var EIKRigGoalSpace : { Component:'Component',Additive:'Additive',World:'World',EIKRigGoalSpace_MAX:'EIKRigGoalSpace_MAX', };
-declare class IKRigGoal { 
-	Name: string;
-	TransformSource: EIKRigGoalTransformSource;
-	SourceBone: BoneReference;
-	Position: Vector;
-	Rotation: Rotator;
-	PositionAlpha: number;
-	RotationAlpha: number;
-	PositionSpace: EIKRigGoalSpace;
-	RotationSpace: EIKRigGoalSpace;
-	FinalBlendedPosition: Vector;
-	FinalBlendedRotation: Quat;
-	clone() : IKRigGoal;
-	static C(Other: UObject | any): IKRigGoal;
-}
-
-declare class IKGoalCreatorInterface extends Interface { 
-	static Load(ResourceName: string): IKGoalCreatorInterface;
-	static Find(Outer: UObject, ResourceName: string): IKGoalCreatorInterface;
-	static GetDefaultObject(): IKGoalCreatorInterface;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKGoalCreatorInterface;
-	AddIKGoals(OutGoals?: Map<string, IKRigGoal>): {OutGoals: Map<string, IKRigGoal>};
-	static C(Other: UObject | any): IKGoalCreatorInterface;
-}
-
-declare class IKRigComponent extends ActorComponent { 
-	static Load(ResourceName: string): IKRigComponent;
-	static Find(Outer: UObject, ResourceName: string): IKRigComponent;
-	static GetDefaultObject(): IKRigComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRigComponent;
-	SetIKRigGoalTransform(GoalName: string,Transform: Transform,PositionAlpha: number,RotationAlpha: number): void;
-	SetIKRigGoalPositionAndRotation(GoalName: string,Position: Vector,Rotation: Quat,PositionAlpha: number,RotationAlpha: number): void;
-	SetIKRigGoal(Goal: IKRigGoal): void;
-	ClearAllGoals(): void;
-	static C(Other: UObject | any): IKRigComponent;
-}
-
-declare type EIKRigGoalPreviewMode = 'Additive' | 'Absolute' | 'EIKRigGoalPreviewMode_MAX';
-declare var EIKRigGoalPreviewMode : { Additive:'Additive',Absolute:'Absolute',EIKRigGoalPreviewMode_MAX:'EIKRigGoalPreviewMode_MAX', };
-declare class IKRigEffectorGoal extends UObject { 
-	GoalName: string;
-	BoneName: string;
-	PositionAlpha: number;
-	RotationAlpha: number;
-	CurrentTransform: Transform;
-	InitialTransform: Transform;
-	PreviewMode: EIKRigGoalPreviewMode;
-	SizeMultiplier: number;
-	ThicknessMultiplier: number;
-	bExposePosition: boolean;
-	bExposeRotation: boolean;
-	static Load(ResourceName: string): IKRigEffectorGoal;
-	static Find(Outer: UObject, ResourceName: string): IKRigEffectorGoal;
-	static GetDefaultObject(): IKRigEffectorGoal;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRigEffectorGoal;
-	static C(Other: UObject | any): IKRigEffectorGoal;
-}
-
-declare class IKRigSkeleton { 
-	BoneNames: string[];
-	ParentIndices: number[];
-	ExcludedBones: string[];
-	CurrentPoseGlobal: Transform[];
-	CurrentPoseLocal: Transform[];
-	RefPoseGlobal: Transform[];
-	clone() : IKRigSkeleton;
-	static C(Other: UObject | any): IKRigSkeleton;
-}
-
-declare class IKRigSolver extends UObject { 
-	bIsEnabled: boolean;
-	static Load(ResourceName: string): IKRigSolver;
-	static Find(Outer: UObject, ResourceName: string): IKRigSolver;
-	static GetDefaultObject(): IKRigSolver;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRigSolver;
-	static C(Other: UObject | any): IKRigSolver;
-}
-
-declare class BoneChain { 
-	ChainName: string;
-	StartBone: BoneReference;
-	EndBone: BoneReference;
-	IKGoalName: string;
-	clone() : BoneChain;
-	static C(Other: UObject | any): BoneChain;
-}
-
-declare class RetargetDefinition { 
-	RootBone: string;
-	BoneChains: BoneChain[];
-	clone() : RetargetDefinition;
-	static C(Other: UObject | any): RetargetDefinition;
-}
-
-declare class IKRigDefinition extends UObject { 
-	PreviewSkeletalMesh: SkeletalMesh;
-	BoneSize: number;
-	DrawGoals: boolean;
-	GoalSize: number;
-	GoalThickness: number;
-	Controller: UObject;
-	Skeleton: IKRigSkeleton;
-	Goals: IKRigEffectorGoal[];
-	Solvers: IKRigSolver[];
-	RetargetDefinition: RetargetDefinition;
-	static Load(ResourceName: string): IKRigDefinition;
-	static Find(Outer: UObject, ResourceName: string): IKRigDefinition;
-	static GetDefaultObject(): IKRigDefinition;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRigDefinition;
-	static C(Other: UObject | any): IKRigDefinition;
-}
-
-declare class IKRigProcessor extends UObject { 
-	Solvers: IKRigSolver[];
-	static Load(ResourceName: string): IKRigProcessor;
-	static Find(Outer: UObject, ResourceName: string): IKRigProcessor;
-	static GetDefaultObject(): IKRigProcessor;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRigProcessor;
-	static C(Other: UObject | any): IKRigProcessor;
-}
-
-declare type ERetargetRotationMode = 'Interpolated' | 'OneToOne' | 'OneToOneReversed' | 'None' | 'ERetargetRotationMode_MAX';
-declare var ERetargetRotationMode : { Interpolated:'Interpolated',OneToOne:'OneToOne',OneToOneReversed:'OneToOneReversed',None:'None',ERetargetRotationMode_MAX:'ERetargetRotationMode_MAX', };
-declare type ERetargetTranslationMode = 'None' | 'GloballyScaled' | 'Absolute' | 'ERetargetTranslationMode_MAX';
-declare var ERetargetTranslationMode : { None:'None',GloballyScaled:'GloballyScaled',Absolute:'Absolute',ERetargetTranslationMode_MAX:'ERetargetTranslationMode_MAX', };
-declare class TargetChainFKSettings { 
-	EnableFK: boolean;
-	RotationMode: ERetargetRotationMode;
-	RotationAlpha: number;
-	TranslationMode: ERetargetTranslationMode;
-	TranslationAlpha: number;
-	PoleVectorMatching: number;
-	PoleVectorOffset: number;
-	clone() : TargetChainFKSettings;
-	static C(Other: UObject | any): TargetChainFKSettings;
-}
-
-declare class TargetChainIKSettings { 
-	EnableIK: boolean;
-	BlendToSource: number;
-	BlendToSourceWeights: Vector;
-	StaticOffset: Vector;
-	StaticLocalOffset: Vector;
-	StaticRotationOffset: Rotator;
-	Extension: number;
-	bAffectedByIKWarping: boolean;
-	clone() : TargetChainIKSettings;
-	static C(Other: UObject | any): TargetChainIKSettings;
-}
-
-declare class TargetChainSpeedPlantSettings { 
-	EnableSpeedPlanting: boolean;
-	SpeedCurveName: string;
-	SpeedThreshold: number;
-	UnplantStiffness: number;
-	UnplantCriticalDamping: number;
-	clone() : TargetChainSpeedPlantSettings;
-	static C(Other: UObject | any): TargetChainSpeedPlantSettings;
-}
-
-declare class TargetChainSettings { 
-	FK: TargetChainFKSettings;
-	IK: TargetChainIKSettings;
-	SpeedPlanting: TargetChainSpeedPlantSettings;
-	clone() : TargetChainSettings;
-	static C(Other: UObject | any): TargetChainSettings;
-}
-
-declare class RetargetChainSettings extends UObject { 
-	SourceChain: string;
-	TargetChain: string;
-	Settings: TargetChainSettings;
-	CopyPoseUsingFK: boolean;
-	RotationMode: ERetargetRotationMode;
-	RotationAlpha: number;
-	TranslationMode: ERetargetTranslationMode;
-	TranslationAlpha: number;
-	DriveIKGoal: boolean;
-	BlendToSource: number;
-	BlendToSourceWeights: Vector;
-	StaticOffset: Vector;
-	StaticLocalOffset: Vector;
-	StaticRotationOffset: Rotator;
-	Extension: number;
-	UseSpeedCurveToPlantIK: boolean;
-	SpeedCurveName: string;
-	VelocityThreshold: number;
-	UnplantStiffness: number;
-	UnplantCriticalDamping: number;
-	static Load(ResourceName: string): RetargetChainSettings;
-	static Find(Outer: UObject, ResourceName: string): RetargetChainSettings;
-	static GetDefaultObject(): RetargetChainSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RetargetChainSettings;
-	static C(Other: UObject | any): RetargetChainSettings;
-}
-
-declare class TargetRootSettings { 
-	RotationAlpha: number;
-	TranslationAlpha: number;
-	BlendToSource: number;
-	BlendToSourceWeights: Vector;
-	ScaleHorizontal: number;
-	ScaleVertical: number;
-	TranslationOffset: Vector;
-	RotationOffset: Rotator;
-	AffectIKHorizontal: number;
-	AffectIKVertical: number;
-	clone() : TargetRootSettings;
-	static C(Other: UObject | any): TargetRootSettings;
-}
-
-declare class RetargetRootSettings extends UObject { 
-	Settings: TargetRootSettings;
-	RetargetRootTranslation: boolean;
-	GlobalScaleHorizontal: number;
-	GlobalScaleVertical: number;
-	BlendToSource: Vector;
-	StaticOffset: Vector;
-	StaticRotationOffset: Rotator;
-	static Load(ResourceName: string): RetargetRootSettings;
-	static Find(Outer: UObject, ResourceName: string): RetargetRootSettings;
-	static GetDefaultObject(): RetargetRootSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RetargetRootSettings;
-	static C(Other: UObject | any): RetargetRootSettings;
-}
-
-declare type EWarpingDirectionSource = 'Goals' | 'Chain' | 'EWarpingDirectionSource_MAX';
-declare var EWarpingDirectionSource : { Goals:'Goals',Chain:'Chain',EWarpingDirectionSource_MAX:'EWarpingDirectionSource_MAX', };
-declare type EBasicAxis = 'X' | 'Y' | 'Z' | 'NegX' | 'NegY' | 'NegZ' | 'EBasicAxis_MAX';
-declare var EBasicAxis : { X:'X',Y:'Y',Z:'Z',NegX:'NegX',NegY:'NegY',NegZ:'NegZ',EBasicAxis_MAX:'EBasicAxis_MAX', };
-declare class RetargetGlobalSettings { 
-	bEnableRoot: boolean;
-	bEnableFK: boolean;
-	bEnableIK: boolean;
-	bWarping: boolean;
-	DirectionSource: EWarpingDirectionSource;
-	ForwardDirection: EBasicAxis;
-	DirectionChain: string;
-	WarpForwards: number;
-	SidewaysOffset: number;
-	WarpSplay: number;
-	clone() : RetargetGlobalSettings;
-	static C(Other: UObject | any): RetargetGlobalSettings;
-}
-
-declare class IKRetargetGlobalSettings extends UObject { 
-	Settings: RetargetGlobalSettings;
-	static Load(ResourceName: string): IKRetargetGlobalSettings;
-	static Find(Outer: UObject, ResourceName: string): IKRetargetGlobalSettings;
-	static GetDefaultObject(): IKRetargetGlobalSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRetargetGlobalSettings;
-	static C(Other: UObject | any): IKRetargetGlobalSettings;
-}
-
-declare class RetargetChainMap { 
-	SourceChain: string;
-	TargetChain: string;
-	clone() : RetargetChainMap;
-	static C(Other: UObject | any): RetargetChainMap;
-}
-
-declare class RetargetProfile { 
-	bApplyTargetRetargetPose: boolean;
-	TargetRetargetPoseName: string;
-	bApplySourceRetargetPose: boolean;
-	SourceRetargetPoseName: string;
-	bApplyChainSettings: boolean;
-	ChainSettings: Map<string, TargetChainSettings>;
-	bApplyRootSettings: boolean;
-	RootSettings: TargetRootSettings;
-	bApplyGlobalSettings: boolean;
-	GlobalSettings: RetargetGlobalSettings;
-	clone() : RetargetProfile;
-	static C(Other: UObject | any): RetargetProfile;
-}
-
-declare class IKRetargetPose { 
-	RootTranslationOffset: Vector;
-	BoneRotationOffsets: Map<string, Quat>;
-	clone() : IKRetargetPose;
-	static C(Other: UObject | any): IKRetargetPose;
-}
-
-declare class IKRetargeter extends UObject { 
-	SourceIKRigAsset: IKRigDefinition;
-	SourcePreviewMesh: SkeletalMesh;
-	TargetIKRigAsset: IKRigDefinition;
-	TargetPreviewMesh: SkeletalMesh;
-	bRetargetRoot: boolean;
-	bRetargetFK: boolean;
-	bRetargetIK: boolean;
-	TargetActorOffset: number;
-	TargetActorScale: number;
-	TargetMeshOffset: Vector;
-	TargetMeshScale: number;
-	SourceMeshOffset: Vector;
-	bDebugDraw: boolean;
-	bDrawFinalGoals: boolean;
-	bDrawSourceLocations: boolean;
-	ChainDrawSize: number;
-	ChainDrawThickness: number;
-	BoneDrawSize: number;
-	Controller: UObject;
-	MeshesAskedToFixRootHeightFor: Set<SkeletalMesh>;
-	ChainMapping: RetargetChainMap[];
-	ChainSettings: RetargetChainSettings[];
-	RootSettings: RetargetRootSettings;
-	GlobalSettings: IKRetargetGlobalSettings;
-	Profiles: Map<string, RetargetProfile>;
-	CurrentProfile: string;
-	SourceRetargetPoses: Map<string, IKRetargetPose>;
-	TargetRetargetPoses: Map<string, IKRetargetPose>;
-	CurrentSourceRetargetPose: string;
-	CurrentTargetRetargetPose: string;
-	RetargetPoses: Map<string, IKRetargetPose>;
-	CurrentRetargetPose: string;
-	static Load(ResourceName: string): IKRetargeter;
-	static Find(Outer: UObject, ResourceName: string): IKRetargeter;
-	static GetDefaultObject(): IKRetargeter;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRetargeter;
-	static SetRootSettingsInRetargetProfile(RetargetProfile?: RetargetProfile,RootSettings?: TargetRootSettings): {RetargetProfile: RetargetProfile};
-	static SetGlobalSettingsInRetargetProfile(RetargetProfile?: RetargetProfile,GlobalSettings?: RetargetGlobalSettings): {RetargetProfile: RetargetProfile};
-	static SetChainSpeedPlantSettingsInRetargetProfile(RetargetProfile?: RetargetProfile,SpeedPlantSettings?: TargetChainSpeedPlantSettings,TargetChainName?: string): {RetargetProfile: RetargetProfile};
-	static SetChainSettingsInRetargetProfile(RetargetProfile?: RetargetProfile,ChainSettings?: TargetChainSettings,TargetChainName?: string): {RetargetProfile: RetargetProfile};
-	static SetChainIKSettingsInRetargetProfile(RetargetProfile?: RetargetProfile,IKSettings?: TargetChainIKSettings,TargetChainName?: string): {RetargetProfile: RetargetProfile};
-	static SetChainFKSettingsInRetargetProfile(RetargetProfile?: RetargetProfile,FKSettings?: TargetChainFKSettings,TargetChainName?: string): {RetargetProfile: RetargetProfile};
-	static GetRootSettingsFromRetargetProfile(RetargetProfile?: RetargetProfile): {RetargetProfile: RetargetProfile, $: TargetRootSettings};
-	static GetRootSettingsFromRetargetAsset(RetargetAsset: IKRetargeter,OptionalProfileName: string,OutSettings?: TargetRootSettings): {OutSettings: TargetRootSettings};
-	static GetGlobalSettingsFromRetargetProfile(RetargetProfile?: RetargetProfile): {RetargetProfile: RetargetProfile, $: RetargetGlobalSettings};
-	static GetGlobalSettingsFromRetargetAsset(RetargetAsset: IKRetargeter,OptionalProfileName: string,OutSettings?: RetargetGlobalSettings): {OutSettings: RetargetGlobalSettings};
-	static GetChainUsingGoalFromRetargetAsset(RetargetAsset: IKRetargeter,IKGoalName: string): TargetChainSettings;
-	static GetChainSettingsFromRetargetProfile(RetargetProfile?: RetargetProfile,TargetChainName?: string): {RetargetProfile: RetargetProfile, $: TargetChainSettings};
-	static GetChainSettingsFromRetargetAsset(RetargetAsset: IKRetargeter,TargetChainName: string,OptionalProfileName: string): TargetChainSettings;
-	static C(Other: UObject | any): IKRetargeter;
-}
-
-declare class IKRetargetProcessor extends UObject { 
-	IKRigProcessor: IKRigProcessor;
-	static Load(ResourceName: string): IKRetargetProcessor;
-	static Find(Outer: UObject, ResourceName: string): IKRetargetProcessor;
-	static GetDefaultObject(): IKRetargetProcessor;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRetargetProcessor;
-	static C(Other: UObject | any): IKRetargetProcessor;
-}
-
-declare class IKRig_BodyMoverEffector extends UObject { 
-	GoalName: string;
-	BoneName: string;
-	InfluenceMultiplier: number;
-	static Load(ResourceName: string): IKRig_BodyMoverEffector;
-	static Find(Outer: UObject, ResourceName: string): IKRig_BodyMoverEffector;
-	static GetDefaultObject(): IKRig_BodyMoverEffector;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_BodyMoverEffector;
-	static C(Other: UObject | any): IKRig_BodyMoverEffector;
-}
-
-declare class IKRig_BodyMover extends IKRigSolver { 
-	RootBone: string;
-	PositionAlpha: number;
-	PositionPositiveX: number;
-	PositionNegativeX: number;
-	PositionPositiveY: number;
-	PositionNegativeY: number;
-	PositionPositiveZ: number;
-	PositionNegativeZ: number;
-	RotationAlpha: number;
-	RotateXAlpha: number;
-	RotateYAlpha: number;
-	RotateZAlpha: number;
-	Effectors: IKRig_BodyMoverEffector[];
-	static Load(ResourceName: string): IKRig_BodyMover;
-	static Find(Outer: UObject, ResourceName: string): IKRig_BodyMover;
-	static GetDefaultObject(): IKRig_BodyMover;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_BodyMover;
-	static C(Other: UObject | any): IKRig_BodyMover;
-}
-
-declare class IKRig_LimbEffector extends UObject { 
-	GoalName: string;
-	BoneName: string;
-	static Load(ResourceName: string): IKRig_LimbEffector;
-	static Find(Outer: UObject, ResourceName: string): IKRig_LimbEffector;
-	static GetDefaultObject(): IKRig_LimbEffector;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_LimbEffector;
-	static C(Other: UObject | any): IKRig_LimbEffector;
-}
-
-declare class IKRig_LimbSolver extends IKRigSolver { 
-	RootName: string;
-	ReachPrecision: number;
-	HingeRotationAxis: EAxis;
-	MaxIterations: number;
-	bEnableLimit: boolean;
-	MinRotationAngle: number;
-	bAveragePull: boolean;
-	PullDistribution: number;
-	ReachStepAlpha: number;
-	bEnableTwistCorrection: boolean;
-	EndBoneForwardAxis: EAxis;
-	Effector: IKRig_LimbEffector;
-	static Load(ResourceName: string): IKRig_LimbSolver;
-	static Find(Outer: UObject, ResourceName: string): IKRig_LimbSolver;
-	static GetDefaultObject(): IKRig_LimbSolver;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_LimbSolver;
-	static C(Other: UObject | any): IKRig_LimbSolver;
-}
-
-declare class IKRig_FBIKEffector extends UObject { 
-	GoalName: string;
-	BoneName: string;
-	StrengthAlpha: number;
-	PullChainAlpha: number;
-	PinRotation: number;
-	IndexInSolver: number;
-	static Load(ResourceName: string): IKRig_FBIKEffector;
-	static Find(Outer: UObject, ResourceName: string): IKRig_FBIKEffector;
-	static GetDefaultObject(): IKRig_FBIKEffector;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_FBIKEffector;
-	static C(Other: UObject | any): IKRig_FBIKEffector;
-}
-
-declare type EPBIKLimitType = 'Free' | 'Limited' | 'Locked' | 'EPBIKLimitType_MAX';
-declare var EPBIKLimitType : { Free:'Free',Limited:'Limited',Locked:'Locked',EPBIKLimitType_MAX:'EPBIKLimitType_MAX', };
-declare class IKRig_PBIKBoneSettings extends UObject { 
-	bone: string;
-	RotationStiffness: number;
-	PositionStiffness: number;
-	X: EPBIKLimitType;
-	MinX: number;
-	MaxX: number;
-	Y: EPBIKLimitType;
-	MinY: number;
-	MaxY: number;
-	Z: EPBIKLimitType;
-	MinZ: number;
-	MaxZ: number;
-	bUsePreferredAngles: boolean;
-	PreferredAngles: Vector;
-	static Load(ResourceName: string): IKRig_PBIKBoneSettings;
-	static Find(Outer: UObject, ResourceName: string): IKRig_PBIKBoneSettings;
-	static GetDefaultObject(): IKRig_PBIKBoneSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_PBIKBoneSettings;
-	static C(Other: UObject | any): IKRig_PBIKBoneSettings;
-}
-
-declare type EPBIKRootBehavior = 'PrePull' | 'PinToInput' | 'Free' | 'EPBIKRootBehavior_MAX';
-declare var EPBIKRootBehavior : { PrePull:'PrePull',PinToInput:'PinToInput',Free:'Free',EPBIKRootBehavior_MAX:'EPBIKRootBehavior_MAX', };
-declare class IKRigPBIKSolver extends IKRigSolver { 
-	RootBone: string;
-	Iterations: number;
-	MassMultiplier: number;
-	MinMassMultiplier: number;
-	bAllowStretch: boolean;
-	RootBehavior: EPBIKRootBehavior;
-	bStartSolveFromInputPose: boolean;
-	Effectors: IKRig_FBIKEffector[];
-	BoneSettings: IKRig_PBIKBoneSettings[];
-	static Load(ResourceName: string): IKRigPBIKSolver;
-	static Find(Outer: UObject, ResourceName: string): IKRigPBIKSolver;
-	static GetDefaultObject(): IKRigPBIKSolver;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRigPBIKSolver;
-	static C(Other: UObject | any): IKRigPBIKSolver;
-}
-
-declare class IKRig_PoleSolverEffector extends UObject { 
-	GoalName: string;
-	BoneName: string;
-	Alpha: number;
-	static Load(ResourceName: string): IKRig_PoleSolverEffector;
-	static Find(Outer: UObject, ResourceName: string): IKRig_PoleSolverEffector;
-	static GetDefaultObject(): IKRig_PoleSolverEffector;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_PoleSolverEffector;
-	static C(Other: UObject | any): IKRig_PoleSolverEffector;
-}
-
-declare class IKRig_PoleSolver extends IKRigSolver { 
-	RootName: string;
-	EndName: string;
-	Effector: IKRig_PoleSolverEffector;
-	static Load(ResourceName: string): IKRig_PoleSolver;
-	static Find(Outer: UObject, ResourceName: string): IKRig_PoleSolver;
-	static GetDefaultObject(): IKRig_PoleSolver;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_PoleSolver;
-	static C(Other: UObject | any): IKRig_PoleSolver;
-}
-
-declare class IKRig_SetTransformEffector extends UObject { 
-	bEnablePosition: boolean;
-	bEnableRotation: boolean;
-	Alpha: number;
-	static Load(ResourceName: string): IKRig_SetTransformEffector;
-	static Find(Outer: UObject, ResourceName: string): IKRig_SetTransformEffector;
-	static GetDefaultObject(): IKRig_SetTransformEffector;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_SetTransformEffector;
-	static C(Other: UObject | any): IKRig_SetTransformEffector;
-}
-
-declare class IKRig_SetTransform extends IKRigSolver { 
-	Goal: string;
-	RootBone: string;
-	Effector: IKRig_SetTransformEffector;
-	static Load(ResourceName: string): IKRig_SetTransform;
-	static Find(Outer: UObject, ResourceName: string): IKRig_SetTransform;
-	static GetDefaultObject(): IKRig_SetTransform;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): IKRig_SetTransform;
-	static C(Other: UObject | any): IKRig_SetTransform;
-}
-
-declare class AnimNode_IKRig extends AnimNode_CustomProperty { 
-	Source: PoseLink;
-	RigDefinitionAsset: IKRigDefinition;
-	Goals: IKRigGoal[];
-	bStartFromRefPose: boolean;
-	bEnableDebugDraw: boolean;
-	DebugScale: number;
-	AlphaInputType: EAnimAlphaInputType;
-	bAlphaBoolEnabled: boolean;
-	Alpha: number;
-	AlphaScaleBias: InputScaleBias;
-	AlphaBoolBlend: InputAlphaBoolBlend;
-	AlphaCurveName: string;
-	AlphaScaleBiasClamp: InputScaleBiasClamp;
-	IKRigProcessor: IKRigProcessor;
-	ActualAlpha: number;
-	clone() : AnimNode_IKRig;
-	static C(Other: UObject | any): AnimNode_IKRig;
-}
-
-declare class AnimGraphNode_IKRig extends AnimGraphNode_CustomProperty { 
-	UNode: AnimNode_IKRig;
-	static Load(ResourceName: string): AnimGraphNode_IKRig;
-	static Find(Outer: UObject, ResourceName: string): AnimGraphNode_IKRig;
-	static GetDefaultObject(): AnimGraphNode_IKRig;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimGraphNode_IKRig;
-	static C(Other: UObject | any): AnimGraphNode_IKRig;
-}
-
-declare class AnimNode_RetargetPoseFromMesh extends AnimNode_Base { 
-	SourceMeshComponent: SkeletalMeshComponent;
-	bUseAttachedParent: boolean;
-	IKRetargeterAsset: IKRetargeter;
-	CustomRetargetProfile: RetargetProfile;
-	bSuppressWarnings: boolean;
-	bCopyCurves: boolean;
-	Processor: IKRetargetProcessor;
-	clone() : AnimNode_RetargetPoseFromMesh;
-	static C(Other: UObject | any): AnimNode_RetargetPoseFromMesh;
-}
-
-declare class AnimGraphNode_RetargetPoseFromMesh extends AnimGraphNode_Base { 
-	UNode: AnimNode_RetargetPoseFromMesh;
-	static Load(ResourceName: string): AnimGraphNode_RetargetPoseFromMesh;
-	static Find(Outer: UObject, ResourceName: string): AnimGraphNode_RetargetPoseFromMesh;
-	static GetDefaultObject(): AnimGraphNode_RetargetPoseFromMesh;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimGraphNode_RetargetPoseFromMesh;
-	static C(Other: UObject | any): AnimGraphNode_RetargetPoseFromMesh;
-}
-
 declare class GameplayTagSearchFilter extends ContentBrowserFrontEndFilterExtension { 
 	static Load(ResourceName: string): GameplayTagSearchFilter;
 	static Find(Outer: UObject, ResourceName: string): GameplayTagSearchFilter;
@@ -823,4098 +757,6 @@ declare class GameplayTagsK2Node_SwitchGameplayTagContainer extends K2Node_Switc
 	static GetDefaultObject(): GameplayTagsK2Node_SwitchGameplayTagContainer;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GameplayTagsK2Node_SwitchGameplayTagContainer;
 	static C(Other: UObject | any): GameplayTagsK2Node_SwitchGameplayTagContainer;
-}
-
-declare class V8Config extends UObject { 
-	bGenAltPropAccessorForAllProp: boolean;
-	bGenGetStructRefArrayFunction: boolean;
-	static Load(ResourceName: string): V8Config;
-	static Find(Outer: UObject, ResourceName: string): V8Config;
-	static GetDefaultObject(): V8Config;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): V8Config;
-	static C(Other: UObject | any): V8Config;
-}
-
-declare class DirectoryWatcher extends UObject { 
-	Added: string[];
-	Modified: string[];
-	Removed: string[];
-	OnChanged: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): DirectoryWatcher;
-	static Find(Outer: UObject, ResourceName: string): DirectoryWatcher;
-	static GetDefaultObject(): DirectoryWatcher;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): DirectoryWatcher;
-	Watch(Directory: string): void;
-	Unwatch(): void;
-	Contains(File: string): boolean;
-	static C(Other: UObject | any): DirectoryWatcher;
-}
-
-declare class JavascriptContext extends UObject { 
-	Paths: string[];
-	static Load(ResourceName: string): JavascriptContext;
-	static Find(Outer: UObject, ResourceName: string): JavascriptContext;
-	static GetDefaultObject(): JavascriptContext;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptContext;
-	WriteDTS(Target: string,bIncludingTooltip: boolean): boolean;
-	WriteAliases(Target: string): boolean;
-	UnregisterConsoleCommand(Command: string): void;
-	SetContextId(Name: string): void;
-	RunScript(Script: string,bOutput: boolean): string;
-	RunFileWithArgs(Filename: string,Args: string[]): string;
-	RunFile(Filename: string): string;
-	ResetUnrealConsoleDelegate(): void;
-	RequestV8GarbageCollection(): void;
-	RegisterConsoleCommand(Command: string,Help: string,UFunction: JavascriptFunction): void;
-	ReadScriptFile(Filename: string): string;
-	IsDebugContext(): boolean;
-	GetScriptFileFullPath(Filename: string): string;
-	FindPathFile(TargetRootPath: string,TargetFileName: string,OutFiles?: string[]): {OutFiles: string[]};
-	Expose(Name: string,UObject: UObject): void;
-	DestroyInspector(): void;
-	CreateInspector(Port: number): void;
-	static C(Other: UObject | any): JavascriptContext;
-}
-
-declare class JavascriptHeapStatistics { 
-	TotalHeapSize: number;
-	TotalHeapSizeExecutable: number;
-	TotalPhysicalSize: number;
-	TotalAvailableSize: number;
-	UsedHeapSize: number;
-	HeapSizeLimit: number;
-	MallocedMemory: number;
-	bDoesZapGarbage: boolean;
-	clone() : JavascriptHeapStatistics;
-	static C(Other: UObject | any): JavascriptHeapStatistics;
-}
-
-declare class JavascriptIsolate extends UObject { 
-	static Load(ResourceName: string): JavascriptIsolate;
-	static Find(Outer: UObject, ResourceName: string): JavascriptIsolate;
-	static GetDefaultObject(): JavascriptIsolate;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptIsolate;
-	Init(bIsEditor: boolean): void;
-	GetHeapStatistics(Statistics?: JavascriptHeapStatistics): {Statistics: JavascriptHeapStatistics};
-	CreateContext(): JavascriptContext;
-	static C(Other: UObject | any): JavascriptIsolate;
-}
-
-declare class JavascriptAsset { 
-	Name: string;
-	Asset: SoftObjectPath;
-	clone() : JavascriptAsset;
-	static C(Other: UObject | any): JavascriptAsset;
-}
-
-declare class JavascriptClassAsset { 
-	Name: string;
-	Class: UnrealEngineClass;
-	clone() : JavascriptClassAsset;
-	static C(Other: UObject | any): JavascriptClassAsset;
-}
-
-declare class JavascriptComponent extends ActorComponent { 
-	ScriptSourceFile: string;
-	bActiveWithinEditor: boolean;
-	JavascriptContext: JavascriptContext;
-	JavascriptIsolate: JavascriptIsolate;
-	OnTick: UnrealEngineDelegate<(DeltaSeconds: number) => void>;
-	OnBeginPlay: UnrealEngineDelegate<() => void>;
-	OnEndPlay: UnrealEngineDelegate<() => void>;
-	OnInvoke: UnrealEngineDelegate<(Name: string) => void>;
-	Assets: JavascriptAsset[];
-	ClassAssets: JavascriptClassAsset[];
-	static Load(ResourceName: string): JavascriptComponent;
-	static Find(Outer: UObject, ResourceName: string): JavascriptComponent;
-	static GetDefaultObject(): JavascriptComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptComponent;
-	ResolveClass(Name: string): UnrealEngineClass;
-	ResolveAsset(Name: string,bTryLoad: boolean): UObject;
-	Invoke(Name: string): void;
-	ForceGC(): void;
-	Expose(ExposedAs: string,UObject: UObject): void;
-	static C(Other: UObject | any): JavascriptComponent;
-}
-
-declare class JavascriptDelegate extends UObject { 
-	static Load(ResourceName: string): JavascriptDelegate;
-	static Find(Outer: UObject, ResourceName: string): JavascriptDelegate;
-	static GetDefaultObject(): JavascriptDelegate;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptDelegate;
-	Fire(): void;
-	static C(Other: UObject | any): JavascriptDelegate;
-}
-
-declare class JavascriptGeneratedClass extends BlueprintGeneratedClass { 
-	static Load(ResourceName: string): JavascriptGeneratedClass;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGeneratedClass;
-	static GetDefaultObject(): JavascriptGeneratedClass;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGeneratedClass;
-	static C(Other: UObject | any): JavascriptGeneratedClass;
-}
-
-declare class JavascriptGeneratedClass_Native extends BlueprintGeneratedClass { 
-	static Load(ResourceName: string): JavascriptGeneratedClass_Native;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGeneratedClass_Native;
-	static GetDefaultObject(): JavascriptGeneratedClass_Native;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGeneratedClass_Native;
-	static C(Other: UObject | any): JavascriptGeneratedClass_Native;
-}
-
-declare class JavascriptGeneratedFunction extends UFunction { 
-	static Load(ResourceName: string): JavascriptGeneratedFunction;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGeneratedFunction;
-	static GetDefaultObject(): JavascriptGeneratedFunction;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGeneratedFunction;
-	static C(Other: UObject | any): JavascriptGeneratedFunction;
-}
-
-declare class JavascriptGlobalDelegates extends UObject { 
-	static Load(ResourceName: string): JavascriptGlobalDelegates;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGlobalDelegates;
-	static GetDefaultObject(): JavascriptGlobalDelegates;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGlobalDelegates;
-	UnbindAll(): void;
-	Unbind(Key: string): void;
-	RedirectorFollowed(PackageName: string,Redirector: UObject): void;
-	PreLoadMap(MapName: string): void;
-	PreGarbageCollectDelegate(): void;
-	PostLoadMapWithWorld(World: World): void;
-	PostGarbageCollect(): void;
-	PostDemoPlay(): void;
-	PostApplyLevelOffset(Level: Level,World: World,Offset: Vector,Flag: boolean): void;
-	PackageCreatedForLoad(InPackage: Package): void;
-	OnWorldCleanup(World: World,bSessionEnded: boolean,bCleanupResources: boolean): void;
-	OnPreWorldInitialization_Friendly(World: World): void;
-	OnPreWorldFinishDestroy(World: World): void;
-	OnPreObjectPropertyChanged_Friendly(InObject: UObject,Property: any,MemberProperty: any): void;
-	OnPostWorldInitialization_Friendly(World: World): void;
-	OnPostWorldCreation(World: World): void;
-	OnPostDuplicate_Friendly(World: World,bDuplicateForPIE: boolean): void;
-	OnObjectPropertyChanged_Friendly(InObject: UObject,Property: any,MemberProperty: any,ChangeType: number): void;
-	OnObjectPreSave_Friendly(ObjectSaved: UObject): void;
-	OnObjectModified(UObject: UObject): void;
-	OnAssetLoaded(UObject: UObject): void;
-	OnActorLabelChanged(Actor: Actor): void;
-	LevelRemovedFromWorld(Level: Level,World: World): void;
-	LevelAddedToWorld(Level: Level,World: World): void;
-	Bind(Key: string): void;
-	static C(Other: UObject | any): JavascriptGlobalDelegates;
-}
-
-declare class JavascriptStaticCache extends UObject { 
-	Isolates: JavascriptIsolate[];
-	bExecuteTestModePIE: boolean;
-	static Load(ResourceName: string): JavascriptStaticCache;
-	static Find(Outer: UObject, ResourceName: string): JavascriptStaticCache;
-	static GetDefaultObject(): JavascriptStaticCache;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptStaticCache;
-	static C(Other: UObject | any): JavascriptStaticCache;
-}
-
-declare class JavascriptRow { 
-	Values: string[];
-	clone() : JavascriptRow;
-	static C(Other: UObject | any): JavascriptRow;
-}
-
-declare class JavascriptStreamableManager { 
-	clone() : JavascriptStreamableManager;
-	static C(Other: UObject | any): JavascriptStreamableManager;
-	IsAsyncLoadComplete(Target: SoftObjectPath): boolean;
-	RequestAsyncLoad(TargetsToStream: SoftObjectPath[],DelegateToCall: JavascriptFunction,Priority: number): void;
-	SimpleAsyncLoad(Target: SoftObjectPath,Priority: number): void;
-	Unload(Target: SoftObjectPath): void;
-	static IsAsyncLoadComplete(Manager: JavascriptStreamableManager,Target: SoftObjectPath): boolean;
-	static RequestAsyncLoad(Manager: JavascriptStreamableManager,TargetsToStream: SoftObjectPath[],DelegateToCall: JavascriptFunction,Priority: number): void;
-	static SimpleAsyncLoad(Manager: JavascriptStreamableManager,Target: SoftObjectPath,Priority: number): void;
-	static Unload(Manager: JavascriptStreamableManager,Target: SoftObjectPath): void;
-	static CreateStreamableManager(): JavascriptStreamableManager;
-}
-
-declare class JavascriptInternetAddr { 
-	clone() : JavascriptInternetAddr;
-	static C(Other: UObject | any): JavascriptInternetAddr;
-	SetIp(ResolvedAddress?: string,bValid?: boolean): {Addr: JavascriptInternetAddr, bValid: boolean};
-	SetPort(Port?: number): {Addr: JavascriptInternetAddr};
-	static SetIp(Addr?: JavascriptInternetAddr,ResolvedAddress?: string,bValid?: boolean): {Addr: JavascriptInternetAddr, bValid: boolean};
-	static SetPort(Addr?: JavascriptInternetAddr,Port?: number): {Addr: JavascriptInternetAddr};
-	static CreateInternetAddr(): JavascriptInternetAddr;
-}
-
-declare class JavascriptSocket { 
-	clone() : JavascriptSocket;
-	static C(Other: UObject | any): JavascriptSocket;
-	SendMemoryTo(ToAddr?: JavascriptInternetAddr,NumBytes?: number,BytesSent?: number): {Socket: JavascriptSocket, BytesSent: number, $: boolean};
-	static SendMemoryTo(Socket?: JavascriptSocket,ToAddr?: JavascriptInternetAddr,NumBytes?: number,BytesSent?: number): {Socket: JavascriptSocket, BytesSent: number, $: boolean};
-	static CreateSocket(SocketType: string,Description: string,bForceUDP: boolean): JavascriptSocket;
-}
-
-declare type EJavascriptStatDataType = 'Invalid' | 'ST_None' | 'ST_int64' | 'ST_double' | 'ST_FName' | 'ST_Ptr' | 'EJavascriptStatDataType_MAX';
-declare var EJavascriptStatDataType : { Invalid:'Invalid',ST_None:'ST_None',ST_int64:'ST_int64',ST_double:'ST_double',ST_FName:'ST_FName',ST_Ptr:'ST_Ptr',EJavascriptStatDataType_MAX:'EJavascriptStatDataType_MAX', };
-declare type EJavascriptStatOperation = 'Invalid' | 'SetLongName' | 'AdvanceFrameEventGameThread' | 'AdvanceFrameEventRenderThread' | 'CycleScopeStart' | 'CycleScopeEnd' | 'SpecialMessageMarker' | 'Set' | 'Clear' | 'Add' | 'Subtract' | 'ChildrenStart' | 'ChildrenEnd' | 'Leaf' | 'MaxVal' | 'Memory' | 'EJavascriptStatOperation_MAX';
-declare var EJavascriptStatOperation : { Invalid:'Invalid',SetLongName:'SetLongName',AdvanceFrameEventGameThread:'AdvanceFrameEventGameThread',AdvanceFrameEventRenderThread:'AdvanceFrameEventRenderThread',CycleScopeStart:'CycleScopeStart',CycleScopeEnd:'CycleScopeEnd',SpecialMessageMarker:'SpecialMessageMarker',Set:'Set',Clear:'Clear',Add:'Add',Subtract:'Subtract',ChildrenStart:'ChildrenStart',ChildrenEnd:'ChildrenEnd',Leaf:'Leaf',MaxVal:'MaxVal',Memory:'Memory',EJavascriptStatOperation_MAX:'EJavascriptStatOperation_MAX', };
-declare class JavascriptStat { 
-	clone() : JavascriptStat;
-	static C(Other: UObject | any): JavascriptStat;
-	AddMessage(InStatOperation: EJavascriptStatOperation): void;
-	AddMessage_float(InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	AddMessage_int(InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static AddMessage(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation): void;
-	static AddMessage_float(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static AddMessage_int(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static NewStat(InStatName: string,InStatDesc: string,InGroupName: string,InGroupCategory: string,InGroupDesc: string,bDefaultEnable: boolean,bShouldClearEveryFrame: boolean,InStatType: EJavascriptStatDataType,bCycleStat: boolean,bSortByName: boolean): JavascriptStat;
-}
-
-declare type ELogVerbosity_JS = 'NoLogging' | 'Fatal' | 'Error' | 'Warning' | 'Display' | 'Log' | 'Verbose' | 'VeryVerbose' | 'ELogVerbosity_MAX';
-declare var ELogVerbosity_JS : { NoLogging:'NoLogging',Fatal:'Fatal',Error:'Error',Warning:'Warning',Display:'Display',Log:'Log',Verbose:'Verbose',VeryVerbose:'VeryVerbose',ELogVerbosity_MAX:'ELogVerbosity_MAX', };
-declare class JavascriptLogCategory { 
-	clone() : JavascriptLogCategory;
-	static C(Other: UObject | any): JavascriptLogCategory;
-	GetCategoryName(): string;
-	IsSuppressed(Verbosity: ELogVerbosity_JS): boolean;
-	Log(Verbosity: ELogVerbosity_JS,Message: string,Filename: string,LineNumber: number): void;
-	static GetCategoryName(Category: JavascriptLogCategory): string;
-	static IsSuppressed(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS): boolean;
-	static Log(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS,Message: string,Filename: string,LineNumber: number): void;
-	static CreateLogCategory(CategoryName: string,InDefaultVerbosity: ELogVerbosity_JS): JavascriptLogCategory;
-}
-
-declare class JavscriptProperty { 
-	Type: string;
-	Name: string;
-	clone() : JavscriptProperty;
-	static C(Other: UObject | any): JavscriptProperty;
-}
-
-declare class JavascriptProfileNode { 
-	clone() : JavascriptProfileNode;
-	static C(Other: UObject | any): JavascriptProfileNode;
-	GetBailoutReason(): string;
-	GetChild(Index: number): JavascriptProfileNode;
-	GetChildrenCount(): number;
-	GetColumnNumber(): number;
-	GetDeoptInfo_Reason(Index: number): string;
-	GetDeoptInfo_Stack(Index: number): string;
-	GetDeoptInfosCount(Index: number): number;
-	GetFunctionName(): string;
-	GetHitCount(): number;
-	GetHitLineCount(): number;
-	GetLineNumber(): number;
-	GetNodeId(): number;
-	GetScriptId(): number;
-	GetScriptResourceName(): string;
-	static GetBailoutReason(UNode: JavascriptProfileNode): string;
-	static GetChild(UNode: JavascriptProfileNode,Index: number): JavascriptProfileNode;
-	static GetChildrenCount(UNode: JavascriptProfileNode): number;
-	static GetColumnNumber(UNode: JavascriptProfileNode): number;
-	static GetDeoptInfo_Reason(UNode: JavascriptProfileNode,Index: number): string;
-	static GetDeoptInfo_Stack(UNode: JavascriptProfileNode,Index: number): string;
-	static GetDeoptInfosCount(UNode: JavascriptProfileNode,Index: number): number;
-	static GetFunctionName(UNode: JavascriptProfileNode): string;
-	static GetHitCount(UNode: JavascriptProfileNode): number;
-	static GetHitLineCount(UNode: JavascriptProfileNode): number;
-	static GetLineNumber(UNode: JavascriptProfileNode): number;
-	static GetNodeId(UNode: JavascriptProfileNode): number;
-	static GetScriptId(UNode: JavascriptProfileNode): number;
-	static GetScriptResourceName(UNode: JavascriptProfileNode): string;
-}
-
-declare class JavascriptLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): JavascriptLibrary;
-	static Find(Outer: UObject, ResourceName: string): JavascriptLibrary;
-	static GetDefaultObject(): JavascriptLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptLibrary;
-	static WriteStringToFile(UObject: UObject,Filename: string,Data: string,EncodingOptions: EJavascriptEncodingOptions): boolean;
-	static WriteFile(UObject: UObject,Filename: string): boolean;
-	static WriteCSV(InPath: string,InData?: JavascriptRow[],EncodingOptions?: EJavascriptEncodingOptions): {InData: JavascriptRow[], $: boolean};
-	static V8_SetIdleTaskBudget(BudgetInSeconds: number): void;
-	static V8_SetFlagsFromString(V8Flags: string): void;
-	static V8_IsEnableHotReload(): boolean;
-	static UnregisterComponent(ActorComponent: ActorComponent): void;
-	static Unload(Manager: JavascriptStreamableManager,Target: SoftObjectPath): void;
-	static TryLoadByPath(Path: string): UObject;
-	static SimpleAsyncLoad(Manager: JavascriptStreamableManager,Target: SoftObjectPath,Priority: number): void;
-	static SetRootComponent(Actor: Actor,Component: SceneComponent): void;
-	static SetPort(Addr?: JavascriptInternetAddr,Port?: number): {Addr: JavascriptInternetAddr};
-	static SetObjectFlags(Obj: UObject,Flags: number): void;
-	static SetMobility(SceneComponent: SceneComponent,Type: EComponentMobility): void;
-	static SetMobile(SceneComponent: SceneComponent): void;
-	static SetIp(Addr?: JavascriptInternetAddr,ResolvedAddress?: string,bValid?: boolean): {Addr: JavascriptInternetAddr, bValid: boolean};
-	static SetClientTravel(Engine: Engine,InWorld: World,NextURL: string,InTravelType: ETravelType): void;
-	static SetActorFlags(Actor: Actor,Flags: number): void;
-	static SendMemoryTo(Socket?: JavascriptSocket,ToAddr?: JavascriptInternetAddr,NumBytes?: number,BytesSent?: number): {Socket: JavascriptSocket, BytesSent: number, $: boolean};
-	static SegmentIntersection2D(SegmentStartA: Vector,SegmentEndA: Vector,SegmentStartB: Vector,SegmentEndB: Vector,IntersectionPoint?: Vector): {IntersectionPoint: Vector, $: boolean};
-	static ResolveIp(HostName: string,OutIp?: string): {OutIp: string, $: boolean};
-	static ReregisterComponent(ActorComponent: ActorComponent): void;
-	static ReregisterAllComponents(Actor: Actor): void;
-	static RequestAsyncLoad(Manager: JavascriptStreamableManager,TargetsToStream: SoftObjectPath[],DelegateToCall: JavascriptFunction,Priority: number): void;
-	static RegisterComponent(ActorComponent: ActorComponent): void;
-	static ReadStringFromFileAsync(UObject: UObject,Filename: string,UFunction: JavascriptFunction): ReadStringFromFileHandle;
-	static ReadStringFromFile(UObject: UObject,Filename: string,ReadFlags: EFileRead_JS): string;
-	static ReadFile(UObject: UObject,Filename: string): boolean;
-	static ReadDirectory(UObject: UObject,Directory: string,OutItems?: DirectoryItem[]): {OutItems: DirectoryItem[], $: boolean};
-	static ReadCSV(InPath: string,OutData?: JavascriptRow[],ReadFlags?: EFileRead_JS): {OutData: JavascriptRow[], $: boolean};
-	static NewStat(InStatName: string,InStatDesc: string,InGroupName: string,InGroupCategory: string,InGroupDesc: string,bDefaultEnable: boolean,bShouldClearEveryFrame: boolean,InStatType: EJavascriptStatDataType,bCycleStat: boolean,bSortByName: boolean): JavascriptStat;
-	static MarkRenderStateDirty(Component: ActorComponent): void;
-	static MakeDirectory(Path: string,Tree: boolean): boolean;
-	static Log(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS,Message: string,Filename: string,LineNumber: number): void;
-	static LoadPackage(InOuter: Package,PackageName: string): Package;
-	static IsSuppressed(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS): boolean;
-	static IsRegistered(ActorComponent: ActorComponent): boolean;
-	static IsPlayInPreview(World: World): boolean;
-	static IsPlayInEditor(World: World): boolean;
-	static IsPendingKill(InActor: Actor): boolean;
-	static IsGeneratedByBlueprint(InClass: UnrealEngineClass): boolean;
-	static IsGameWorld(World: World): boolean;
-	static IsAsyncLoadComplete(Manager: JavascriptStreamableManager,Target: SoftObjectPath): boolean;
-	static HasUndo(Engine: Engine): boolean;
-	static HasAnyPackageFlags(Package: Package,Flags: number): boolean;
-	static HasAnyFlags(UObject: UObject,Flags: number): boolean;
-	static HandleSeamlessTravelPlayer(GameMode: GameModeBase,C?: Controller): {C: Controller};
-	static GetWorldBounds(InWorld: World): Box;
-	static GetSuperClasses(InClass: UnrealEngineClass): UnrealEngineClass[];
-	static GetStructProperties(StructName: string,bIncludeSuper: boolean): JavscriptProperty[];
-	static GetScriptResourceName(UNode: JavascriptProfileNode): string;
-	static GetScriptId(UNode: JavascriptProfileNode): number;
-	static GetPlatformName(): string;
-	static GetOutermost(UObject: UObject): UObject;
-	static GetOuter(UObject: UObject): UObject;
-	static GetObjectsWithOuter(Outer: UObject,Results?: UObject[],bIncludeNestedObjects?: boolean,ExclusionFlags?: number,ExclusionInternalFlags?: number): {Results: UObject[]};
-	static GetObjectsOfClass(ClassToLookFor: UnrealEngineClass,Results?: UObject[],bIncludeDerivedClasses?: boolean,ExcludeFlags?: number,ExclusionInternalFlags?: number): {Results: UObject[]};
-	static GetNodeId(UNode: JavascriptProfileNode): number;
-	static GetName(UObject: UObject): string;
-	static GetModel(World: World): Model;
-	static GetMetaData(Field: Field,Key: string): string;
-	static GetLineNumber(UNode: JavascriptProfileNode): number;
-	static GetLevels(World: World): Level[];
-	static GetLevel(Actor: Actor): Level;
-	static GetLastRenderTime(Actor: Actor): number;
-	static GetHitLineCount(UNode: JavascriptProfileNode): number;
-	static GetHitCount(UNode: JavascriptProfileNode): number;
-	static GetFunctionParmsSize(UFunction: UFunction): number;
-	static GetFunctionName(UNode: JavascriptProfileNode): string;
-	static GetFileSize(UObject: UObject,Filename: string): number;
-	static GetFields(UObject: UObject,bIncludeSuper: boolean): Field[];
-	static GetEnumListByEnumName(EnumName: string): string[];
-	static GetDynamicBinding(Outer: UnrealEngineClass,BindingObjectClass: UnrealEngineClass): DynamicBlueprintBinding;
-	static GetDir(UObject: UObject,WhichDir: string): string;
-	static GetDerivedClasses(ClassToLookFor: UnrealEngineClass,Results?: UnrealEngineClass[],bRecursive?: boolean): {Results: UnrealEngineClass[]};
-	static GetDeoptInfosCount(UNode: JavascriptProfileNode,Index: number): number;
-	static GetDeoptInfo_Stack(UNode: JavascriptProfileNode,Index: number): string;
-	static GetDeoptInfo_Reason(UNode: JavascriptProfileNode,Index: number): string;
-	static GetCurrentProcessId(): number;
-	static GetComponentsByClass(Actor: Actor,ComponentClass: UnrealEngineClass): ActorComponent[];
-	static GetColumnNumber(UNode: JavascriptProfileNode): number;
-	static GetClassPathName(Class: UnrealEngineClass): string;
-	static GetChildrenCount(UNode: JavascriptProfileNode): number;
-	static GetChild(UNode: JavascriptProfileNode,Index: number): JavascriptProfileNode;
-	static GetCategoryName(Category: JavascriptLogCategory): string;
-	static GetBlueprintGeneratedClassFromPath(Path: string): UnrealEngineClass;
-	static GetBlueprintGeneratedClass(Blueprint: Blueprint): UnrealEngineClass;
-	static GetBailoutReason(UNode: JavascriptProfileNode): string;
-	static GetArchetypePathName(UObject: UObject): string;
-	static GetAllActorsOfClassAndTagsInCurrentLevel(WorldContextObject: UObject,ActorClass: UnrealEngineClass,Tags_Accept: string[],Tags_Deny: string[],OutActors?: Actor[]): {OutActors: Actor[]};
-	static GetAllActorsOfClassAndTags(WorldContextObject: UObject,ActorClass: UnrealEngineClass,Tags_Accept: string[],Tags_Deny: string[],OutActors?: Actor[]): {OutActors: Actor[]};
-	static GenerateNavigation(InWorld: World,NavData: RecastNavMesh): void;
-	static FindPackage(InOuter: UObject,PackageName: string): Package;
-	static FindObjectWithOuter(Outer: UObject,ClassToLookFor: UnrealEngineClass,NameToLookFor: string): UObject;
-	static FileExists(Filename: string): boolean;
-	static Duplicate(UObject: UObject,Outer: UObject,Name: string): UObject;
-	static DirectoryExists(InDirectory: string): boolean;
-	static DeleteFile(Filename: string,ReadOnly: boolean): boolean;
-	static DeleteDirectory(Path: string,RequireExists: boolean,Tree: boolean): boolean;
-	static CreateStreamableManager(): JavascriptStreamableManager;
-	static CreateSocket(SocketType: string,Description: string,bForceUDP: boolean): JavascriptSocket;
-	static CreatePackage(Outer: UObject,PackageName: string): Package;
-	static CreateLogCategory(CategoryName: string,InDefaultVerbosity: ELogVerbosity_JS): JavascriptLogCategory;
-	static CreateInternetAddr(): JavascriptInternetAddr;
-	static CreateEnum(Outer: UObject,Name: string,DisplayNames: string[],Flags: string[]): Enum;
-	static ConvertRelativePathToFull(UObject: UObject,RelativePath: string): string;
-	static ClipboardPaste(): string;
-	static ClipboardCopy(string: string): void;
-	static CallJS(UFunction: JavascriptFunction,CustomStruct: JavascriptStubStruct): void;
-	static AddMessage_int(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static AddMessage_float(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static AddMessage(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation): void;
-	static AddDynamicBinding(Outer: UnrealEngineClass,BindingObject: DynamicBlueprintBinding): void;
-	static Actor_GetWorld(Actor: Actor): World;
-	static C(Other: UObject | any): JavascriptLibrary;
-}
-
-declare class JavascriptMemoryObject extends UObject { 
-	static Load(ResourceName: string): JavascriptMemoryObject;
-	static Find(Outer: UObject, ResourceName: string): JavascriptMemoryObject;
-	static GetDefaultObject(): JavascriptMemoryObject;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptMemoryObject;
-	static C(Other: UObject | any): JavascriptMemoryObject;
-}
-
-declare class JavascriptRef { 
-	clone() : JavascriptRef;
-	static C(Other: UObject | any): JavascriptRef;
-}
-
-declare class JavascriptObject extends UObject { 
-	Ref: JavascriptRef;
-	Func: JavascriptFunction;
-	static Load(ResourceName: string): JavascriptObject;
-	static Find(Outer: UObject, ResourceName: string): JavascriptObject;
-	static GetDefaultObject(): JavascriptObject;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptObject;
-	static C(Other: UObject | any): JavascriptObject;
-}
-
-declare class JavascriptOutputDevice extends UObject { 
-	static Load(ResourceName: string): JavascriptOutputDevice;
-	static Find(Outer: UObject, ResourceName: string): JavascriptOutputDevice;
-	static GetDefaultObject(): JavascriptOutputDevice;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptOutputDevice;
-	OnMessage(Message: string,Verbosity: ELogVerbosity_JS,Category: string): void;
-	static Log(Category: string,Verbosity: ELogVerbosity_JS,Filename: string,LineNumber: number,Message: string): void;
-	Kill(): void;
-	static C(Other: UObject | any): JavascriptOutputDevice;
-}
-
-declare class JavascriptProcess extends UObject { 
-	static Load(ResourceName: string): JavascriptProcess;
-	static Find(Outer: UObject, ResourceName: string): JavascriptProcess;
-	static GetDefaultObject(): JavascriptProcess;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptProcess;
-	WriteToPipe(Message: string,OutWritten?: string): {OutWritten: string, $: boolean};
-	Wait(): void;
-	Terminate(KillTree: boolean): void;
-	static Sleep(Seconds: number): void;
-	static SimulateKeypress(KeyEvent: number): void;
-	static SetEnvironmentVar(VarName: string,VarValue: string): void;
-	ReadFromPipe(): string;
-	ReadArrayFromPipe(Array?: number[]): {Array: number[], $: boolean};
-	static Open_PID(ProcessId: number): JavascriptProcess;
-	static Open(ProcName: string): JavascriptProcess;
-	static LaunchURL(URL: string,Parms: string,Error?: string): {Error: string};
-	IsRunning(): boolean;
-	static IsApplicationRunning_PID(ProcessId: number): boolean;
-	static IsApplicationRunning(ProcName: string): boolean;
-	static GetString(Key: string,bFlag: boolean): string;
-	GetReturnCode(ReturnCode?: number): {ReturnCode: number, $: boolean};
-	static GetEnvironmentVar(VarName: string): string;
-	static GetCurrentProcessId(): number;
-	static GetApplicationName(ProcessId: number): string;
-	static Create(URL: string,Parms: string,bLaunchDetached: boolean,bLaunchHidden: boolean,bLaunchReallyHidden: boolean,PriorityModifier: number,OptionalWorkingDirectory: string,bUsePipe: boolean): JavascriptProcess;
-	Close(): void;
-	static CanLaunchURL(URL: string): boolean;
-	static C(Other: UObject | any): JavascriptProcess;
-}
-
-declare class JavascriptCpuProfiler { 
-	clone() : JavascriptCpuProfiler;
-	static C(Other: UObject | any): JavascriptCpuProfiler;
-}
-
-declare class JavascriptProfile extends UObject { 
-	static Load(ResourceName: string): JavascriptProfile;
-	static Find(Outer: UObject, ResourceName: string): JavascriptProfile;
-	static GetDefaultObject(): JavascriptProfile;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptProfile;
-	static Stop(Profiler: JavascriptCpuProfiler,Title: string): JavascriptProfile;
-	static Start(Title: string,bRecordSamples: boolean): JavascriptCpuProfiler;
-	static SetSamplingInterval(Profiler: JavascriptCpuProfiler,us: number): void;
-	static SetIdle(Profiler: JavascriptCpuProfiler,is_idle: boolean): void;
-	GetTopDownRoot(): JavascriptProfileNode;
-	GetSampleTimestamp(Index: number): number;
-	GetSamplesCount(): number;
-	GetSample(Index: number): JavascriptProfileNode;
-	static C(Other: UObject | any): JavascriptProfile;
-}
-
-declare class JavascriptSemaphore extends UObject { 
-	static Load(ResourceName: string): JavascriptSemaphore;
-	static Find(Outer: UObject, ResourceName: string): JavascriptSemaphore;
-	static GetDefaultObject(): JavascriptSemaphore;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSemaphore;
-	Unlock(): void;
-	TryLock(NanosecondsToWait: number): boolean;
-	Lock(): void;
-	Dispose(): void;
-	static Create(Name: string,bCreate: boolean,MaxLocks: number): JavascriptSemaphore;
-	static C(Other: UObject | any): JavascriptSemaphore;
-}
-
-declare class JavascriptSettings extends UObject { 
-	V8Flags: string;
-	bEnableHotReload: boolean;
-	static Load(ResourceName: string): JavascriptSettings;
-	static Find(Outer: UObject, ResourceName: string): JavascriptSettings;
-	static GetDefaultObject(): JavascriptSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSettings;
-	static C(Other: UObject | any): JavascriptSettings;
-}
-
-declare class JavascriptSharedMemoryRegion extends JavascriptMemoryObject { 
-	static Load(ResourceName: string): JavascriptSharedMemoryRegion;
-	static Find(Outer: UObject, ResourceName: string): JavascriptSharedMemoryRegion;
-	static GetDefaultObject(): JavascriptSharedMemoryRegion;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSharedMemoryRegion;
-	Dispose(): void;
-	static Create(Name: string,bCreate: boolean,bRead: boolean,bWrite: boolean,Size: number): JavascriptSharedMemoryRegion;
-	static C(Other: UObject | any): JavascriptSharedMemoryRegion;
-}
-
-declare class JavascriptAutomatedTestInstance { 
-	clone() : JavascriptAutomatedTestInstance;
-	static C(Other: UObject | any): JavascriptAutomatedTestInstance;
-	AddAnalyticsItem(InAnalyticsItem: string): void;
-	AddError(InError: string): void;
-	AddLogItem(InLogItem: string): void;
-	AddWarning(InWarning: string): void;
-	ClearExecutionInfo(): void;
-	Destroy(): {Test: JavascriptAutomatedTestInstance};
-	SetContinue(bInContinue: boolean): void;
-	static AddAnalyticsItem(Test: JavascriptAutomatedTestInstance,InAnalyticsItem: string): void;
-	static AddError(Test: JavascriptAutomatedTestInstance,InError: string): void;
-	static AddLogItem(Test: JavascriptAutomatedTestInstance,InLogItem: string): void;
-	static AddWarning(Test: JavascriptAutomatedTestInstance,InWarning: string): void;
-	static ClearExecutionInfo(Test: JavascriptAutomatedTestInstance): void;
-	static Destroy(Test?: JavascriptAutomatedTestInstance): {Test: JavascriptAutomatedTestInstance};
-	static SetContinue(Test: JavascriptAutomatedTestInstance,bInContinue: boolean): void;
-}
-
-declare class JavascriptAutomatedTest { 
-	Name: string;
-	bComplexTask: boolean;
-	TestFlags: number;
-	RequiredDeviceNum: number;
-	TestFunctionNames: string[];
-	UFunction: JavascriptFunction;
-	clone() : JavascriptAutomatedTest;
-	static C(Other: UObject | any): JavascriptAutomatedTest;
-	Create(): JavascriptAutomatedTestInstance;
-	static Create(Test: JavascriptAutomatedTest): JavascriptAutomatedTestInstance;
-}
-
-declare class JavascriptTestLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): JavascriptTestLibrary;
-	static Find(Outer: UObject, ResourceName: string): JavascriptTestLibrary;
-	static GetDefaultObject(): JavascriptTestLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTestLibrary;
-	static SetContinue(Test: JavascriptAutomatedTestInstance,bInContinue: boolean): void;
-	static PushFrameCounter(): void;
-	static PopFrameCounter(): void;
-	static NewWorld(): World;
-	static InitializeActorsForPlay(World: World,URL: URL): void;
-	static DestroyWorld(World: World): void;
-	static DestroyUObject(UObject: UObject): void;
-	static Destroy(Test?: JavascriptAutomatedTestInstance): {Test: JavascriptAutomatedTestInstance};
-	static Create(Test: JavascriptAutomatedTest): JavascriptAutomatedTestInstance;
-	static ClearExecutionInfo(Test: JavascriptAutomatedTestInstance): void;
-	static BeginPlay(World: World): void;
-	static AddWarning(Test: JavascriptAutomatedTestInstance,InWarning: string): void;
-	static AddLogItem(Test: JavascriptAutomatedTestInstance,InLogItem: string): void;
-	static AddError(Test: JavascriptAutomatedTestInstance,InError: string): void;
-	static AddAnalyticsItem(Test: JavascriptAutomatedTestInstance,InAnalyticsItem: string): void;
-	static C(Other: UObject | any): JavascriptTestLibrary;
-}
-
-declare class JavascriptComboButton extends ContentWidget { 
-	ComboButtonStyle: ComboButtonStyle;
-	ButtonStyle: ButtonStyle;
-	OnGetMenuContent: UnrealEngineDelegate<() => JavascriptSlateWidget>;
-	OnMenuOpenChanged: UnrealEngineDelegate<(Value: boolean) => void>;
-	OnComboBoxOpened: UnrealEngineDelegate<() => void>;
-	bIsFocusable: boolean;
-	bHasDownArrow: boolean;
-	ForegroundColor: SlateColor;
-	ButtonColorAndOpacity: SlateColor;
-	ContentPadding: Margin;
-	MenuPlacement: EMenuPlacement;
-	HAlign: EHorizontalAlignment;
-	VAlign: EVerticalAlignment;
-	static Load(ResourceName: string): JavascriptComboButton;
-	static Find(Outer: UObject, ResourceName: string): JavascriptComboButton;
-	static GetDefaultObject(): JavascriptComboButton;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptComboButton;
-	SetIsOpen(InIsOpen: boolean,bFocusMenu: boolean): void;
-	static C(Other: UObject | any): JavascriptComboButton;
-}
-
-declare class JavascriptSlateIcon { 
-	StyleSetName: string;
-	StyleName: string;
-	SmallStyleName: string;
-	clone() : JavascriptSlateIcon;
-	static C(Other: UObject | any): JavascriptSlateIcon;
-}
-
-declare class JavascriptComboButtonContext extends UObject { 
-	OnGetLabel: UnrealEngineDelegate<() => string>;
-	OnGetTooltip: UnrealEngineDelegate<() => string>;
-	OnGetIcon: UnrealEngineDelegate<() => JavascriptSlateIcon>;
-	OnGetWidget: UnrealEngineDelegate<(EditingObject: UObject) => JavascriptSlateWidget>;
-	OnCanExecute: UnrealEngineDelegate<() => boolean>;
-	static Load(ResourceName: string): JavascriptComboButtonContext;
-	static Find(Outer: UObject, ResourceName: string): JavascriptComboButtonContext;
-	static GetDefaultObject(): JavascriptComboButtonContext;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptComboButtonContext;
-	UnmarkReferencedObject(): void;
-	MarkReferencedObject(): void;
-	static C(Other: UObject | any): JavascriptComboButtonContext;
-}
-
-declare class JavascriptTextProperty { 
-	Key: string;
-	Namespace: string;
-	Value: string;
-	TableId: string;
-	clone() : JavascriptTextProperty;
-	static C(Other: UObject | any): JavascriptTextProperty;
-	static FromStringTable(InTableId: string,InKey: string): JavascriptTextProperty;
-}
-
-declare class JavascriptFTextBox extends Widget { 
-	OnIsReadOnly: UnrealEngineDelegate<() => boolean>;
-	OnIsValidText: UnrealEngineDelegate<(TextValue: string) => string>;
-	OnGetDefaultValue: UnrealEngineDelegate<() => JavascriptTextProperty>;
-	OnTextCommitted: UnrealEngineMulticastDelegate<(TextProperty: JavascriptTextProperty) => void>;
-	WidgetStyle: EditableTextBoxStyle;
-	WrapTextAt: number;
-	AutoWrapText: boolean;
-	static Load(ResourceName: string): JavascriptFTextBox;
-	static Find(Outer: UObject, ResourceName: string): JavascriptFTextBox;
-	static GetDefaultObject(): JavascriptFTextBox;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptFTextBox;
-	SetText(JavascriptTextProperty?: JavascriptTextProperty): {JavascriptTextProperty: JavascriptTextProperty};
-	static C(Other: UObject | any): JavascriptFTextBox;
-}
-
-declare class JavascriptGameViewport extends ContentWidget { 
-	BackgroundColor: LinearColor;
-	static Load(ResourceName: string): JavascriptGameViewport;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGameViewport;
-	static GetDefaultObject(): JavascriptGameViewport;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGameViewport;
-	Spawn(ActorClass: UnrealEngineClass): Actor;
-	SetViewRotation(Rotation: Rotator): void;
-	SetViewLocation(Location: Vector): void;
-	GetViewRotation(): Rotator;
-	GetViewportWorld(): World;
-	GetViewLocation(): Vector;
-	static C(Other: UObject | any): JavascriptGameViewport;
-}
-
-declare class JavascriptIntSpinBox extends Widget { 
-	Value: number;
-	ValueDelegate: UnrealEngineDelegate<() => number>;
-	WidgetStyle: SpinBoxStyle;
-	Style: SlateWidgetStyleAsset;
-	Delta: number;
-	SliderExponent: number;
-	Font: SlateFontInfo;
-	Justification: ETextJustify;
-	MinDesiredWidth: number;
-	ClearKeyboardFocusOnCommit: boolean;
-	SelectAllTextOnCommit: boolean;
-	ForegroundColor: SlateColor;
-	OnValueChanged: UnrealEngineMulticastDelegate<(InValue: number) => void>;
-	OnValueCommitted: UnrealEngineMulticastDelegate<(InValue: number, CommitMethod: ETextCommit) => void>;
-	OnBeginSliderMovement: UnrealEngineMulticastDelegate<() => void>;
-	OnEndSliderMovement: UnrealEngineMulticastDelegate<(InValue: number) => void>;
-	bOverride_MinValue: boolean;
-	bOverride_MaxValue: boolean;
-	bOverride_MinSliderValue: boolean;
-	bOverride_MaxSliderValue: boolean;
-	MinValue: number;
-	MaxValue: number;
-	MinSliderValue: number;
-	MaxSliderValue: number;
-	static Load(ResourceName: string): JavascriptIntSpinBox;
-	static Find(Outer: UObject, ResourceName: string): JavascriptIntSpinBox;
-	static GetDefaultObject(): JavascriptIntSpinBox;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptIntSpinBox;
-	SetValue(NewValue: number): void;
-	SetMinValue(NewValue: number): void;
-	SetMinSliderValue(NewValue: number): void;
-	SetMaxValue(NewValue: number): void;
-	SetMaxSliderValue(NewValue: number): void;
-	SetForegroundColor(InForegroundColor: SlateColor): void;
-	GetValue(): number;
-	GetMinValue(): number;
-	GetMinSliderValue(): number;
-	GetMaxValue(): number;
-	GetMaxSliderValue(): number;
-	ClearMinValue(): void;
-	ClearMinSliderValue(): void;
-	ClearMaxValue(): void;
-	ClearMaxSliderValue(): void;
-	static C(Other: UObject | any): JavascriptIntSpinBox;
-}
-
-declare class TableColumnHeaderStyle extends SlateWidgetStyle { 
-	SortPrimaryAscendingImage: SlateBrush;
-	SortPrimaryDescendingImage: SlateBrush;
-	SortSecondaryAscendingImage: SlateBrush;
-	SortSecondaryDescendingImage: SlateBrush;
-	NormalBrush: SlateBrush;
-	HoveredBrush: SlateBrush;
-	MenuDropdownImage: SlateBrush;
-	MenuDropdownNormalBorderBrush: SlateBrush;
-	MenuDropdownHoveredBorderBrush: SlateBrush;
-	clone() : TableColumnHeaderStyle;
-	static C(Other: UObject | any): TableColumnHeaderStyle;
-}
-
-declare class SplitterStyle extends SlateWidgetStyle { 
-	HandleNormalBrush: SlateBrush;
-	HandleHighlightBrush: SlateBrush;
-	clone() : SplitterStyle;
-	static C(Other: UObject | any): SplitterStyle;
-}
-
-declare class HeaderRowStyle extends SlateWidgetStyle { 
-	ColumnStyle: TableColumnHeaderStyle;
-	LastColumnStyle: TableColumnHeaderStyle;
-	ColumnSplitterStyle: SplitterStyle;
-	SplitterHandleSize: number;
-	BackgroundBrush: SlateBrush;
-	ForegroundColor: SlateColor;
-	HorizontalSeparatorBrush: SlateBrush;
-	HorizontalSeparatorThickness: number;
-	clone() : HeaderRowStyle;
-	static C(Other: UObject | any): HeaderRowStyle;
-}
-
-declare class JavascriptColumn { 
-	ID: string;
-	Width: number;
-	Widget: Widget;
-	clone() : JavascriptColumn;
-	static C(Other: UObject | any): JavascriptColumn;
-}
-
-declare class JavascriptTreeView extends ListViewBase { 
-	OnGenerateRowEvent: UnrealEngineDelegate<(UObject: UObject, ID: string, Instance: JavascriptTreeView) => Widget>;
-	OnExpansionChanged: UnrealEngineDelegate<(Item: UObject, bExpanded: boolean, Instance: JavascriptTreeView) => void>;
-	OnContextMenuOpening: UnrealEngineDelegate<(Instance: JavascriptTreeView) => Widget>;
-	OnGetChildren: UnrealEngineDelegate<(Item: UObject, Instance: JavascriptTreeView) => void>;
-	JavascriptContext: JavascriptContext;
-	Items: UObject[];
-	HeaderRowStyle: HeaderRowStyle;
-	TableRowStyle: TableRowStyle;
-	ScrollBarStyle: ScrollBarStyle;
-	SelectionMode: ESelectionMode;
-	Children: UObject[];
-	Columns: JavascriptColumn[];
-	ColumnWidgets: Widget[];
-	static Load(ResourceName: string): JavascriptTreeView;
-	static Find(Outer: UObject, ResourceName: string): JavascriptTreeView;
-	static GetDefaultObject(): JavascriptTreeView;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTreeView;
-	SetSingleExpandedItem(InItem: UObject): void;
-	SetSelection(SoleSelectedItem: UObject): void;
-	SetItemSelection(MultiSelectedItems: UObject[],bIsSelected: boolean): void;
-	SetItemExpansion(InItem: UObject,InShouldExpandItem: boolean): void;
-	SetDoubleClickSelection(SelectedItem: UObject): void;
-	RequestTreeRefresh(): void;
-	RequestNavigateToItem(Item: UObject): void;
-	OnSelectionChanged(UObject: UObject,Type: ESelectInfo): void;
-	OnDoubleClick(UObject: UObject): void;
-	IsItemExpanded(InItem: UObject): boolean;
-	IsDoubleClickSelection(SelectedItem: UObject): boolean;
-	GetSelectedItems(OutItems?: UObject[]): {OutItems: UObject[], $: boolean};
-	GetDoubleClickedItems(OutItems?: UObject[]): {OutItems: UObject[]};
-	ClearSelection(): void;
-	ClearDoubleClickSelection(): void;
-	static C(Other: UObject | any): JavascriptTreeView;
-}
-
-declare class JavascriptListView extends JavascriptTreeView { 
-	ItemHeight: number;
-	static Load(ResourceName: string): JavascriptListView;
-	static Find(Outer: UObject, ResourceName: string): JavascriptListView;
-	static GetDefaultObject(): JavascriptListView;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptListView;
-	RequestListRefresh(): void;
-	OnClick(UObject: UObject): void;
-	static C(Other: UObject | any): JavascriptListView;
-}
-
-declare type EJavasrciptUserInterfaceActionType = 'None' | 'Button' | 'ToggleButton' | 'RadioButton' | 'Check' | 'CollapsedButton' | 'EJavasrciptUserInterfaceActionType_MAX';
-declare var EJavasrciptUserInterfaceActionType : { None:'None',Button:'Button',ToggleButton:'ToggleButton',RadioButton:'RadioButton',Check:'Check',CollapsedButton:'CollapsedButton',EJavasrciptUserInterfaceActionType_MAX:'EJavasrciptUserInterfaceActionType_MAX', };
-declare class JavascriptMenuContext extends UObject { 
-	Description: string;
-	Tooltip: string;
-	Icon: JavascriptSlateIcon;
-	ActionType: EJavasrciptUserInterfaceActionType;
-	OnCanExecute: UnrealEngineDelegate<() => boolean>;
-	OnExecute: UnrealEngineDelegate<() => void>;
-	OnGetActionCheckState: UnrealEngineDelegate<() => ECheckBoxState>;
-	static Load(ResourceName: string): JavascriptMenuContext;
-	static Find(Outer: UObject, ResourceName: string): JavascriptMenuContext;
-	static GetDefaultObject(): JavascriptMenuContext;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptMenuContext;
-	static C(Other: UObject | any): JavascriptMenuContext;
-}
-
-declare class JavascriptSlateTextRun { 
-	clone() : JavascriptSlateTextRun;
-	static C(Other: UObject | any): JavascriptSlateTextRun;
-}
-
-declare class JavascriptTextModel extends UObject { 
-	static Load(ResourceName: string): JavascriptTextModel;
-	static Find(Outer: UObject, ResourceName: string): JavascriptTextModel;
-	static GetDefaultObject(): JavascriptTextModel;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTextModel;
-	SetString(string: string): void;
-	GetString(): string;
-	CreateRun(MessageTextStyle: TextBlockStyle,BeginIndex: number,EndIndex: number): JavascriptSlateTextRun;
-	static C(Other: UObject | any): JavascriptTextModel;
-}
-
-declare class JavascriptTextLayout { 
-	clone() : JavascriptTextLayout;
-	static C(Other: UObject | any): JavascriptTextLayout;
-	AddLine(Model?: JavascriptTextModel,Runs?: JavascriptSlateTextRun[]): {TextLayout: JavascriptTextLayout};
-	ClearLines(): {TextLayout: JavascriptTextLayout};
-	GetAsText(): string;
-	GetLineLength(): number;
-	static AddLine(TextLayout?: JavascriptTextLayout,Model?: JavascriptTextModel,Runs?: JavascriptSlateTextRun[]): {TextLayout: JavascriptTextLayout};
-	static ClearLines(TextLayout?: JavascriptTextLayout): {TextLayout: JavascriptTextLayout};
-	static GetAsText(TextLayout: JavascriptTextLayout): string;
-	static GetLineLength(TargetTextLayout: JavascriptTextLayout): number;
-}
-
-declare class JavascriptMultiLineEditableTextBox extends MultiLineEditableTextBox { 
-	OnVScrollBarUserScrolled: UnrealEngineMulticastDelegate<(Offset: number) => void>;
-	GetTextDelegate: UnrealEngineDelegate<(TextLayout: JavascriptTextLayout) => string>;
-	SetTextDelegate: UnrealEngineDelegate<(InText: string, TextLayout: JavascriptTextLayout) => void>;
-	bAlwaysShowScrollbars: boolean;
-	static Load(ResourceName: string): JavascriptMultiLineEditableTextBox;
-	static Find(Outer: UObject, ResourceName: string): JavascriptMultiLineEditableTextBox;
-	static GetDefaultObject(): JavascriptMultiLineEditableTextBox;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptMultiLineEditableTextBox;
-	ScrollTo(Line: number,Offset: number): void;
-	Refresh(): void;
-	GoTo(Line: number,Offset: number): void;
-	static C(Other: UObject | any): JavascriptMultiLineEditableTextBox;
-}
-
-declare class JavascriptRichTextBlockHyperlinkDecorator extends RichTextBlockDecorator { 
-	HyperlinkId: string;
-	OnClick: UnrealEngineMulticastDelegate<(Self: JavascriptRichTextBlockHyperlinkDecorator) => void>;
-	static Load(ResourceName: string): JavascriptRichTextBlockHyperlinkDecorator;
-	static Find(Outer: UObject, ResourceName: string): JavascriptRichTextBlockHyperlinkDecorator;
-	static GetDefaultObject(): JavascriptRichTextBlockHyperlinkDecorator;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptRichTextBlockHyperlinkDecorator;
-	GetMetadata(Key: string): string;
-	static C(Other: UObject | any): JavascriptRichTextBlockHyperlinkDecorator;
-}
-
-declare class JavascriptSearchBox extends Widget { 
-	JavascriptContext: JavascriptContext;
-	OnTextChanged: UnrealEngineMulticastDelegate<(Text: string) => void>;
-	OnTextCommitted: UnrealEngineMulticastDelegate<(Text: string, CommitMethod: ETextCommit) => void>;
-	Text: string;
-	TextDelegate: UnrealEngineDelegate<() => string>;
-	HintText: string;
-	HintTextDelegate: UnrealEngineDelegate<() => string>;
-	static Load(ResourceName: string): JavascriptSearchBox;
-	static Find(Outer: UObject, ResourceName: string): JavascriptSearchBox;
-	static GetDefaultObject(): JavascriptSearchBox;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSearchBox;
-	SetText(InText: string): void;
-	SetHintText(InHintText: string): void;
-	OnKeyDown(MyGeometry: Geometry,InKeyEvent: KeyEvent): EventReply;
-	static C(Other: UObject | any): JavascriptSearchBox;
-}
-
-declare class JavascriptStyleSet { 
-	StyleSetName: string;
-	clone() : JavascriptStyleSet;
-	static C(Other: UObject | any): JavascriptStyleSet;
-	GetBrush(StyleName: string): SlateBrush;
-	GetButtonStyle(StyleName: string): ButtonStyle;
-	GetCheckBoxStyle(StyleName: string): CheckBoxStyle;
-	GetColor(StyleName: string): LinearColor;
-	GetComboBoxStyle(StyleName: string): ComboBoxStyle;
-	GetComboButtonStyle(StyleName: string): ComboButtonStyle;
-	GetEditableTextBoxStyle(StyleName: string): EditableTextBoxStyle;
-	GetEditableTextStyle(StyleName: string): EditableTextStyle;
-	GetFloat(StyleName: string): number;
-	GetFontStyle(StyleName: string): SlateFontInfo;
-	GetMargin(StyleName: string): Margin;
-	GetProgressBarStyle(StyleName: string): ProgressBarStyle;
-	GetSlateColor(StyleName: string): SlateColor;
-	GetSound(StyleName: string): SlateSound;
-	GetSpinBoxStyle(StyleName: string): SpinBoxStyle;
-	GetTableRowStyle(StyleName: string): TableRowStyle;
-	GetTextBlockStyle(StyleName: string): TextBlockStyle;
-	GetVector(StyleName: string): Vector2D;
-	static GetBrush(Handle: JavascriptStyleSet,StyleName: string): SlateBrush;
-	static GetButtonStyle(Handle: JavascriptStyleSet,StyleName: string): ButtonStyle;
-	static GetCheckBoxStyle(Handle: JavascriptStyleSet,StyleName: string): CheckBoxStyle;
-	static GetColor(Handle: JavascriptStyleSet,StyleName: string): LinearColor;
-	static GetComboBoxStyle(Handle: JavascriptStyleSet,StyleName: string): ComboBoxStyle;
-	static GetComboButtonStyle(Handle: JavascriptStyleSet,StyleName: string): ComboButtonStyle;
-	static GetEditableTextBoxStyle(Handle: JavascriptStyleSet,StyleName: string): EditableTextBoxStyle;
-	static GetEditableTextStyle(Handle: JavascriptStyleSet,StyleName: string): EditableTextStyle;
-	static GetFloat(Handle: JavascriptStyleSet,StyleName: string): number;
-	static GetFontStyle(Handle: JavascriptStyleSet,StyleName: string): SlateFontInfo;
-	static GetMargin(Handle: JavascriptStyleSet,StyleName: string): Margin;
-	static GetProgressBarStyle(Handle: JavascriptStyleSet,StyleName: string): ProgressBarStyle;
-	static GetSlateColor(Handle: JavascriptStyleSet,StyleName: string): SlateColor;
-	static GetSound(Handle: JavascriptStyleSet,StyleName: string): SlateSound;
-	static GetSpinBoxStyle(Handle: JavascriptStyleSet,StyleName: string): SpinBoxStyle;
-	static GetTableRowStyle(Handle: JavascriptStyleSet,StyleName: string): TableRowStyle;
-	static GetTextBlockStyle(Handle: JavascriptStyleSet,StyleName: string): TextBlockStyle;
-	static GetVector(Handle: JavascriptStyleSet,StyleName: string): Vector2D;
-}
-
-declare class JavascriptStyleSetLibrary extends BlueprintFunctionLibrary { 
-	SlateColor: SlateColor;
-	SlateBrush: SlateBrush;
-	ButtonStyle: ButtonStyle;
-	TextBlockStyle: TextBlockStyle;
-	EditableTextStyle: EditableTextStyle;
-	EditableTextBoxStyle: EditableTextBoxStyle;
-	CheckBoxStyle: CheckBoxStyle;
-	ComboBoxStyle: ComboBoxStyle;
-	ComboButtonStyle: ComboButtonStyle;
-	ProgressBarStyle: ProgressBarStyle;
-	SpinBoxStyle: SpinBoxStyle;
-	TableRowStyle: TableRowStyle;
-	static Load(ResourceName: string): JavascriptStyleSetLibrary;
-	static Find(Outer: UObject, ResourceName: string): JavascriptStyleSetLibrary;
-	static GetDefaultObject(): JavascriptStyleSetLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptStyleSetLibrary;
-	static GetVector(Handle: JavascriptStyleSet,StyleName: string): Vector2D;
-	static GetTextBlockStyle(Handle: JavascriptStyleSet,StyleName: string): TextBlockStyle;
-	static GetTableRowStyle(Handle: JavascriptStyleSet,StyleName: string): TableRowStyle;
-	static GetSpinBoxStyle(Handle: JavascriptStyleSet,StyleName: string): SpinBoxStyle;
-	static GetSound(Handle: JavascriptStyleSet,StyleName: string): SlateSound;
-	static GetSlateColor(Handle: JavascriptStyleSet,StyleName: string): SlateColor;
-	static GetProgressBarStyle(Handle: JavascriptStyleSet,StyleName: string): ProgressBarStyle;
-	static GetMargin(Handle: JavascriptStyleSet,StyleName: string): Margin;
-	static GetFontStyle(Handle: JavascriptStyleSet,StyleName: string): SlateFontInfo;
-	static GetFloat(Handle: JavascriptStyleSet,StyleName: string): number;
-	static GetEditableTextStyle(Handle: JavascriptStyleSet,StyleName: string): EditableTextStyle;
-	static GetEditableTextBoxStyle(Handle: JavascriptStyleSet,StyleName: string): EditableTextBoxStyle;
-	static GetComboButtonStyle(Handle: JavascriptStyleSet,StyleName: string): ComboButtonStyle;
-	static GetComboBoxStyle(Handle: JavascriptStyleSet,StyleName: string): ComboBoxStyle;
-	static GetColor(Handle: JavascriptStyleSet,StyleName: string): LinearColor;
-	static GetCheckBoxStyle(Handle: JavascriptStyleSet,StyleName: string): CheckBoxStyle;
-	static GetButtonStyle(Handle: JavascriptStyleSet,StyleName: string): ButtonStyle;
-	static GetBrush(Handle: JavascriptStyleSet,StyleName: string): SlateBrush;
-	static C(Other: UObject | any): JavascriptStyleSetLibrary;
-}
-
-declare class JavascriptTextBlock extends TextBlock { 
-	HighlightText: string;
-	HighlightTextDelegate: UnrealEngineDelegate<() => string>;
-	static Load(ResourceName: string): JavascriptTextBlock;
-	static Find(Outer: UObject, ResourceName: string): JavascriptTextBlock;
-	static GetDefaultObject(): JavascriptTextBlock;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTextBlock;
-	SetHighlightText(InHighlightText: string): void;
-	static C(Other: UObject | any): JavascriptTextBlock;
-}
-
-declare class JavascriptTileView extends TileView { 
-	JavascriptContext: JavascriptContext;
-	TileListItems: UObject[];
-	static Load(ResourceName: string): JavascriptTileView;
-	static Find(Outer: UObject, ResourceName: string): JavascriptTileView;
-	static GetDefaultObject(): JavascriptTileView;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTileView;
-	OnSelectionChanged(UObject: UObject,Type: ESelectInfo): void;
-	OnDoubleClick(UObject: UObject): void;
-	OnClick(UObject: UObject): void;
-	static C(Other: UObject | any): JavascriptTileView;
-}
-
-declare class JavascriptToolbarButtonContext extends UObject { 
-	OnGetLabel: UnrealEngineDelegate<() => string>;
-	OnGetTooltip: UnrealEngineDelegate<() => string>;
-	OnGetIcon: UnrealEngineDelegate<() => JavascriptSlateIcon>;
-	OnExecuteAction: UnrealEngineDelegate<(EditingObject: UObject) => void>;
-	OnCanExecuteAction: UnrealEngineDelegate<(EditingObject: UObject) => boolean>;
-	OnIsActionChecked: UnrealEngineDelegate<(EditingObject: UObject) => boolean>;
-	OnIsActionButtonVisible: UnrealEngineDelegate<(EditingObject: UObject) => boolean>;
-	static Load(ResourceName: string): JavascriptToolbarButtonContext;
-	static Find(Outer: UObject, ResourceName: string): JavascriptToolbarButtonContext;
-	static GetDefaultObject(): JavascriptToolbarButtonContext;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptToolbarButtonContext;
-	UnmarkReferencedObject(): void;
-	MarkReferencedObject(): void;
-	static C(Other: UObject | any): JavascriptToolbarButtonContext;
-}
-
-declare class JavascriptUMGBlueprintLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): JavascriptUMGBlueprintLibrary;
-	static Find(Outer: UObject, ResourceName: string): JavascriptUMGBlueprintLibrary;
-	static GetDefaultObject(): JavascriptUMGBlueprintLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptUMGBlueprintLibrary;
-	static SlateColor_UseSubduedForeground(): SlateColor;
-	static SlateColor_UseForeground(): SlateColor;
-	static GetLineLength(TargetTextLayout: JavascriptTextLayout): number;
-	static GetAsText(TextLayout: JavascriptTextLayout): string;
-	static DrawSpaceSpline(Context?: PaintContext,InStart?: Vector2D,InStartDir?: Vector2D,InEnd?: Vector2D,InEndDir?: Vector2D,InThickness?: number,InTint?: LinearColor): {Context: PaintContext};
-	static ClearLines(TextLayout?: JavascriptTextLayout): {TextLayout: JavascriptTextLayout};
-	static AddLine(TextLayout?: JavascriptTextLayout,Model?: JavascriptTextModel,Runs?: JavascriptSlateTextRun[]): {TextLayout: JavascriptTextLayout};
-	static C(Other: UObject | any): JavascriptUMGBlueprintLibrary;
-}
-
-declare class JavascriptSlateStyle { 
-	clone() : JavascriptSlateStyle;
-	static C(Other: UObject | any): JavascriptSlateStyle;
-	AddBorderBrush(PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
-	AddBoxBrush(PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
-	AddButtonStyle(PropertyName: string,ButtonStyle: ButtonStyle): void;
-	AddFontInfo(PropertyName: string,FontInfo: SlateFontInfo): void;
-	AddImageBrush(PropertyName: string,InImageName: string,InImageSize: Vector2D,InTint: LinearColor,InTiling: ESlateBrushTileType,InImageType: ESlateBrushImageType): void;
-	AddSound(PropertyName: string,Sound: SlateSound): void;
-	Register(): void;
-	RootToContentDir(RelativePath: string): string;
-	RootToCoreContentDir(RelativePath: string): string;
-	SetContentRoot(InContentRootDir: string): void;
-	SetCoreContentRoot(InCoreContentRootDir: string): void;
-	SetParentStyleName(InParentStyleName: string): void;
-	Unregister(): void;
-	static AddBorderBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
-	static AddBoxBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
-	static AddButtonStyle(StyleSet: JavascriptSlateStyle,PropertyName: string,ButtonStyle: ButtonStyle): void;
-	static AddFontInfo(StyleSet: JavascriptSlateStyle,PropertyName: string,FontInfo: SlateFontInfo): void;
-	static AddImageBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InImageSize: Vector2D,InTint: LinearColor,InTiling: ESlateBrushTileType,InImageType: ESlateBrushImageType): void;
-	static AddSound(StyleSet: JavascriptSlateStyle,PropertyName: string,Sound: SlateSound): void;
-	static Register(StyleSet: JavascriptSlateStyle): void;
-	static RootToContentDir(StyleSet: JavascriptSlateStyle,RelativePath: string): string;
-	static RootToCoreContentDir(StyleSet: JavascriptSlateStyle,RelativePath: string): string;
-	static SetContentRoot(StyleSet: JavascriptSlateStyle,InContentRootDir: string): void;
-	static SetCoreContentRoot(StyleSet: JavascriptSlateStyle,InCoreContentRootDir: string): void;
-	static SetParentStyleName(StyleSet: JavascriptSlateStyle,InParentStyleName: string): void;
-	static Unregister(StyleSet: JavascriptSlateStyle): void;
-	static CreateSlateStyle(InStyleSetName: string): JavascriptSlateStyle;
-}
-
-declare class JavascriptUMGLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): JavascriptUMGLibrary;
-	static Find(Outer: UObject, ResourceName: string): JavascriptUMGLibrary;
-	static GetDefaultObject(): JavascriptUMGLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptUMGLibrary;
-	static Unregister(StyleSet: JavascriptSlateStyle): void;
-	static TakeWidget(Widget: Widget): JavascriptSlateWidget;
-	static ShowWindow(NewWindow: JavascriptSlateWidget): void;
-	static SetParentStyleName(StyleSet: JavascriptSlateStyle,InParentStyleName: string): void;
-	static SetCoreContentRoot(StyleSet: JavascriptSlateStyle,InCoreContentRootDir: string): void;
-	static SetContentRoot(StyleSet: JavascriptSlateStyle,InContentRootDir: string): void;
-	static SetContent(TargetWidget: NativeWidgetHost,SlateWidget: JavascriptSlateWidget): Widget;
-	static RootToCoreContentDir(StyleSet: JavascriptSlateStyle,RelativePath: string): string;
-	static RootToContentDir(StyleSet: JavascriptSlateStyle,RelativePath: string): string;
-	static Register(StyleSet: JavascriptSlateStyle): void;
-	static GetUIGeometry(Widget: Widget): Geometry;
-	static GetRootWindow(): JavascriptSlateWidget;
-	static GenerateDynamicImageResource(InDynamicBrushName: string): Vector2D;
-	static CreateSlateStyle(InStyleSetName: string): JavascriptSlateStyle;
-	static AddWindowAsNativeChild(NewWindow: JavascriptSlateWidget,RootWindow: JavascriptSlateWidget): void;
-	static AddWindow(NewWindow: JavascriptSlateWidget,bShowImmediately: boolean): void;
-	static AddSound(StyleSet: JavascriptSlateStyle,PropertyName: string,Sound: SlateSound): void;
-	static AddImageBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InImageSize: Vector2D,InTint: LinearColor,InTiling: ESlateBrushTileType,InImageType: ESlateBrushImageType): void;
-	static AddFontInfo(StyleSet: JavascriptSlateStyle,PropertyName: string,FontInfo: SlateFontInfo): void;
-	static AddButtonStyle(StyleSet: JavascriptSlateStyle,PropertyName: string,ButtonStyle: ButtonStyle): void;
-	static AddBoxBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
-	static AddBorderBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
-	static C(Other: UObject | any): JavascriptUMGLibrary;
-}
-
-declare class JavascriptWidget extends UserWidget { 
-	JavascriptContext: JavascriptContext;
-	OnInputActionEvent: UnrealEngineMulticastDelegate<(ActionName: string) => void>;
-	OnReleaseActionEvent: UnrealEngineMulticastDelegate<(ActionName: string) => void>;
-	OnInputAxisEvent: UnrealEngineMulticastDelegate<(Axis: number, AxisName: string) => void>;
-	ContentSlot: PanelSlot;
-	static Load(ResourceName: string): JavascriptWidget;
-	static Find(Outer: UObject, ResourceName: string): JavascriptWidget;
-	static GetDefaultObject(): JavascriptWidget;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptWidget;
-	SetRootWidget(Widget: Widget): void;
-	RemoveChild(): boolean;
-	OnReleaseInputActionByName(ActionName: string): void;
-	OnListenForInputAxis(AxisName: string,EventType: EInputEvent,bConsume: boolean): void;
-	OnListenForInputAction(ActionName: string,EventType: EInputEvent,bConsume: boolean): void;
-	OnInputAxisByName(Axis: number,ActionName: string): void;
-	OnInputActionByName(ActionName: string): void;
-	OnDestroy(bReleaseChildren: boolean): void;
-	static HasValidCachedWidget(Widget: Widget): boolean;
-	static CallSynchronizeProperties(WidgetOrSlot: Visual): void;
-	AddChild(Content: Widget): PanelSlot;
-	static C(Other: UObject | any): JavascriptWidget;
-}
-
-declare type EJavascriptWindowType = 'Normal' | 'Menu' | 'ToolTip' | 'Notification' | 'CursorDecorator' | 'EJavascriptWindowType_MAX';
-declare var EJavascriptWindowType : { Normal:'Normal',Menu:'Menu',ToolTip:'ToolTip',Notification:'Notification',CursorDecorator:'CursorDecorator',EJavascriptWindowType_MAX:'EJavascriptWindowType_MAX', };
-declare class WindowStyle extends SlateWidgetStyle { 
-	MinimizeButtonStyle: ButtonStyle;
-	MaximizeButtonStyle: ButtonStyle;
-	RestoreButtonStyle: ButtonStyle;
-	CloseButtonStyle: ButtonStyle;
-	TitleTextStyle: TextBlockStyle;
-	ActiveTitleBrush: SlateBrush;
-	InactiveTitleBrush: SlateBrush;
-	FlashTitleBrush: SlateBrush;
-	BackgroundColor: SlateColor;
-	OutlineBrush: SlateBrush;
-	OutlineColor: SlateColor;
-	BorderBrush: SlateBrush;
-	BorderColor: SlateColor;
-	BackgroundBrush: SlateBrush;
-	ChildBackgroundBrush: SlateBrush;
-	WindowCornerRadius: number;
-	BorderPadding: Margin;
-	clone() : WindowStyle;
-	static C(Other: UObject | any): WindowStyle;
-}
-
-declare type EJavascriptAutoCenter = 'None' | 'PrimaryWorkArea' | 'PreferredWorkArea' | 'EJavascriptAutoCenter_MAX';
-declare var EJavascriptAutoCenter : { None:'None',PrimaryWorkArea:'PrimaryWorkArea',PreferredWorkArea:'PreferredWorkArea',EJavascriptAutoCenter_MAX:'EJavascriptAutoCenter_MAX', };
-declare type EJavascriptWindowTransparency = 'None' | 'PerWindow' | 'EJavascriptWindowTransparency_MAX';
-declare var EJavascriptWindowTransparency : { None:'None',PerWindow:'PerWindow',EJavascriptWindowTransparency_MAX:'EJavascriptWindowTransparency_MAX', };
-declare type EJavascriptSizingRule = 'FixedSize' | 'Autosized' | 'UserSized' | 'EJavascriptSizingRule_MAX';
-declare var EJavascriptSizingRule : { FixedSize:'FixedSize',Autosized:'Autosized',UserSized:'UserSized',EJavascriptSizingRule_MAX:'EJavascriptSizingRule_MAX', };
-declare type EJavascriptWindowActivationPolicy = 'Never' | 'Always' | 'FirstShown' | 'EJavascriptWindowActivationPolicy_MAX';
-declare var EJavascriptWindowActivationPolicy : { Never:'Never',Always:'Always',FirstShown:'FirstShown',EJavascriptWindowActivationPolicy_MAX:'EJavascriptWindowActivationPolicy_MAX', };
-declare class JavascriptWindow extends ContentWidget { 
-	Type: EJavascriptWindowType;
-	Style: WindowStyle;
-	Title: string;
-	bDragAnywhere: boolean;
-	AutoCenter: EJavascriptAutoCenter;
-	ScreenPosition: Vector2D;
-	ClientSize: Vector2D;
-	SupportsTransparency: EJavascriptWindowTransparency;
-	InitialOpacity: number;
-	IsInitiallyMaximized: boolean;
-	SizingRule: EJavascriptSizingRule;
-	IsPopupWindow: boolean;
-	FocusWhenFirstShown: boolean;
-	ActivateWhenFirstShown: boolean;
-	UseOSWindowBorder: boolean;
-	HasCloseButton: boolean;
-	SupportsMaximize: boolean;
-	SupportsMinimize: boolean;
-	CreateTitleBar: boolean;
-	SaneWindowPlacement: boolean;
-	LayoutBorder: Margin;
-	UserResizeBorder: Margin;
-	OnWindowClosed: UnrealEngineDelegate<() => void>;
-	OnWindowDeactivated: UnrealEngineDelegate<() => void>;
-	IsTopmostWindow: boolean;
-	AdjustInitialSizeAndPositionForDPIScale: boolean;
-	ActivationPolicy: EJavascriptWindowActivationPolicy;
-	static Load(ResourceName: string): JavascriptWindow;
-	static Find(Outer: UObject, ResourceName: string): JavascriptWindow;
-	static GetDefaultObject(): JavascriptWindow;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptWindow;
-	ShowWindow(): void;
-	SetOpacity(InOpacity: number): void;
-	Resize(NewSize: Vector2D): void;
-	ReshapeWindow(NewPosition: Vector2D,NewSize: Vector2D): void;
-	RequestDestroyWindow(): void;
-	MoveWindowTo(NewPosition: Vector2D): void;
-	HideWindow(): void;
-	FlashWindow(): void;
-	EnableWindow(bEnable: boolean): void;
-	DestroyWindowImmediately(): void;
-	BringToFront(): void;
-	static C(Other: UObject | any): JavascriptWindow;
-	OpenDirectoryDialog(DialogTitle: string,DefaultPath: string,OutFolderName?: string): {OutFolderName: string, $: boolean};
-	OpenFileDialog(DialogTitle: string,DefaultPath: string,DefaultFile: string,FileTypes: string,Flags: number,OutFilenames?: string[]): {OutFilenames: string[], $: boolean};
-	SaveFileDialog(DialogTitle: string,DefaultPath: string,DefaultFile: string,FileTypes: string,Flags: number,OutFilenames?: string[]): {OutFilenames: string[], $: boolean};
-	static OpenDirectoryDialog(WindowHandle: JavascriptWindow,DialogTitle: string,DefaultPath: string,OutFolderName?: string): {OutFolderName: string, $: boolean};
-	static OpenFileDialog(WindowHandle: JavascriptWindow,DialogTitle: string,DefaultPath: string,DefaultFile: string,FileTypes: string,Flags: number,OutFilenames?: string[]): {OutFilenames: string[], $: boolean};
-	static SaveFileDialog(WindowHandle: JavascriptWindow,DialogTitle: string,DefaultPath: string,DefaultFile: string,FileTypes: string,Flags: number,OutFilenames?: string[]): {OutFilenames: string[], $: boolean};
-}
-
-declare type EJavascriptHttpRequestStatus = 'NotStarted' | 'Processing' | 'Failed' | 'Succeeded' | 'EJavascriptHttpRequestStatus_MAX';
-declare var EJavascriptHttpRequestStatus : { NotStarted:'NotStarted',Processing:'Processing',Failed:'Failed',Succeeded:'Succeeded',EJavascriptHttpRequestStatus_MAX:'EJavascriptHttpRequestStatus_MAX', };
-declare class JavascriptHttpRequest extends UObject { 
-	OnComplete: UnrealEngineDelegate<(successful: boolean) => void>;
-	OnProgress: UnrealEngineDelegate<(sent: number, recv: number) => void>;
-	static Load(ResourceName: string): JavascriptHttpRequest;
-	static Find(Outer: UObject, ResourceName: string): JavascriptHttpRequest;
-	static GetDefaultObject(): JavascriptHttpRequest;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptHttpRequest;
-	SetVerb(Verb: string): void;
-	SetURL(URL: string): void;
-	SetHeader(HeaderName: string,HeaderValue: string): void;
-	SetContentWithFiles(FilePaths: string[],Boundary: string,Content: string): void;
-	SetContentFromMemory(): void;
-	SetContentAsString(ContentString: string): void;
-	ProcessRequest(): boolean;
-	GetVerb(): string;
-	GetStatus(): EJavascriptHttpRequestStatus;
-	GetResponseCode(): number;
-	GetElapsedTime(): number;
-	GetContentToMemory(): void;
-	GetContentLength(): number;
-	GetContentAsString(): string;
-	CancelRequest(): void;
-	static C(Other: UObject | any): JavascriptHttpRequest;
-}
-
-declare class JavascriptWebSocket extends UObject { 
-	OnReceived: UnrealEngineMulticastDelegate<() => void>;
-	OnConnected: UnrealEngineMulticastDelegate<() => void>;
-	OnError: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): JavascriptWebSocket;
-	static Find(Outer: UObject, ResourceName: string): JavascriptWebSocket;
-	static GetDefaultObject(): JavascriptWebSocket;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptWebSocket;
-	Tick(): void;
-	SendMemory(NumBytes: number): void;
-	RemoteEndPoint(bAppendPort: boolean): string;
-	LocalEndPoint(bAppendPort: boolean): string;
-	GetReceivedBytes(): number;
-	Flush(): void;
-	Dispose(): void;
-	CopyBuffer(): void;
-	static Connect(Endpoint: string): JavascriptWebSocket;
-	static C(Other: UObject | any): JavascriptWebSocket;
-}
-
-declare class JavascriptWebSocketServer extends UObject { 
-	OnConnected: UnrealEngineMulticastDelegate<(WebSocket: JavascriptWebSocket) => void>;
-	Connections: JavascriptWebSocket[];
-	static Load(ResourceName: string): JavascriptWebSocketServer;
-	static Find(Outer: UObject, ResourceName: string): JavascriptWebSocketServer;
-	static GetDefaultObject(): JavascriptWebSocketServer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptWebSocketServer;
-	Tick(): void;
-	Info(): string;
-	Dispose(): void;
-	static Create(Port: number): JavascriptWebSocketServer;
-	static C(Other: UObject | any): JavascriptWebSocketServer;
-}
-
-declare class ActorFactoryEnvironmentQuery extends ActorFactory { 
-	static Load(ResourceName: string): ActorFactoryEnvironmentQuery;
-	static Find(Outer: UObject, ResourceName: string): ActorFactoryEnvironmentQuery;
-	static GetDefaultObject(): ActorFactoryEnvironmentQuery;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorFactoryEnvironmentQuery;
-	static C(Other: UObject | any): ActorFactoryEnvironmentQuery;
-}
-
-declare class EdGraphSchema_EnvironmentQuery extends AIGraphSchema { 
-	static Load(ResourceName: string): EdGraphSchema_EnvironmentQuery;
-	static Find(Outer: UObject, ResourceName: string): EdGraphSchema_EnvironmentQuery;
-	static GetDefaultObject(): EdGraphSchema_EnvironmentQuery;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EdGraphSchema_EnvironmentQuery;
-	static C(Other: UObject | any): EdGraphSchema_EnvironmentQuery;
-}
-
-declare class EnvironmentQueryFactory extends Factory { 
-	static Load(ResourceName: string): EnvironmentQueryFactory;
-	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryFactory;
-	static GetDefaultObject(): EnvironmentQueryFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryFactory;
-	static C(Other: UObject | any): EnvironmentQueryFactory;
-}
-
-declare class EnvironmentQueryGraph extends AIGraph { 
-	static Load(ResourceName: string): EnvironmentQueryGraph;
-	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraph;
-	static GetDefaultObject(): EnvironmentQueryGraph;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraph;
-	static C(Other: UObject | any): EnvironmentQueryGraph;
-}
-
-declare class EnvironmentQueryGraphNode extends AIGraphNode { 
-	static Load(ResourceName: string): EnvironmentQueryGraphNode;
-	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraphNode;
-	static GetDefaultObject(): EnvironmentQueryGraphNode;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraphNode;
-	static C(Other: UObject | any): EnvironmentQueryGraphNode;
-}
-
-declare class EnvironmentQueryGraphNode_Option extends EnvironmentQueryGraphNode { 
-	static Load(ResourceName: string): EnvironmentQueryGraphNode_Option;
-	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraphNode_Option;
-	static GetDefaultObject(): EnvironmentQueryGraphNode_Option;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraphNode_Option;
-	static C(Other: UObject | any): EnvironmentQueryGraphNode_Option;
-}
-
-declare class EnvironmentQueryGraphNode_Root extends EnvironmentQueryGraphNode { 
-	DebugMessages: string[];
-	bHasDebugError: boolean;
-	static Load(ResourceName: string): EnvironmentQueryGraphNode_Root;
-	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraphNode_Root;
-	static GetDefaultObject(): EnvironmentQueryGraphNode_Root;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraphNode_Root;
-	static C(Other: UObject | any): EnvironmentQueryGraphNode_Root;
-}
-
-declare class EnvironmentQueryGraphNode_Test extends EnvironmentQueryGraphNode { 
-	TestWeightPct: number;
-	bHasNamedWeight: boolean;
-	bTestEnabled: boolean;
-	static Load(ResourceName: string): EnvironmentQueryGraphNode_Test;
-	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraphNode_Test;
-	static GetDefaultObject(): EnvironmentQueryGraphNode_Test;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraphNode_Test;
-	static C(Other: UObject | any): EnvironmentQueryGraphNode_Test;
-}
-
-declare class SignificanceManager extends UObject { 
-	SignificanceManagerClassName: SoftClassPath;
-	static Load(ResourceName: string): SignificanceManager;
-	static Find(Outer: UObject, ResourceName: string): SignificanceManager;
-	static GetDefaultObject(): SignificanceManager;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SignificanceManager;
-	static C(Other: UObject | any): SignificanceManager;
-}
-
-declare class AnimationSharingStateProcessor extends UObject { 
-	AnimationStateEnum: Enum;
-	static Load(ResourceName: string): AnimationSharingStateProcessor;
-	static Find(Outer: UObject, ResourceName: string): AnimationSharingStateProcessor;
-	static GetDefaultObject(): AnimationSharingStateProcessor;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationSharingStateProcessor;
-	ProcessActorState(OutState?: number,InActor?: Actor,CurrentState?: number,OnDemandState?: number,bShouldProcess?: boolean): {OutState: number, bShouldProcess: boolean};
-	GetAnimationStateEnum(): Enum;
-	static C(Other: UObject | any): AnimationSharingStateProcessor;
-}
-
-declare class AnimSharingInstance extends UObject { 
-	RegisteredActors: Actor[];
-	StateProcessor: AnimationSharingStateProcessor;
-	UsedAnimationSequences: AnimSequence[];
-	StateEnum: Enum;
-	SharingActor: Actor;
-	static Load(ResourceName: string): AnimSharingInstance;
-	static Find(Outer: UObject, ResourceName: string): AnimSharingInstance;
-	static GetDefaultObject(): AnimSharingInstance;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimSharingInstance;
-	static C(Other: UObject | any): AnimSharingInstance;
-}
-
-declare class AnimSharingStateInstance extends AnimInstance { 
-	AnimationToPlay: AnimSequence;
-	PermutationTimeOffset: number;
-	PlayRate: number;
-	bStateBool: boolean;
-	Instance: AnimSharingInstance;
-	static Load(ResourceName: string): AnimSharingStateInstance;
-	static Find(Outer: UObject, ResourceName: string): AnimSharingStateInstance;
-	static GetDefaultObject(): AnimSharingStateInstance;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimSharingStateInstance;
-	GetInstancedActors(Actors?: Actor[]): {Actors: Actor[]};
-	static C(Other: UObject | any): AnimSharingStateInstance;
-}
-
-declare class AnimSharingTransitionInstance extends AnimInstance { 
-	FromComponent: SkeletalMeshComponent;
-	ToComponent: SkeletalMeshComponent;
-	BlendTime: number;
-	bBlendBool: boolean;
-	static Load(ResourceName: string): AnimSharingTransitionInstance;
-	static Find(Outer: UObject, ResourceName: string): AnimSharingTransitionInstance;
-	static GetDefaultObject(): AnimSharingTransitionInstance;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimSharingTransitionInstance;
-	static C(Other: UObject | any): AnimSharingTransitionInstance;
-}
-
-declare class AnimSharingAdditiveInstance extends AnimInstance { 
-	BaseComponent: SkeletalMeshComponent;
-	AdditiveAnimation: AnimSequence;
-	Alpha: number;
-	bStateBool: boolean;
-	static Load(ResourceName: string): AnimSharingAdditiveInstance;
-	static Find(Outer: UObject, ResourceName: string): AnimSharingAdditiveInstance;
-	static GetDefaultObject(): AnimSharingAdditiveInstance;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimSharingAdditiveInstance;
-	static C(Other: UObject | any): AnimSharingAdditiveInstance;
-}
-
-declare class AnimationSetup { 
-	AnimSequence: AnimSequence;
-	AnimBlueprint: UnrealEngineClass;
-	NumRandomizedInstances: PerPlatformInt;
-	Enabled: PerPlatformBool;
-	clone() : AnimationSetup;
-	static C(Other: UObject | any): AnimationSetup;
-}
-
-declare class AnimationStateEntry { 
-	State: number;
-	AnimationSetups: AnimationSetup[];
-	bOnDemand: boolean;
-	bAdditive: boolean;
-	BlendTime: number;
-	bReturnToPreviousState: boolean;
-	bSetNextState: boolean;
-	NextState: number;
-	MaximumNumberOfConcurrentInstances: PerPlatformInt;
-	WiggleTimePercentage: number;
-	bRequiresCurves: boolean;
-	clone() : AnimationStateEntry;
-	static C(Other: UObject | any): AnimationStateEntry;
-}
-
-declare class PerSkeletonAnimationSharingSetup { 
-	Skeleton: Skeleton;
-	SkeletalMesh: SkeletalMesh;
-	BlendAnimBlueprint: UnrealEngineClass;
-	AdditiveAnimBlueprint: UnrealEngineClass;
-	StateProcessorClass: UnrealEngineClass;
-	AnimationStates: AnimationStateEntry[];
-	clone() : PerSkeletonAnimationSharingSetup;
-	static C(Other: UObject | any): PerSkeletonAnimationSharingSetup;
-}
-
-declare class AnimationSharingScalability { 
-	UseBlendTransitions: PerPlatformBool;
-	BlendSignificanceValue: PerPlatformFloat;
-	MaximumNumberConcurrentBlends: PerPlatformInt;
-	TickSignificanceValue: PerPlatformFloat;
-	clone() : AnimationSharingScalability;
-	static C(Other: UObject | any): AnimationSharingScalability;
-}
-
-declare class AnimationSharingSetup extends UObject { 
-	SkeletonSetups: PerSkeletonAnimationSharingSetup[];
-	ScalabilitySettings: AnimationSharingScalability;
-	static Load(ResourceName: string): AnimationSharingSetup;
-	static Find(Outer: UObject, ResourceName: string): AnimationSharingSetup;
-	static GetDefaultObject(): AnimationSharingSetup;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationSharingSetup;
-	static C(Other: UObject | any): AnimationSharingSetup;
-}
-
-declare class AnimationSharingManager extends UObject { 
-	Skeletons: Skeleton[];
-	PerSkeletonData: AnimSharingInstance[];
-	static Load(ResourceName: string): AnimationSharingManager;
-	static Find(Outer: UObject, ResourceName: string): AnimationSharingManager;
-	static GetDefaultObject(): AnimationSharingManager;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationSharingManager;
-	RegisterActorWithSkeletonBP(InActor: Actor,SharingSkeleton: Skeleton): void;
-	static GetAnimationSharingManager(WorldContextObject: UObject): AnimationSharingManager;
-	static CreateAnimationSharingManager(WorldContextObject: UObject,Setup: AnimationSharingSetup): boolean;
-	static AnimationSharingEnabled(): boolean;
-	static C(Other: UObject | any): AnimationSharingManager;
-}
-
-declare class K2Node_PropertyAccess extends K2Node { 
-	Path: string[];
-	TextPath: string;
-	ResolvedPinType: EdGraphPinType;
-	GeneratedPropertyName: string;
-	ContextId: string;
-	static Load(ResourceName: string): K2Node_PropertyAccess;
-	static Find(Outer: UObject, ResourceName: string): K2Node_PropertyAccess;
-	static GetDefaultObject(): K2Node_PropertyAccess;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_PropertyAccess;
-	static C(Other: UObject | any): K2Node_PropertyAccess;
-}
-
-declare class FilterData { 
-	Name: string;
-	AllowlistedNames: string[];
-	clone() : FilterData;
-	static C(Other: UObject | any): FilterData;
-}
-
-declare class LocalFilterPresetContainer extends UObject { 
-	UserPresets: FilterData[];
-	static Load(ResourceName: string): LocalFilterPresetContainer;
-	static Find(Outer: UObject, ResourceName: string): LocalFilterPresetContainer;
-	static GetDefaultObject(): LocalFilterPresetContainer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LocalFilterPresetContainer;
-	static C(Other: UObject | any): LocalFilterPresetContainer;
-}
-
-declare class SharedFilterPresetContainer extends UObject { 
-	SharedPresets: FilterData[];
-	static Load(ResourceName: string): SharedFilterPresetContainer;
-	static Find(Outer: UObject, ResourceName: string): SharedFilterPresetContainer;
-	static GetDefaultObject(): SharedFilterPresetContainer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SharedFilterPresetContainer;
-	static C(Other: UObject | any): SharedFilterPresetContainer;
-}
-
-declare class EngineFilterPresetContainer extends UObject { 
-	EnginePresets: FilterData[];
-	static Load(ResourceName: string): EngineFilterPresetContainer;
-	static Find(Outer: UObject, ResourceName: string): EngineFilterPresetContainer;
-	static GetDefaultObject(): EngineFilterPresetContainer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EngineFilterPresetContainer;
-	static C(Other: UObject | any): EngineFilterPresetContainer;
-}
-
-declare class TcpMessagingSettings extends UObject { 
-	EnableTransport: boolean;
-	ListenEndpoint: string;
-	ConnectToEndpoints: string[];
-	ConnectionRetryDelay: number;
-	ConnectionRetryPeriod: number;
-	bStopServiceWhenAppDeactivates: boolean;
-	static Load(ResourceName: string): TcpMessagingSettings;
-	static Find(Outer: UObject, ResourceName: string): TcpMessagingSettings;
-	static GetDefaultObject(): TcpMessagingSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TcpMessagingSettings;
-	static C(Other: UObject | any): TcpMessagingSettings;
-}
-
-declare type EUdpMessageFormat = 'None' | 'Json' | 'TaggedProperty' | 'CborPlatformEndianness' | 'CborStandardEndianness' | 'EUdpMessageFormat_MAX';
-declare var EUdpMessageFormat : { None:'None',Json:'Json',TaggedProperty:'TaggedProperty',CborPlatformEndianness:'CborPlatformEndianness',CborStandardEndianness:'CborStandardEndianness',EUdpMessageFormat_MAX:'EUdpMessageFormat_MAX', };
-declare class UdpMessagingSettings extends UObject { 
-	EnabledByDefault: boolean;
-	EnableTransport: boolean;
-	bAutoRepair: boolean;
-	MaxSendRate: number;
-	AutoRepairAttemptLimit: number;
-	WorkQueueSize: number;
-	bStopServiceWhenAppDeactivates: boolean;
-	UnicastEndpoint: string;
-	MulticastEndpoint: string;
-	MessageFormat: EUdpMessageFormat;
-	MulticastTimeToLive: number;
-	StaticEndpoints: string[];
-	ExcludedEndpoints: string[];
-	EnableTunnel: boolean;
-	TunnelUnicastEndpoint: string;
-	TunnelMulticastEndpoint: string;
-	RemoteTunnelEndpoints: string[];
-	static Load(ResourceName: string): UdpMessagingSettings;
-	static Find(Outer: UObject, ResourceName: string): UdpMessagingSettings;
-	static GetDefaultObject(): UdpMessagingSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): UdpMessagingSettings;
-	static C(Other: UObject | any): UdpMessagingSettings;
-}
-
-declare class AudioAnalyzerAssetBase extends UObject { 
-	static Load(ResourceName: string): AudioAnalyzerAssetBase;
-	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerAssetBase;
-	static GetDefaultObject(): AudioAnalyzerAssetBase;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerAssetBase;
-	static C(Other: UObject | any): AudioAnalyzerAssetBase;
-}
-
-declare class AudioAnalyzerSettings extends AudioAnalyzerAssetBase { 
-	static Load(ResourceName: string): AudioAnalyzerSettings;
-	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerSettings;
-	static GetDefaultObject(): AudioAnalyzerSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerSettings;
-	static C(Other: UObject | any): AudioAnalyzerSettings;
-}
-
-declare class AudioAnalyzerSubsystem extends EngineSubsystem { 
-	AudioAnalyzers: AudioAnalyzer[];
-	static Load(ResourceName: string): AudioAnalyzerSubsystem;
-	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerSubsystem;
-	static GetDefaultObject(): AudioAnalyzerSubsystem;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerSubsystem;
-	static C(Other: UObject | any): AudioAnalyzerSubsystem;
-}
-
-declare class AudioAnalyzer extends UObject { 
-	AudioBus: AudioBus;
-	AudioAnalyzerSubsystem: AudioAnalyzerSubsystem;
-	static Load(ResourceName: string): AudioAnalyzer;
-	static Find(Outer: UObject, ResourceName: string): AudioAnalyzer;
-	static GetDefaultObject(): AudioAnalyzer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzer;
-	StopAnalyzing(WorldContextObject: UObject): void;
-	StartAnalyzing(WorldContextObject: UObject,AudioBusToAnalyze: AudioBus): void;
-	static C(Other: UObject | any): AudioAnalyzer;
-}
-
-declare class AudioAnalyzerNRTSettings extends AudioAnalyzerAssetBase { 
-	static Load(ResourceName: string): AudioAnalyzerNRTSettings;
-	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerNRTSettings;
-	static GetDefaultObject(): AudioAnalyzerNRTSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerNRTSettings;
-	static C(Other: UObject | any): AudioAnalyzerNRTSettings;
-}
-
-declare class AudioAnalyzerNRT extends AudioAnalyzerAssetBase { 
-	Sound: SoundWave;
-	DurationInSeconds: number;
-	static Load(ResourceName: string): AudioAnalyzerNRT;
-	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerNRT;
-	static GetDefaultObject(): AudioAnalyzerNRT;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerNRT;
-	AnalyzeAudio(): void;
-	static C(Other: UObject | any): AudioAnalyzerNRT;
-}
-
-declare class AudioSynesthesiaSettings extends AudioAnalyzerSettings { 
-	static Load(ResourceName: string): AudioSynesthesiaSettings;
-	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaSettings;
-	static GetDefaultObject(): AudioSynesthesiaSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaSettings;
-	static C(Other: UObject | any): AudioSynesthesiaSettings;
-}
-
-declare class SynesthesiaSpectrumAnalysisSettings extends AudioSynesthesiaSettings { 
-	AnalysisPeriod: number;
-	FFTSize: EFFTSize;
-	SpectrumType: EAudioSpectrumType;
-	WindowType: EFFTWindowType;
-	bDownmixToMono: boolean;
-	static Load(ResourceName: string): SynesthesiaSpectrumAnalysisSettings;
-	static Find(Outer: UObject, ResourceName: string): SynesthesiaSpectrumAnalysisSettings;
-	static GetDefaultObject(): SynesthesiaSpectrumAnalysisSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynesthesiaSpectrumAnalysisSettings;
-	static C(Other: UObject | any): SynesthesiaSpectrumAnalysisSettings;
-}
-
-declare class SynesthesiaSpectrumResults { 
-	TimeSeconds: number;
-	SpectrumValues: number[];
-	clone() : SynesthesiaSpectrumResults;
-	static C(Other: UObject | any): SynesthesiaSpectrumResults;
-}
-
-declare class SynesthesiaSpectrumAnalyzer extends AudioAnalyzer { 
-	Settings: SynesthesiaSpectrumAnalysisSettings;
-	OnSpectrumResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, SpectrumResults: SynesthesiaSpectrumResults[]) => void>;
-	OnLatestSpectrumResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, LatestSpectrumResults: SynesthesiaSpectrumResults) => void>;
-	static Load(ResourceName: string): SynesthesiaSpectrumAnalyzer;
-	static Find(Outer: UObject, ResourceName: string): SynesthesiaSpectrumAnalyzer;
-	static GetDefaultObject(): SynesthesiaSpectrumAnalyzer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynesthesiaSpectrumAnalyzer;
-	GetNumCenterFrequencies(): number;
-	GetCenterFrequencies(InSampleRate: number,OutCenterFrequencies?: number[]): {OutCenterFrequencies: number[]};
-	static C(Other: UObject | any): SynesthesiaSpectrumAnalyzer;
-}
-
-declare class AudioSynesthesiaNRTSettings extends AudioAnalyzerNRTSettings { 
-	static Load(ResourceName: string): AudioSynesthesiaNRTSettings;
-	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaNRTSettings;
-	static GetDefaultObject(): AudioSynesthesiaNRTSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaNRTSettings;
-	static C(Other: UObject | any): AudioSynesthesiaNRTSettings;
-}
-
-declare class AudioSynesthesiaNRT extends AudioAnalyzerNRT { 
-	static Load(ResourceName: string): AudioSynesthesiaNRT;
-	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaNRT;
-	static GetDefaultObject(): AudioSynesthesiaNRT;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaNRT;
-	static C(Other: UObject | any): AudioSynesthesiaNRT;
-}
-
-declare type EConstantQFFTSizeEnum = 'Min' | 'XXSmall' | 'XSmall' | 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Max' | 'EConstantQFFTSizeEnum_MAX';
-declare var EConstantQFFTSizeEnum : { Min:'Min',XXSmall:'XXSmall',XSmall:'XSmall',Small:'Small',Medium:'Medium',Large:'Large',XLarge:'XLarge',XXLarge:'XXLarge',Max:'Max',EConstantQFFTSizeEnum_MAX:'EConstantQFFTSizeEnum_MAX', };
-declare type EConstantQNormalizationEnum = 'EqualEuclideanNorm' | 'EqualEnergy' | 'EqualAmplitude' | 'EConstantQNormalizationEnum_MAX';
-declare var EConstantQNormalizationEnum : { EqualEuclideanNorm:'EqualEuclideanNorm',EqualEnergy:'EqualEnergy',EqualAmplitude:'EqualAmplitude',EConstantQNormalizationEnum_MAX:'EConstantQNormalizationEnum_MAX', };
-declare class ConstantQNRTSettings extends AudioSynesthesiaNRTSettings { 
-	StartingFrequency: number;
-	NumBands: number;
-	NumBandsPerOctave: number;
-	AnalysisPeriod: number;
-	bDownmixToMono: boolean;
-	FFTSize: EConstantQFFTSizeEnum;
-	WindowType: EFFTWindowType;
-	SpectrumType: EAudioSpectrumType;
-	BandWidthStretch: number;
-	CQTNormalization: EConstantQNormalizationEnum;
-	NoiseFloorDb: number;
-	static Load(ResourceName: string): ConstantQNRTSettings;
-	static Find(Outer: UObject, ResourceName: string): ConstantQNRTSettings;
-	static GetDefaultObject(): ConstantQNRTSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ConstantQNRTSettings;
-	static C(Other: UObject | any): ConstantQNRTSettings;
-}
-
-declare class ConstantQNRT extends AudioSynesthesiaNRT { 
-	Settings: ConstantQNRTSettings;
-	static Load(ResourceName: string): ConstantQNRT;
-	static Find(Outer: UObject, ResourceName: string): ConstantQNRT;
-	static GetDefaultObject(): ConstantQNRT;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ConstantQNRT;
-	GetNormalizedChannelConstantQAtTime(InSeconds: number,InChannel: number,OutConstantQ?: number[]): {OutConstantQ: number[]};
-	GetChannelConstantQAtTime(InSeconds: number,InChannel: number,OutConstantQ?: number[]): {OutConstantQ: number[]};
-	static C(Other: UObject | any): ConstantQNRT;
-}
-
-declare type ELoudnessCurveTypeEnum = 'A' | 'B' | 'C' | 'D' | 'None' | 'ELoudnessCurveTypeEnum_MAX';
-declare var ELoudnessCurveTypeEnum : { A:'A',B:'B',C:'C',D:'D',None:'None',ELoudnessCurveTypeEnum_MAX:'ELoudnessCurveTypeEnum_MAX', };
-declare class LoudnessSettings extends AudioSynesthesiaSettings { 
-	AnalysisPeriod: number;
-	MinimumFrequency: number;
-	MaximumFrequency: number;
-	CurveType: ELoudnessCurveTypeEnum;
-	NoiseFloorDb: number;
-	ExpectedMaxLoudness: number;
-	static Load(ResourceName: string): LoudnessSettings;
-	static Find(Outer: UObject, ResourceName: string): LoudnessSettings;
-	static GetDefaultObject(): LoudnessSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LoudnessSettings;
-	static C(Other: UObject | any): LoudnessSettings;
-}
-
-declare class LoudnessResults { 
-	Loudness: number;
-	NormalizedLoudness: number;
-	PerceptualEnergy: number;
-	TimeSeconds: number;
-	clone() : LoudnessResults;
-	static C(Other: UObject | any): LoudnessResults;
-}
-
-declare class LoudnessAnalyzer extends AudioAnalyzer { 
-	Settings: LoudnessSettings;
-	OnOverallLoudnessResults: UnrealEngineMulticastDelegate<(OverallLoudnessResults: LoudnessResults[]) => void>;
-	OnPerChannelLoudnessResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, LoudnessResults: LoudnessResults[]) => void>;
-	OnLatestOverallLoudnessResults: UnrealEngineMulticastDelegate<(LatestOverallLoudnessResults: LoudnessResults) => void>;
-	OnLatestPerChannelLoudnessResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, LatestLoudnessResults: LoudnessResults) => void>;
-	static Load(ResourceName: string): LoudnessAnalyzer;
-	static Find(Outer: UObject, ResourceName: string): LoudnessAnalyzer;
-	static GetDefaultObject(): LoudnessAnalyzer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LoudnessAnalyzer;
-	static C(Other: UObject | any): LoudnessAnalyzer;
-}
-
-declare type ELoudnessNRTCurveTypeEnum = 'A' | 'B' | 'C' | 'D' | 'None' | 'ELoudnessNRTCurveTypeEnum_MAX';
-declare var ELoudnessNRTCurveTypeEnum : { A:'A',B:'B',C:'C',D:'D',None:'None',ELoudnessNRTCurveTypeEnum_MAX:'ELoudnessNRTCurveTypeEnum_MAX', };
-declare class LoudnessNRTSettings extends AudioSynesthesiaNRTSettings { 
-	AnalysisPeriod: number;
-	MinimumFrequency: number;
-	MaximumFrequency: number;
-	CurveType: ELoudnessNRTCurveTypeEnum;
-	NoiseFloorDb: number;
-	static Load(ResourceName: string): LoudnessNRTSettings;
-	static Find(Outer: UObject, ResourceName: string): LoudnessNRTSettings;
-	static GetDefaultObject(): LoudnessNRTSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LoudnessNRTSettings;
-	static C(Other: UObject | any): LoudnessNRTSettings;
-}
-
-declare class LoudnessNRT extends AudioSynesthesiaNRT { 
-	Settings: LoudnessNRTSettings;
-	static Load(ResourceName: string): LoudnessNRT;
-	static Find(Outer: UObject, ResourceName: string): LoudnessNRT;
-	static GetDefaultObject(): LoudnessNRT;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LoudnessNRT;
-	GetNormalizedLoudnessAtTime(InSeconds: number,OutLoudness?: number): {OutLoudness: number};
-	GetNormalizedChannelLoudnessAtTime(InSeconds: number,InChannel: number,OutLoudness?: number): {OutLoudness: number};
-	GetLoudnessAtTime(InSeconds: number,OutLoudness?: number): {OutLoudness: number};
-	GetChannelLoudnessAtTime(InSeconds: number,InChannel: number,OutLoudness?: number): {OutLoudness: number};
-	static C(Other: UObject | any): LoudnessNRT;
-}
-
-declare type EMeterPeakType = 'MeanSquared' | 'RootMeanSquared' | 'Peak' | 'Count' | 'EMeterPeakType_MAX';
-declare var EMeterPeakType : { MeanSquared:'MeanSquared',RootMeanSquared:'RootMeanSquared',Peak:'Peak',Count:'Count',EMeterPeakType_MAX:'EMeterPeakType_MAX', };
-declare class MeterSettings extends AudioSynesthesiaSettings { 
-	AnalysisPeriod: number;
-	PeakMode: EMeterPeakType;
-	MeterAttackTime: number;
-	MeterReleaseTime: number;
-	PeakHoldTime: number;
-	ClippingThreshold: number;
-	static Load(ResourceName: string): MeterSettings;
-	static Find(Outer: UObject, ResourceName: string): MeterSettings;
-	static GetDefaultObject(): MeterSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MeterSettings;
-	static C(Other: UObject | any): MeterSettings;
-}
-
-declare class MeterResults { 
-	TimeSeconds: number;
-	MeterValue: number;
-	PeakValue: number;
-	NumSamplesClipping: number;
-	ClippingValue: number;
-	clone() : MeterResults;
-	static C(Other: UObject | any): MeterResults;
-}
-
-declare class MeterAnalyzer extends AudioAnalyzer { 
-	Settings: MeterSettings;
-	OnOverallMeterResults: UnrealEngineMulticastDelegate<(MeterResults: MeterResults[]) => void>;
-	OnPerChannelMeterResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, MeterResults: MeterResults[]) => void>;
-	OnLatestOverallMeterResults: UnrealEngineMulticastDelegate<(LatestOverallMeterResults: MeterResults) => void>;
-	OnLatestPerChannelMeterResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, LatestMeterResults: MeterResults) => void>;
-	static Load(ResourceName: string): MeterAnalyzer;
-	static Find(Outer: UObject, ResourceName: string): MeterAnalyzer;
-	static GetDefaultObject(): MeterAnalyzer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MeterAnalyzer;
-	static C(Other: UObject | any): MeterAnalyzer;
-}
-
-declare class OnsetNRTSettings extends AudioSynesthesiaNRTSettings { 
-	bDownmixToMono: boolean;
-	GranularityInSeconds: number;
-	Sensitivity: number;
-	MinimumFrequency: number;
-	MaximumFrequency: number;
-	static Load(ResourceName: string): OnsetNRTSettings;
-	static Find(Outer: UObject, ResourceName: string): OnsetNRTSettings;
-	static GetDefaultObject(): OnsetNRTSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnsetNRTSettings;
-	static C(Other: UObject | any): OnsetNRTSettings;
-}
-
-declare class OnsetNRT extends AudioSynesthesiaNRT { 
-	Settings: OnsetNRTSettings;
-	static Load(ResourceName: string): OnsetNRT;
-	static Find(Outer: UObject, ResourceName: string): OnsetNRT;
-	static GetDefaultObject(): OnsetNRT;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnsetNRT;
-	GetNormalizedChannelOnsetsBetweenTimes(InStartSeconds: number,InEndSeconds: number,InChannel: number,OutOnsetTimestamps?: number[],OutOnsetStrengths?: number[]): {OutOnsetTimestamps: number[], OutOnsetStrengths: number[]};
-	GetChannelOnsetsBetweenTimes(InStartSeconds: number,InEndSeconds: number,InChannel: number,OutOnsetTimestamps?: number[],OutOnsetStrengths?: number[]): {OutOnsetTimestamps: number[], OutOnsetStrengths: number[]};
-	static C(Other: UObject | any): OnsetNRT;
-}
-
-declare class CustomMeshTriangle { 
-	Vertex0: Vector;
-	Vertex1: Vector;
-	Vertex2: Vector;
-	clone() : CustomMeshTriangle;
-	static C(Other: UObject | any): CustomMeshTriangle;
-}
-
-declare class CustomMeshComponent extends MeshComponent { 
-	static Load(ResourceName: string): CustomMeshComponent;
-	static Find(Outer: UObject, ResourceName: string): CustomMeshComponent;
-	static GetDefaultObject(): CustomMeshComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CustomMeshComponent;
-	SetCustomMeshTriangles(Triangles: CustomMeshTriangle[]): boolean;
-	ClearCustomMeshTriangles(): void;
-	AddCustomMeshTriangles(Triangles: CustomMeshTriangle[]): void;
-	static C(Other: UObject | any): CustomMeshComponent;
-}
-
-declare class CableComponent extends MeshComponent { 
-	bAttachStart: boolean;
-	bAttachEnd: boolean;
-	AttachEndTo: ComponentReference;
-	AttachEndToSocketName: string;
-	EndLocation: Vector;
-	CableLength: number;
-	NumSegments: number;
-	SubstepTime: number;
-	SolverIterations: number;
-	bEnableStiffness: boolean;
-	bUseSubstepping: boolean;
-	bSkipCableUpdateWhenNotVisible: boolean;
-	bSkipCableUpdateWhenNotOwnerRecentlyRendered: boolean;
-	bEnableCollision: boolean;
-	CollisionFriction: number;
-	CableForce: Vector;
-	CableGravityScale: number;
-	CableWidth: number;
-	NumSides: number;
-	TileMaterial: number;
-	static Load(ResourceName: string): CableComponent;
-	static Find(Outer: UObject, ResourceName: string): CableComponent;
-	static GetDefaultObject(): CableComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CableComponent;
-	SetAttachEndToComponent(Component: SceneComponent,SocketName: string): void;
-	SetAttachEndTo(Actor: Actor,ComponentProperty: string,SocketName: string): void;
-	GetCableParticleLocations(Locations?: Vector[]): {Locations: Vector[]};
-	GetAttachedComponent(): SceneComponent;
-	GetAttachedActor(): Actor;
-	static C(Other: UObject | any): CableComponent;
-}
-
-declare class CableActor extends Actor { 
-	CableComponent: CableComponent;
-	static GetDefaultObject(): CableActor;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CableActor;
-	static C(Other: UObject | any): CableActor;
-}
-
-declare type ELocationAccuracy = 'LA_ThreeKilometers' | 'LA_OneKilometer' | 'LA_HundredMeters' | 'LA_TenMeters' | 'LA_Best' | 'LA_Navigation' | 'LA_MAX';
-declare var ELocationAccuracy : { LA_ThreeKilometers:'LA_ThreeKilometers',LA_OneKilometer:'LA_OneKilometer',LA_HundredMeters:'LA_HundredMeters',LA_TenMeters:'LA_TenMeters',LA_Best:'LA_Best',LA_Navigation:'LA_Navigation',LA_MAX:'LA_MAX', };
-declare class LocationServicesData { 
-	Timestamp: number;
-	Longitude: number;
-	Latitude: number;
-	HorizontalAccuracy: number;
-	VerticalAccuracy: number;
-	Altitude: number;
-	clone() : LocationServicesData;
-	static C(Other: UObject | any): LocationServicesData;
-	static GetLastKnownLocation(): LocationServicesData;
-}
-
-declare class LocationServicesImpl extends UObject { 
-	OnLocationChanged: UnrealEngineMulticastDelegate<(LocationData: LocationServicesData) => void>;
-	static Load(ResourceName: string): LocationServicesImpl;
-	static Find(Outer: UObject, ResourceName: string): LocationServicesImpl;
-	static GetDefaultObject(): LocationServicesImpl;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LocationServicesImpl;
-	static C(Other: UObject | any): LocationServicesImpl;
-}
-
-declare class LocationServices extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): LocationServices;
-	static Find(Outer: UObject, ResourceName: string): LocationServices;
-	static GetDefaultObject(): LocationServices;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LocationServices;
-	static StopLocationServices(): boolean;
-	static StartLocationServices(): boolean;
-	static IsLocationAccuracyAvailable(Accuracy: ELocationAccuracy): boolean;
-	static InitLocationServices(Accuracy: ELocationAccuracy,UpdateFrequency: number,MinDistanceFilter: number): boolean;
-	static GetLocationServicesImpl(): LocationServicesImpl;
-	static GetLastKnownLocation(): LocationServicesData;
-	static AreLocationServicesEnabled(): boolean;
-	static C(Other: UObject | any): LocationServices;
-}
-
-declare type EWaveTableResolution = 'None' | 'Res_8' | 'Res_16' | 'Res_32' | 'Res_64' | 'Res_128' | 'Res_256' | 'Res_512' | 'Res_1024' | 'Res_2048' | 'Res_4096' | 'Res_Max' | 'Maximum' | 'EWaveTableResolution_MAX';
-declare var EWaveTableResolution : { None:'None',Res_8:'Res_8',Res_16:'Res_16',Res_32:'Res_32',Res_64:'Res_64',Res_128:'Res_128',Res_256:'Res_256',Res_512:'Res_512',Res_1024:'Res_1024',Res_2048:'Res_2048',Res_4096:'Res_4096',Res_Max:'Res_Max',Maximum:'Maximum',EWaveTableResolution_MAX:'EWaveTableResolution_MAX', };
-declare type EWaveTableCurve = 'Linear' | 'Linear_Inv' | 'Exp' | 'Exp_Inverse' | 'Log' | 'Sin' | 'Sin_Full' | 'SCurve' | 'Shared' | 'Custom' | 'File' | 'Count' | 'EWaveTableCurve_MAX';
-declare var EWaveTableCurve : { Linear:'Linear',Linear_Inv:'Linear_Inv',Exp:'Exp',Exp_Inverse:'Exp_Inverse',Log:'Log',Sin:'Sin',Sin_Full:'Sin_Full',SCurve:'SCurve',Shared:'Shared',Custom:'Custom',File:'File',Count:'Count',EWaveTableCurve_MAX:'EWaveTableCurve_MAX', };
-declare class WaveTableSettings { 
-	FilePath: FilePath;
-	ChannelIndex: number;
-	Phase: number;
-	Top: number;
-	Tail: number;
-	FadeIn: number;
-	FadeOut: number;
-	bNormalize: boolean;
-	bRemoveOffset: boolean;
-	SourcePCMData: number[];
-	clone() : WaveTableSettings;
-	static C(Other: UObject | any): WaveTableSettings;
-}
-
-declare class WaveTableTransform { 
-	Curve: EWaveTableCurve;
-	Scalar: number;
-	CurveCustom: RichCurve;
-	CurveShared: CurveFloat;
-	WaveTable: number[];
-	WaveTableSettings: WaveTableSettings;
-	clone() : WaveTableTransform;
-	static C(Other: UObject | any): WaveTableTransform;
-}
-
-declare class WaveTableBankEntry { 
-	Transform: WaveTableTransform;
-	clone() : WaveTableBankEntry;
-	static C(Other: UObject | any): WaveTableBankEntry;
-}
-
-declare class WaveTableBank extends UObject { 
-	Resolution: EWaveTableResolution;
-	bBipolar: boolean;
-	WaveTableSizeMB: number;
-	WaveTableLengthSec: number;
-	Entries: WaveTableBankEntry[];
-	static Load(ResourceName: string): WaveTableBank;
-	static Find(Outer: UObject, ResourceName: string): WaveTableBank;
-	static GetDefaultObject(): WaveTableBank;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): WaveTableBank;
-	static C(Other: UObject | any): WaveTableBank;
-}
-
-declare class MetasoundFrontendClassName { 
-	Namespace: string;
-	Name: string;
-	Variant: string;
-	clone() : MetasoundFrontendClassName;
-	static C(Other: UObject | any): MetasoundFrontendClassName;
-}
-
-declare class DefaultMetaSoundAssetAutoUpdateSettings { 
-	Metasound: SoftObjectPath;
-	clone() : DefaultMetaSoundAssetAutoUpdateSettings;
-	static C(Other: UObject | any): DefaultMetaSoundAssetAutoUpdateSettings;
-}
-
-declare class MetaSoundSettings extends DeveloperSettings { 
-	bAutoUpdateEnabled: boolean;
-	AutoUpdateDenylist: MetasoundFrontendClassName[];
-	AutoUpdateAssetDenylist: DefaultMetaSoundAssetAutoUpdateSettings[];
-	bAutoUpdateLogWarningOnDroppedConnection: boolean;
-	DirectoriesToRegister: DirectoryPath[];
-	DenyListCacheChangeID: number;
-	static Load(ResourceName: string): MetaSoundSettings;
-	static Find(Outer: UObject, ResourceName: string): MetaSoundSettings;
-	static GetDefaultObject(): MetaSoundSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundSettings;
-	static C(Other: UObject | any): MetaSoundSettings;
-}
-
-declare class MetasoundEditorGraphBase extends EdGraph { 
-	static Load(ResourceName: string): MetasoundEditorGraphBase;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphBase;
-	static GetDefaultObject(): MetasoundEditorGraphBase;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphBase;
-	static C(Other: UObject | any): MetasoundEditorGraphBase;
-}
-
-declare class MetasoundFrontendVersionNumber { 
-	Major: number;
-	Minor: number;
-	clone() : MetasoundFrontendVersionNumber;
-	static C(Other: UObject | any): MetasoundFrontendVersionNumber;
-}
-
-declare class MetasoundFrontendVersion { 
-	Name: string;
-	Number: MetasoundFrontendVersionNumber;
-	clone() : MetasoundFrontendVersion;
-	static C(Other: UObject | any): MetasoundFrontendVersion;
-}
-
-declare class MetasoundFrontendDocumentMetadata { 
-	Version: MetasoundFrontendVersion;
-	clone() : MetasoundFrontendDocumentMetadata;
-	static C(Other: UObject | any): MetasoundFrontendDocumentMetadata;
-}
-
-declare type EMetasoundFrontendClassType = 'External' | 'Graph' | 'Input' | 'Output' | 'Literal' | 'Variable' | 'VariableDeferredAccessor' | 'VariableAccessor' | 'VariableMutator' | 'Template' | 'Invalid' | 'EMetasoundFrontendClassType_MAX';
-declare var EMetasoundFrontendClassType : { External:'External',Graph:'Graph',Input:'Input',Output:'Output',Literal:'Literal',Variable:'Variable',VariableDeferredAccessor:'VariableDeferredAccessor',VariableAccessor:'VariableAccessor',VariableMutator:'VariableMutator',Template:'Template',Invalid:'Invalid',EMetasoundFrontendClassType_MAX:'EMetasoundFrontendClassType_MAX', };
-declare class MetasoundFrontendClassMetadata { 
-	ClassName: MetasoundFrontendClassName;
-	Version: MetasoundFrontendVersionNumber;
-	Type: EMetasoundFrontendClassType;
-	DisplayName: string;
-	DisplayNameTransient: string;
-	Description: string;
-	DescriptionTransient: string;
-	PromptIfMissingTransient: string;
-	Author: string;
-	Keywords: string[];
-	KeywordsTransient: string[];
-	CategoryHierarchy: string[];
-	CategoryHierarchyTransient: string[];
-	bIsDeprecated: boolean;
-	bAutoUpdateManagesInterface: boolean;
-	bSerializeText: boolean;
-	ChangeId: Guid;
-	clone() : MetasoundFrontendClassMetadata;
-	static C(Other: UObject | any): MetasoundFrontendClassMetadata;
-}
-
-declare class MetasoundFrontendInterfaceStyle { 
-	DefaultSortOrder: number[];
-	RequiredMembers: Map<string, string>;
-	clone() : MetasoundFrontendInterfaceStyle;
-	static C(Other: UObject | any): MetasoundFrontendInterfaceStyle;
-}
-
-declare class MetasoundFrontendVertex { 
-	Name: string;
-	TypeName: string;
-	VertexID: Guid;
-	clone() : MetasoundFrontendVertex;
-	static C(Other: UObject | any): MetasoundFrontendVertex;
-}
-
-declare class MetasoundFrontendVertexMetadata { 
-	DisplayName: string;
-	DisplayNameTransient: string;
-	Description: string;
-	DescriptionTransient: string;
-	SortOrderIndex: number;
-	bIsAdvancedDisplay: boolean;
-	bSerializeText: boolean;
-	clone() : MetasoundFrontendVertexMetadata;
-	static C(Other: UObject | any): MetasoundFrontendVertexMetadata;
-}
-
-declare type EMetasoundFrontendVertexAccessType = 'Reference' | 'Value' | 'Unset' | 'EMetasoundFrontendVertexAccessType_MAX';
-declare var EMetasoundFrontendVertexAccessType : { Reference:'Reference',Value:'Value',Unset:'Unset',EMetasoundFrontendVertexAccessType_MAX:'EMetasoundFrontendVertexAccessType_MAX', };
-declare class MetasoundFrontendClassVertex extends MetasoundFrontendVertex { 
-	NodeID: Guid;
-	MetaData: MetasoundFrontendVertexMetadata;
-	AccessType: EMetasoundFrontendVertexAccessType;
-	clone() : MetasoundFrontendClassVertex;
-	static C(Other: UObject | any): MetasoundFrontendClassVertex;
-}
-
-declare type EMetasoundFrontendLiteralType = 'None' | 'Boolean' | 'Integer' | 'Float' | 'String' | 'UObject' | 'NoneArray' | 'BooleanArray' | 'IntegerArray' | 'FloatArray' | 'StringArray' | 'UObjectArray' | 'Invalid' | 'EMetasoundFrontendLiteralType_MAX';
-declare var EMetasoundFrontendLiteralType : { None:'None',Boolean:'Boolean',Integer:'Integer',Float:'Float',String:'String',UObject:'UObject',NoneArray:'NoneArray',BooleanArray:'BooleanArray',IntegerArray:'IntegerArray',FloatArray:'FloatArray',StringArray:'StringArray',UObjectArray:'UObjectArray',Invalid:'Invalid',EMetasoundFrontendLiteralType_MAX:'EMetasoundFrontendLiteralType_MAX', };
-declare class MetasoundFrontendLiteral { 
-	Type: EMetasoundFrontendLiteralType;
-	AsNumDefault: number;
-	AsBoolean: boolean[];
-	AsInteger: number[];
-	AsFloat: number[];
-	AsString: string[];
-	AsUObject: UObject[];
-	clone() : MetasoundFrontendLiteral;
-	static C(Other: UObject | any): MetasoundFrontendLiteral;
-}
-
-declare class MetasoundFrontendClassInput extends MetasoundFrontendClassVertex { 
-	DefaultLiteral: MetasoundFrontendLiteral;
-	clone() : MetasoundFrontendClassInput;
-	static C(Other: UObject | any): MetasoundFrontendClassInput;
-}
-
-declare class MetasoundFrontendClassOutput extends MetasoundFrontendClassVertex { 
-	clone() : MetasoundFrontendClassOutput;
-	static C(Other: UObject | any): MetasoundFrontendClassOutput;
-}
-
-declare class MetasoundFrontendClassEnvironmentVariable { 
-	Name: string;
-	TypeName: string;
-	bIsRequired: boolean;
-	clone() : MetasoundFrontendClassEnvironmentVariable;
-	static C(Other: UObject | any): MetasoundFrontendClassEnvironmentVariable;
-}
-
-declare class MetasoundFrontendClassInterface { 
-	InputStyle: MetasoundFrontendInterfaceStyle;
-	OutputStyle: MetasoundFrontendInterfaceStyle;
-	Inputs: MetasoundFrontendClassInput[];
-	Outputs: MetasoundFrontendClassOutput[];
-	Environment: MetasoundFrontendClassEnvironmentVariable[];
-	ChangeId: Guid;
-	clone() : MetasoundFrontendClassInterface;
-	static C(Other: UObject | any): MetasoundFrontendClassInterface;
-}
-
-declare class MetasoundFrontendClassStyleDisplay { 
-	ImageName: string;
-	bShowName: boolean;
-	bShowInputNames: boolean;
-	bShowOutputNames: boolean;
-	bShowLiterals: boolean;
-	clone() : MetasoundFrontendClassStyleDisplay;
-	static C(Other: UObject | any): MetasoundFrontendClassStyleDisplay;
-}
-
-declare class MetasoundFrontendClassStyle { 
-	Display: MetasoundFrontendClassStyleDisplay;
-	ChangeId: Guid;
-	clone() : MetasoundFrontendClassStyle;
-	static C(Other: UObject | any): MetasoundFrontendClassStyle;
-}
-
-declare class MetasoundFrontendClass { 
-	ID: Guid;
-	MetaData: MetasoundFrontendClassMetadata;
-	Interface: MetasoundFrontendClassInterface;
-	Style: MetasoundFrontendClassStyle;
-	clone() : MetasoundFrontendClass;
-	static C(Other: UObject | any): MetasoundFrontendClass;
-}
-
-declare class MetasoundFrontendNodeInterface { 
-	Inputs: MetasoundFrontendVertex[];
-	Outputs: MetasoundFrontendVertex[];
-	Environment: MetasoundFrontendVertex[];
-	clone() : MetasoundFrontendNodeInterface;
-	static C(Other: UObject | any): MetasoundFrontendNodeInterface;
-}
-
-declare class MetasoundFrontendVertexLiteral { 
-	VertexID: Guid;
-	Value: MetasoundFrontendLiteral;
-	clone() : MetasoundFrontendVertexLiteral;
-	static C(Other: UObject | any): MetasoundFrontendVertexLiteral;
-}
-
-declare type EMetasoundFrontendNodeStyleDisplayVisibility = 'Visible' | 'Hidden' | 'EMetasoundFrontendNodeStyleDisplayVisibility_MAX';
-declare var EMetasoundFrontendNodeStyleDisplayVisibility : { Visible:'Visible',Hidden:'Hidden',EMetasoundFrontendNodeStyleDisplayVisibility_MAX:'EMetasoundFrontendNodeStyleDisplayVisibility_MAX', };
-declare class MetasoundFrontendNodeStyleDisplay { 
-	Visibility: EMetasoundFrontendNodeStyleDisplayVisibility;
-	Locations: Map<Guid, Vector2D>;
-	clone() : MetasoundFrontendNodeStyleDisplay;
-	static C(Other: UObject | any): MetasoundFrontendNodeStyleDisplay;
-}
-
-declare class MetasoundFrontendNodeStyle { 
-	Display: MetasoundFrontendNodeStyleDisplay;
-	bMessageNodeUpdated: boolean;
-	bIsPrivate: boolean;
-	clone() : MetasoundFrontendNodeStyle;
-	static C(Other: UObject | any): MetasoundFrontendNodeStyle;
-}
-
-declare class MetasoundFrontendNode { 
-	ID: Guid;
-	ClassID: Guid;
-	Name: string;
-	Interface: MetasoundFrontendNodeInterface;
-	InputLiterals: MetasoundFrontendVertexLiteral[];
-	Style: MetasoundFrontendNodeStyle;
-	clone() : MetasoundFrontendNode;
-	static C(Other: UObject | any): MetasoundFrontendNode;
-}
-
-declare class MetasoundFrontendEdge { 
-	FromNodeID: Guid;
-	FromVertexID: Guid;
-	ToNodeID: Guid;
-	ToVertexID: Guid;
-	clone() : MetasoundFrontendEdge;
-	static C(Other: UObject | any): MetasoundFrontendEdge;
-}
-
-declare class MetasoundFrontendVariable { 
-	Name: string;
-	DisplayName: string;
-	Description: string;
-	TypeName: string;
-	Literal: MetasoundFrontendLiteral;
-	ID: Guid;
-	VariableNodeID: Guid;
-	MutatorNodeID: Guid;
-	AccessorNodeIDs: Guid[];
-	DeferredAccessorNodeIDs: Guid[];
-	clone() : MetasoundFrontendVariable;
-	static C(Other: UObject | any): MetasoundFrontendVariable;
-}
-
-declare class MetasoundFrontendEdgeStyleLiteralColorPair { 
-	Value: MetasoundFrontendLiteral;
-	Color: LinearColor;
-	clone() : MetasoundFrontendEdgeStyleLiteralColorPair;
-	static C(Other: UObject | any): MetasoundFrontendEdgeStyleLiteralColorPair;
-}
-
-declare class MetasoundFrontendEdgeStyle { 
-	NodeID: Guid;
-	OutputName: string;
-	LiteralColorPairs: MetasoundFrontendEdgeStyleLiteralColorPair[];
-	clone() : MetasoundFrontendEdgeStyle;
-	static C(Other: UObject | any): MetasoundFrontendEdgeStyle;
-}
-
-declare class MetasoundFrontendGraphStyle { 
-	bIsGraphEditable: boolean;
-	EdgeStyles: MetasoundFrontendEdgeStyle[];
-	clone() : MetasoundFrontendGraphStyle;
-	static C(Other: UObject | any): MetasoundFrontendGraphStyle;
-}
-
-declare class MetasoundFrontendGraph { 
-	Nodes: MetasoundFrontendNode[];
-	Edges: MetasoundFrontendEdge[];
-	Variables: MetasoundFrontendVariable[];
-	Style: MetasoundFrontendGraphStyle;
-	clone() : MetasoundFrontendGraph;
-	static C(Other: UObject | any): MetasoundFrontendGraph;
-}
-
-declare class MetasoundFrontendGraphClassPresetOptions { 
-	bIsPreset: boolean;
-	InputsInheritingDefault: Set<string>;
-	clone() : MetasoundFrontendGraphClassPresetOptions;
-	static C(Other: UObject | any): MetasoundFrontendGraphClassPresetOptions;
-}
-
-declare class MetasoundFrontendGraphClass extends MetasoundFrontendClass { 
-	Graph: MetasoundFrontendGraph;
-	PresetOptions: MetasoundFrontendGraphClassPresetOptions;
-	clone() : MetasoundFrontendGraphClass;
-	static C(Other: UObject | any): MetasoundFrontendGraphClass;
-}
-
-declare class MetasoundFrontendDocument { 
-	MetaData: MetasoundFrontendDocumentMetadata;
-	Interfaces: Set<MetasoundFrontendVersion>;
-	RootGraph: MetasoundFrontendGraphClass;
-	SubGraphs: MetasoundFrontendGraphClass[];
-	Dependencies: MetasoundFrontendClass[];
-	ArchetypeVersion: MetasoundFrontendVersion;
-	InterfaceVersions: MetasoundFrontendVersion[];
-	clone() : MetasoundFrontendDocument;
-	static C(Other: UObject | any): MetasoundFrontendDocument;
-}
-
-declare class MetaSoundPatch extends UObject { 
-	RootMetaSoundDocument: MetasoundFrontendDocument;
-	ReferencedAssetClassKeys: Set<string>;
-	ReferencedAssetClassObjects: Set<UObject>;
-	ReferenceAssetClassCache: Set<SoftObjectPath>;
-	Graph: MetasoundEditorGraphBase;
-	AssetClassID: Guid;
-	RegistryInputTypes: string;
-	RegistryOutputTypes: string;
-	RegistryVersionMajor: number;
-	RegistryVersionMinor: number;
-	bIsPreset: boolean;
-	static Load(ResourceName: string): MetaSoundPatch;
-	static Find(Outer: UObject, ResourceName: string): MetaSoundPatch;
-	static GetDefaultObject(): MetaSoundPatch;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundPatch;
-	static C(Other: UObject | any): MetaSoundPatch;
-}
-
-declare class MetaSoundAsyncAssetDependencies { 
-	Metasound: UObject;
-	clone() : MetaSoundAsyncAssetDependencies;
-	static C(Other: UObject | any): MetaSoundAsyncAssetDependencies;
-}
-
-declare class MetaSoundAssetDirectory { 
-	Directory: DirectoryPath;
-	clone() : MetaSoundAssetDirectory;
-	static C(Other: UObject | any): MetaSoundAssetDirectory;
-}
-
-declare class MetaSoundAssetSubsystem extends EngineSubsystem { 
-	LoadingDependencies: MetaSoundAsyncAssetDependencies[];
-	static Load(ResourceName: string): MetaSoundAssetSubsystem;
-	static Find(Outer: UObject, ResourceName: string): MetaSoundAssetSubsystem;
-	static GetDefaultObject(): MetaSoundAssetSubsystem;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundAssetSubsystem;
-	UnregisterAssetClassesInDirectories(Directories: MetaSoundAssetDirectory[]): void;
-	RegisterAssetClassesInDirectories(Directories: MetaSoundAssetDirectory[]): void;
-	static C(Other: UObject | any): MetaSoundAssetSubsystem;
-}
-
-declare type EMetasoundSourceAudioFormat = 'Mono' | 'Stereo' | 'Quad' | 'FiveDotOne' | 'SevenDotOne' | 'COUNT' | 'EMetasoundSourceAudioFormat_MAX';
-declare var EMetasoundSourceAudioFormat : { Mono:'Mono',Stereo:'Stereo',Quad:'Quad',FiveDotOne:'FiveDotOne',SevenDotOne:'SevenDotOne',COUNT:'COUNT',EMetasoundSourceAudioFormat_MAX:'EMetasoundSourceAudioFormat_MAX', };
-declare class MetaSoundSource extends SoundWaveProcedural { 
-	RootMetaSoundDocument: MetasoundFrontendDocument;
-	ReferencedAssetClassKeys: Set<string>;
-	ReferencedAssetClassObjects: Set<UObject>;
-	ReferenceAssetClassCache: Set<SoftObjectPath>;
-	Graph: MetasoundEditorGraphBase;
-	OutputFormat: EMetasoundSourceAudioFormat;
-	AssetClassID: Guid;
-	RegistryInputTypes: string;
-	RegistryOutputTypes: string;
-	RegistryVersionMajor: number;
-	RegistryVersionMinor: number;
-	bIsPreset: boolean;
-	static Load(ResourceName: string): MetaSoundSource;
-	static Find(Outer: UObject, ResourceName: string): MetaSoundSource;
-	static GetDefaultObject(): MetaSoundSource;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundSource;
-	static C(Other: UObject | any): MetaSoundSource;
-}
-
-declare class RadialSlider extends Widget { 
-	Value: number;
-	ValueDelegate: UnrealEngineDelegate<() => number>;
-	bUseCustomDefaultValue: boolean;
-	CustomDefaultValue: number;
-	SliderRange: RuntimeFloatCurve;
-	ValueTags: number[];
-	SliderHandleStartAngle: number;
-	SliderHandleEndAngle: number;
-	AngularOffset: number;
-	HandStartEndRatio: Vector2D;
-	WidgetStyle: SliderStyle;
-	SliderBarColor: LinearColor;
-	SliderProgressColor: LinearColor;
-	SliderHandleColor: LinearColor;
-	CenterBackgroundColor: LinearColor;
-	Locked: boolean;
-	MouseUsesStep: boolean;
-	RequiresControllerLock: boolean;
-	StepSize: number;
-	IsFocusable: boolean;
-	UseVerticalDrag: boolean;
-	ShowSliderHandle: boolean;
-	ShowSliderHand: boolean;
-	OnMouseCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
-	OnMouseCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
-	OnControllerCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
-	OnControllerCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
-	OnValueChanged: UnrealEngineMulticastDelegate<(Value: number) => void>;
-	static Load(ResourceName: string): RadialSlider;
-	static Find(Outer: UObject, ResourceName: string): RadialSlider;
-	static GetDefaultObject(): RadialSlider;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RadialSlider;
-	SetValueTags(InValueTags: number[]): void;
-	SetValue(InValue: number): void;
-	SetUseVerticalDrag(InUseVerticalDrag: boolean): void;
-	SetStepSize(InValue: number): void;
-	SetSliderRange(InSliderRange: RuntimeFloatCurve): void;
-	SetSliderProgressColor(InValue: LinearColor): void;
-	SetSliderHandleStartAngle(InValue: number): void;
-	SetSliderHandleEndAngle(InValue: number): void;
-	SetSliderHandleColor(InValue: LinearColor): void;
-	SetSliderBarColor(InValue: LinearColor): void;
-	SetShowSliderHandle(InShowSliderHandle: boolean): void;
-	SetShowSliderHand(InShowSliderHand: boolean): void;
-	SetLocked(InValue: boolean): void;
-	SetHandStartEndRatio(InValue: Vector2D): void;
-	SetCustomDefaultValue(InValue: number): void;
-	SetCenterBackgroundColor(InValue: LinearColor): void;
-	SetAngularOffset(InValue: number): void;
-	GetValue(): number;
-	GetNormalizedSliderHandlePosition(): number;
-	GetCustomDefaultValue(): number;
-	static C(Other: UObject | any): RadialSlider;
-}
-
-declare class MeterChannelInfo { 
-	MeterValue: number;
-	PeakValue: number;
-	ClippingValue: number;
-	clone() : MeterChannelInfo;
-	static C(Other: UObject | any): MeterChannelInfo;
-}
-
-declare class AudioMeterStyle extends SlateWidgetStyle { 
-	MeterValueImage: SlateBrush;
-	BackgroundImage: SlateBrush;
-	MeterBackgroundImage: SlateBrush;
-	MeterValueBackgroundImage: SlateBrush;
-	MeterPeakImage: SlateBrush;
-	MeterSize: Vector2D;
-	MeterPadding: Vector2D;
-	MeterValuePadding: number;
-	PeakValueWidth: number;
-	ValueRangeDb: Vector2D;
-	bShowScale: boolean;
-	bScaleSide: boolean;
-	ScaleHashOffset: number;
-	ScaleHashWidth: number;
-	ScaleHashHeight: number;
-	DecibelsPerHash: number;
-	Font: SlateFontInfo;
-	clone() : AudioMeterStyle;
-	static C(Other: UObject | any): AudioMeterStyle;
-}
-
-declare class AudioMeter extends Widget { 
-	MeterChannelInfo: MeterChannelInfo[];
-	MeterChannelInfoDelegate: UnrealEngineDelegate<() => MeterChannelInfo[]>;
-	WidgetStyle: AudioMeterStyle;
-	Orientation: EOrientation;
-	BackgroundColor: LinearColor;
-	MeterBackgroundColor: LinearColor;
-	MeterValueColor: LinearColor;
-	MeterPeakColor: LinearColor;
-	MeterClippingColor: LinearColor;
-	MeterScaleColor: LinearColor;
-	MeterScaleLabelColor: LinearColor;
-	static Load(ResourceName: string): AudioMeter;
-	static Find(Outer: UObject, ResourceName: string): AudioMeter;
-	static GetDefaultObject(): AudioMeter;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioMeter;
-	SetMeterValueColor(InValue: LinearColor): void;
-	SetMeterScaleLabelColor(InValue: LinearColor): void;
-	SetMeterScaleColor(InValue: LinearColor): void;
-	SetMeterPeakColor(InValue: LinearColor): void;
-	SetMeterClippingColor(InValue: LinearColor): void;
-	SetMeterChannelInfo(InMeterChannelInfo: MeterChannelInfo[]): void;
-	SetMeterBackgroundColor(InValue: LinearColor): void;
-	SetBackgroundColor(InValue: LinearColor): void;
-	GetMeterChannelInfo(): MeterChannelInfo[];
-	static C(Other: UObject | any): AudioMeter;
-}
-
-declare type EAudioRadialSliderLayout = 'Layout_LabelTop' | 'Layout_LabelCenter' | 'Layout_LabelBottom' | 'Layout_MAX';
-declare var EAudioRadialSliderLayout : { Layout_LabelTop:'Layout_LabelTop',Layout_LabelCenter:'Layout_LabelCenter',Layout_LabelBottom:'Layout_LabelBottom',Layout_MAX:'Layout_MAX', };
-declare class AudioRadialSlider extends Widget { 
-	Value: number;
-	ValueDelegate: UnrealEngineDelegate<() => number>;
-	WidgetLayout: EAudioRadialSliderLayout;
-	CenterBackgroundColor: LinearColor;
-	SliderProgressColor: LinearColor;
-	SliderBarColor: LinearColor;
-	HandStartEndRatio: Vector2D;
-	UnitsText: string;
-	TextLabelBackgroundColor: LinearColor;
-	ShowLabelOnlyOnHover: boolean;
-	ShowUnitsText: boolean;
-	IsUnitsTextReadOnly: boolean;
-	IsValueTextReadOnly: boolean;
-	SliderThickness: number;
-	OutputRange: Vector2D;
-	OnValueChanged: UnrealEngineMulticastDelegate<(Value: number) => void>;
-	static Load(ResourceName: string): AudioRadialSlider;
-	static Find(Outer: UObject, ResourceName: string): AudioRadialSlider;
-	static GetDefaultObject(): AudioRadialSlider;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioRadialSlider;
-	SetWidgetLayout(InLayout: EAudioRadialSliderLayout): void;
-	SetValueTextReadOnly(bIsReadOnly: boolean): void;
-	SetUnitsTextReadOnly(bIsReadOnly: boolean): void;
-	SetUnitsText(Units: string): void;
-	SetTextLabelBackgroundColor(InColor: SlateColor): void;
-	SetSliderThickness(InThickness: number): void;
-	SetSliderProgressColor(InValue: LinearColor): void;
-	SetSliderBarColor(InValue: LinearColor): void;
-	SetShowUnitsText(bShowUnitsText: boolean): void;
-	SetShowLabelOnlyOnHover(bShowLabelOnlyOnHover: boolean): void;
-	SetOutputRange(InOutputRange: Vector2D): void;
-	SetHandStartEndRatio(InHandStartEndRatio: Vector2D): void;
-	SetCenterBackgroundColor(InValue: LinearColor): void;
-	GetSliderValue(OutputValue: number): number;
-	GetOutputValue(InSliderValue: number): number;
-	static C(Other: UObject | any): AudioRadialSlider;
-}
-
-declare class AudioVolumeRadialSlider extends AudioRadialSlider { 
-	static Load(ResourceName: string): AudioVolumeRadialSlider;
-	static Find(Outer: UObject, ResourceName: string): AudioVolumeRadialSlider;
-	static GetDefaultObject(): AudioVolumeRadialSlider;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioVolumeRadialSlider;
-	static C(Other: UObject | any): AudioVolumeRadialSlider;
-}
-
-declare class AudioFrequencyRadialSlider extends AudioRadialSlider { 
-	static Load(ResourceName: string): AudioFrequencyRadialSlider;
-	static Find(Outer: UObject, ResourceName: string): AudioFrequencyRadialSlider;
-	static GetDefaultObject(): AudioFrequencyRadialSlider;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioFrequencyRadialSlider;
-	static C(Other: UObject | any): AudioFrequencyRadialSlider;
-}
-
-declare class AudioSliderBase extends Widget { 
-	Value: number;
-	UnitsText: string;
-	TextLabelBackgroundColor: LinearColor;
-	TextLabelBackgroundColorDelegate: UnrealEngineDelegate<() => LinearColor>;
-	ShowLabelOnlyOnHover: boolean;
-	ShowUnitsText: boolean;
-	IsUnitsTextReadOnly: boolean;
-	IsValueTextReadOnly: boolean;
-	ValueDelegate: UnrealEngineDelegate<() => number>;
-	SliderBackgroundColor: LinearColor;
-	SliderBackgroundColorDelegate: UnrealEngineDelegate<() => LinearColor>;
-	SliderBarColor: LinearColor;
-	SliderBarColorDelegate: UnrealEngineDelegate<() => LinearColor>;
-	SliderThumbColor: LinearColor;
-	SliderThumbColorDelegate: UnrealEngineDelegate<() => LinearColor>;
-	WidgetBackgroundColor: LinearColor;
-	WidgetBackgroundColorDelegate: UnrealEngineDelegate<() => LinearColor>;
-	Orientation: EOrientation;
-	OnValueChanged: UnrealEngineMulticastDelegate<(Value: number) => void>;
-	static Load(ResourceName: string): AudioSliderBase;
-	static Find(Outer: UObject, ResourceName: string): AudioSliderBase;
-	static GetDefaultObject(): AudioSliderBase;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSliderBase;
-	SetWidgetBackgroundColor(InValue: LinearColor): void;
-	SetValueTextReadOnly(bIsReadOnly: boolean): void;
-	SetUnitsTextReadOnly(bIsReadOnly: boolean): void;
-	SetUnitsText(Units: string): void;
-	SetTextLabelBackgroundColor(InColor: SlateColor): void;
-	SetSliderThumbColor(InValue: LinearColor): void;
-	SetSliderBarColor(InValue: LinearColor): void;
-	SetSliderBackgroundColor(InValue: LinearColor): void;
-	SetShowUnitsText(bShowUnitsText: boolean): void;
-	SetShowLabelOnlyOnHover(bShowLabelOnlyOnHover: boolean): void;
-	GetSliderValue(OutputValue: number): number;
-	GetOutputValue(InSliderValue: number): number;
-	GetLinValue(OutputValue: number): number;
-	static C(Other: UObject | any): AudioSliderBase;
-}
-
-declare class AudioSlider extends AudioSliderBase { 
-	LinToOutputCurve: CurveFloat;
-	OutputToLinCurve: CurveFloat;
-	static Load(ResourceName: string): AudioSlider;
-	static Find(Outer: UObject, ResourceName: string): AudioSlider;
-	static GetDefaultObject(): AudioSlider;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSlider;
-	static C(Other: UObject | any): AudioSlider;
-}
-
-declare class AudioVolumeSlider extends AudioSlider { 
-	static Load(ResourceName: string): AudioVolumeSlider;
-	static Find(Outer: UObject, ResourceName: string): AudioVolumeSlider;
-	static GetDefaultObject(): AudioVolumeSlider;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioVolumeSlider;
-	static C(Other: UObject | any): AudioVolumeSlider;
-}
-
-declare class AudioFrequencySlider extends AudioSliderBase { 
-	OutputRange: Vector2D;
-	static Load(ResourceName: string): AudioFrequencySlider;
-	static Find(Outer: UObject, ResourceName: string): AudioFrequencySlider;
-	static GetDefaultObject(): AudioFrequencySlider;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioFrequencySlider;
-	static C(Other: UObject | any): AudioFrequencySlider;
-}
-
-declare class MetasoundInterfacesView extends UObject { 
-	static Load(ResourceName: string): MetasoundInterfacesView;
-	static Find(Outer: UObject, ResourceName: string): MetasoundInterfacesView;
-	static GetDefaultObject(): MetasoundInterfacesView;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundInterfacesView;
-	static C(Other: UObject | any): MetasoundInterfacesView;
-}
-
-declare class MetasoundEditorGraphMemberDefaultLiteral extends UObject { 
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultLiteral;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultLiteral;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultLiteral;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultLiteral;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultLiteral;
-}
-
-declare class MetasoundEditorGraphMember extends UObject { 
-	Literal: MetasoundEditorGraphMemberDefaultLiteral;
-	TypeName: string;
-	static Load(ResourceName: string): MetasoundEditorGraphMember;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMember;
-	static GetDefaultObject(): MetasoundEditorGraphMember;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMember;
-	static C(Other: UObject | any): MetasoundEditorGraphMember;
-}
-
-declare class MetasoundEditorGraphVertex extends MetasoundEditorGraphMember { 
-	NodeID: Guid;
-	ClassName: MetasoundFrontendClassName;
-	static Load(ResourceName: string): MetasoundEditorGraphVertex;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphVertex;
-	static GetDefaultObject(): MetasoundEditorGraphVertex;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphVertex;
-	static C(Other: UObject | any): MetasoundEditorGraphVertex;
-}
-
-declare class MetasoundEditorGraphInput extends MetasoundEditorGraphVertex { 
-	static Load(ResourceName: string): MetasoundEditorGraphInput;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphInput;
-	static GetDefaultObject(): MetasoundEditorGraphInput;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphInput;
-	static C(Other: UObject | any): MetasoundEditorGraphInput;
-}
-
-declare class MetasoundEditorGraphOutput extends MetasoundEditorGraphVertex { 
-	static Load(ResourceName: string): MetasoundEditorGraphOutput;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphOutput;
-	static GetDefaultObject(): MetasoundEditorGraphOutput;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphOutput;
-	static C(Other: UObject | any): MetasoundEditorGraphOutput;
-}
-
-declare class MetasoundEditorGraphVariable extends MetasoundEditorGraphMember { 
-	VariableID: Guid;
-	static Load(ResourceName: string): MetasoundEditorGraphVariable;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphVariable;
-	static GetDefaultObject(): MetasoundEditorGraphVariable;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphVariable;
-	static C(Other: UObject | any): MetasoundEditorGraphVariable;
-}
-
-declare class MetasoundEditorGraph extends MetasoundEditorGraphBase { 
-	Inputs: MetasoundEditorGraphInput[];
-	Outputs: MetasoundEditorGraphOutput[];
-	Variables: MetasoundEditorGraphVariable[];
-	static Load(ResourceName: string): MetasoundEditorGraph;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraph;
-	static GetDefaultObject(): MetasoundEditorGraph;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraph;
-	static C(Other: UObject | any): MetasoundEditorGraph;
-}
-
-declare class MetasoundEditorGraphNode extends EdGraphNode { 
-	static Load(ResourceName: string): MetasoundEditorGraphNode;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphNode;
-	static GetDefaultObject(): MetasoundEditorGraphNode;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphNode;
-	static C(Other: UObject | any): MetasoundEditorGraphNode;
-}
-
-declare class MetasoundEditorGraphMemberNode extends MetasoundEditorGraphNode { 
-	static Load(ResourceName: string): MetasoundEditorGraphMemberNode;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberNode;
-	static GetDefaultObject(): MetasoundEditorGraphMemberNode;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberNode;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberNode;
-}
-
-declare class MetasoundEditorGraphInputNode extends MetasoundEditorGraphMemberNode { 
-	Input: MetasoundEditorGraphInput;
-	static Load(ResourceName: string): MetasoundEditorGraphInputNode;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphInputNode;
-	static GetDefaultObject(): MetasoundEditorGraphInputNode;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphInputNode;
-	static C(Other: UObject | any): MetasoundEditorGraphInputNode;
-}
-
-declare class MetasoundEditorGraphMemberDefaultBoolRef { 
-	Value: boolean;
-	clone() : MetasoundEditorGraphMemberDefaultBoolRef;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultBoolRef;
-}
-
-declare class MetasoundEditorGraphMemberDefaultBool extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: MetasoundEditorGraphMemberDefaultBoolRef;
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultBool;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultBool;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultBool;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultBool;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultBool;
-}
-
-declare class MetasoundEditorGraphMemberDefaultBoolArray extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: MetasoundEditorGraphMemberDefaultBoolRef[];
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultBoolArray;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultBoolArray;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultBoolArray;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultBoolArray;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultBoolArray;
-}
-
-declare class MetasoundEditorGraphMemberDefaultIntRef { 
-	Value: number;
-	clone() : MetasoundEditorGraphMemberDefaultIntRef;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultIntRef;
-}
-
-declare class MetasoundEditorGraphMemberDefaultInt extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: MetasoundEditorGraphMemberDefaultIntRef;
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultInt;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultInt;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultInt;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultInt;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultInt;
-}
-
-declare class MetasoundEditorGraphMemberDefaultIntArray extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: MetasoundEditorGraphMemberDefaultIntRef[];
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultIntArray;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultIntArray;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultIntArray;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultIntArray;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultIntArray;
-}
-
-declare type EMetasoundMemberDefaultWidget = 'None' | 'Slider' | 'RadialSlider' | 'EMetasoundMemberDefaultWidget_MAX';
-declare var EMetasoundMemberDefaultWidget : { None:'None',Slider:'Slider',RadialSlider:'RadialSlider',EMetasoundMemberDefaultWidget_MAX:'EMetasoundMemberDefaultWidget_MAX', };
-declare type EMetasoundMemberDefaultWidgetValueType = 'Linear' | 'Frequency' | 'Volume' | 'EMetasoundMemberDefaultWidgetValueType_MAX';
-declare var EMetasoundMemberDefaultWidgetValueType : { Linear:'Linear',Frequency:'Frequency',Volume:'Volume',EMetasoundMemberDefaultWidgetValueType_MAX:'EMetasoundMemberDefaultWidgetValueType_MAX', };
-declare class MetasoundEditorGraphMemberDefaultFloat extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: number;
-	ClampDefault: boolean;
-	Range: Vector2D;
-	WidgetType: EMetasoundMemberDefaultWidget;
-	WidgetOrientation: EOrientation;
-	WidgetValueType: EMetasoundMemberDefaultWidgetValueType;
-	VolumeWidgetUseLinearOutput: boolean;
-	VolumeWidgetDecibelRange: Vector2D;
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultFloat;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultFloat;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultFloat;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultFloat;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultFloat;
-}
-
-declare class MetasoundEditorGraphMemberDefaultFloatArray extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: number[];
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultFloatArray;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultFloatArray;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultFloatArray;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultFloatArray;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultFloatArray;
-}
-
-declare class MetasoundEditorGraphMemberDefaultString extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: string;
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultString;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultString;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultString;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultString;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultString;
-}
-
-declare class MetasoundEditorGraphMemberDefaultStringArray extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: string[];
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultStringArray;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultStringArray;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultStringArray;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultStringArray;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultStringArray;
-}
-
-declare class MetasoundEditorGraphMemberDefaultObjectRef { 
-	UObject: UObject;
-	clone() : MetasoundEditorGraphMemberDefaultObjectRef;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultObjectRef;
-}
-
-declare class MetasoundEditorGraphMemberDefaultObject extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: MetasoundEditorGraphMemberDefaultObjectRef;
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultObject;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultObject;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultObject;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultObject;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultObject;
-}
-
-declare class MetasoundEditorGraphMemberDefaultObjectArray extends MetasoundEditorGraphMemberDefaultLiteral { 
-	Default: MetasoundEditorGraphMemberDefaultObjectRef[];
-	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultObjectArray;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultObjectArray;
-	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultObjectArray;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultObjectArray;
-	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultObjectArray;
-}
-
-declare class MetasoundEditorGraphOutputNode extends MetasoundEditorGraphMemberNode { 
-	Output: MetasoundEditorGraphOutput;
-	static Load(ResourceName: string): MetasoundEditorGraphOutputNode;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphOutputNode;
-	static GetDefaultObject(): MetasoundEditorGraphOutputNode;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphOutputNode;
-	static C(Other: UObject | any): MetasoundEditorGraphOutputNode;
-}
-
-declare class MetasoundEditorGraphExternalNode extends MetasoundEditorGraphNode { 
-	ClassName: MetasoundFrontendClassName;
-	NodeID: Guid;
-	bIsClassNative: boolean;
-	static Load(ResourceName: string): MetasoundEditorGraphExternalNode;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphExternalNode;
-	static GetDefaultObject(): MetasoundEditorGraphExternalNode;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphExternalNode;
-	static C(Other: UObject | any): MetasoundEditorGraphExternalNode;
-}
-
-declare class MetasoundEditorGraphVariableNode extends MetasoundEditorGraphMemberNode { 
-	ClassType: EMetasoundFrontendClassType;
-	ClassName: MetasoundFrontendClassName;
-	NodeID: Guid;
-	Variable: MetasoundEditorGraphVariable;
-	static Load(ResourceName: string): MetasoundEditorGraphVariableNode;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphVariableNode;
-	static GetDefaultObject(): MetasoundEditorGraphVariableNode;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphVariableNode;
-	static C(Other: UObject | any): MetasoundEditorGraphVariableNode;
-}
-
-declare class MetasoundEditorGraphSchema extends EdGraphSchema { 
-	static Load(ResourceName: string): MetasoundEditorGraphSchema;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphSchema;
-	static GetDefaultObject(): MetasoundEditorGraphSchema;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphSchema;
-	static C(Other: UObject | any): MetasoundEditorGraphSchema;
-}
-
-declare type EMetasoundActiveAnalyzerEnvelopeDirection = 'FromSourceOutput' | 'FromDestinationInput' | 'EMetasoundActiveAnalyzerEnvelopeDirection_MAX';
-declare var EMetasoundActiveAnalyzerEnvelopeDirection : { FromSourceOutput:'FromSourceOutput',FromDestinationInput:'FromDestinationInput',EMetasoundActiveAnalyzerEnvelopeDirection_MAX:'EMetasoundActiveAnalyzerEnvelopeDirection_MAX', };
-declare class MetasoundAnalyzerAnimationSettings { 
-	bAnimateConnections: boolean;
-	EnvelopeWireThickness: number;
-	EnvelopeSpeed: number;
-	EnvelopeDirection: EMetasoundActiveAnalyzerEnvelopeDirection;
-	NumericWireThickness: number;
-	WireScalarMin: number;
-	WireScalarMax: number;
-	clone() : MetasoundAnalyzerAnimationSettings;
-	static C(Other: UObject | any): MetasoundAnalyzerAnimationSettings;
-}
-
-declare type EMetasoundActiveDetailView = 'Metasound' | 'General' | 'EMetasoundActiveDetailView_MAX';
-declare var EMetasoundActiveDetailView : { Metasound:'Metasound',General:'General',EMetasoundActiveDetailView_MAX:'EMetasoundActiveDetailView_MAX', };
-declare class MetasoundEditorSettings extends UObject { 
-	bPinMetaSoundPatchInAssetMenu: boolean;
-	bPinMetaSoundSourceInAssetMenu: boolean;
-	DefaultAuthor: string;
-	DefaultPinTypeColor: LinearColor;
-	AudioPinTypeColor: LinearColor;
-	BooleanPinTypeColor: LinearColor;
-	FloatPinTypeColor: LinearColor;
-	IntPinTypeColor: LinearColor;
-	ObjectPinTypeColor: LinearColor;
-	StringPinTypeColor: LinearColor;
-	TimePinTypeColor: LinearColor;
-	TriggerPinTypeColor: LinearColor;
-	WaveTablePinTypeColor: LinearColor;
-	NativeNodeTitleColor: LinearColor;
-	AssetReferenceNodeTitleColor: LinearColor;
-	InputNodeTitleColor: LinearColor;
-	OutputNodeTitleColor: LinearColor;
-	VariableNodeTitleColor: LinearColor;
-	DefaultInputWidgetType: EMetasoundMemberDefaultWidget;
-	AnalyzerAnimationSettings: MetasoundAnalyzerAnimationSettings;
-	DetailView: EMetasoundActiveDetailView;
-	static Load(ResourceName: string): MetasoundEditorSettings;
-	static Find(Outer: UObject, ResourceName: string): MetasoundEditorSettings;
-	static GetDefaultObject(): MetasoundEditorSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorSettings;
-	static C(Other: UObject | any): MetasoundEditorSettings;
-}
-
-declare class MetaSoundBaseFactory extends Factory { 
-	ReferencedMetaSoundObject: UObject;
-	static Load(ResourceName: string): MetaSoundBaseFactory;
-	static Find(Outer: UObject, ResourceName: string): MetaSoundBaseFactory;
-	static GetDefaultObject(): MetaSoundBaseFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundBaseFactory;
-	static C(Other: UObject | any): MetaSoundBaseFactory;
-}
-
-declare class MetaSoundFactory extends MetaSoundBaseFactory { 
-	static Load(ResourceName: string): MetaSoundFactory;
-	static Find(Outer: UObject, ResourceName: string): MetaSoundFactory;
-	static GetDefaultObject(): MetaSoundFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundFactory;
-	static C(Other: UObject | any): MetaSoundFactory;
-}
-
-declare class MetaSoundSourceFactory extends MetaSoundBaseFactory { 
-	static Load(ResourceName: string): MetaSoundSourceFactory;
-	static Find(Outer: UObject, ResourceName: string): MetaSoundSourceFactory;
-	static GetDefaultObject(): MetaSoundSourceFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundSourceFactory;
-	static C(Other: UObject | any): MetaSoundSourceFactory;
-}
-
-declare class KismetProceduralMeshLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): KismetProceduralMeshLibrary;
-	static Find(Outer: UObject, ResourceName: string): KismetProceduralMeshLibrary;
-	static GetDefaultObject(): KismetProceduralMeshLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): KismetProceduralMeshLibrary;
-	static SliceProceduralMesh(InProcMesh: ProceduralMeshComponent,PlanePosition: Vector,PlaneNormal: Vector,bCreateOtherHalf: boolean,OutOtherHalfProcMesh?: ProceduralMeshComponent,CapOption?: EProcMeshSliceCapOption,CapMaterial?: MaterialInterface): {OutOtherHalfProcMesh: ProceduralMeshComponent};
-	static GetSectionFromStaticMesh(InMesh: StaticMesh,LODIndex: number,SectionIndex: number,Vertices?: Vector[],Triangles?: number[],Normals?: Vector[],UVs?: Vector2D[],Tangents?: ProcMeshTangent[]): {Vertices: Vector[], Triangles: number[], Normals: Vector[], UVs: Vector2D[], Tangents: ProcMeshTangent[]};
-	static GetSectionFromProceduralMesh(InProcMesh: ProceduralMeshComponent,SectionIndex: number,Vertices?: Vector[],Triangles?: number[],Normals?: Vector[],UVs?: Vector2D[],Tangents?: ProcMeshTangent[]): {Vertices: Vector[], Triangles: number[], Normals: Vector[], UVs: Vector2D[], Tangents: ProcMeshTangent[]};
-	static GenerateBoxMesh(BoxRadius: Vector,Vertices?: Vector[],Triangles?: number[],Normals?: Vector[],UVs?: Vector2D[],Tangents?: ProcMeshTangent[]): {Vertices: Vector[], Triangles: number[], Normals: Vector[], UVs: Vector2D[], Tangents: ProcMeshTangent[]};
-	static CreateGridMeshWelded(NumX: number,NumY: number,Triangles?: number[],Vertices?: Vector[],UVs?: Vector2D[],GridSpacing?: number): {Triangles: number[], Vertices: Vector[], UVs: Vector2D[]};
-	static CreateGridMeshTriangles(NumX: number,NumY: number,bWinding: boolean,Triangles?: number[]): {Triangles: number[]};
-	static CreateGridMeshSplit(NumX: number,NumY: number,Triangles?: number[],Vertices?: Vector[],UVs?: Vector2D[],UV1s?: Vector2D[],GridSpacing?: number): {Triangles: number[], Vertices: Vector[], UVs: Vector2D[], UV1s: Vector2D[]};
-	static CopyProceduralMeshFromStaticMeshComponent(StaticMeshComponent: StaticMeshComponent,LODIndex: number,ProcMeshComponent: ProceduralMeshComponent,bCreateCollision: boolean): void;
-	static ConvertQuadToTriangles(Triangles?: number[],Vert0?: number,Vert1?: number,Vert2?: number,Vert3?: number): {Triangles: number[]};
-	static CalculateTangentsForMesh(Vertices: Vector[],Triangles: number[],UVs: Vector2D[],Normals?: Vector[],Tangents?: ProcMeshTangent[]): {Normals: Vector[], Tangents: ProcMeshTangent[]};
-	static C(Other: UObject | any): KismetProceduralMeshLibrary;
-}
-
-declare class AmbisonicsEncodingSettings extends SoundfieldEncodingSettingsBase { 
-	AmbisonicsOrder: number;
-	static Load(ResourceName: string): AmbisonicsEncodingSettings;
-	static Find(Outer: UObject, ResourceName: string): AmbisonicsEncodingSettings;
-	static GetDefaultObject(): AmbisonicsEncodingSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AmbisonicsEncodingSettings;
-	static C(Other: UObject | any): AmbisonicsEncodingSettings;
-}
-
-declare class AudioImpulseResponse extends UObject { 
-	ImpulseResponse: number[];
-	NumChannels: number;
-	SampleRate: number;
-	NormalizationVolumeDb: number;
-	bTrueStereo: boolean;
-	IRData: number[];
-	static Load(ResourceName: string): AudioImpulseResponse;
-	static Find(Outer: UObject, ResourceName: string): AudioImpulseResponse;
-	static GetDefaultObject(): AudioImpulseResponse;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioImpulseResponse;
-	static C(Other: UObject | any): AudioImpulseResponse;
-}
-
-declare type ESynth1OscType = 'Sine' | 'Saw' | 'Triangle' | 'Square' | 'Noise' | 'Count' | 'ESynth1OscType_MAX';
-declare var ESynth1OscType : { Sine:'Sine',Saw:'Saw',Triangle:'Triangle',Square:'Square',Noise:'Noise',Count:'Count',ESynth1OscType_MAX:'ESynth1OscType_MAX', };
-declare type ESynthLFOType = 'Sine' | 'UpSaw' | 'DownSaw' | 'Square' | 'Triangle' | 'Exponential' | 'RandomSampleHold' | 'Count' | 'ESynthLFOType_MAX';
-declare var ESynthLFOType : { Sine:'Sine',UpSaw:'UpSaw',DownSaw:'DownSaw',Square:'Square',Triangle:'Triangle',Exponential:'Exponential',RandomSampleHold:'RandomSampleHold',Count:'Count',ESynthLFOType_MAX:'ESynthLFOType_MAX', };
-declare type ESynthLFOMode = 'Sync' | 'OneShot' | 'Free' | 'Count' | 'ESynthLFOMode_MAX';
-declare var ESynthLFOMode : { Sync:'Sync',OneShot:'OneShot',Free:'Free',Count:'Count',ESynthLFOMode_MAX:'ESynthLFOMode_MAX', };
-declare type ESynthLFOPatchType = 'PatchToNone' | 'PatchToGain' | 'PatchToOscFreq' | 'PatchToFilterFreq' | 'PatchToFilterQ' | 'PatchToOscPulseWidth' | 'PatchToOscPan' | 'PatchLFO1ToLFO2Frequency' | 'PatchLFO1ToLFO2Gain' | 'Count' | 'ESynthLFOPatchType_MAX';
-declare var ESynthLFOPatchType : { PatchToNone:'PatchToNone',PatchToGain:'PatchToGain',PatchToOscFreq:'PatchToOscFreq',PatchToFilterFreq:'PatchToFilterFreq',PatchToFilterQ:'PatchToFilterQ',PatchToOscPulseWidth:'PatchToOscPulseWidth',PatchToOscPan:'PatchToOscPan',PatchLFO1ToLFO2Frequency:'PatchLFO1ToLFO2Frequency',PatchLFO1ToLFO2Gain:'PatchLFO1ToLFO2Gain',Count:'Count',ESynthLFOPatchType_MAX:'ESynthLFOPatchType_MAX', };
-declare type ESynthModEnvPatch = 'PatchToNone' | 'PatchToOscFreq' | 'PatchToFilterFreq' | 'PatchToFilterQ' | 'PatchToLFO1Gain' | 'PatchToLFO2Gain' | 'PatchToLFO1Freq' | 'PatchToLFO2Freq' | 'Count' | 'ESynthModEnvPatch_MAX';
-declare var ESynthModEnvPatch : { PatchToNone:'PatchToNone',PatchToOscFreq:'PatchToOscFreq',PatchToFilterFreq:'PatchToFilterFreq',PatchToFilterQ:'PatchToFilterQ',PatchToLFO1Gain:'PatchToLFO1Gain',PatchToLFO2Gain:'PatchToLFO2Gain',PatchToLFO1Freq:'PatchToLFO1Freq',PatchToLFO2Freq:'PatchToLFO2Freq',Count:'Count',ESynthModEnvPatch_MAX:'ESynthModEnvPatch_MAX', };
-declare type ESynthModEnvBiasPatch = 'PatchToNone' | 'PatchToOscFreq' | 'PatchToFilterFreq' | 'PatchToFilterQ' | 'PatchToLFO1Gain' | 'PatchToLFO2Gain' | 'PatchToLFO1Freq' | 'PatchToLFO2Freq' | 'Count' | 'ESynthModEnvBiasPatch_MAX';
-declare var ESynthModEnvBiasPatch : { PatchToNone:'PatchToNone',PatchToOscFreq:'PatchToOscFreq',PatchToFilterFreq:'PatchToFilterFreq',PatchToFilterQ:'PatchToFilterQ',PatchToLFO1Gain:'PatchToLFO1Gain',PatchToLFO2Gain:'PatchToLFO2Gain',PatchToLFO1Freq:'PatchToLFO1Freq',PatchToLFO2Freq:'PatchToLFO2Freq',Count:'Count',ESynthModEnvBiasPatch_MAX:'ESynthModEnvBiasPatch_MAX', };
-declare type ESynthFilterType = 'LowPass' | 'HighPass' | 'BandPass' | 'BandStop' | 'Count' | 'ESynthFilterType_MAX';
-declare var ESynthFilterType : { LowPass:'LowPass',HighPass:'HighPass',BandPass:'BandPass',BandStop:'BandStop',Count:'Count',ESynthFilterType_MAX:'ESynthFilterType_MAX', };
-declare type ESynthFilterAlgorithm = 'OnePole' | 'StateVariable' | 'Ladder' | 'Count' | 'ESynthFilterAlgorithm_MAX';
-declare var ESynthFilterAlgorithm : { OnePole:'OnePole',StateVariable:'StateVariable',Ladder:'Ladder',Count:'Count',ESynthFilterAlgorithm_MAX:'ESynthFilterAlgorithm_MAX', };
-declare type ESynthStereoDelayMode = 'Normal' | 'Cross' | 'PingPong' | 'Count' | 'ESynthStereoDelayMode_MAX';
-declare var ESynthStereoDelayMode : { Normal:'Normal',Cross:'Cross',PingPong:'PingPong',Count:'Count',ESynthStereoDelayMode_MAX:'ESynthStereoDelayMode_MAX', };
-declare type ESynth1PatchSource = 'LFO1' | 'LFO2' | 'Envelope' | 'BiasEnvelope' | 'Count' | 'ESynth1PatchSource_MAX';
-declare var ESynth1PatchSource : { LFO1:'LFO1',LFO2:'LFO2',Envelope:'Envelope',BiasEnvelope:'BiasEnvelope',Count:'Count',ESynth1PatchSource_MAX:'ESynth1PatchSource_MAX', };
-declare type ESynth1PatchDestination = 'Osc1Gain' | 'Osc1Frequency' | 'Osc1Pulsewidth' | 'Osc2Gain' | 'Osc2Frequency' | 'Osc2Pulsewidth' | 'FilterFrequency' | 'FilterQ' | 'Gain' | 'Pan' | 'LFO1Frequency' | 'LFO1Gain' | 'LFO2Frequency' | 'LFO2Gain' | 'Count' | 'ESynth1PatchDestination_MAX';
-declare var ESynth1PatchDestination : { Osc1Gain:'Osc1Gain',Osc1Frequency:'Osc1Frequency',Osc1Pulsewidth:'Osc1Pulsewidth',Osc2Gain:'Osc2Gain',Osc2Frequency:'Osc2Frequency',Osc2Pulsewidth:'Osc2Pulsewidth',FilterFrequency:'FilterFrequency',FilterQ:'FilterQ',Gain:'Gain',Pan:'Pan',LFO1Frequency:'LFO1Frequency',LFO1Gain:'LFO1Gain',LFO2Frequency:'LFO2Frequency',LFO2Gain:'LFO2Gain',Count:'Count',ESynth1PatchDestination_MAX:'ESynth1PatchDestination_MAX', };
-declare class Synth1PatchCable { 
-	Depth: number;
-	Destination: ESynth1PatchDestination;
-	clone() : Synth1PatchCable;
-	static C(Other: UObject | any): Synth1PatchCable;
-}
-
-declare class EpicSynth1Patch { 
-	PatchSource: ESynth1PatchSource;
-	PatchCables: Synth1PatchCable[];
-	clone() : EpicSynth1Patch;
-	static C(Other: UObject | any): EpicSynth1Patch;
-}
-
-declare class ModularSynthPreset extends TableRowBase { 
-	bEnablePolyphony: boolean;
-	Osc1Type: ESynth1OscType;
-	Osc1Gain: number;
-	Osc1Octave: number;
-	Osc1Semitones: number;
-	Osc1Cents: number;
-	Osc1PulseWidth: number;
-	Osc2Type: ESynth1OscType;
-	Osc2Gain: number;
-	Osc2Octave: number;
-	Osc2Semitones: number;
-	Osc2Cents: number;
-	Osc2PulseWidth: number;
-	Portamento: number;
-	bEnableUnison: boolean;
-	bEnableOscillatorSync: boolean;
-	Spread: number;
-	Pan: number;
-	LFO1Frequency: number;
-	LFO1Gain: number;
-	LFO1Type: ESynthLFOType;
-	LFO1Mode: ESynthLFOMode;
-	LFO1PatchType: ESynthLFOPatchType;
-	LFO2Frequency: number;
-	LFO2Gain: number;
-	LFO2Type: ESynthLFOType;
-	LFO2Mode: ESynthLFOMode;
-	LFO2PatchType: ESynthLFOPatchType;
-	GainDb: number;
-	AttackTime: number;
-	DecayTime: number;
-	SustainGain: number;
-	ReleaseTime: number;
-	ModEnvPatchType: ESynthModEnvPatch;
-	ModEnvBiasPatchType: ESynthModEnvBiasPatch;
-	bInvertModulationEnvelope: boolean;
-	bInvertModulationEnvelopeBias: boolean;
-	ModulationEnvelopeDepth: number;
-	ModulationEnvelopeAttackTime: number;
-	ModulationEnvelopeDecayTime: number;
-	ModulationEnvelopeSustainGain: number;
-	ModulationEnvelopeReleaseTime: number;
-	bLegato: boolean;
-	bRetrigger: boolean;
-	FilterFrequency: number;
-	FilterQ: number;
-	FilterType: ESynthFilterType;
-	FilterAlgorithm: ESynthFilterAlgorithm;
-	bStereoDelayEnabled: boolean;
-	StereoDelayMode: ESynthStereoDelayMode;
-	StereoDelayTime: number;
-	StereoDelayFeedback: number;
-	StereoDelayWetlevel: number;
-	StereoDelayRatio: number;
-	bChorusEnabled: boolean;
-	ChorusDepth: number;
-	ChorusFeedback: number;
-	ChorusFrequency: number;
-	Patches: EpicSynth1Patch[];
-	clone() : ModularSynthPreset;
-	static C(Other: UObject | any): ModularSynthPreset;
-}
-
-declare class ModularSynthPresetBankEntry { 
-	PresetName: string;
-	Preset: ModularSynthPreset;
-	clone() : ModularSynthPresetBankEntry;
-	static C(Other: UObject | any): ModularSynthPresetBankEntry;
-}
-
-declare class ModularSynthPresetBank extends UObject { 
-	Presets: ModularSynthPresetBankEntry[];
-	static Load(ResourceName: string): ModularSynthPresetBank;
-	static Find(Outer: UObject, ResourceName: string): ModularSynthPresetBank;
-	static GetDefaultObject(): ModularSynthPresetBank;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ModularSynthPresetBank;
-	static C(Other: UObject | any): ModularSynthPresetBank;
-	AddModularSynthPresetToBankAsset(Preset: ModularSynthPreset,PresetName: string): void;
-	static AddModularSynthPresetToBankAsset(InBank: ModularSynthPresetBank,Preset: ModularSynthPreset,PresetName: string): void;
-}
-
-declare class ModularSynthLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): ModularSynthLibrary;
-	static Find(Outer: UObject, ResourceName: string): ModularSynthLibrary;
-	static GetDefaultObject(): ModularSynthLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ModularSynthLibrary;
-	static AddModularSynthPresetToBankAsset(InBank: ModularSynthPresetBank,Preset: ModularSynthPreset,PresetName: string): void;
-	static C(Other: UObject | any): ModularSynthLibrary;
-}
-
-declare class PatchId { 
-	ID: number;
-	clone() : PatchId;
-	static C(Other: UObject | any): PatchId;
-}
-
-declare class ModularSynthComponent extends SynthComponent { 
-	VoiceCount: number;
-	static Load(ResourceName: string): ModularSynthComponent;
-	static Find(Outer: UObject, ResourceName: string): ModularSynthComponent;
-	static GetDefaultObject(): ModularSynthComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ModularSynthComponent;
-	SetSynthPreset(SynthPreset: ModularSynthPreset): void;
-	SetSustainGain(SustainGain: number): void;
-	SetStereoDelayWetlevel(DelayWetlevel: number): void;
-	SetStereoDelayTime(DelayTimeMsec: number): void;
-	SetStereoDelayRatio(DelayRatio: number): void;
-	SetStereoDelayMode(StereoDelayMode: ESynthStereoDelayMode): void;
-	SetStereoDelayIsEnabled(StereoDelayEnabled: boolean): void;
-	SetStereoDelayFeedback(DelayFeedback: number): void;
-	SetSpread(Spread: number): void;
-	SetReleaseTime(ReleaseTimeMsec: number): void;
-	SetPortamento(Portamento: number): void;
-	SetPitchBend(PitchBend: number): void;
-	SetPan(Pan: number): void;
-	SetOscType(OscIndex: number,OscType: ESynth1OscType): void;
-	SetOscSync(bIsSynced: boolean): void;
-	SetOscSemitones(OscIndex: number,Semitones: number): void;
-	SetOscPulsewidth(OscIndex: number,Pulsewidth: number): void;
-	SetOscOctave(OscIndex: number,Octave: number): void;
-	SetOscGainMod(OscIndex: number,OscGainMod: number): void;
-	SetOscGain(OscIndex: number,OscGain: number): void;
-	SetOscFrequencyMod(OscIndex: number,OscFreqMod: number): void;
-	SetOscCents(OscIndex: number,Cents: number): void;
-	SetModEnvSustainGain(SustainGain: number): void;
-	SetModEnvReleaseTime(Release: number): void;
-	SetModEnvPatch(InPatchType: ESynthModEnvPatch): void;
-	SetModEnvInvert(bInvert: boolean): void;
-	SetModEnvDepth(Depth: number): void;
-	SetModEnvDecayTime(DecayTimeMsec: number): void;
-	SetModEnvBiasPatch(InPatchType: ESynthModEnvBiasPatch): void;
-	SetModEnvBiasInvert(bInvert: boolean): void;
-	SetModEnvAttackTime(AttackTimeMsec: number): void;
-	SetLFOType(LFOIndex: number,LFOType: ESynthLFOType): void;
-	SetLFOPatch(LFOIndex: number,LFOPatchType: ESynthLFOPatchType): void;
-	SetLFOMode(LFOIndex: number,LFOMode: ESynthLFOMode): void;
-	SetLFOGainMod(LFOIndex: number,GainMod: number): void;
-	SetLFOGain(LFOIndex: number,Gain: number): void;
-	SetLFOFrequencyMod(LFOIndex: number,FrequencyModHz: number): void;
-	SetLFOFrequency(LFOIndex: number,FrequencyHz: number): void;
-	SetGainDb(GainDb: number): void;
-	SetFilterType(FilterType: ESynthFilterType): void;
-	SetFilterQMod(FilterQ: number): void;
-	SetFilterQ(FilterQ: number): void;
-	SetFilterFrequencyMod(FilterFrequencyHz: number): void;
-	SetFilterFrequency(FilterFrequencyHz: number): void;
-	SetFilterAlgorithm(FilterAlgorithm: ESynthFilterAlgorithm): void;
-	SetEnableUnison(EnableUnison: boolean): void;
-	SetEnableRetrigger(RetriggerEnabled: boolean): void;
-	SetEnablePolyphony(bEnablePolyphony: boolean): void;
-	SetEnablePatch(PatchId: PatchId,bIsEnabled: boolean): boolean;
-	SetEnableLegato(LegatoEnabled: boolean): void;
-	SetDecayTime(DecayTimeMsec: number): void;
-	SetChorusFrequency(Frequency: number): void;
-	SetChorusFeedback(Feedback: number): void;
-	SetChorusEnabled(EnableChorus: boolean): void;
-	SetChorusDepth(Depth: number): void;
-	SetAttackTime(AttackTimeMsec: number): void;
-	NoteOn(Note: number,Velocity: number,Duration: number): void;
-	NoteOff(Note: number,bAllNotesOff: boolean,bKillAllNotes: boolean): void;
-	CreatePatch(PatchSource: ESynth1PatchSource,PatchCables: Synth1PatchCable[],bEnableByDefault: boolean): PatchId;
-	static C(Other: UObject | any): ModularSynthComponent;
-}
-
-declare class SourceEffectBitCrusherSettings { 
-	CrushedSampleRate: number;
-	SampleRateModulation: SoundModulationDestinationSettings;
-	CrushedBits: number;
-	BitModulation: SoundModulationDestinationSettings;
-	clone() : SourceEffectBitCrusherSettings;
-	static C(Other: UObject | any): SourceEffectBitCrusherSettings;
-}
-
-declare class SourceEffectBitCrusherBaseSettings { 
-	SampleRate: number;
-	BitDepth: number;
-	clone() : SourceEffectBitCrusherBaseSettings;
-	static C(Other: UObject | any): SourceEffectBitCrusherBaseSettings;
-}
-
-declare class SourceEffectBitCrusherPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectBitCrusherSettings;
-	static Load(ResourceName: string): SourceEffectBitCrusherPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectBitCrusherPreset;
-	static GetDefaultObject(): SourceEffectBitCrusherPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectBitCrusherPreset;
-	SetSettings(Settings: SourceEffectBitCrusherBaseSettings): void;
-	SetSampleRateModulators(InModulators: Set<SoundModulatorBase>): void;
-	SetSampleRateModulator(Modulator: SoundModulatorBase): void;
-	SetSampleRate(SampleRate: number): void;
-	SetModulationSettings(ModulationSettings: SourceEffectBitCrusherSettings): void;
-	SetBits(Bits: number): void;
-	SetBitModulators(InModulators: Set<SoundModulatorBase>): void;
-	SetBitModulator(Modulator: SoundModulatorBase): void;
-	static C(Other: UObject | any): SourceEffectBitCrusherPreset;
-}
-
-declare class SourceEffectChorusSettings { 
-	Depth: number;
-	Frequency: number;
-	Feedback: number;
-	WetLevel: number;
-	DryLevel: number;
-	Spread: number;
-	DepthModulation: SoundModulationDestinationSettings;
-	FrequencyModulation: SoundModulationDestinationSettings;
-	FeedbackModulation: SoundModulationDestinationSettings;
-	WetModulation: SoundModulationDestinationSettings;
-	DryModulation: SoundModulationDestinationSettings;
-	SpreadModulation: SoundModulationDestinationSettings;
-	clone() : SourceEffectChorusSettings;
-	static C(Other: UObject | any): SourceEffectChorusSettings;
-}
-
-declare class SourceEffectChorusBaseSettings { 
-	Depth: number;
-	Frequency: number;
-	Feedback: number;
-	WetLevel: number;
-	DryLevel: number;
-	Spread: number;
-	clone() : SourceEffectChorusBaseSettings;
-	static C(Other: UObject | any): SourceEffectChorusBaseSettings;
-}
-
-declare class SourceEffectChorusPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectChorusSettings;
-	static Load(ResourceName: string): SourceEffectChorusPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectChorusPreset;
-	static GetDefaultObject(): SourceEffectChorusPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectChorusPreset;
-	SetWetModulators(Modulators: Set<SoundModulatorBase>): void;
-	SetWetModulator(Modulator: SoundModulatorBase): void;
-	SetWet(WetAmount: number): void;
-	SetSpreadModulators(Modulators: Set<SoundModulatorBase>): void;
-	SetSpreadModulator(Modulator: SoundModulatorBase): void;
-	SetSpread(Spread: number): void;
-	SetSettings(Settings: SourceEffectChorusBaseSettings): void;
-	SetModulationSettings(ModulationSettings: SourceEffectChorusSettings): void;
-	SetFrequencyModulators(Modulators: Set<SoundModulatorBase>): void;
-	SetFrequencyModulator(Modulator: SoundModulatorBase): void;
-	SetFrequency(Frequency: number): void;
-	SetFeedbackModulators(Modulators: Set<SoundModulatorBase>): void;
-	SetFeedbackModulator(Modulator: SoundModulatorBase): void;
-	SetFeedback(Feedback: number): void;
-	SetDryModulators(Modulators: Set<SoundModulatorBase>): void;
-	SetDryModulator(Modulator: SoundModulatorBase): void;
-	SetDry(DryAmount: number): void;
-	SetDepthModulators(Modulators: Set<SoundModulatorBase>): void;
-	SetDepthModulator(Modulator: SoundModulatorBase): void;
-	SetDepth(Depth: number): void;
-	static C(Other: UObject | any): SourceEffectChorusPreset;
-}
-
-declare class SourceEffectConvolutionReverbSettings { 
-	NormalizationVolumeDb: number;
-	WetVolumeDb: number;
-	DryVolumeDb: number;
-	bBypass: boolean;
-	clone() : SourceEffectConvolutionReverbSettings;
-	static C(Other: UObject | any): SourceEffectConvolutionReverbSettings;
-}
-
-declare type ESubmixEffectConvolutionReverbBlockSize = 'BlockSize256' | 'BlockSize512' | 'BlockSize1024' | 'ESubmixEffectConvolutionReverbBlockSize_MAX';
-declare var ESubmixEffectConvolutionReverbBlockSize : { BlockSize256:'BlockSize256',BlockSize512:'BlockSize512',BlockSize1024:'BlockSize1024',ESubmixEffectConvolutionReverbBlockSize_MAX:'ESubmixEffectConvolutionReverbBlockSize_MAX', };
-declare class SourceEffectConvolutionReverbPreset extends SoundEffectSourcePreset { 
-	ImpulseResponse: AudioImpulseResponse;
-	Settings: SourceEffectConvolutionReverbSettings;
-	BlockSize: ESubmixEffectConvolutionReverbBlockSize;
-	bEnableHardwareAcceleration: boolean;
-	static Load(ResourceName: string): SourceEffectConvolutionReverbPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectConvolutionReverbPreset;
-	static GetDefaultObject(): SourceEffectConvolutionReverbPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectConvolutionReverbPreset;
-	SetSettings(InSettings: SourceEffectConvolutionReverbSettings): void;
-	SetImpulseResponse(InImpulseResponse: AudioImpulseResponse): void;
-	static C(Other: UObject | any): SourceEffectConvolutionReverbPreset;
-}
-
-declare type ESourceEffectDynamicsProcessorType = 'Compressor' | 'Limiter' | 'Expander' | 'Gate' | 'UpwardsCompressor' | 'Count' | 'ESourceEffectDynamicsProcessorType_MAX';
-declare var ESourceEffectDynamicsProcessorType : { Compressor:'Compressor',Limiter:'Limiter',Expander:'Expander',Gate:'Gate',UpwardsCompressor:'UpwardsCompressor',Count:'Count',ESourceEffectDynamicsProcessorType_MAX:'ESourceEffectDynamicsProcessorType_MAX', };
-declare type ESourceEffectDynamicsPeakMode = 'MeanSquared' | 'RootMeanSquared' | 'Peak' | 'Count' | 'ESourceEffectDynamicsPeakMode_MAX';
-declare var ESourceEffectDynamicsPeakMode : { MeanSquared:'MeanSquared',RootMeanSquared:'RootMeanSquared',Peak:'Peak',Count:'Count',ESourceEffectDynamicsPeakMode_MAX:'ESourceEffectDynamicsPeakMode_MAX', };
-declare class SourceEffectDynamicsProcessorSettings { 
-	DynamicsProcessorType: ESourceEffectDynamicsProcessorType;
-	PeakMode: ESourceEffectDynamicsPeakMode;
-	LookAheadMsec: number;
-	AttackTimeMsec: number;
-	ReleaseTimeMsec: number;
-	ThresholdDb: number;
-	Ratio: number;
-	KneeBandwidthDb: number;
-	InputGainDb: number;
-	OutputGainDb: number;
-	bStereoLinked: boolean;
-	bAnalogMode: boolean;
-	clone() : SourceEffectDynamicsProcessorSettings;
-	static C(Other: UObject | any): SourceEffectDynamicsProcessorSettings;
-}
-
-declare class SourceEffectDynamicsProcessorPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectDynamicsProcessorSettings;
-	static Load(ResourceName: string): SourceEffectDynamicsProcessorPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectDynamicsProcessorPreset;
-	static GetDefaultObject(): SourceEffectDynamicsProcessorPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectDynamicsProcessorPreset;
-	SetSettings(InSettings: SourceEffectDynamicsProcessorSettings): void;
-	static C(Other: UObject | any): SourceEffectDynamicsProcessorPreset;
-}
-
-declare class EnvelopeFollowerListener extends ActorComponent { 
-	OnEnvelopeFollowerUpdate: UnrealEngineMulticastDelegate<(EnvelopeValue: number) => void>;
-	static Load(ResourceName: string): EnvelopeFollowerListener;
-	static Find(Outer: UObject, ResourceName: string): EnvelopeFollowerListener;
-	static GetDefaultObject(): EnvelopeFollowerListener;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvelopeFollowerListener;
-	static C(Other: UObject | any): EnvelopeFollowerListener;
-}
-
-declare type EEnvelopeFollowerPeakMode = 'MeanSquared' | 'RootMeanSquared' | 'Peak' | 'Count' | 'EEnvelopeFollowerPeakMode_MAX';
-declare var EEnvelopeFollowerPeakMode : { MeanSquared:'MeanSquared',RootMeanSquared:'RootMeanSquared',Peak:'Peak',Count:'Count',EEnvelopeFollowerPeakMode_MAX:'EEnvelopeFollowerPeakMode_MAX', };
-declare class SourceEffectEnvelopeFollowerSettings { 
-	AttackTime: number;
-	ReleaseTime: number;
-	PeakMode: EEnvelopeFollowerPeakMode;
-	bIsAnalogMode: boolean;
-	clone() : SourceEffectEnvelopeFollowerSettings;
-	static C(Other: UObject | any): SourceEffectEnvelopeFollowerSettings;
-}
-
-declare class SourceEffectEnvelopeFollowerPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectEnvelopeFollowerSettings;
-	static Load(ResourceName: string): SourceEffectEnvelopeFollowerPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectEnvelopeFollowerPreset;
-	static GetDefaultObject(): SourceEffectEnvelopeFollowerPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectEnvelopeFollowerPreset;
-	UnregisterEnvelopeFollowerListener(EnvelopeFollowerListener: EnvelopeFollowerListener): void;
-	SetSettings(InSettings: SourceEffectEnvelopeFollowerSettings): void;
-	RegisterEnvelopeFollowerListener(EnvelopeFollowerListener: EnvelopeFollowerListener): void;
-	static C(Other: UObject | any): SourceEffectEnvelopeFollowerPreset;
-}
-
-declare class SourceEffectEQBand { 
-	Frequency: number;
-	Bandwidth: number;
-	GainDb: number;
-	bEnabled: boolean;
-	clone() : SourceEffectEQBand;
-	static C(Other: UObject | any): SourceEffectEQBand;
-}
-
-declare class SourceEffectEQSettings { 
-	EQBands: SourceEffectEQBand[];
-	clone() : SourceEffectEQSettings;
-	static C(Other: UObject | any): SourceEffectEQSettings;
-}
-
-declare class SourceEffectEQPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectEQSettings;
-	static Load(ResourceName: string): SourceEffectEQPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectEQPreset;
-	static GetDefaultObject(): SourceEffectEQPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectEQPreset;
-	SetSettings(InSettings: SourceEffectEQSettings): void;
-	static C(Other: UObject | any): SourceEffectEQPreset;
-}
-
-declare type ESourceEffectFilterCircuit = 'OnePole' | 'StateVariable' | 'Ladder' | 'Count' | 'ESourceEffectFilterCircuit_MAX';
-declare var ESourceEffectFilterCircuit : { OnePole:'OnePole',StateVariable:'StateVariable',Ladder:'Ladder',Count:'Count',ESourceEffectFilterCircuit_MAX:'ESourceEffectFilterCircuit_MAX', };
-declare type ESourceEffectFilterType = 'LowPass' | 'HighPass' | 'BandPass' | 'BandStop' | 'Count' | 'ESourceEffectFilterType_MAX';
-declare var ESourceEffectFilterType : { LowPass:'LowPass',HighPass:'HighPass',BandPass:'BandPass',BandStop:'BandStop',Count:'Count',ESourceEffectFilterType_MAX:'ESourceEffectFilterType_MAX', };
-declare type ESourceEffectFilterParam = 'FilterFrequency' | 'FilterResonance' | 'Count' | 'ESourceEffectFilterParam_MAX';
-declare var ESourceEffectFilterParam : { FilterFrequency:'FilterFrequency',FilterResonance:'FilterResonance',Count:'Count',ESourceEffectFilterParam_MAX:'ESourceEffectFilterParam_MAX', };
-declare class SourceEffectFilterAudioBusModulationSettings { 
-	AudioBus: AudioBus;
-	EnvelopeFollowerAttackTimeMsec: number;
-	EnvelopeFollowerReleaseTimeMsec: number;
-	EnvelopeGainMultiplier: number;
-	FilterParam: ESourceEffectFilterParam;
-	MinFrequencyModulation: number;
-	MaxFrequencyModulation: number;
-	MinResonanceModulation: number;
-	MaxResonanceModulation: number;
-	clone() : SourceEffectFilterAudioBusModulationSettings;
-	static C(Other: UObject | any): SourceEffectFilterAudioBusModulationSettings;
-}
-
-declare class SourceEffectFilterSettings { 
-	FilterCircuit: ESourceEffectFilterCircuit;
-	FilterType: ESourceEffectFilterType;
-	CutoffFrequency: number;
-	FilterQ: number;
-	AudioBusModulation: SourceEffectFilterAudioBusModulationSettings[];
-	clone() : SourceEffectFilterSettings;
-	static C(Other: UObject | any): SourceEffectFilterSettings;
-}
-
-declare class SourceEffectFilterPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectFilterSettings;
-	static Load(ResourceName: string): SourceEffectFilterPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectFilterPreset;
-	static GetDefaultObject(): SourceEffectFilterPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectFilterPreset;
-	SetSettings(InSettings: SourceEffectFilterSettings): void;
-	static C(Other: UObject | any): SourceEffectFilterPreset;
-}
-
-declare class SourceEffectFoldbackDistortionSettings { 
-	InputGainDb: number;
-	ThresholdDb: number;
-	OutputGainDb: number;
-	clone() : SourceEffectFoldbackDistortionSettings;
-	static C(Other: UObject | any): SourceEffectFoldbackDistortionSettings;
-}
-
-declare class SourceEffectFoldbackDistortionPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectFoldbackDistortionSettings;
-	static Load(ResourceName: string): SourceEffectFoldbackDistortionPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectFoldbackDistortionPreset;
-	static GetDefaultObject(): SourceEffectFoldbackDistortionPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectFoldbackDistortionPreset;
-	SetSettings(InSettings: SourceEffectFoldbackDistortionSettings): void;
-	static C(Other: UObject | any): SourceEffectFoldbackDistortionPreset;
-}
-
-declare type EStereoChannelMode = 'MidSide' | 'LeftRight' | 'count' | 'EStereoChannelMode_MAX';
-declare var EStereoChannelMode : { MidSide:'MidSide',LeftRight:'LeftRight',count:'count',EStereoChannelMode_MAX:'EStereoChannelMode_MAX', };
-declare class SourceEffectMidSideSpreaderSettings { 
-	SpreadAmount: number;
-	InputMode: EStereoChannelMode;
-	OutputMode: EStereoChannelMode;
-	bEqualPower: boolean;
-	clone() : SourceEffectMidSideSpreaderSettings;
-	static C(Other: UObject | any): SourceEffectMidSideSpreaderSettings;
-}
-
-declare class SourceEffectMidSideSpreaderPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectMidSideSpreaderSettings;
-	static Load(ResourceName: string): SourceEffectMidSideSpreaderPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectMidSideSpreaderPreset;
-	static GetDefaultObject(): SourceEffectMidSideSpreaderPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectMidSideSpreaderPreset;
-	SetSettings(InSettings: SourceEffectMidSideSpreaderSettings): void;
-	static C(Other: UObject | any): SourceEffectMidSideSpreaderPreset;
-}
-
-declare type ESourceEffectMotionFilterTopology = 'SerialMode' | 'ParallelMode' | 'Count' | 'ESourceEffectMotionFilterTopology_MAX';
-declare var ESourceEffectMotionFilterTopology : { SerialMode:'SerialMode',ParallelMode:'ParallelMode',Count:'Count',ESourceEffectMotionFilterTopology_MAX:'ESourceEffectMotionFilterTopology_MAX', };
-declare type ESourceEffectMotionFilterCircuit = 'OnePole' | 'StateVariable' | 'Ladder' | 'Count' | 'ESourceEffectMotionFilterCircuit_MAX';
-declare var ESourceEffectMotionFilterCircuit : { OnePole:'OnePole',StateVariable:'StateVariable',Ladder:'Ladder',Count:'Count',ESourceEffectMotionFilterCircuit_MAX:'ESourceEffectMotionFilterCircuit_MAX', };
-declare type ESourceEffectMotionFilterType = 'LowPass' | 'HighPass' | 'BandPass' | 'BandStop' | 'Count' | 'ESourceEffectMotionFilterType_MAX';
-declare var ESourceEffectMotionFilterType : { LowPass:'LowPass',HighPass:'HighPass',BandPass:'BandPass',BandStop:'BandStop',Count:'Count',ESourceEffectMotionFilterType_MAX:'ESourceEffectMotionFilterType_MAX', };
-declare class SourceEffectIndividualFilterSettings { 
-	FilterCircuit: ESourceEffectMotionFilterCircuit;
-	FilterType: ESourceEffectMotionFilterType;
-	CutoffFrequency: number;
-	FilterQ: number;
-	clone() : SourceEffectIndividualFilterSettings;
-	static C(Other: UObject | any): SourceEffectIndividualFilterSettings;
-}
-
-declare type ESourceEffectMotionFilterModDestination = 'FilterACutoffFrequency' | 'FilterAResonance' | 'FilterAOutputVolumeDB' | 'FilterBCutoffFrequency' | 'FilterBResonance' | 'FilterBOutputVolumeDB' | 'FilterMix' | 'Count' | 'ESourceEffectMotionFilterModDestination_MAX';
-declare var ESourceEffectMotionFilterModDestination : { FilterACutoffFrequency:'FilterACutoffFrequency',FilterAResonance:'FilterAResonance',FilterAOutputVolumeDB:'FilterAOutputVolumeDB',FilterBCutoffFrequency:'FilterBCutoffFrequency',FilterBResonance:'FilterBResonance',FilterBOutputVolumeDB:'FilterBOutputVolumeDB',FilterMix:'FilterMix',Count:'Count',ESourceEffectMotionFilterModDestination_MAX:'ESourceEffectMotionFilterModDestination_MAX', };
-declare type ESourceEffectMotionFilterModSource = 'DistanceFromListener' | 'SpeedRelativeToListener' | 'SpeedOfSourceEmitter' | 'SpeedOfListener' | 'SpeedOfAngleDelta' | 'Count' | 'ESourceEffectMotionFilterModSource_MAX';
-declare var ESourceEffectMotionFilterModSource : { DistanceFromListener:'DistanceFromListener',SpeedRelativeToListener:'SpeedRelativeToListener',SpeedOfSourceEmitter:'SpeedOfSourceEmitter',SpeedOfListener:'SpeedOfListener',SpeedOfAngleDelta:'SpeedOfAngleDelta',Count:'Count',ESourceEffectMotionFilterModSource_MAX:'ESourceEffectMotionFilterModSource_MAX', };
-declare class SourceEffectMotionFilterModulationSettings { 
-	ModulationSource: ESourceEffectMotionFilterModSource;
-	ModulationInputRange: Vector2D;
-	ModulationOutputMinimumRange: Vector2D;
-	ModulationOutputMaximumRange: Vector2D;
-	UpdateEaseMS: number;
-	clone() : SourceEffectMotionFilterModulationSettings;
-	static C(Other: UObject | any): SourceEffectMotionFilterModulationSettings;
-}
-
-declare class SourceEffectMotionFilterSettings { 
-	MotionFilterTopology: ESourceEffectMotionFilterTopology;
-	MotionFilterMix: number;
-	FilterASettings: SourceEffectIndividualFilterSettings;
-	FilterBSettings: SourceEffectIndividualFilterSettings;
-	ModulationMappings: Map<ESourceEffectMotionFilterModDestination, SourceEffectMotionFilterModulationSettings>;
-	DryVolumeDb: number;
-	clone() : SourceEffectMotionFilterSettings;
-	static C(Other: UObject | any): SourceEffectMotionFilterSettings;
-}
-
-declare class SourceEffectMotionFilterPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectMotionFilterSettings;
-	static Load(ResourceName: string): SourceEffectMotionFilterPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectMotionFilterPreset;
-	static GetDefaultObject(): SourceEffectMotionFilterPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectMotionFilterPreset;
-	SetSettings(InSettings: SourceEffectMotionFilterSettings): void;
-	static C(Other: UObject | any): SourceEffectMotionFilterPreset;
-}
-
-declare class SourceEffectPannerSettings { 
-	Spread: number;
-	Pan: number;
-	clone() : SourceEffectPannerSettings;
-	static C(Other: UObject | any): SourceEffectPannerSettings;
-}
-
-declare class SourceEffectPannerPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectPannerSettings;
-	static Load(ResourceName: string): SourceEffectPannerPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectPannerPreset;
-	static GetDefaultObject(): SourceEffectPannerPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectPannerPreset;
-	SetSettings(InSettings: SourceEffectPannerSettings): void;
-	static C(Other: UObject | any): SourceEffectPannerPreset;
-}
-
-declare type EPhaserLFOType = 'Sine' | 'UpSaw' | 'DownSaw' | 'Square' | 'Triangle' | 'Exponential' | 'RandomSampleHold' | 'Count' | 'EPhaserLFOType_MAX';
-declare var EPhaserLFOType : { Sine:'Sine',UpSaw:'UpSaw',DownSaw:'DownSaw',Square:'Square',Triangle:'Triangle',Exponential:'Exponential',RandomSampleHold:'RandomSampleHold',Count:'Count',EPhaserLFOType_MAX:'EPhaserLFOType_MAX', };
-declare class SourceEffectPhaserSettings { 
-	WetLevel: number;
-	Frequency: number;
-	Feedback: number;
-	LFOType: EPhaserLFOType;
-	UseQuadraturePhase: boolean;
-	clone() : SourceEffectPhaserSettings;
-	static C(Other: UObject | any): SourceEffectPhaserSettings;
-}
-
-declare class SourceEffectPhaserPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectPhaserSettings;
-	static Load(ResourceName: string): SourceEffectPhaserPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectPhaserPreset;
-	static GetDefaultObject(): SourceEffectPhaserPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectPhaserPreset;
-	SetSettings(InSettings: SourceEffectPhaserSettings): void;
-	static C(Other: UObject | any): SourceEffectPhaserPreset;
-}
-
-declare type ERingModulatorTypeSourceEffect = 'Sine' | 'Saw' | 'Triangle' | 'Square' | 'Count' | 'ERingModulatorTypeSourceEffect_MAX';
-declare var ERingModulatorTypeSourceEffect : { Sine:'Sine',Saw:'Saw',Triangle:'Triangle',Square:'Square',Count:'Count',ERingModulatorTypeSourceEffect_MAX:'ERingModulatorTypeSourceEffect_MAX', };
-declare class SourceEffectRingModulationSettings { 
-	ModulatorType: ERingModulatorTypeSourceEffect;
-	Frequency: number;
-	Depth: number;
-	DryLevel: number;
-	WetLevel: number;
-	AudioBusModulator: AudioBus;
-	clone() : SourceEffectRingModulationSettings;
-	static C(Other: UObject | any): SourceEffectRingModulationSettings;
-}
-
-declare class SourceEffectRingModulationPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectRingModulationSettings;
-	static Load(ResourceName: string): SourceEffectRingModulationPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectRingModulationPreset;
-	static GetDefaultObject(): SourceEffectRingModulationPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectRingModulationPreset;
-	SetSettings(InSettings: SourceEffectRingModulationSettings): void;
-	static C(Other: UObject | any): SourceEffectRingModulationPreset;
-}
-
-declare class SourceEffectSimpleDelaySettings { 
-	SpeedOfSound: number;
-	DelayAmount: number;
-	DryAmount: number;
-	WetAmount: number;
-	Feedback: number;
-	bDelayBasedOnDistance: boolean;
-	bUseDistanceOverride: boolean;
-	clone() : SourceEffectSimpleDelaySettings;
-	static C(Other: UObject | any): SourceEffectSimpleDelaySettings;
-}
-
-declare class SourceEffectSimpleDelayPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectSimpleDelaySettings;
-	static Load(ResourceName: string): SourceEffectSimpleDelayPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectSimpleDelayPreset;
-	static GetDefaultObject(): SourceEffectSimpleDelayPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectSimpleDelayPreset;
-	SetSettings(InSettings: SourceEffectSimpleDelaySettings): void;
-	static C(Other: UObject | any): SourceEffectSimpleDelayPreset;
-}
-
-declare type EStereoDelaySourceEffect = 'Normal' | 'Cross' | 'PingPong' | 'Count' | 'EStereoDelaySourceEffect_MAX';
-declare var EStereoDelaySourceEffect : { Normal:'Normal',Cross:'Cross',PingPong:'PingPong',Count:'Count',EStereoDelaySourceEffect_MAX:'EStereoDelaySourceEffect_MAX', };
-declare type EStereoDelayFiltertype = 'Lowpass' | 'Highpass' | 'Bandpass' | 'Notch' | 'Count' | 'EStereoDelayFiltertype_MAX';
-declare var EStereoDelayFiltertype : { Lowpass:'Lowpass',Highpass:'Highpass',Bandpass:'Bandpass',Notch:'Notch',Count:'Count',EStereoDelayFiltertype_MAX:'EStereoDelayFiltertype_MAX', };
-declare class SourceEffectStereoDelaySettings { 
-	DelayMode: EStereoDelaySourceEffect;
-	DelayTimeMsec: number;
-	Feedback: number;
-	DelayRatio: number;
-	WetLevel: number;
-	DryLevel: number;
-	bFilterEnabled: boolean;
-	FilterType: EStereoDelayFiltertype;
-	FilterFrequency: number;
-	FilterQ: number;
-	clone() : SourceEffectStereoDelaySettings;
-	static C(Other: UObject | any): SourceEffectStereoDelaySettings;
-}
-
-declare class SourceEffectStereoDelayPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectStereoDelaySettings;
-	static Load(ResourceName: string): SourceEffectStereoDelayPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectStereoDelayPreset;
-	static GetDefaultObject(): SourceEffectStereoDelayPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectStereoDelayPreset;
-	SetSettings(InSettings: SourceEffectStereoDelaySettings): void;
-	static C(Other: UObject | any): SourceEffectStereoDelayPreset;
-}
-
-declare class SourceEffectWaveShaperSettings { 
-	Amount: number;
-	OutputGainDb: number;
-	clone() : SourceEffectWaveShaperSettings;
-	static C(Other: UObject | any): SourceEffectWaveShaperSettings;
-}
-
-declare class SourceEffectWaveShaperPreset extends SoundEffectSourcePreset { 
-	Settings: SourceEffectWaveShaperSettings;
-	static Load(ResourceName: string): SourceEffectWaveShaperPreset;
-	static Find(Outer: UObject, ResourceName: string): SourceEffectWaveShaperPreset;
-	static GetDefaultObject(): SourceEffectWaveShaperPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectWaveShaperPreset;
-	SetSettings(InSettings: SourceEffectWaveShaperSettings): void;
-	static C(Other: UObject | any): SourceEffectWaveShaperPreset;
-}
-
-declare class SubmixEffectConvolutionReverbSettings { 
-	NormalizationVolumeDb: number;
-	WetVolumeDb: number;
-	DryVolumeDb: number;
-	bBypass: boolean;
-	bMixInputChannelFormatToImpulseResponseFormat: boolean;
-	bMixReverbOutputToOutputChannelFormat: boolean;
-	SurroundRearChannelBleedDb: number;
-	bInvertRearChannelBleedPhase: boolean;
-	bSurroundRearChannelFlip: boolean;
-	SurroundRearChannelBleedAmount: number;
-	ImpulseResponse: AudioImpulseResponse;
-	AllowHardwareAcceleration: boolean;
-	clone() : SubmixEffectConvolutionReverbSettings;
-	static C(Other: UObject | any): SubmixEffectConvolutionReverbSettings;
-}
-
-declare class SubmixEffectConvolutionReverbPreset extends SoundEffectSubmixPreset { 
-	ImpulseResponse: AudioImpulseResponse;
-	Settings: SubmixEffectConvolutionReverbSettings;
-	BlockSize: ESubmixEffectConvolutionReverbBlockSize;
-	bEnableHardwareAcceleration: boolean;
-	static Load(ResourceName: string): SubmixEffectConvolutionReverbPreset;
-	static Find(Outer: UObject, ResourceName: string): SubmixEffectConvolutionReverbPreset;
-	static GetDefaultObject(): SubmixEffectConvolutionReverbPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectConvolutionReverbPreset;
-	SetSettings(InSettings: SubmixEffectConvolutionReverbSettings): void;
-	SetImpulseResponse(InImpulseResponse: AudioImpulseResponse): void;
-	static C(Other: UObject | any): SubmixEffectConvolutionReverbPreset;
-}
-
-declare class SubmixEffectDelaySettings { 
-	MaximumDelayLength: number;
-	InterpolationTime: number;
-	DelayLength: number;
-	clone() : SubmixEffectDelaySettings;
-	static C(Other: UObject | any): SubmixEffectDelaySettings;
-	SetDelayLength(DelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
-	SetInterpolationTime(InterpolationTime?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
-	SetMaximumDelayLength(MaximumDelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
-	static SetDelayLength(DelaySettings?: SubmixEffectDelaySettings,DelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
-	static SetInterpolationTime(DelaySettings?: SubmixEffectDelaySettings,InterpolationTime?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
-	static SetMaximumDelayLength(DelaySettings?: SubmixEffectDelaySettings,MaximumDelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
-}
-
-declare class SubmixEffectDelayStatics extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): SubmixEffectDelayStatics;
-	static Find(Outer: UObject, ResourceName: string): SubmixEffectDelayStatics;
-	static GetDefaultObject(): SubmixEffectDelayStatics;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectDelayStatics;
-	static SetMaximumDelayLength(DelaySettings?: SubmixEffectDelaySettings,MaximumDelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
-	static SetInterpolationTime(DelaySettings?: SubmixEffectDelaySettings,InterpolationTime?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
-	static SetDelayLength(DelaySettings?: SubmixEffectDelaySettings,DelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
-	static C(Other: UObject | any): SubmixEffectDelayStatics;
-}
-
-declare class SubmixEffectDelayPreset extends SoundEffectSubmixPreset { 
-	Settings: SubmixEffectDelaySettings;
-	DynamicSettings: SubmixEffectDelaySettings;
-	static Load(ResourceName: string): SubmixEffectDelayPreset;
-	static Find(Outer: UObject, ResourceName: string): SubmixEffectDelayPreset;
-	static GetDefaultObject(): SubmixEffectDelayPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectDelayPreset;
-	SetSettings(InSettings: SubmixEffectDelaySettings): void;
-	SetInterpolationTime(Time: number): void;
-	SetDelay(Length: number): void;
-	SetDefaultSettings(InSettings: SubmixEffectDelaySettings): void;
-	GetMaxDelayInMilliseconds(): number;
-	static C(Other: UObject | any): SubmixEffectDelayPreset;
-}
-
-declare type ESubmixFilterType = 'LowPass' | 'HighPass' | 'BandPass' | 'BandStop' | 'Count' | 'ESubmixFilterType_MAX';
-declare var ESubmixFilterType : { LowPass:'LowPass',HighPass:'HighPass',BandPass:'BandPass',BandStop:'BandStop',Count:'Count',ESubmixFilterType_MAX:'ESubmixFilterType_MAX', };
-declare type ESubmixFilterAlgorithm = 'OnePole' | 'StateVariable' | 'Ladder' | 'Count' | 'ESubmixFilterAlgorithm_MAX';
-declare var ESubmixFilterAlgorithm : { OnePole:'OnePole',StateVariable:'StateVariable',Ladder:'Ladder',Count:'Count',ESubmixFilterAlgorithm_MAX:'ESubmixFilterAlgorithm_MAX', };
-declare class SubmixEffectFilterSettings { 
-	FilterType: ESubmixFilterType;
-	FilterAlgorithm: ESubmixFilterAlgorithm;
-	FilterFrequency: number;
-	FilterQ: number;
-	clone() : SubmixEffectFilterSettings;
-	static C(Other: UObject | any): SubmixEffectFilterSettings;
-}
-
-declare class SubmixEffectFilterPreset extends SoundEffectSubmixPreset { 
-	Settings: SubmixEffectFilterSettings;
-	static Load(ResourceName: string): SubmixEffectFilterPreset;
-	static Find(Outer: UObject, ResourceName: string): SubmixEffectFilterPreset;
-	static GetDefaultObject(): SubmixEffectFilterPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectFilterPreset;
-	SetSettings(InSettings: SubmixEffectFilterSettings): void;
-	SetFilterType(InType: ESubmixFilterType): void;
-	SetFilterQMod(InQ: number): void;
-	SetFilterQ(InQ: number): void;
-	SetFilterCutoffFrequencyMod(InFrequency: number): void;
-	SetFilterCutoffFrequency(InFrequency: number): void;
-	SetFilterAlgorithm(InAlgorithm: ESubmixFilterAlgorithm): void;
-	static C(Other: UObject | any): SubmixEffectFilterPreset;
-}
-
-declare class SubmixEffectFlexiverbSettings { 
-	PreDelay: number;
-	DecayTime: number;
-	RoomDampening: number;
-	Complexity: number;
-	clone() : SubmixEffectFlexiverbSettings;
-	static C(Other: UObject | any): SubmixEffectFlexiverbSettings;
-}
-
-declare class SubmixEffectFlexiverbPreset extends SoundEffectSubmixPreset { 
-	Settings: SubmixEffectFlexiverbSettings;
-	static Load(ResourceName: string): SubmixEffectFlexiverbPreset;
-	static Find(Outer: UObject, ResourceName: string): SubmixEffectFlexiverbPreset;
-	static GetDefaultObject(): SubmixEffectFlexiverbPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectFlexiverbPreset;
-	SetSettings(InSettings: SubmixEffectFlexiverbSettings): void;
-	static C(Other: UObject | any): SubmixEffectFlexiverbPreset;
-}
-
-declare class DynamicsBandSettings { 
-	CrossoverTopFrequency: number;
-	AttackTimeMsec: number;
-	ReleaseTimeMsec: number;
-	ThresholdDb: number;
-	Ratio: number;
-	KneeBandwidthDb: number;
-	InputGainDb: number;
-	OutputGainDb: number;
-	clone() : DynamicsBandSettings;
-	static C(Other: UObject | any): DynamicsBandSettings;
-}
-
-declare class SubmixEffectMultibandCompressorSettings { 
-	DynamicsProcessorType: ESubmixEffectDynamicsProcessorType;
-	PeakMode: ESubmixEffectDynamicsPeakMode;
-	LinkMode: ESubmixEffectDynamicsChannelLinkMode;
-	LookAheadMsec: number;
-	bAnalogMode: boolean;
-	bFourPole: boolean;
-	bBypass: boolean;
-	KeySource: ESubmixEffectDynamicsKeySource;
-	ExternalAudioBus: AudioBus;
-	ExternalSubmix: SoundSubmix;
-	KeyGainDb: number;
-	bKeyAudition: boolean;
-	Bands: DynamicsBandSettings[];
-	clone() : SubmixEffectMultibandCompressorSettings;
-	static C(Other: UObject | any): SubmixEffectMultibandCompressorSettings;
-}
-
-declare class SubmixEffectMultibandCompressorPreset extends SoundEffectSubmixPreset { 
-	Settings: SubmixEffectMultibandCompressorSettings;
-	static Load(ResourceName: string): SubmixEffectMultibandCompressorPreset;
-	static Find(Outer: UObject, ResourceName: string): SubmixEffectMultibandCompressorPreset;
-	static GetDefaultObject(): SubmixEffectMultibandCompressorPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectMultibandCompressorPreset;
-	SetSettings(InSettings: SubmixEffectMultibandCompressorSettings): void;
-	SetExternalSubmix(Submix: SoundSubmix): void;
-	SetAudioBus(AudioBus: AudioBus): void;
-	ResetKey(): void;
-	static C(Other: UObject | any): SubmixEffectMultibandCompressorPreset;
-}
-
-declare class SubmixEffectStereoDelaySettings { 
-	DelayMode: EStereoDelaySourceEffect;
-	DelayTimeMsec: number;
-	Feedback: number;
-	DelayRatio: number;
-	WetLevel: number;
-	DryLevel: number;
-	bFilterEnabled: boolean;
-	FilterType: EStereoDelayFiltertype;
-	FilterFrequency: number;
-	FilterQ: number;
-	clone() : SubmixEffectStereoDelaySettings;
-	static C(Other: UObject | any): SubmixEffectStereoDelaySettings;
-}
-
-declare class SubmixEffectStereoDelayPreset extends SoundEffectSubmixPreset { 
-	Settings: SubmixEffectStereoDelaySettings;
-	static Load(ResourceName: string): SubmixEffectStereoDelayPreset;
-	static Find(Outer: UObject, ResourceName: string): SubmixEffectStereoDelayPreset;
-	static GetDefaultObject(): SubmixEffectStereoDelayPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectStereoDelayPreset;
-	SetSettings(InSettings: SubmixEffectStereoDelaySettings): void;
-	static C(Other: UObject | any): SubmixEffectStereoDelayPreset;
-}
-
-declare type ETapLineMode = 'SendToChannel' | 'Panning' | 'Disabled' | 'ETapLineMode_MAX';
-declare var ETapLineMode : { SendToChannel:'SendToChannel',Panning:'Panning',Disabled:'Disabled',ETapLineMode_MAX:'ETapLineMode_MAX', };
-declare class TapDelayInfo { 
-	TapLineMode: ETapLineMode;
-	DelayLength: number;
-	Gain: number;
-	OutputChannel: number;
-	PanInDegrees: number;
-	TapId: number;
-	clone() : TapDelayInfo;
-	static C(Other: UObject | any): TapDelayInfo;
-}
-
-declare class SubmixEffectTapDelaySettings { 
-	MaximumDelayLength: number;
-	InterpolationTime: number;
-	Taps: TapDelayInfo[];
-	clone() : SubmixEffectTapDelaySettings;
-	static C(Other: UObject | any): SubmixEffectTapDelaySettings;
-}
-
-declare class SubmixEffectTapDelayPreset extends SoundEffectSubmixPreset { 
-	Settings: SubmixEffectTapDelaySettings;
-	static Load(ResourceName: string): SubmixEffectTapDelayPreset;
-	static Find(Outer: UObject, ResourceName: string): SubmixEffectTapDelayPreset;
-	static GetDefaultObject(): SubmixEffectTapDelayPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectTapDelayPreset;
-	SetTap(TapId: number,TapInfo: TapDelayInfo): void;
-	SetSettings(InSettings: SubmixEffectTapDelaySettings): void;
-	SetInterpolationTime(Time: number): void;
-	RemoveTap(TapId: number): void;
-	GetTapIds(TapIds?: number[]): {TapIds: number[]};
-	GetTap(TapId: number,TapInfo?: TapDelayInfo): {TapInfo: TapDelayInfo};
-	GetMaxDelayInMilliseconds(): number;
-	AddTap(TapId?: number): {TapId: number};
-	static C(Other: UObject | any): SubmixEffectTapDelayPreset;
-}
-
-declare type EGranularSynthSeekType = 'FromBeginning' | 'FromCurrentPosition' | 'Count' | 'EGranularSynthSeekType_MAX';
-declare var EGranularSynthSeekType : { FromBeginning:'FromBeginning',FromCurrentPosition:'FromCurrentPosition',Count:'Count',EGranularSynthSeekType_MAX:'EGranularSynthSeekType_MAX', };
-declare type EGranularSynthEnvelopeType = 'Rectangular' | 'Triangle' | 'DownwardTriangle' | 'UpwardTriangle' | 'ExponentialDecay' | 'ExponentialIncrease' | 'Gaussian' | 'Hanning' | 'Lanczos' | 'Cosine' | 'CosineSquared' | 'Welch' | 'Blackman' | 'BlackmanHarris' | 'Count' | 'EGranularSynthEnvelopeType_MAX';
-declare var EGranularSynthEnvelopeType : { Rectangular:'Rectangular',Triangle:'Triangle',DownwardTriangle:'DownwardTriangle',UpwardTriangle:'UpwardTriangle',ExponentialDecay:'ExponentialDecay',ExponentialIncrease:'ExponentialIncrease',Gaussian:'Gaussian',Hanning:'Hanning',Lanczos:'Lanczos',Cosine:'Cosine',CosineSquared:'CosineSquared',Welch:'Welch',Blackman:'Blackman',BlackmanHarris:'BlackmanHarris',Count:'Count',EGranularSynthEnvelopeType_MAX:'EGranularSynthEnvelopeType_MAX', };
-declare class GranularSynth extends SynthComponent { 
-	GranulatedSoundWave: SoundWave;
-	static Load(ResourceName: string): GranularSynth;
-	static Find(Outer: UObject, ResourceName: string): GranularSynth;
-	static GetDefaultObject(): GranularSynth;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GranularSynth;
-	SetSustainGain(SustainGain: number): void;
-	SetSoundWave(InSoundWave: SoundWave): void;
-	SetScrubMode(bScrubMode: boolean): void;
-	SetReleaseTimeMsec(ReleaseTimeMsec: number): void;
-	SetPlayheadTime(InPositionSec: number,LerpTimeSec: number,SeekType: EGranularSynthSeekType): void;
-	SetPlaybackSpeed(InPlayheadRate: number): void;
-	SetGrainVolume(BaseVolume: number,VolumeRange: Vector2D): void;
-	SetGrainsPerSecond(InGrainsPerSecond: number): void;
-	SetGrainProbability(InGrainProbability: number): void;
-	SetGrainPitch(BasePitch: number,PitchRange: Vector2D): void;
-	SetGrainPan(BasePan: number,PanRange: Vector2D): void;
-	SetGrainEnvelopeType(EnvelopeType: EGranularSynthEnvelopeType): void;
-	SetGrainDuration(BaseDurationMsec: number,DurationRange: Vector2D): void;
-	SetDecayTime(DecayTimeMsec: number): void;
-	SetAttackTime(AttackTimeMsec: number): void;
-	NoteOn(Note: number,Velocity: number,Duration: number): void;
-	NoteOff(Note: number,bKill: boolean): void;
-	IsLoaded(): boolean;
-	GetSampleDuration(): number;
-	GetCurrentPlayheadTime(): number;
-	static C(Other: UObject | any): GranularSynth;
-}
-
-declare class MonoWaveTableSynthPreset extends UObject { 
-	PresetName: string;
-	bLockKeyframesToGridBool: boolean;
-	LockKeyframesToGrid: number;
-	WaveTableResolution: number;
-	WaveTable: RuntimeFloatCurve[];
-	bNormalizeWaveTables: boolean;
-	static Load(ResourceName: string): MonoWaveTableSynthPreset;
-	static Find(Outer: UObject, ResourceName: string): MonoWaveTableSynthPreset;
-	static GetDefaultObject(): MonoWaveTableSynthPreset;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MonoWaveTableSynthPreset;
-	static C(Other: UObject | any): MonoWaveTableSynthPreset;
-}
-
-declare type CurveInterpolationType = 'AUTOINTERP' | 'LINEAR' | 'CONSTANT' | 'CurveInterpolationType_MAX';
-declare var CurveInterpolationType : { AUTOINTERP:'AUTOINTERP',LINEAR:'LINEAR',CONSTANT:'CONSTANT',CurveInterpolationType_MAX:'CurveInterpolationType_MAX', };
-declare class SynthComponentMonoWaveTable extends SynthComponent { 
-	OnTableAltered: UnrealEngineMulticastDelegate<(TableIndex: number) => void>;
-	OnNumTablesChanged: UnrealEngineMulticastDelegate<() => void>;
-	CurrentPreset: MonoWaveTableSynthPreset;
-	static Load(ResourceName: string): SynthComponentMonoWaveTable;
-	static Find(Outer: UObject, ResourceName: string): SynthComponentMonoWaveTable;
-	static GetDefaultObject(): SynthComponentMonoWaveTable;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthComponentMonoWaveTable;
-	SetWaveTablePosition(InPosition: number): void;
-	SetSustainPedalState(InSustainPedalState: boolean): void;
-	SetPosLfoType(InLfoType: ESynthLFOType): void;
-	SetPosLfoFrequency(InLfoFrequency: number): void;
-	SetPosLfoDepth(InLfoDepth: number): void;
-	SetPositionEnvelopeSustainGain(InSustainGain: number): void;
-	SetPositionEnvelopeReleaseTime(InReleaseTimeMsec: number): void;
-	SetPositionEnvelopeInvert(bInInvert: boolean): void;
-	SetPositionEnvelopeDepth(InDepth: number): void;
-	SetPositionEnvelopeDecayTime(InDecayTimeMsec: number): void;
-	SetPositionEnvelopeBiasInvert(bInBiasInvert: boolean): void;
-	SetPositionEnvelopeBiasDepth(InDepth: number): void;
-	SetPositionEnvelopeAttackTime(InAttackTimeMsec: number): void;
-	SetLowPassFilterResonance(InNewQ: number): void;
-	SetFrequencyWithMidiNote(InMidiNote: number): void;
-	SetFrequencyPitchBend(FrequencyOffsetCents: number): void;
-	SetFrequency(FrequencyHz: number): void;
-	SetFilterEnvelopeSustainGain(InSustainGain: number): void;
-	SetFilterEnvelopeReleaseTime(InReleaseTimeMsec: number): void;
-	SetFilterEnvelopenDecayTime(InDecayTimeMsec: number): void;
-	SetFilterEnvelopeInvert(bInInvert: boolean): void;
-	SetFilterEnvelopeDepth(InDepth: number): void;
-	SetFilterEnvelopeBiasInvert(bInBiasInvert: boolean): void;
-	SetFilterEnvelopeBiasDepth(InDepth: number): void;
-	SetFilterEnvelopeAttackTime(InAttackTimeMsec: number): void;
-	SetCurveValue(TableIndex: number,KeyframeIndex: number,NewValue: number): boolean;
-	SetCurveTangent(TableIndex: number,InNewTangent: number): boolean;
-	SetCurveInterpolationType(InterpolationType: CurveInterpolationType,TableIndex: number): boolean;
-	SetAmpEnvelopeSustainGain(InSustainGain: number): void;
-	SetAmpEnvelopeReleaseTime(InReleaseTimeMsec: number): void;
-	SetAmpEnvelopeInvert(bInInvert: boolean): void;
-	SetAmpEnvelopeDepth(InDepth: number): void;
-	SetAmpEnvelopeDecayTime(InDecayTimeMsec: number): void;
-	SetAmpEnvelopeBiasInvert(bInBiasInvert: boolean): void;
-	SetAmpEnvelopeBiasDepth(InDepth: number): void;
-	SetAmpEnvelopeAttackTime(InAttackTimeMsec: number): void;
-	RefreshWaveTable(Index: number): void;
-	RefreshAllWaveTables(): void;
-	NoteOn(InMidiNote: number,InVelocity: number): void;
-	NoteOff(InMidiNote: number): void;
-	GetNumTableEntries(): number;
-	GetMaxTableIndex(): number;
-	GetKeyFrameValuesForTable(TableIndex: number): number[];
-	GetCurveTangent(TableIndex: number): number;
-	static C(Other: UObject | any): SynthComponentMonoWaveTable;
-}
-
-declare class SynthComponentToneGenerator extends SynthComponent { 
-	Frequency: number;
-	Volume: number;
-	DistanceAttenuationCurve: RuntimeFloatCurve;
-	DistanceRange: Vector2D;
-	AttenuationDbAtMaxRange: number;
-	static Load(ResourceName: string): SynthComponentToneGenerator;
-	static Find(Outer: UObject, ResourceName: string): SynthComponentToneGenerator;
-	static GetDefaultObject(): SynthComponentToneGenerator;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthComponentToneGenerator;
-	SetVolume(InVolume: number): void;
-	SetFrequency(InFrequency: number): void;
-	static C(Other: UObject | any): SynthComponentToneGenerator;
-}
-
-declare type ESamplePlayerSeekType = 'FromBeginning' | 'FromCurrentPosition' | 'FromEnd' | 'Count' | 'ESamplePlayerSeekType_MAX';
-declare var ESamplePlayerSeekType : { FromBeginning:'FromBeginning',FromCurrentPosition:'FromCurrentPosition',FromEnd:'FromEnd',Count:'Count',ESamplePlayerSeekType_MAX:'ESamplePlayerSeekType_MAX', };
-declare class SynthSamplePlayer extends SynthComponent { 
-	SoundWave: SoundWave;
-	OnSampleLoaded: UnrealEngineMulticastDelegate<() => void>;
-	OnSamplePlaybackProgress: UnrealEngineMulticastDelegate<(ProgressPercent: number, ProgressTimeSeconds: number) => void>;
-	static Load(ResourceName: string): SynthSamplePlayer;
-	static Find(Outer: UObject, ResourceName: string): SynthSamplePlayer;
-	static GetDefaultObject(): SynthSamplePlayer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthSamplePlayer;
-	SetSoundWave(InSoundWave: SoundWave): void;
-	SetScrubTimeWidth(InScrubTimeWidthSec: number): void;
-	SetScrubMode(bScrubMode: boolean): void;
-	SetPitch(InPitch: number,TimeSec: number): void;
-	SeekToTime(TimeSec: number,SeekType: ESamplePlayerSeekType,bWrap: boolean): void;
-	IsLoaded(): boolean;
-	GetSampleDuration(): number;
-	GetCurrentPlaybackProgressTime(): number;
-	GetCurrentPlaybackProgressPercent(): number;
-	static C(Other: UObject | any): SynthSamplePlayer;
-}
-
-declare class SynthesisUtilitiesBlueprintFunctionLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): SynthesisUtilitiesBlueprintFunctionLibrary;
-	static Find(Outer: UObject, ResourceName: string): SynthesisUtilitiesBlueprintFunctionLibrary;
-	static GetDefaultObject(): SynthesisUtilitiesBlueprintFunctionLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthesisUtilitiesBlueprintFunctionLibrary;
-	static GetLogFrequency(InLinearValue: number,InDomainMin: number,InDomainMax: number,InRangeMin: number,InRangeMax: number): number;
-	static GetLinearFrequency(InLogFrequencyValue: number,InDomainMin: number,InDomainMax: number,InRangeMin: number,InRangeMax: number): number;
-	static C(Other: UObject | any): SynthesisUtilitiesBlueprintFunctionLibrary;
-}
-
-declare class Synth2DSliderStyle extends SlateWidgetStyle { 
-	NormalThumbImage: SlateBrush;
-	DisabledThumbImage: SlateBrush;
-	NormalBarImage: SlateBrush;
-	DisabledBarImage: SlateBrush;
-	BackgroundImage: SlateBrush;
-	BarThickness: number;
-	clone() : Synth2DSliderStyle;
-	static C(Other: UObject | any): Synth2DSliderStyle;
-}
-
-declare class Synth2DSlider extends Widget { 
-	ValueX: number;
-	ValueY: number;
-	ValueXDelegate: UnrealEngineDelegate<() => number>;
-	ValueYDelegate: UnrealEngineDelegate<() => number>;
-	WidgetStyle: Synth2DSliderStyle;
-	SliderHandleColor: LinearColor;
-	IndentHandle: boolean;
-	Locked: boolean;
-	StepSize: number;
-	IsFocusable: boolean;
-	OnMouseCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
-	OnMouseCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
-	OnControllerCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
-	OnControllerCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
-	OnValueChangedX: UnrealEngineMulticastDelegate<(Value: number) => void>;
-	OnValueChangedY: UnrealEngineMulticastDelegate<(Value: number) => void>;
-	static Load(ResourceName: string): Synth2DSlider;
-	static Find(Outer: UObject, ResourceName: string): Synth2DSlider;
-	static GetDefaultObject(): Synth2DSlider;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): Synth2DSlider;
-	SetValue(InValue: Vector2D): void;
-	SetStepSize(InValue: number): void;
-	SetSliderHandleColor(InValue: LinearColor): void;
-	SetLocked(InValue: boolean): void;
-	SetIndentHandle(InValue: boolean): void;
-	GetValue(): Vector2D;
-	static C(Other: UObject | any): Synth2DSlider;
-}
-
-declare type ESynthKnobSize = 'Medium' | 'Large' | 'Count' | 'ESynthKnobSize_MAX';
-declare var ESynthKnobSize : { Medium:'Medium',Large:'Large',Count:'Count',ESynthKnobSize_MAX:'ESynthKnobSize_MAX', };
-declare class SynthKnobStyle extends SlateWidgetStyle { 
-	LargeKnob: SlateBrush;
-	LargeKnobOverlay: SlateBrush;
-	MediumKnob: SlateBrush;
-	MediumKnobOverlay: SlateBrush;
-	MinValueAngle: number;
-	MaxValueAngle: number;
-	KnobSize: ESynthKnobSize;
-	clone() : SynthKnobStyle;
-	static C(Other: UObject | any): SynthKnobStyle;
-}
-
-declare class SynthKnob extends Widget { 
-	Value: number;
-	StepSize: number;
-	MouseSpeed: number;
-	MouseFineTuneSpeed: number;
-	ShowTooltipInfo: boolean;
-	ParameterName: string;
-	ParameterUnits: string;
-	ValueDelegate: UnrealEngineDelegate<() => number>;
-	WidgetStyle: SynthKnobStyle;
-	Locked: boolean;
-	IsFocusable: boolean;
-	OnMouseCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
-	OnMouseCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
-	OnControllerCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
-	OnControllerCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
-	OnValueChanged: UnrealEngineMulticastDelegate<(Value: number) => void>;
-	static Load(ResourceName: string): SynthKnob;
-	static Find(Outer: UObject, ResourceName: string): SynthKnob;
-	static GetDefaultObject(): SynthKnob;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthKnob;
-	SetValue(InValue: number): void;
-	SetStepSize(InValue: number): void;
-	SetLocked(InValue: boolean): void;
-	GetValue(): number;
-	static C(Other: UObject | any): SynthKnob;
 }
 
 declare class ActorFactoryNiagara extends ActorFactory { 
@@ -6864,13 +2706,4421 @@ declare class AnimNotify_PlayNiagaraEffect extends AnimNotify {
 	static C(Other: UObject | any): AnimNotify_PlayNiagaraEffect;
 }
 
-declare class ImgMediaPlaybackComponent extends ActorComponent { 
-	LODBias: number;
-	static Load(ResourceName: string): ImgMediaPlaybackComponent;
-	static Find(Outer: UObject, ResourceName: string): ImgMediaPlaybackComponent;
-	static GetDefaultObject(): ImgMediaPlaybackComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ImgMediaPlaybackComponent;
-	static C(Other: UObject | any): ImgMediaPlaybackComponent;
+declare class ActorFactoryEnvironmentQuery extends ActorFactory { 
+	static Load(ResourceName: string): ActorFactoryEnvironmentQuery;
+	static Find(Outer: UObject, ResourceName: string): ActorFactoryEnvironmentQuery;
+	static GetDefaultObject(): ActorFactoryEnvironmentQuery;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorFactoryEnvironmentQuery;
+	static C(Other: UObject | any): ActorFactoryEnvironmentQuery;
+}
+
+declare class EdGraphSchema_EnvironmentQuery extends AIGraphSchema { 
+	static Load(ResourceName: string): EdGraphSchema_EnvironmentQuery;
+	static Find(Outer: UObject, ResourceName: string): EdGraphSchema_EnvironmentQuery;
+	static GetDefaultObject(): EdGraphSchema_EnvironmentQuery;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EdGraphSchema_EnvironmentQuery;
+	static C(Other: UObject | any): EdGraphSchema_EnvironmentQuery;
+}
+
+declare class EnvironmentQueryFactory extends Factory { 
+	static Load(ResourceName: string): EnvironmentQueryFactory;
+	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryFactory;
+	static GetDefaultObject(): EnvironmentQueryFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryFactory;
+	static C(Other: UObject | any): EnvironmentQueryFactory;
+}
+
+declare class EnvironmentQueryGraph extends AIGraph { 
+	static Load(ResourceName: string): EnvironmentQueryGraph;
+	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraph;
+	static GetDefaultObject(): EnvironmentQueryGraph;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraph;
+	static C(Other: UObject | any): EnvironmentQueryGraph;
+}
+
+declare class EnvironmentQueryGraphNode extends AIGraphNode { 
+	static Load(ResourceName: string): EnvironmentQueryGraphNode;
+	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraphNode;
+	static GetDefaultObject(): EnvironmentQueryGraphNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraphNode;
+	static C(Other: UObject | any): EnvironmentQueryGraphNode;
+}
+
+declare class EnvironmentQueryGraphNode_Option extends EnvironmentQueryGraphNode { 
+	static Load(ResourceName: string): EnvironmentQueryGraphNode_Option;
+	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraphNode_Option;
+	static GetDefaultObject(): EnvironmentQueryGraphNode_Option;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraphNode_Option;
+	static C(Other: UObject | any): EnvironmentQueryGraphNode_Option;
+}
+
+declare class EnvironmentQueryGraphNode_Root extends EnvironmentQueryGraphNode { 
+	DebugMessages: string[];
+	bHasDebugError: boolean;
+	static Load(ResourceName: string): EnvironmentQueryGraphNode_Root;
+	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraphNode_Root;
+	static GetDefaultObject(): EnvironmentQueryGraphNode_Root;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraphNode_Root;
+	static C(Other: UObject | any): EnvironmentQueryGraphNode_Root;
+}
+
+declare class EnvironmentQueryGraphNode_Test extends EnvironmentQueryGraphNode { 
+	TestWeightPct: number;
+	bHasNamedWeight: boolean;
+	bTestEnabled: boolean;
+	static Load(ResourceName: string): EnvironmentQueryGraphNode_Test;
+	static Find(Outer: UObject, ResourceName: string): EnvironmentQueryGraphNode_Test;
+	static GetDefaultObject(): EnvironmentQueryGraphNode_Test;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvironmentQueryGraphNode_Test;
+	static C(Other: UObject | any): EnvironmentQueryGraphNode_Test;
+}
+
+declare class V8Config extends UObject { 
+	bGenAltPropAccessorForAllProp: boolean;
+	bGenGetStructRefArrayFunction: boolean;
+	static Load(ResourceName: string): V8Config;
+	static Find(Outer: UObject, ResourceName: string): V8Config;
+	static GetDefaultObject(): V8Config;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): V8Config;
+	static C(Other: UObject | any): V8Config;
+}
+
+declare class DirectoryWatcher extends UObject { 
+	Added: string[];
+	Modified: string[];
+	Removed: string[];
+	OnChanged: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): DirectoryWatcher;
+	static Find(Outer: UObject, ResourceName: string): DirectoryWatcher;
+	static GetDefaultObject(): DirectoryWatcher;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): DirectoryWatcher;
+	Watch(Directory: string): void;
+	Unwatch(): void;
+	Contains(File: string): boolean;
+	static C(Other: UObject | any): DirectoryWatcher;
+}
+
+declare class JavascriptContext extends UObject { 
+	Paths: string[];
+	static Load(ResourceName: string): JavascriptContext;
+	static Find(Outer: UObject, ResourceName: string): JavascriptContext;
+	static GetDefaultObject(): JavascriptContext;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptContext;
+	WriteDTS(Target: string,bIncludingTooltip: boolean): boolean;
+	WriteAliases(Target: string): boolean;
+	UnregisterConsoleCommand(Command: string): void;
+	SetContextId(Name: string): void;
+	RunScript(Script: string,bOutput: boolean): string;
+	RunFileWithArgs(Filename: string,Args: string[]): string;
+	RunFile(Filename: string): string;
+	ResetUnrealConsoleDelegate(): void;
+	RequestV8GarbageCollection(): void;
+	RegisterConsoleCommand(Command: string,Help: string,UFunction: JavascriptFunction): void;
+	ReadScriptFile(Filename: string): string;
+	IsDebugContext(): boolean;
+	GetScriptFileFullPath(Filename: string): string;
+	FindPathFile(TargetRootPath: string,TargetFileName: string,OutFiles?: string[]): {OutFiles: string[]};
+	Expose(Name: string,UObject: UObject): void;
+	DestroyInspector(): void;
+	CreateInspector(Port: number): void;
+	static C(Other: UObject | any): JavascriptContext;
+}
+
+declare class JavascriptHeapStatistics { 
+	TotalHeapSize: number;
+	TotalHeapSizeExecutable: number;
+	TotalPhysicalSize: number;
+	TotalAvailableSize: number;
+	UsedHeapSize: number;
+	HeapSizeLimit: number;
+	MallocedMemory: number;
+	bDoesZapGarbage: boolean;
+	clone() : JavascriptHeapStatistics;
+	static C(Other: UObject | any): JavascriptHeapStatistics;
+}
+
+declare class JavascriptIsolate extends UObject { 
+	static Load(ResourceName: string): JavascriptIsolate;
+	static Find(Outer: UObject, ResourceName: string): JavascriptIsolate;
+	static GetDefaultObject(): JavascriptIsolate;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptIsolate;
+	Init(bIsEditor: boolean): void;
+	GetHeapStatistics(Statistics?: JavascriptHeapStatistics): {Statistics: JavascriptHeapStatistics};
+	CreateContext(): JavascriptContext;
+	static C(Other: UObject | any): JavascriptIsolate;
+}
+
+declare class JavascriptAsset { 
+	Name: string;
+	Asset: SoftObjectPath;
+	clone() : JavascriptAsset;
+	static C(Other: UObject | any): JavascriptAsset;
+}
+
+declare class JavascriptClassAsset { 
+	Name: string;
+	Class: UnrealEngineClass;
+	clone() : JavascriptClassAsset;
+	static C(Other: UObject | any): JavascriptClassAsset;
+}
+
+declare class JavascriptComponent extends ActorComponent { 
+	ScriptSourceFile: string;
+	bActiveWithinEditor: boolean;
+	JavascriptContext: JavascriptContext;
+	JavascriptIsolate: JavascriptIsolate;
+	OnTick: UnrealEngineDelegate<(DeltaSeconds: number) => void>;
+	OnBeginPlay: UnrealEngineDelegate<() => void>;
+	OnEndPlay: UnrealEngineDelegate<() => void>;
+	OnInvoke: UnrealEngineDelegate<(Name: string) => void>;
+	Assets: JavascriptAsset[];
+	ClassAssets: JavascriptClassAsset[];
+	static Load(ResourceName: string): JavascriptComponent;
+	static Find(Outer: UObject, ResourceName: string): JavascriptComponent;
+	static GetDefaultObject(): JavascriptComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptComponent;
+	ResolveClass(Name: string): UnrealEngineClass;
+	ResolveAsset(Name: string,bTryLoad: boolean): UObject;
+	Invoke(Name: string): void;
+	ForceGC(): void;
+	Expose(ExposedAs: string,UObject: UObject): void;
+	static C(Other: UObject | any): JavascriptComponent;
+}
+
+declare class JavascriptDelegate extends UObject { 
+	static Load(ResourceName: string): JavascriptDelegate;
+	static Find(Outer: UObject, ResourceName: string): JavascriptDelegate;
+	static GetDefaultObject(): JavascriptDelegate;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptDelegate;
+	Fire(): void;
+	static C(Other: UObject | any): JavascriptDelegate;
+}
+
+declare class JavascriptGeneratedClass extends BlueprintGeneratedClass { 
+	static Load(ResourceName: string): JavascriptGeneratedClass;
+	static Find(Outer: UObject, ResourceName: string): JavascriptGeneratedClass;
+	static GetDefaultObject(): JavascriptGeneratedClass;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGeneratedClass;
+	static C(Other: UObject | any): JavascriptGeneratedClass;
+}
+
+declare class JavascriptGeneratedClass_Native extends BlueprintGeneratedClass { 
+	static Load(ResourceName: string): JavascriptGeneratedClass_Native;
+	static Find(Outer: UObject, ResourceName: string): JavascriptGeneratedClass_Native;
+	static GetDefaultObject(): JavascriptGeneratedClass_Native;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGeneratedClass_Native;
+	static C(Other: UObject | any): JavascriptGeneratedClass_Native;
+}
+
+declare class JavascriptGeneratedFunction extends UFunction { 
+	static Load(ResourceName: string): JavascriptGeneratedFunction;
+	static Find(Outer: UObject, ResourceName: string): JavascriptGeneratedFunction;
+	static GetDefaultObject(): JavascriptGeneratedFunction;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGeneratedFunction;
+	static C(Other: UObject | any): JavascriptGeneratedFunction;
+}
+
+declare class JavascriptGlobalDelegates extends UObject { 
+	static Load(ResourceName: string): JavascriptGlobalDelegates;
+	static Find(Outer: UObject, ResourceName: string): JavascriptGlobalDelegates;
+	static GetDefaultObject(): JavascriptGlobalDelegates;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGlobalDelegates;
+	UnbindAll(): void;
+	Unbind(Key: string): void;
+	RedirectorFollowed(PackageName: string,Redirector: UObject): void;
+	PreLoadMap(MapName: string): void;
+	PreGarbageCollectDelegate(): void;
+	PostLoadMapWithWorld(World: World): void;
+	PostGarbageCollect(): void;
+	PostDemoPlay(): void;
+	PostApplyLevelOffset(Level: Level,World: World,Offset: Vector,Flag: boolean): void;
+	PackageCreatedForLoad(InPackage: Package): void;
+	OnWorldCleanup(World: World,bSessionEnded: boolean,bCleanupResources: boolean): void;
+	OnPreWorldInitialization_Friendly(World: World): void;
+	OnPreWorldFinishDestroy(World: World): void;
+	OnPreObjectPropertyChanged_Friendly(InObject: UObject,Property: any,MemberProperty: any): void;
+	OnPostWorldInitialization_Friendly(World: World): void;
+	OnPostWorldCreation(World: World): void;
+	OnPostDuplicate_Friendly(World: World,bDuplicateForPIE: boolean): void;
+	OnObjectPropertyChanged_Friendly(InObject: UObject,Property: any,MemberProperty: any,ChangeType: number): void;
+	OnObjectPreSave_Friendly(ObjectSaved: UObject): void;
+	OnObjectModified(UObject: UObject): void;
+	OnAssetLoaded(UObject: UObject): void;
+	OnActorLabelChanged(Actor: Actor): void;
+	LevelRemovedFromWorld(Level: Level,World: World): void;
+	LevelAddedToWorld(Level: Level,World: World): void;
+	Bind(Key: string): void;
+	static C(Other: UObject | any): JavascriptGlobalDelegates;
+}
+
+declare class JavascriptStaticCache extends UObject { 
+	Isolates: JavascriptIsolate[];
+	bExecuteTestModePIE: boolean;
+	static Load(ResourceName: string): JavascriptStaticCache;
+	static Find(Outer: UObject, ResourceName: string): JavascriptStaticCache;
+	static GetDefaultObject(): JavascriptStaticCache;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptStaticCache;
+	static C(Other: UObject | any): JavascriptStaticCache;
+}
+
+declare class JavascriptRow { 
+	Values: string[];
+	clone() : JavascriptRow;
+	static C(Other: UObject | any): JavascriptRow;
+}
+
+declare class JavascriptStreamableManager { 
+	clone() : JavascriptStreamableManager;
+	static C(Other: UObject | any): JavascriptStreamableManager;
+	IsAsyncLoadComplete(Target: SoftObjectPath): boolean;
+	RequestAsyncLoad(TargetsToStream: SoftObjectPath[],DelegateToCall: JavascriptFunction,Priority: number): void;
+	SimpleAsyncLoad(Target: SoftObjectPath,Priority: number): void;
+	Unload(Target: SoftObjectPath): void;
+	static IsAsyncLoadComplete(Manager: JavascriptStreamableManager,Target: SoftObjectPath): boolean;
+	static RequestAsyncLoad(Manager: JavascriptStreamableManager,TargetsToStream: SoftObjectPath[],DelegateToCall: JavascriptFunction,Priority: number): void;
+	static SimpleAsyncLoad(Manager: JavascriptStreamableManager,Target: SoftObjectPath,Priority: number): void;
+	static Unload(Manager: JavascriptStreamableManager,Target: SoftObjectPath): void;
+	static CreateStreamableManager(): JavascriptStreamableManager;
+}
+
+declare class JavascriptInternetAddr { 
+	clone() : JavascriptInternetAddr;
+	static C(Other: UObject | any): JavascriptInternetAddr;
+	SetIp(ResolvedAddress?: string,bValid?: boolean): {Addr: JavascriptInternetAddr, bValid: boolean};
+	SetPort(Port?: number): {Addr: JavascriptInternetAddr};
+	static SetIp(Addr?: JavascriptInternetAddr,ResolvedAddress?: string,bValid?: boolean): {Addr: JavascriptInternetAddr, bValid: boolean};
+	static SetPort(Addr?: JavascriptInternetAddr,Port?: number): {Addr: JavascriptInternetAddr};
+	static CreateInternetAddr(): JavascriptInternetAddr;
+}
+
+declare class JavascriptSocket { 
+	clone() : JavascriptSocket;
+	static C(Other: UObject | any): JavascriptSocket;
+	SendMemoryTo(ToAddr?: JavascriptInternetAddr,NumBytes?: number,BytesSent?: number): {Socket: JavascriptSocket, BytesSent: number, $: boolean};
+	static SendMemoryTo(Socket?: JavascriptSocket,ToAddr?: JavascriptInternetAddr,NumBytes?: number,BytesSent?: number): {Socket: JavascriptSocket, BytesSent: number, $: boolean};
+	static CreateSocket(SocketType: string,Description: string,bForceUDP: boolean): JavascriptSocket;
+}
+
+declare type EJavascriptStatDataType = 'Invalid' | 'ST_None' | 'ST_int64' | 'ST_double' | 'ST_FName' | 'ST_Ptr' | 'EJavascriptStatDataType_MAX';
+declare var EJavascriptStatDataType : { Invalid:'Invalid',ST_None:'ST_None',ST_int64:'ST_int64',ST_double:'ST_double',ST_FName:'ST_FName',ST_Ptr:'ST_Ptr',EJavascriptStatDataType_MAX:'EJavascriptStatDataType_MAX', };
+declare type EJavascriptStatOperation = 'Invalid' | 'SetLongName' | 'AdvanceFrameEventGameThread' | 'AdvanceFrameEventRenderThread' | 'CycleScopeStart' | 'CycleScopeEnd' | 'SpecialMessageMarker' | 'Set' | 'Clear' | 'Add' | 'Subtract' | 'ChildrenStart' | 'ChildrenEnd' | 'Leaf' | 'MaxVal' | 'Memory' | 'EJavascriptStatOperation_MAX';
+declare var EJavascriptStatOperation : { Invalid:'Invalid',SetLongName:'SetLongName',AdvanceFrameEventGameThread:'AdvanceFrameEventGameThread',AdvanceFrameEventRenderThread:'AdvanceFrameEventRenderThread',CycleScopeStart:'CycleScopeStart',CycleScopeEnd:'CycleScopeEnd',SpecialMessageMarker:'SpecialMessageMarker',Set:'Set',Clear:'Clear',Add:'Add',Subtract:'Subtract',ChildrenStart:'ChildrenStart',ChildrenEnd:'ChildrenEnd',Leaf:'Leaf',MaxVal:'MaxVal',Memory:'Memory',EJavascriptStatOperation_MAX:'EJavascriptStatOperation_MAX', };
+declare class JavascriptStat { 
+	clone() : JavascriptStat;
+	static C(Other: UObject | any): JavascriptStat;
+	AddMessage(InStatOperation: EJavascriptStatOperation): void;
+	AddMessage_float(InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
+	AddMessage_int(InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
+	static AddMessage(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation): void;
+	static AddMessage_float(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
+	static AddMessage_int(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
+	static NewStat(InStatName: string,InStatDesc: string,InGroupName: string,InGroupCategory: string,InGroupDesc: string,bDefaultEnable: boolean,bShouldClearEveryFrame: boolean,InStatType: EJavascriptStatDataType,bCycleStat: boolean,bSortByName: boolean): JavascriptStat;
+}
+
+declare type ELogVerbosity_JS = 'NoLogging' | 'Fatal' | 'Error' | 'Warning' | 'Display' | 'Log' | 'Verbose' | 'VeryVerbose' | 'ELogVerbosity_MAX';
+declare var ELogVerbosity_JS : { NoLogging:'NoLogging',Fatal:'Fatal',Error:'Error',Warning:'Warning',Display:'Display',Log:'Log',Verbose:'Verbose',VeryVerbose:'VeryVerbose',ELogVerbosity_MAX:'ELogVerbosity_MAX', };
+declare class JavascriptLogCategory { 
+	clone() : JavascriptLogCategory;
+	static C(Other: UObject | any): JavascriptLogCategory;
+	GetCategoryName(): string;
+	IsSuppressed(Verbosity: ELogVerbosity_JS): boolean;
+	Log(Verbosity: ELogVerbosity_JS,Message: string,Filename: string,LineNumber: number): void;
+	static GetCategoryName(Category: JavascriptLogCategory): string;
+	static IsSuppressed(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS): boolean;
+	static Log(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS,Message: string,Filename: string,LineNumber: number): void;
+	static CreateLogCategory(CategoryName: string,InDefaultVerbosity: ELogVerbosity_JS): JavascriptLogCategory;
+}
+
+declare class JavscriptProperty { 
+	Type: string;
+	Name: string;
+	clone() : JavscriptProperty;
+	static C(Other: UObject | any): JavscriptProperty;
+}
+
+declare class JavascriptProfileNode { 
+	clone() : JavascriptProfileNode;
+	static C(Other: UObject | any): JavascriptProfileNode;
+	GetBailoutReason(): string;
+	GetChild(Index: number): JavascriptProfileNode;
+	GetChildrenCount(): number;
+	GetColumnNumber(): number;
+	GetDeoptInfo_Reason(Index: number): string;
+	GetDeoptInfo_Stack(Index: number): string;
+	GetDeoptInfosCount(Index: number): number;
+	GetFunctionName(): string;
+	GetHitCount(): number;
+	GetHitLineCount(): number;
+	GetLineNumber(): number;
+	GetNodeId(): number;
+	GetScriptId(): number;
+	GetScriptResourceName(): string;
+	static GetBailoutReason(UNode: JavascriptProfileNode): string;
+	static GetChild(UNode: JavascriptProfileNode,Index: number): JavascriptProfileNode;
+	static GetChildrenCount(UNode: JavascriptProfileNode): number;
+	static GetColumnNumber(UNode: JavascriptProfileNode): number;
+	static GetDeoptInfo_Reason(UNode: JavascriptProfileNode,Index: number): string;
+	static GetDeoptInfo_Stack(UNode: JavascriptProfileNode,Index: number): string;
+	static GetDeoptInfosCount(UNode: JavascriptProfileNode,Index: number): number;
+	static GetFunctionName(UNode: JavascriptProfileNode): string;
+	static GetHitCount(UNode: JavascriptProfileNode): number;
+	static GetHitLineCount(UNode: JavascriptProfileNode): number;
+	static GetLineNumber(UNode: JavascriptProfileNode): number;
+	static GetNodeId(UNode: JavascriptProfileNode): number;
+	static GetScriptId(UNode: JavascriptProfileNode): number;
+	static GetScriptResourceName(UNode: JavascriptProfileNode): string;
+}
+
+declare class JavascriptLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): JavascriptLibrary;
+	static Find(Outer: UObject, ResourceName: string): JavascriptLibrary;
+	static GetDefaultObject(): JavascriptLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptLibrary;
+	static WriteStringToFile(UObject: UObject,Filename: string,Data: string,EncodingOptions: EJavascriptEncodingOptions): boolean;
+	static WriteFile(UObject: UObject,Filename: string): boolean;
+	static WriteCSV(InPath: string,InData?: JavascriptRow[],EncodingOptions?: EJavascriptEncodingOptions): {InData: JavascriptRow[], $: boolean};
+	static V8_SetIdleTaskBudget(BudgetInSeconds: number): void;
+	static V8_SetFlagsFromString(V8Flags: string): void;
+	static V8_IsEnableHotReload(): boolean;
+	static UnregisterComponent(ActorComponent: ActorComponent): void;
+	static Unload(Manager: JavascriptStreamableManager,Target: SoftObjectPath): void;
+	static TryLoadByPath(Path: string): UObject;
+	static SimpleAsyncLoad(Manager: JavascriptStreamableManager,Target: SoftObjectPath,Priority: number): void;
+	static SetRootComponent(Actor: Actor,Component: SceneComponent): void;
+	static SetPort(Addr?: JavascriptInternetAddr,Port?: number): {Addr: JavascriptInternetAddr};
+	static SetObjectFlags(Obj: UObject,Flags: number): void;
+	static SetMobility(SceneComponent: SceneComponent,Type: EComponentMobility): void;
+	static SetMobile(SceneComponent: SceneComponent): void;
+	static SetIp(Addr?: JavascriptInternetAddr,ResolvedAddress?: string,bValid?: boolean): {Addr: JavascriptInternetAddr, bValid: boolean};
+	static SetClientTravel(Engine: Engine,InWorld: World,NextURL: string,InTravelType: ETravelType): void;
+	static SetActorFlags(Actor: Actor,Flags: number): void;
+	static SendMemoryTo(Socket?: JavascriptSocket,ToAddr?: JavascriptInternetAddr,NumBytes?: number,BytesSent?: number): {Socket: JavascriptSocket, BytesSent: number, $: boolean};
+	static SegmentIntersection2D(SegmentStartA: Vector,SegmentEndA: Vector,SegmentStartB: Vector,SegmentEndB: Vector,IntersectionPoint?: Vector): {IntersectionPoint: Vector, $: boolean};
+	static ResolveIp(HostName: string,OutIp?: string): {OutIp: string, $: boolean};
+	static ReregisterComponent(ActorComponent: ActorComponent): void;
+	static ReregisterAllComponents(Actor: Actor): void;
+	static RequestAsyncLoad(Manager: JavascriptStreamableManager,TargetsToStream: SoftObjectPath[],DelegateToCall: JavascriptFunction,Priority: number): void;
+	static RegisterComponent(ActorComponent: ActorComponent): void;
+	static ReadStringFromFileAsync(UObject: UObject,Filename: string,UFunction: JavascriptFunction): ReadStringFromFileHandle;
+	static ReadStringFromFile(UObject: UObject,Filename: string,ReadFlags: EFileRead_JS): string;
+	static ReadFile(UObject: UObject,Filename: string): boolean;
+	static ReadDirectory(UObject: UObject,Directory: string,OutItems?: DirectoryItem[]): {OutItems: DirectoryItem[], $: boolean};
+	static ReadCSV(InPath: string,OutData?: JavascriptRow[],ReadFlags?: EFileRead_JS): {OutData: JavascriptRow[], $: boolean};
+	static NewStat(InStatName: string,InStatDesc: string,InGroupName: string,InGroupCategory: string,InGroupDesc: string,bDefaultEnable: boolean,bShouldClearEveryFrame: boolean,InStatType: EJavascriptStatDataType,bCycleStat: boolean,bSortByName: boolean): JavascriptStat;
+	static MarkRenderStateDirty(Component: ActorComponent): void;
+	static MakeDirectory(Path: string,Tree: boolean): boolean;
+	static Log(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS,Message: string,Filename: string,LineNumber: number): void;
+	static LoadPackage(InOuter: Package,PackageName: string): Package;
+	static IsSuppressed(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS): boolean;
+	static IsRegistered(ActorComponent: ActorComponent): boolean;
+	static IsPlayInPreview(World: World): boolean;
+	static IsPlayInEditor(World: World): boolean;
+	static IsPendingKill(InActor: Actor): boolean;
+	static IsGeneratedByBlueprint(InClass: UnrealEngineClass): boolean;
+	static IsGameWorld(World: World): boolean;
+	static IsAsyncLoadComplete(Manager: JavascriptStreamableManager,Target: SoftObjectPath): boolean;
+	static HasUndo(Engine: Engine): boolean;
+	static HasAnyPackageFlags(Package: Package,Flags: number): boolean;
+	static HasAnyFlags(UObject: UObject,Flags: number): boolean;
+	static HandleSeamlessTravelPlayer(GameMode: GameModeBase,C?: Controller): {C: Controller};
+	static GetWorldBounds(InWorld: World): Box;
+	static GetSuperClasses(InClass: UnrealEngineClass): UnrealEngineClass[];
+	static GetStructProperties(StructName: string,bIncludeSuper: boolean): JavscriptProperty[];
+	static GetScriptResourceName(UNode: JavascriptProfileNode): string;
+	static GetScriptId(UNode: JavascriptProfileNode): number;
+	static GetPlatformName(): string;
+	static GetOutermost(UObject: UObject): UObject;
+	static GetOuter(UObject: UObject): UObject;
+	static GetObjectsWithOuter(Outer: UObject,Results?: UObject[],bIncludeNestedObjects?: boolean,ExclusionFlags?: number,ExclusionInternalFlags?: number): {Results: UObject[]};
+	static GetObjectsOfClass(ClassToLookFor: UnrealEngineClass,Results?: UObject[],bIncludeDerivedClasses?: boolean,ExcludeFlags?: number,ExclusionInternalFlags?: number): {Results: UObject[]};
+	static GetNodeId(UNode: JavascriptProfileNode): number;
+	static GetName(UObject: UObject): string;
+	static GetModel(World: World): Model;
+	static GetMetaData(Field: Field,Key: string): string;
+	static GetLineNumber(UNode: JavascriptProfileNode): number;
+	static GetLevels(World: World): Level[];
+	static GetLevel(Actor: Actor): Level;
+	static GetLastRenderTime(Actor: Actor): number;
+	static GetHitLineCount(UNode: JavascriptProfileNode): number;
+	static GetHitCount(UNode: JavascriptProfileNode): number;
+	static GetFunctionParmsSize(UFunction: UFunction): number;
+	static GetFunctionName(UNode: JavascriptProfileNode): string;
+	static GetFileSize(UObject: UObject,Filename: string): number;
+	static GetFields(UObject: UObject,bIncludeSuper: boolean): Field[];
+	static GetEnumListByEnumName(EnumName: string): string[];
+	static GetDynamicBinding(Outer: UnrealEngineClass,BindingObjectClass: UnrealEngineClass): DynamicBlueprintBinding;
+	static GetDir(UObject: UObject,WhichDir: string): string;
+	static GetDerivedClasses(ClassToLookFor: UnrealEngineClass,Results?: UnrealEngineClass[],bRecursive?: boolean): {Results: UnrealEngineClass[]};
+	static GetDeoptInfosCount(UNode: JavascriptProfileNode,Index: number): number;
+	static GetDeoptInfo_Stack(UNode: JavascriptProfileNode,Index: number): string;
+	static GetDeoptInfo_Reason(UNode: JavascriptProfileNode,Index: number): string;
+	static GetCurrentProcessId(): number;
+	static GetComponentsByClass(Actor: Actor,ComponentClass: UnrealEngineClass): ActorComponent[];
+	static GetColumnNumber(UNode: JavascriptProfileNode): number;
+	static GetClassPathName(Class: UnrealEngineClass): string;
+	static GetChildrenCount(UNode: JavascriptProfileNode): number;
+	static GetChild(UNode: JavascriptProfileNode,Index: number): JavascriptProfileNode;
+	static GetCategoryName(Category: JavascriptLogCategory): string;
+	static GetBlueprintGeneratedClassFromPath(Path: string): UnrealEngineClass;
+	static GetBlueprintGeneratedClass(Blueprint: Blueprint): UnrealEngineClass;
+	static GetBailoutReason(UNode: JavascriptProfileNode): string;
+	static GetArchetypePathName(UObject: UObject): string;
+	static GetAllActorsOfClassAndTagsInCurrentLevel(WorldContextObject: UObject,ActorClass: UnrealEngineClass,Tags_Accept: string[],Tags_Deny: string[],OutActors?: Actor[]): {OutActors: Actor[]};
+	static GetAllActorsOfClassAndTags(WorldContextObject: UObject,ActorClass: UnrealEngineClass,Tags_Accept: string[],Tags_Deny: string[],OutActors?: Actor[]): {OutActors: Actor[]};
+	static GenerateNavigation(InWorld: World,NavData: RecastNavMesh): void;
+	static FindPackage(InOuter: UObject,PackageName: string): Package;
+	static FindObjectWithOuter(Outer: UObject,ClassToLookFor: UnrealEngineClass,NameToLookFor: string): UObject;
+	static FileExists(Filename: string): boolean;
+	static Duplicate(UObject: UObject,Outer: UObject,Name: string): UObject;
+	static DirectoryExists(InDirectory: string): boolean;
+	static DeleteFile(Filename: string,ReadOnly: boolean): boolean;
+	static DeleteDirectory(Path: string,RequireExists: boolean,Tree: boolean): boolean;
+	static CreateStreamableManager(): JavascriptStreamableManager;
+	static CreateSocket(SocketType: string,Description: string,bForceUDP: boolean): JavascriptSocket;
+	static CreatePackage(Outer: UObject,PackageName: string): Package;
+	static CreateLogCategory(CategoryName: string,InDefaultVerbosity: ELogVerbosity_JS): JavascriptLogCategory;
+	static CreateInternetAddr(): JavascriptInternetAddr;
+	static CreateEnum(Outer: UObject,Name: string,DisplayNames: string[],Flags: string[]): Enum;
+	static ConvertRelativePathToFull(UObject: UObject,RelativePath: string): string;
+	static ClipboardPaste(): string;
+	static ClipboardCopy(string: string): void;
+	static CallJS(UFunction: JavascriptFunction,CustomStruct: JavascriptStubStruct): void;
+	static AddMessage_int(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
+	static AddMessage_float(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
+	static AddMessage(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation): void;
+	static AddDynamicBinding(Outer: UnrealEngineClass,BindingObject: DynamicBlueprintBinding): void;
+	static Actor_GetWorld(Actor: Actor): World;
+	static C(Other: UObject | any): JavascriptLibrary;
+}
+
+declare class JavascriptMemoryObject extends UObject { 
+	static Load(ResourceName: string): JavascriptMemoryObject;
+	static Find(Outer: UObject, ResourceName: string): JavascriptMemoryObject;
+	static GetDefaultObject(): JavascriptMemoryObject;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptMemoryObject;
+	static C(Other: UObject | any): JavascriptMemoryObject;
+}
+
+declare class JavascriptRef { 
+	clone() : JavascriptRef;
+	static C(Other: UObject | any): JavascriptRef;
+}
+
+declare class JavascriptObject extends UObject { 
+	Ref: JavascriptRef;
+	Func: JavascriptFunction;
+	static Load(ResourceName: string): JavascriptObject;
+	static Find(Outer: UObject, ResourceName: string): JavascriptObject;
+	static GetDefaultObject(): JavascriptObject;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptObject;
+	static C(Other: UObject | any): JavascriptObject;
+}
+
+declare class JavascriptOutputDevice extends UObject { 
+	static Load(ResourceName: string): JavascriptOutputDevice;
+	static Find(Outer: UObject, ResourceName: string): JavascriptOutputDevice;
+	static GetDefaultObject(): JavascriptOutputDevice;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptOutputDevice;
+	OnMessage(Message: string,Verbosity: ELogVerbosity_JS,Category: string): void;
+	static Log(Category: string,Verbosity: ELogVerbosity_JS,Filename: string,LineNumber: number,Message: string): void;
+	Kill(): void;
+	static C(Other: UObject | any): JavascriptOutputDevice;
+}
+
+declare class JavascriptProcess extends UObject { 
+	static Load(ResourceName: string): JavascriptProcess;
+	static Find(Outer: UObject, ResourceName: string): JavascriptProcess;
+	static GetDefaultObject(): JavascriptProcess;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptProcess;
+	WriteToPipe(Message: string,OutWritten?: string): {OutWritten: string, $: boolean};
+	Wait(): void;
+	Terminate(KillTree: boolean): void;
+	static Sleep(Seconds: number): void;
+	static SimulateKeypress(KeyEvent: number): void;
+	static SetEnvironmentVar(VarName: string,VarValue: string): void;
+	ReadFromPipe(): string;
+	ReadArrayFromPipe(Array?: number[]): {Array: number[], $: boolean};
+	static Open_PID(ProcessId: number): JavascriptProcess;
+	static Open(ProcName: string): JavascriptProcess;
+	static LaunchURL(URL: string,Parms: string,Error?: string): {Error: string};
+	IsRunning(): boolean;
+	static IsApplicationRunning_PID(ProcessId: number): boolean;
+	static IsApplicationRunning(ProcName: string): boolean;
+	static GetString(Key: string,bFlag: boolean): string;
+	GetReturnCode(ReturnCode?: number): {ReturnCode: number, $: boolean};
+	static GetEnvironmentVar(VarName: string): string;
+	static GetCurrentProcessId(): number;
+	static GetApplicationName(ProcessId: number): string;
+	static Create(URL: string,Parms: string,bLaunchDetached: boolean,bLaunchHidden: boolean,bLaunchReallyHidden: boolean,PriorityModifier: number,OptionalWorkingDirectory: string,bUsePipe: boolean): JavascriptProcess;
+	Close(): void;
+	static CanLaunchURL(URL: string): boolean;
+	static C(Other: UObject | any): JavascriptProcess;
+}
+
+declare class JavascriptCpuProfiler { 
+	clone() : JavascriptCpuProfiler;
+	static C(Other: UObject | any): JavascriptCpuProfiler;
+}
+
+declare class JavascriptProfile extends UObject { 
+	static Load(ResourceName: string): JavascriptProfile;
+	static Find(Outer: UObject, ResourceName: string): JavascriptProfile;
+	static GetDefaultObject(): JavascriptProfile;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptProfile;
+	static Stop(Profiler: JavascriptCpuProfiler,Title: string): JavascriptProfile;
+	static Start(Title: string,bRecordSamples: boolean): JavascriptCpuProfiler;
+	static SetSamplingInterval(Profiler: JavascriptCpuProfiler,us: number): void;
+	static SetIdle(Profiler: JavascriptCpuProfiler,is_idle: boolean): void;
+	GetTopDownRoot(): JavascriptProfileNode;
+	GetSampleTimestamp(Index: number): number;
+	GetSamplesCount(): number;
+	GetSample(Index: number): JavascriptProfileNode;
+	static C(Other: UObject | any): JavascriptProfile;
+}
+
+declare class JavascriptSemaphore extends UObject { 
+	static Load(ResourceName: string): JavascriptSemaphore;
+	static Find(Outer: UObject, ResourceName: string): JavascriptSemaphore;
+	static GetDefaultObject(): JavascriptSemaphore;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSemaphore;
+	Unlock(): void;
+	TryLock(NanosecondsToWait: number): boolean;
+	Lock(): void;
+	Dispose(): void;
+	static Create(Name: string,bCreate: boolean,MaxLocks: number): JavascriptSemaphore;
+	static C(Other: UObject | any): JavascriptSemaphore;
+}
+
+declare class JavascriptSettings extends UObject { 
+	V8Flags: string;
+	bEnableHotReload: boolean;
+	static Load(ResourceName: string): JavascriptSettings;
+	static Find(Outer: UObject, ResourceName: string): JavascriptSettings;
+	static GetDefaultObject(): JavascriptSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSettings;
+	static C(Other: UObject | any): JavascriptSettings;
+}
+
+declare class JavascriptSharedMemoryRegion extends JavascriptMemoryObject { 
+	static Load(ResourceName: string): JavascriptSharedMemoryRegion;
+	static Find(Outer: UObject, ResourceName: string): JavascriptSharedMemoryRegion;
+	static GetDefaultObject(): JavascriptSharedMemoryRegion;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSharedMemoryRegion;
+	Dispose(): void;
+	static Create(Name: string,bCreate: boolean,bRead: boolean,bWrite: boolean,Size: number): JavascriptSharedMemoryRegion;
+	static C(Other: UObject | any): JavascriptSharedMemoryRegion;
+}
+
+declare class JavascriptAutomatedTestInstance { 
+	clone() : JavascriptAutomatedTestInstance;
+	static C(Other: UObject | any): JavascriptAutomatedTestInstance;
+	AddAnalyticsItem(InAnalyticsItem: string): void;
+	AddError(InError: string): void;
+	AddLogItem(InLogItem: string): void;
+	AddWarning(InWarning: string): void;
+	ClearExecutionInfo(): void;
+	Destroy(): {Test: JavascriptAutomatedTestInstance};
+	SetContinue(bInContinue: boolean): void;
+	static AddAnalyticsItem(Test: JavascriptAutomatedTestInstance,InAnalyticsItem: string): void;
+	static AddError(Test: JavascriptAutomatedTestInstance,InError: string): void;
+	static AddLogItem(Test: JavascriptAutomatedTestInstance,InLogItem: string): void;
+	static AddWarning(Test: JavascriptAutomatedTestInstance,InWarning: string): void;
+	static ClearExecutionInfo(Test: JavascriptAutomatedTestInstance): void;
+	static Destroy(Test?: JavascriptAutomatedTestInstance): {Test: JavascriptAutomatedTestInstance};
+	static SetContinue(Test: JavascriptAutomatedTestInstance,bInContinue: boolean): void;
+}
+
+declare class JavascriptAutomatedTest { 
+	Name: string;
+	bComplexTask: boolean;
+	TestFlags: number;
+	RequiredDeviceNum: number;
+	TestFunctionNames: string[];
+	UFunction: JavascriptFunction;
+	clone() : JavascriptAutomatedTest;
+	static C(Other: UObject | any): JavascriptAutomatedTest;
+	Create(): JavascriptAutomatedTestInstance;
+	static Create(Test: JavascriptAutomatedTest): JavascriptAutomatedTestInstance;
+}
+
+declare class JavascriptTestLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): JavascriptTestLibrary;
+	static Find(Outer: UObject, ResourceName: string): JavascriptTestLibrary;
+	static GetDefaultObject(): JavascriptTestLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTestLibrary;
+	static SetContinue(Test: JavascriptAutomatedTestInstance,bInContinue: boolean): void;
+	static PushFrameCounter(): void;
+	static PopFrameCounter(): void;
+	static NewWorld(): World;
+	static InitializeActorsForPlay(World: World,URL: URL): void;
+	static DestroyWorld(World: World): void;
+	static DestroyUObject(UObject: UObject): void;
+	static Destroy(Test?: JavascriptAutomatedTestInstance): {Test: JavascriptAutomatedTestInstance};
+	static Create(Test: JavascriptAutomatedTest): JavascriptAutomatedTestInstance;
+	static ClearExecutionInfo(Test: JavascriptAutomatedTestInstance): void;
+	static BeginPlay(World: World): void;
+	static AddWarning(Test: JavascriptAutomatedTestInstance,InWarning: string): void;
+	static AddLogItem(Test: JavascriptAutomatedTestInstance,InLogItem: string): void;
+	static AddError(Test: JavascriptAutomatedTestInstance,InError: string): void;
+	static AddAnalyticsItem(Test: JavascriptAutomatedTestInstance,InAnalyticsItem: string): void;
+	static C(Other: UObject | any): JavascriptTestLibrary;
+}
+
+declare class JavascriptComboButton extends ContentWidget { 
+	ComboButtonStyle: ComboButtonStyle;
+	ButtonStyle: ButtonStyle;
+	OnGetMenuContent: UnrealEngineDelegate<() => JavascriptSlateWidget>;
+	OnMenuOpenChanged: UnrealEngineDelegate<(Value: boolean) => void>;
+	OnComboBoxOpened: UnrealEngineDelegate<() => void>;
+	bIsFocusable: boolean;
+	bHasDownArrow: boolean;
+	ForegroundColor: SlateColor;
+	ButtonColorAndOpacity: SlateColor;
+	ContentPadding: Margin;
+	MenuPlacement: EMenuPlacement;
+	HAlign: EHorizontalAlignment;
+	VAlign: EVerticalAlignment;
+	static Load(ResourceName: string): JavascriptComboButton;
+	static Find(Outer: UObject, ResourceName: string): JavascriptComboButton;
+	static GetDefaultObject(): JavascriptComboButton;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptComboButton;
+	SetIsOpen(InIsOpen: boolean,bFocusMenu: boolean): void;
+	static C(Other: UObject | any): JavascriptComboButton;
+}
+
+declare class JavascriptSlateIcon { 
+	StyleSetName: string;
+	StyleName: string;
+	SmallStyleName: string;
+	clone() : JavascriptSlateIcon;
+	static C(Other: UObject | any): JavascriptSlateIcon;
+}
+
+declare class JavascriptComboButtonContext extends UObject { 
+	OnGetLabel: UnrealEngineDelegate<() => string>;
+	OnGetTooltip: UnrealEngineDelegate<() => string>;
+	OnGetIcon: UnrealEngineDelegate<() => JavascriptSlateIcon>;
+	OnGetWidget: UnrealEngineDelegate<(EditingObject: UObject) => JavascriptSlateWidget>;
+	OnCanExecute: UnrealEngineDelegate<() => boolean>;
+	static Load(ResourceName: string): JavascriptComboButtonContext;
+	static Find(Outer: UObject, ResourceName: string): JavascriptComboButtonContext;
+	static GetDefaultObject(): JavascriptComboButtonContext;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptComboButtonContext;
+	UnmarkReferencedObject(): void;
+	MarkReferencedObject(): void;
+	static C(Other: UObject | any): JavascriptComboButtonContext;
+}
+
+declare class JavascriptTextProperty { 
+	Key: string;
+	Namespace: string;
+	Value: string;
+	TableId: string;
+	clone() : JavascriptTextProperty;
+	static C(Other: UObject | any): JavascriptTextProperty;
+	static FromStringTable(InTableId: string,InKey: string): JavascriptTextProperty;
+}
+
+declare class JavascriptFTextBox extends Widget { 
+	OnIsReadOnly: UnrealEngineDelegate<() => boolean>;
+	OnIsValidText: UnrealEngineDelegate<(TextValue: string) => string>;
+	OnGetDefaultValue: UnrealEngineDelegate<() => JavascriptTextProperty>;
+	OnTextCommitted: UnrealEngineMulticastDelegate<(TextProperty: JavascriptTextProperty) => void>;
+	WidgetStyle: EditableTextBoxStyle;
+	WrapTextAt: number;
+	AutoWrapText: boolean;
+	static Load(ResourceName: string): JavascriptFTextBox;
+	static Find(Outer: UObject, ResourceName: string): JavascriptFTextBox;
+	static GetDefaultObject(): JavascriptFTextBox;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptFTextBox;
+	SetText(JavascriptTextProperty?: JavascriptTextProperty): {JavascriptTextProperty: JavascriptTextProperty};
+	static C(Other: UObject | any): JavascriptFTextBox;
+}
+
+declare class JavascriptGameViewport extends ContentWidget { 
+	BackgroundColor: LinearColor;
+	static Load(ResourceName: string): JavascriptGameViewport;
+	static Find(Outer: UObject, ResourceName: string): JavascriptGameViewport;
+	static GetDefaultObject(): JavascriptGameViewport;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGameViewport;
+	Spawn(ActorClass: UnrealEngineClass): Actor;
+	SetViewRotation(Rotation: Rotator): void;
+	SetViewLocation(Location: Vector): void;
+	GetViewRotation(): Rotator;
+	GetViewportWorld(): World;
+	GetViewLocation(): Vector;
+	static C(Other: UObject | any): JavascriptGameViewport;
+}
+
+declare class JavascriptIntSpinBox extends Widget { 
+	Value: number;
+	ValueDelegate: UnrealEngineDelegate<() => number>;
+	WidgetStyle: SpinBoxStyle;
+	Style: SlateWidgetStyleAsset;
+	Delta: number;
+	SliderExponent: number;
+	Font: SlateFontInfo;
+	Justification: ETextJustify;
+	MinDesiredWidth: number;
+	ClearKeyboardFocusOnCommit: boolean;
+	SelectAllTextOnCommit: boolean;
+	ForegroundColor: SlateColor;
+	OnValueChanged: UnrealEngineMulticastDelegate<(InValue: number) => void>;
+	OnValueCommitted: UnrealEngineMulticastDelegate<(InValue: number, CommitMethod: ETextCommit) => void>;
+	OnBeginSliderMovement: UnrealEngineMulticastDelegate<() => void>;
+	OnEndSliderMovement: UnrealEngineMulticastDelegate<(InValue: number) => void>;
+	bOverride_MinValue: boolean;
+	bOverride_MaxValue: boolean;
+	bOverride_MinSliderValue: boolean;
+	bOverride_MaxSliderValue: boolean;
+	MinValue: number;
+	MaxValue: number;
+	MinSliderValue: number;
+	MaxSliderValue: number;
+	static Load(ResourceName: string): JavascriptIntSpinBox;
+	static Find(Outer: UObject, ResourceName: string): JavascriptIntSpinBox;
+	static GetDefaultObject(): JavascriptIntSpinBox;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptIntSpinBox;
+	SetValue(NewValue: number): void;
+	SetMinValue(NewValue: number): void;
+	SetMinSliderValue(NewValue: number): void;
+	SetMaxValue(NewValue: number): void;
+	SetMaxSliderValue(NewValue: number): void;
+	SetForegroundColor(InForegroundColor: SlateColor): void;
+	GetValue(): number;
+	GetMinValue(): number;
+	GetMinSliderValue(): number;
+	GetMaxValue(): number;
+	GetMaxSliderValue(): number;
+	ClearMinValue(): void;
+	ClearMinSliderValue(): void;
+	ClearMaxValue(): void;
+	ClearMaxSliderValue(): void;
+	static C(Other: UObject | any): JavascriptIntSpinBox;
+}
+
+declare class TableColumnHeaderStyle extends SlateWidgetStyle { 
+	SortPrimaryAscendingImage: SlateBrush;
+	SortPrimaryDescendingImage: SlateBrush;
+	SortSecondaryAscendingImage: SlateBrush;
+	SortSecondaryDescendingImage: SlateBrush;
+	NormalBrush: SlateBrush;
+	HoveredBrush: SlateBrush;
+	MenuDropdownImage: SlateBrush;
+	MenuDropdownNormalBorderBrush: SlateBrush;
+	MenuDropdownHoveredBorderBrush: SlateBrush;
+	clone() : TableColumnHeaderStyle;
+	static C(Other: UObject | any): TableColumnHeaderStyle;
+}
+
+declare class SplitterStyle extends SlateWidgetStyle { 
+	HandleNormalBrush: SlateBrush;
+	HandleHighlightBrush: SlateBrush;
+	clone() : SplitterStyle;
+	static C(Other: UObject | any): SplitterStyle;
+}
+
+declare class HeaderRowStyle extends SlateWidgetStyle { 
+	ColumnStyle: TableColumnHeaderStyle;
+	LastColumnStyle: TableColumnHeaderStyle;
+	ColumnSplitterStyle: SplitterStyle;
+	SplitterHandleSize: number;
+	BackgroundBrush: SlateBrush;
+	ForegroundColor: SlateColor;
+	HorizontalSeparatorBrush: SlateBrush;
+	HorizontalSeparatorThickness: number;
+	clone() : HeaderRowStyle;
+	static C(Other: UObject | any): HeaderRowStyle;
+}
+
+declare class JavascriptColumn { 
+	ID: string;
+	Width: number;
+	Widget: Widget;
+	clone() : JavascriptColumn;
+	static C(Other: UObject | any): JavascriptColumn;
+}
+
+declare class JavascriptTreeView extends ListViewBase { 
+	OnGenerateRowEvent: UnrealEngineDelegate<(UObject: UObject, ID: string, Instance: JavascriptTreeView) => Widget>;
+	OnExpansionChanged: UnrealEngineDelegate<(Item: UObject, bExpanded: boolean, Instance: JavascriptTreeView) => void>;
+	OnContextMenuOpening: UnrealEngineDelegate<(Instance: JavascriptTreeView) => Widget>;
+	OnGetChildren: UnrealEngineDelegate<(Item: UObject, Instance: JavascriptTreeView) => void>;
+	JavascriptContext: JavascriptContext;
+	Items: UObject[];
+	HeaderRowStyle: HeaderRowStyle;
+	TableRowStyle: TableRowStyle;
+	ScrollBarStyle: ScrollBarStyle;
+	SelectionMode: ESelectionMode;
+	Children: UObject[];
+	Columns: JavascriptColumn[];
+	ColumnWidgets: Widget[];
+	static Load(ResourceName: string): JavascriptTreeView;
+	static Find(Outer: UObject, ResourceName: string): JavascriptTreeView;
+	static GetDefaultObject(): JavascriptTreeView;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTreeView;
+	SetSingleExpandedItem(InItem: UObject): void;
+	SetSelection(SoleSelectedItem: UObject): void;
+	SetItemSelection(MultiSelectedItems: UObject[],bIsSelected: boolean): void;
+	SetItemExpansion(InItem: UObject,InShouldExpandItem: boolean): void;
+	SetDoubleClickSelection(SelectedItem: UObject): void;
+	RequestTreeRefresh(): void;
+	RequestNavigateToItem(Item: UObject): void;
+	OnSelectionChanged(UObject: UObject,Type: ESelectInfo): void;
+	OnDoubleClick(UObject: UObject): void;
+	IsItemExpanded(InItem: UObject): boolean;
+	IsDoubleClickSelection(SelectedItem: UObject): boolean;
+	GetSelectedItems(OutItems?: UObject[]): {OutItems: UObject[], $: boolean};
+	GetDoubleClickedItems(OutItems?: UObject[]): {OutItems: UObject[]};
+	ClearSelection(): void;
+	ClearDoubleClickSelection(): void;
+	static C(Other: UObject | any): JavascriptTreeView;
+}
+
+declare class JavascriptListView extends JavascriptTreeView { 
+	ItemHeight: number;
+	static Load(ResourceName: string): JavascriptListView;
+	static Find(Outer: UObject, ResourceName: string): JavascriptListView;
+	static GetDefaultObject(): JavascriptListView;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptListView;
+	RequestListRefresh(): void;
+	OnClick(UObject: UObject): void;
+	static C(Other: UObject | any): JavascriptListView;
+}
+
+declare type EJavasrciptUserInterfaceActionType = 'None' | 'Button' | 'ToggleButton' | 'RadioButton' | 'Check' | 'CollapsedButton' | 'EJavasrciptUserInterfaceActionType_MAX';
+declare var EJavasrciptUserInterfaceActionType : { None:'None',Button:'Button',ToggleButton:'ToggleButton',RadioButton:'RadioButton',Check:'Check',CollapsedButton:'CollapsedButton',EJavasrciptUserInterfaceActionType_MAX:'EJavasrciptUserInterfaceActionType_MAX', };
+declare class JavascriptMenuContext extends UObject { 
+	Description: string;
+	Tooltip: string;
+	Icon: JavascriptSlateIcon;
+	ActionType: EJavasrciptUserInterfaceActionType;
+	OnCanExecute: UnrealEngineDelegate<() => boolean>;
+	OnExecute: UnrealEngineDelegate<() => void>;
+	OnGetActionCheckState: UnrealEngineDelegate<() => ECheckBoxState>;
+	static Load(ResourceName: string): JavascriptMenuContext;
+	static Find(Outer: UObject, ResourceName: string): JavascriptMenuContext;
+	static GetDefaultObject(): JavascriptMenuContext;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptMenuContext;
+	static C(Other: UObject | any): JavascriptMenuContext;
+}
+
+declare class JavascriptSlateTextRun { 
+	clone() : JavascriptSlateTextRun;
+	static C(Other: UObject | any): JavascriptSlateTextRun;
+}
+
+declare class JavascriptTextModel extends UObject { 
+	static Load(ResourceName: string): JavascriptTextModel;
+	static Find(Outer: UObject, ResourceName: string): JavascriptTextModel;
+	static GetDefaultObject(): JavascriptTextModel;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTextModel;
+	SetString(string: string): void;
+	GetString(): string;
+	CreateRun(MessageTextStyle: TextBlockStyle,BeginIndex: number,EndIndex: number): JavascriptSlateTextRun;
+	static C(Other: UObject | any): JavascriptTextModel;
+}
+
+declare class JavascriptTextLayout { 
+	clone() : JavascriptTextLayout;
+	static C(Other: UObject | any): JavascriptTextLayout;
+	AddLine(Model?: JavascriptTextModel,Runs?: JavascriptSlateTextRun[]): {TextLayout: JavascriptTextLayout};
+	ClearLines(): {TextLayout: JavascriptTextLayout};
+	GetAsText(): string;
+	GetLineLength(): number;
+	static AddLine(TextLayout?: JavascriptTextLayout,Model?: JavascriptTextModel,Runs?: JavascriptSlateTextRun[]): {TextLayout: JavascriptTextLayout};
+	static ClearLines(TextLayout?: JavascriptTextLayout): {TextLayout: JavascriptTextLayout};
+	static GetAsText(TextLayout: JavascriptTextLayout): string;
+	static GetLineLength(TargetTextLayout: JavascriptTextLayout): number;
+}
+
+declare class JavascriptMultiLineEditableTextBox extends MultiLineEditableTextBox { 
+	OnVScrollBarUserScrolled: UnrealEngineMulticastDelegate<(Offset: number) => void>;
+	GetTextDelegate: UnrealEngineDelegate<(TextLayout: JavascriptTextLayout) => string>;
+	SetTextDelegate: UnrealEngineDelegate<(InText: string, TextLayout: JavascriptTextLayout) => void>;
+	bAlwaysShowScrollbars: boolean;
+	static Load(ResourceName: string): JavascriptMultiLineEditableTextBox;
+	static Find(Outer: UObject, ResourceName: string): JavascriptMultiLineEditableTextBox;
+	static GetDefaultObject(): JavascriptMultiLineEditableTextBox;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptMultiLineEditableTextBox;
+	ScrollTo(Line: number,Offset: number): void;
+	Refresh(): void;
+	GoTo(Line: number,Offset: number): void;
+	static C(Other: UObject | any): JavascriptMultiLineEditableTextBox;
+}
+
+declare class JavascriptRichTextBlockHyperlinkDecorator extends RichTextBlockDecorator { 
+	HyperlinkId: string;
+	OnClick: UnrealEngineMulticastDelegate<(Self: JavascriptRichTextBlockHyperlinkDecorator) => void>;
+	static Load(ResourceName: string): JavascriptRichTextBlockHyperlinkDecorator;
+	static Find(Outer: UObject, ResourceName: string): JavascriptRichTextBlockHyperlinkDecorator;
+	static GetDefaultObject(): JavascriptRichTextBlockHyperlinkDecorator;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptRichTextBlockHyperlinkDecorator;
+	GetMetadata(Key: string): string;
+	static C(Other: UObject | any): JavascriptRichTextBlockHyperlinkDecorator;
+}
+
+declare class JavascriptSearchBox extends Widget { 
+	JavascriptContext: JavascriptContext;
+	OnTextChanged: UnrealEngineMulticastDelegate<(Text: string) => void>;
+	OnTextCommitted: UnrealEngineMulticastDelegate<(Text: string, CommitMethod: ETextCommit) => void>;
+	Text: string;
+	TextDelegate: UnrealEngineDelegate<() => string>;
+	HintText: string;
+	HintTextDelegate: UnrealEngineDelegate<() => string>;
+	static Load(ResourceName: string): JavascriptSearchBox;
+	static Find(Outer: UObject, ResourceName: string): JavascriptSearchBox;
+	static GetDefaultObject(): JavascriptSearchBox;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSearchBox;
+	SetText(InText: string): void;
+	SetHintText(InHintText: string): void;
+	OnKeyDown(MyGeometry: Geometry,InKeyEvent: KeyEvent): EventReply;
+	static C(Other: UObject | any): JavascriptSearchBox;
+}
+
+declare class JavascriptStyleSet { 
+	StyleSetName: string;
+	clone() : JavascriptStyleSet;
+	static C(Other: UObject | any): JavascriptStyleSet;
+	GetBrush(StyleName: string): SlateBrush;
+	GetButtonStyle(StyleName: string): ButtonStyle;
+	GetCheckBoxStyle(StyleName: string): CheckBoxStyle;
+	GetColor(StyleName: string): LinearColor;
+	GetComboBoxStyle(StyleName: string): ComboBoxStyle;
+	GetComboButtonStyle(StyleName: string): ComboButtonStyle;
+	GetEditableTextBoxStyle(StyleName: string): EditableTextBoxStyle;
+	GetEditableTextStyle(StyleName: string): EditableTextStyle;
+	GetFloat(StyleName: string): number;
+	GetFontStyle(StyleName: string): SlateFontInfo;
+	GetMargin(StyleName: string): Margin;
+	GetProgressBarStyle(StyleName: string): ProgressBarStyle;
+	GetSlateColor(StyleName: string): SlateColor;
+	GetSound(StyleName: string): SlateSound;
+	GetSpinBoxStyle(StyleName: string): SpinBoxStyle;
+	GetTableRowStyle(StyleName: string): TableRowStyle;
+	GetTextBlockStyle(StyleName: string): TextBlockStyle;
+	GetVector(StyleName: string): Vector2D;
+	static GetBrush(Handle: JavascriptStyleSet,StyleName: string): SlateBrush;
+	static GetButtonStyle(Handle: JavascriptStyleSet,StyleName: string): ButtonStyle;
+	static GetCheckBoxStyle(Handle: JavascriptStyleSet,StyleName: string): CheckBoxStyle;
+	static GetColor(Handle: JavascriptStyleSet,StyleName: string): LinearColor;
+	static GetComboBoxStyle(Handle: JavascriptStyleSet,StyleName: string): ComboBoxStyle;
+	static GetComboButtonStyle(Handle: JavascriptStyleSet,StyleName: string): ComboButtonStyle;
+	static GetEditableTextBoxStyle(Handle: JavascriptStyleSet,StyleName: string): EditableTextBoxStyle;
+	static GetEditableTextStyle(Handle: JavascriptStyleSet,StyleName: string): EditableTextStyle;
+	static GetFloat(Handle: JavascriptStyleSet,StyleName: string): number;
+	static GetFontStyle(Handle: JavascriptStyleSet,StyleName: string): SlateFontInfo;
+	static GetMargin(Handle: JavascriptStyleSet,StyleName: string): Margin;
+	static GetProgressBarStyle(Handle: JavascriptStyleSet,StyleName: string): ProgressBarStyle;
+	static GetSlateColor(Handle: JavascriptStyleSet,StyleName: string): SlateColor;
+	static GetSound(Handle: JavascriptStyleSet,StyleName: string): SlateSound;
+	static GetSpinBoxStyle(Handle: JavascriptStyleSet,StyleName: string): SpinBoxStyle;
+	static GetTableRowStyle(Handle: JavascriptStyleSet,StyleName: string): TableRowStyle;
+	static GetTextBlockStyle(Handle: JavascriptStyleSet,StyleName: string): TextBlockStyle;
+	static GetVector(Handle: JavascriptStyleSet,StyleName: string): Vector2D;
+}
+
+declare class JavascriptStyleSetLibrary extends BlueprintFunctionLibrary { 
+	SlateColor: SlateColor;
+	SlateBrush: SlateBrush;
+	ButtonStyle: ButtonStyle;
+	TextBlockStyle: TextBlockStyle;
+	EditableTextStyle: EditableTextStyle;
+	EditableTextBoxStyle: EditableTextBoxStyle;
+	CheckBoxStyle: CheckBoxStyle;
+	ComboBoxStyle: ComboBoxStyle;
+	ComboButtonStyle: ComboButtonStyle;
+	ProgressBarStyle: ProgressBarStyle;
+	SpinBoxStyle: SpinBoxStyle;
+	TableRowStyle: TableRowStyle;
+	static Load(ResourceName: string): JavascriptStyleSetLibrary;
+	static Find(Outer: UObject, ResourceName: string): JavascriptStyleSetLibrary;
+	static GetDefaultObject(): JavascriptStyleSetLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptStyleSetLibrary;
+	static GetVector(Handle: JavascriptStyleSet,StyleName: string): Vector2D;
+	static GetTextBlockStyle(Handle: JavascriptStyleSet,StyleName: string): TextBlockStyle;
+	static GetTableRowStyle(Handle: JavascriptStyleSet,StyleName: string): TableRowStyle;
+	static GetSpinBoxStyle(Handle: JavascriptStyleSet,StyleName: string): SpinBoxStyle;
+	static GetSound(Handle: JavascriptStyleSet,StyleName: string): SlateSound;
+	static GetSlateColor(Handle: JavascriptStyleSet,StyleName: string): SlateColor;
+	static GetProgressBarStyle(Handle: JavascriptStyleSet,StyleName: string): ProgressBarStyle;
+	static GetMargin(Handle: JavascriptStyleSet,StyleName: string): Margin;
+	static GetFontStyle(Handle: JavascriptStyleSet,StyleName: string): SlateFontInfo;
+	static GetFloat(Handle: JavascriptStyleSet,StyleName: string): number;
+	static GetEditableTextStyle(Handle: JavascriptStyleSet,StyleName: string): EditableTextStyle;
+	static GetEditableTextBoxStyle(Handle: JavascriptStyleSet,StyleName: string): EditableTextBoxStyle;
+	static GetComboButtonStyle(Handle: JavascriptStyleSet,StyleName: string): ComboButtonStyle;
+	static GetComboBoxStyle(Handle: JavascriptStyleSet,StyleName: string): ComboBoxStyle;
+	static GetColor(Handle: JavascriptStyleSet,StyleName: string): LinearColor;
+	static GetCheckBoxStyle(Handle: JavascriptStyleSet,StyleName: string): CheckBoxStyle;
+	static GetButtonStyle(Handle: JavascriptStyleSet,StyleName: string): ButtonStyle;
+	static GetBrush(Handle: JavascriptStyleSet,StyleName: string): SlateBrush;
+	static C(Other: UObject | any): JavascriptStyleSetLibrary;
+}
+
+declare class JavascriptTextBlock extends TextBlock { 
+	HighlightText: string;
+	HighlightTextDelegate: UnrealEngineDelegate<() => string>;
+	static Load(ResourceName: string): JavascriptTextBlock;
+	static Find(Outer: UObject, ResourceName: string): JavascriptTextBlock;
+	static GetDefaultObject(): JavascriptTextBlock;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTextBlock;
+	SetHighlightText(InHighlightText: string): void;
+	static C(Other: UObject | any): JavascriptTextBlock;
+}
+
+declare class JavascriptTileView extends TileView { 
+	JavascriptContext: JavascriptContext;
+	TileListItems: UObject[];
+	static Load(ResourceName: string): JavascriptTileView;
+	static Find(Outer: UObject, ResourceName: string): JavascriptTileView;
+	static GetDefaultObject(): JavascriptTileView;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTileView;
+	OnSelectionChanged(UObject: UObject,Type: ESelectInfo): void;
+	OnDoubleClick(UObject: UObject): void;
+	OnClick(UObject: UObject): void;
+	static C(Other: UObject | any): JavascriptTileView;
+}
+
+declare class JavascriptToolbarButtonContext extends UObject { 
+	OnGetLabel: UnrealEngineDelegate<() => string>;
+	OnGetTooltip: UnrealEngineDelegate<() => string>;
+	OnGetIcon: UnrealEngineDelegate<() => JavascriptSlateIcon>;
+	OnExecuteAction: UnrealEngineDelegate<(EditingObject: UObject) => void>;
+	OnCanExecuteAction: UnrealEngineDelegate<(EditingObject: UObject) => boolean>;
+	OnIsActionChecked: UnrealEngineDelegate<(EditingObject: UObject) => boolean>;
+	OnIsActionButtonVisible: UnrealEngineDelegate<(EditingObject: UObject) => boolean>;
+	static Load(ResourceName: string): JavascriptToolbarButtonContext;
+	static Find(Outer: UObject, ResourceName: string): JavascriptToolbarButtonContext;
+	static GetDefaultObject(): JavascriptToolbarButtonContext;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptToolbarButtonContext;
+	UnmarkReferencedObject(): void;
+	MarkReferencedObject(): void;
+	static C(Other: UObject | any): JavascriptToolbarButtonContext;
+}
+
+declare class JavascriptUMGBlueprintLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): JavascriptUMGBlueprintLibrary;
+	static Find(Outer: UObject, ResourceName: string): JavascriptUMGBlueprintLibrary;
+	static GetDefaultObject(): JavascriptUMGBlueprintLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptUMGBlueprintLibrary;
+	static SlateColor_UseSubduedForeground(): SlateColor;
+	static SlateColor_UseForeground(): SlateColor;
+	static GetLineLength(TargetTextLayout: JavascriptTextLayout): number;
+	static GetAsText(TextLayout: JavascriptTextLayout): string;
+	static DrawSpaceSpline(Context?: PaintContext,InStart?: Vector2D,InStartDir?: Vector2D,InEnd?: Vector2D,InEndDir?: Vector2D,InThickness?: number,InTint?: LinearColor): {Context: PaintContext};
+	static ClearLines(TextLayout?: JavascriptTextLayout): {TextLayout: JavascriptTextLayout};
+	static AddLine(TextLayout?: JavascriptTextLayout,Model?: JavascriptTextModel,Runs?: JavascriptSlateTextRun[]): {TextLayout: JavascriptTextLayout};
+	static C(Other: UObject | any): JavascriptUMGBlueprintLibrary;
+}
+
+declare class JavascriptSlateStyle { 
+	clone() : JavascriptSlateStyle;
+	static C(Other: UObject | any): JavascriptSlateStyle;
+	AddBorderBrush(PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
+	AddBoxBrush(PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
+	AddButtonStyle(PropertyName: string,ButtonStyle: ButtonStyle): void;
+	AddFontInfo(PropertyName: string,FontInfo: SlateFontInfo): void;
+	AddImageBrush(PropertyName: string,InImageName: string,InImageSize: Vector2D,InTint: LinearColor,InTiling: ESlateBrushTileType,InImageType: ESlateBrushImageType): void;
+	AddSound(PropertyName: string,Sound: SlateSound): void;
+	Register(): void;
+	RootToContentDir(RelativePath: string): string;
+	RootToCoreContentDir(RelativePath: string): string;
+	SetContentRoot(InContentRootDir: string): void;
+	SetCoreContentRoot(InCoreContentRootDir: string): void;
+	SetParentStyleName(InParentStyleName: string): void;
+	Unregister(): void;
+	static AddBorderBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
+	static AddBoxBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
+	static AddButtonStyle(StyleSet: JavascriptSlateStyle,PropertyName: string,ButtonStyle: ButtonStyle): void;
+	static AddFontInfo(StyleSet: JavascriptSlateStyle,PropertyName: string,FontInfo: SlateFontInfo): void;
+	static AddImageBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InImageSize: Vector2D,InTint: LinearColor,InTiling: ESlateBrushTileType,InImageType: ESlateBrushImageType): void;
+	static AddSound(StyleSet: JavascriptSlateStyle,PropertyName: string,Sound: SlateSound): void;
+	static Register(StyleSet: JavascriptSlateStyle): void;
+	static RootToContentDir(StyleSet: JavascriptSlateStyle,RelativePath: string): string;
+	static RootToCoreContentDir(StyleSet: JavascriptSlateStyle,RelativePath: string): string;
+	static SetContentRoot(StyleSet: JavascriptSlateStyle,InContentRootDir: string): void;
+	static SetCoreContentRoot(StyleSet: JavascriptSlateStyle,InCoreContentRootDir: string): void;
+	static SetParentStyleName(StyleSet: JavascriptSlateStyle,InParentStyleName: string): void;
+	static Unregister(StyleSet: JavascriptSlateStyle): void;
+	static CreateSlateStyle(InStyleSetName: string): JavascriptSlateStyle;
+}
+
+declare class JavascriptUMGLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): JavascriptUMGLibrary;
+	static Find(Outer: UObject, ResourceName: string): JavascriptUMGLibrary;
+	static GetDefaultObject(): JavascriptUMGLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptUMGLibrary;
+	static Unregister(StyleSet: JavascriptSlateStyle): void;
+	static TakeWidget(Widget: Widget): JavascriptSlateWidget;
+	static ShowWindow(NewWindow: JavascriptSlateWidget): void;
+	static SetParentStyleName(StyleSet: JavascriptSlateStyle,InParentStyleName: string): void;
+	static SetCoreContentRoot(StyleSet: JavascriptSlateStyle,InCoreContentRootDir: string): void;
+	static SetContentRoot(StyleSet: JavascriptSlateStyle,InContentRootDir: string): void;
+	static SetContent(TargetWidget: NativeWidgetHost,SlateWidget: JavascriptSlateWidget): Widget;
+	static RootToCoreContentDir(StyleSet: JavascriptSlateStyle,RelativePath: string): string;
+	static RootToContentDir(StyleSet: JavascriptSlateStyle,RelativePath: string): string;
+	static Register(StyleSet: JavascriptSlateStyle): void;
+	static GetUIGeometry(Widget: Widget): Geometry;
+	static GetRootWindow(): JavascriptSlateWidget;
+	static GenerateDynamicImageResource(InDynamicBrushName: string): Vector2D;
+	static CreateSlateStyle(InStyleSetName: string): JavascriptSlateStyle;
+	static AddWindowAsNativeChild(NewWindow: JavascriptSlateWidget,RootWindow: JavascriptSlateWidget): void;
+	static AddWindow(NewWindow: JavascriptSlateWidget,bShowImmediately: boolean): void;
+	static AddSound(StyleSet: JavascriptSlateStyle,PropertyName: string,Sound: SlateSound): void;
+	static AddImageBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InImageSize: Vector2D,InTint: LinearColor,InTiling: ESlateBrushTileType,InImageType: ESlateBrushImageType): void;
+	static AddFontInfo(StyleSet: JavascriptSlateStyle,PropertyName: string,FontInfo: SlateFontInfo): void;
+	static AddButtonStyle(StyleSet: JavascriptSlateStyle,PropertyName: string,ButtonStyle: ButtonStyle): void;
+	static AddBoxBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
+	static AddBorderBrush(StyleSet: JavascriptSlateStyle,PropertyName: string,InImageName: string,InMargin: Margin,InColorAndOpacity: LinearColor,InImageType: ESlateBrushImageType): void;
+	static C(Other: UObject | any): JavascriptUMGLibrary;
+}
+
+declare class JavascriptWidget extends UserWidget { 
+	JavascriptContext: JavascriptContext;
+	OnInputActionEvent: UnrealEngineMulticastDelegate<(ActionName: string) => void>;
+	OnReleaseActionEvent: UnrealEngineMulticastDelegate<(ActionName: string) => void>;
+	OnInputAxisEvent: UnrealEngineMulticastDelegate<(Axis: number, AxisName: string) => void>;
+	ContentSlot: PanelSlot;
+	static Load(ResourceName: string): JavascriptWidget;
+	static Find(Outer: UObject, ResourceName: string): JavascriptWidget;
+	static GetDefaultObject(): JavascriptWidget;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptWidget;
+	SetRootWidget(Widget: Widget): void;
+	RemoveChild(): boolean;
+	OnReleaseInputActionByName(ActionName: string): void;
+	OnListenForInputAxis(AxisName: string,EventType: EInputEvent,bConsume: boolean): void;
+	OnListenForInputAction(ActionName: string,EventType: EInputEvent,bConsume: boolean): void;
+	OnInputAxisByName(Axis: number,ActionName: string): void;
+	OnInputActionByName(ActionName: string): void;
+	OnDestroy(bReleaseChildren: boolean): void;
+	static HasValidCachedWidget(Widget: Widget): boolean;
+	static CallSynchronizeProperties(WidgetOrSlot: Visual): void;
+	AddChild(Content: Widget): PanelSlot;
+	static C(Other: UObject | any): JavascriptWidget;
+}
+
+declare type EJavascriptWindowType = 'Normal' | 'Menu' | 'ToolTip' | 'Notification' | 'CursorDecorator' | 'EJavascriptWindowType_MAX';
+declare var EJavascriptWindowType : { Normal:'Normal',Menu:'Menu',ToolTip:'ToolTip',Notification:'Notification',CursorDecorator:'CursorDecorator',EJavascriptWindowType_MAX:'EJavascriptWindowType_MAX', };
+declare class WindowStyle extends SlateWidgetStyle { 
+	MinimizeButtonStyle: ButtonStyle;
+	MaximizeButtonStyle: ButtonStyle;
+	RestoreButtonStyle: ButtonStyle;
+	CloseButtonStyle: ButtonStyle;
+	TitleTextStyle: TextBlockStyle;
+	ActiveTitleBrush: SlateBrush;
+	InactiveTitleBrush: SlateBrush;
+	FlashTitleBrush: SlateBrush;
+	BackgroundColor: SlateColor;
+	OutlineBrush: SlateBrush;
+	OutlineColor: SlateColor;
+	BorderBrush: SlateBrush;
+	BorderColor: SlateColor;
+	BackgroundBrush: SlateBrush;
+	ChildBackgroundBrush: SlateBrush;
+	WindowCornerRadius: number;
+	BorderPadding: Margin;
+	clone() : WindowStyle;
+	static C(Other: UObject | any): WindowStyle;
+}
+
+declare type EJavascriptAutoCenter = 'None' | 'PrimaryWorkArea' | 'PreferredWorkArea' | 'EJavascriptAutoCenter_MAX';
+declare var EJavascriptAutoCenter : { None:'None',PrimaryWorkArea:'PrimaryWorkArea',PreferredWorkArea:'PreferredWorkArea',EJavascriptAutoCenter_MAX:'EJavascriptAutoCenter_MAX', };
+declare type EJavascriptWindowTransparency = 'None' | 'PerWindow' | 'EJavascriptWindowTransparency_MAX';
+declare var EJavascriptWindowTransparency : { None:'None',PerWindow:'PerWindow',EJavascriptWindowTransparency_MAX:'EJavascriptWindowTransparency_MAX', };
+declare type EJavascriptSizingRule = 'FixedSize' | 'Autosized' | 'UserSized' | 'EJavascriptSizingRule_MAX';
+declare var EJavascriptSizingRule : { FixedSize:'FixedSize',Autosized:'Autosized',UserSized:'UserSized',EJavascriptSizingRule_MAX:'EJavascriptSizingRule_MAX', };
+declare type EJavascriptWindowActivationPolicy = 'Never' | 'Always' | 'FirstShown' | 'EJavascriptWindowActivationPolicy_MAX';
+declare var EJavascriptWindowActivationPolicy : { Never:'Never',Always:'Always',FirstShown:'FirstShown',EJavascriptWindowActivationPolicy_MAX:'EJavascriptWindowActivationPolicy_MAX', };
+declare class JavascriptWindow extends ContentWidget { 
+	Type: EJavascriptWindowType;
+	Style: WindowStyle;
+	Title: string;
+	bDragAnywhere: boolean;
+	AutoCenter: EJavascriptAutoCenter;
+	ScreenPosition: Vector2D;
+	ClientSize: Vector2D;
+	SupportsTransparency: EJavascriptWindowTransparency;
+	InitialOpacity: number;
+	IsInitiallyMaximized: boolean;
+	SizingRule: EJavascriptSizingRule;
+	IsPopupWindow: boolean;
+	FocusWhenFirstShown: boolean;
+	ActivateWhenFirstShown: boolean;
+	UseOSWindowBorder: boolean;
+	HasCloseButton: boolean;
+	SupportsMaximize: boolean;
+	SupportsMinimize: boolean;
+	CreateTitleBar: boolean;
+	SaneWindowPlacement: boolean;
+	LayoutBorder: Margin;
+	UserResizeBorder: Margin;
+	OnWindowClosed: UnrealEngineDelegate<() => void>;
+	OnWindowDeactivated: UnrealEngineDelegate<() => void>;
+	IsTopmostWindow: boolean;
+	AdjustInitialSizeAndPositionForDPIScale: boolean;
+	ActivationPolicy: EJavascriptWindowActivationPolicy;
+	static Load(ResourceName: string): JavascriptWindow;
+	static Find(Outer: UObject, ResourceName: string): JavascriptWindow;
+	static GetDefaultObject(): JavascriptWindow;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptWindow;
+	ShowWindow(): void;
+	SetOpacity(InOpacity: number): void;
+	Resize(NewSize: Vector2D): void;
+	ReshapeWindow(NewPosition: Vector2D,NewSize: Vector2D): void;
+	RequestDestroyWindow(): void;
+	MoveWindowTo(NewPosition: Vector2D): void;
+	HideWindow(): void;
+	FlashWindow(): void;
+	EnableWindow(bEnable: boolean): void;
+	DestroyWindowImmediately(): void;
+	BringToFront(): void;
+	static C(Other: UObject | any): JavascriptWindow;
+	OpenDirectoryDialog(DialogTitle: string,DefaultPath: string,OutFolderName?: string): {OutFolderName: string, $: boolean};
+	OpenFileDialog(DialogTitle: string,DefaultPath: string,DefaultFile: string,FileTypes: string,Flags: number,OutFilenames?: string[]): {OutFilenames: string[], $: boolean};
+	SaveFileDialog(DialogTitle: string,DefaultPath: string,DefaultFile: string,FileTypes: string,Flags: number,OutFilenames?: string[]): {OutFilenames: string[], $: boolean};
+	static OpenDirectoryDialog(WindowHandle: JavascriptWindow,DialogTitle: string,DefaultPath: string,OutFolderName?: string): {OutFolderName: string, $: boolean};
+	static OpenFileDialog(WindowHandle: JavascriptWindow,DialogTitle: string,DefaultPath: string,DefaultFile: string,FileTypes: string,Flags: number,OutFilenames?: string[]): {OutFilenames: string[], $: boolean};
+	static SaveFileDialog(WindowHandle: JavascriptWindow,DialogTitle: string,DefaultPath: string,DefaultFile: string,FileTypes: string,Flags: number,OutFilenames?: string[]): {OutFilenames: string[], $: boolean};
+}
+
+declare type EJavascriptHttpRequestStatus = 'NotStarted' | 'Processing' | 'Failed' | 'Succeeded' | 'EJavascriptHttpRequestStatus_MAX';
+declare var EJavascriptHttpRequestStatus : { NotStarted:'NotStarted',Processing:'Processing',Failed:'Failed',Succeeded:'Succeeded',EJavascriptHttpRequestStatus_MAX:'EJavascriptHttpRequestStatus_MAX', };
+declare class JavascriptHttpRequest extends UObject { 
+	OnComplete: UnrealEngineDelegate<(successful: boolean) => void>;
+	OnProgress: UnrealEngineDelegate<(sent: number, recv: number) => void>;
+	static Load(ResourceName: string): JavascriptHttpRequest;
+	static Find(Outer: UObject, ResourceName: string): JavascriptHttpRequest;
+	static GetDefaultObject(): JavascriptHttpRequest;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptHttpRequest;
+	SetVerb(Verb: string): void;
+	SetURL(URL: string): void;
+	SetHeader(HeaderName: string,HeaderValue: string): void;
+	SetContentWithFiles(FilePaths: string[],Boundary: string,Content: string): void;
+	SetContentFromMemory(): void;
+	SetContentAsString(ContentString: string): void;
+	ProcessRequest(): boolean;
+	GetVerb(): string;
+	GetStatus(): EJavascriptHttpRequestStatus;
+	GetResponseCode(): number;
+	GetElapsedTime(): number;
+	GetContentToMemory(): void;
+	GetContentLength(): number;
+	GetContentAsString(): string;
+	CancelRequest(): void;
+	static C(Other: UObject | any): JavascriptHttpRequest;
+}
+
+declare class JavascriptWebSocket extends UObject { 
+	OnReceived: UnrealEngineMulticastDelegate<() => void>;
+	OnConnected: UnrealEngineMulticastDelegate<() => void>;
+	OnError: UnrealEngineMulticastDelegate<() => void>;
+	static Load(ResourceName: string): JavascriptWebSocket;
+	static Find(Outer: UObject, ResourceName: string): JavascriptWebSocket;
+	static GetDefaultObject(): JavascriptWebSocket;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptWebSocket;
+	Tick(): void;
+	SendMemory(NumBytes: number): void;
+	RemoteEndPoint(bAppendPort: boolean): string;
+	LocalEndPoint(bAppendPort: boolean): string;
+	GetReceivedBytes(): number;
+	Flush(): void;
+	Dispose(): void;
+	CopyBuffer(): void;
+	static Connect(Endpoint: string): JavascriptWebSocket;
+	static C(Other: UObject | any): JavascriptWebSocket;
+}
+
+declare class JavascriptWebSocketServer extends UObject { 
+	OnConnected: UnrealEngineMulticastDelegate<(WebSocket: JavascriptWebSocket) => void>;
+	Connections: JavascriptWebSocket[];
+	static Load(ResourceName: string): JavascriptWebSocketServer;
+	static Find(Outer: UObject, ResourceName: string): JavascriptWebSocketServer;
+	static GetDefaultObject(): JavascriptWebSocketServer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptWebSocketServer;
+	Tick(): void;
+	Info(): string;
+	Dispose(): void;
+	static Create(Port: number): JavascriptWebSocketServer;
+	static C(Other: UObject | any): JavascriptWebSocketServer;
+}
+
+declare type EActorSequenceObjectReferenceType = 'ContextActor' | 'ExternalActor' | 'Component' | 'EActorSequenceObjectReferenceType_MAX';
+declare var EActorSequenceObjectReferenceType : { ContextActor:'ContextActor',ExternalActor:'ExternalActor',Component:'Component',EActorSequenceObjectReferenceType_MAX:'EActorSequenceObjectReferenceType_MAX', };
+declare class ActorSequenceObjectReference { 
+	Type: EActorSequenceObjectReferenceType;
+	ActorId: Guid;
+	PathToComponent: string;
+	clone() : ActorSequenceObjectReference;
+	static C(Other: UObject | any): ActorSequenceObjectReference;
+}
+
+declare class ActorSequenceObjectReferences { 
+	Array: ActorSequenceObjectReference[];
+	clone() : ActorSequenceObjectReferences;
+	static C(Other: UObject | any): ActorSequenceObjectReferences;
+}
+
+declare class ActorSequenceObjectReferenceMap { 
+	BindingIds: Guid[];
+	References: ActorSequenceObjectReferences[];
+	clone() : ActorSequenceObjectReferenceMap;
+	static C(Other: UObject | any): ActorSequenceObjectReferenceMap;
+}
+
+declare class ActorSequence extends MovieSceneSequence { 
+	MovieScene: MovieScene;
+	ObjectReferences: ActorSequenceObjectReferenceMap;
+	bHasBeenInitialized: boolean;
+	static Load(ResourceName: string): ActorSequence;
+	static Find(Outer: UObject, ResourceName: string): ActorSequence;
+	static GetDefaultObject(): ActorSequence;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorSequence;
+	static C(Other: UObject | any): ActorSequence;
+}
+
+declare class ActorSequencePlayer extends MovieSceneSequencePlayer { 
+	static Load(ResourceName: string): ActorSequencePlayer;
+	static Find(Outer: UObject, ResourceName: string): ActorSequencePlayer;
+	static GetDefaultObject(): ActorSequencePlayer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorSequencePlayer;
+	static C(Other: UObject | any): ActorSequencePlayer;
+}
+
+declare class ActorSequenceComponent extends ActorComponent { 
+	PlaybackSettings: MovieSceneSequencePlaybackSettings;
+	Sequence: ActorSequence;
+	SequencePlayer: ActorSequencePlayer;
+	static Load(ResourceName: string): ActorSequenceComponent;
+	static Find(Outer: UObject, ResourceName: string): ActorSequenceComponent;
+	static GetDefaultObject(): ActorSequenceComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorSequenceComponent;
+	StopSequence(): void;
+	PlaySequence(): void;
+	PauseSequence(): void;
+	static C(Other: UObject | any): ActorSequenceComponent;
+}
+
+declare class AudioAnalyzerAssetBase extends UObject { 
+	static Load(ResourceName: string): AudioAnalyzerAssetBase;
+	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerAssetBase;
+	static GetDefaultObject(): AudioAnalyzerAssetBase;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerAssetBase;
+	static C(Other: UObject | any): AudioAnalyzerAssetBase;
+}
+
+declare class AudioAnalyzerSettings extends AudioAnalyzerAssetBase { 
+	static Load(ResourceName: string): AudioAnalyzerSettings;
+	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerSettings;
+	static GetDefaultObject(): AudioAnalyzerSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerSettings;
+	static C(Other: UObject | any): AudioAnalyzerSettings;
+}
+
+declare class AudioAnalyzerSubsystem extends EngineSubsystem { 
+	AudioAnalyzers: AudioAnalyzer[];
+	static Load(ResourceName: string): AudioAnalyzerSubsystem;
+	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerSubsystem;
+	static GetDefaultObject(): AudioAnalyzerSubsystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerSubsystem;
+	static C(Other: UObject | any): AudioAnalyzerSubsystem;
+}
+
+declare class AudioAnalyzer extends UObject { 
+	AudioBus: AudioBus;
+	AudioAnalyzerSubsystem: AudioAnalyzerSubsystem;
+	static Load(ResourceName: string): AudioAnalyzer;
+	static Find(Outer: UObject, ResourceName: string): AudioAnalyzer;
+	static GetDefaultObject(): AudioAnalyzer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzer;
+	StopAnalyzing(WorldContextObject: UObject): void;
+	StartAnalyzing(WorldContextObject: UObject,AudioBusToAnalyze: AudioBus): void;
+	static C(Other: UObject | any): AudioAnalyzer;
+}
+
+declare class AudioAnalyzerNRTSettings extends AudioAnalyzerAssetBase { 
+	static Load(ResourceName: string): AudioAnalyzerNRTSettings;
+	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerNRTSettings;
+	static GetDefaultObject(): AudioAnalyzerNRTSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerNRTSettings;
+	static C(Other: UObject | any): AudioAnalyzerNRTSettings;
+}
+
+declare class AudioAnalyzerNRT extends AudioAnalyzerAssetBase { 
+	Sound: SoundWave;
+	DurationInSeconds: number;
+	static Load(ResourceName: string): AudioAnalyzerNRT;
+	static Find(Outer: UObject, ResourceName: string): AudioAnalyzerNRT;
+	static GetDefaultObject(): AudioAnalyzerNRT;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioAnalyzerNRT;
+	AnalyzeAudio(): void;
+	static C(Other: UObject | any): AudioAnalyzerNRT;
+}
+
+declare class AudioSynesthesiaSettings extends AudioAnalyzerSettings { 
+	static Load(ResourceName: string): AudioSynesthesiaSettings;
+	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaSettings;
+	static GetDefaultObject(): AudioSynesthesiaSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaSettings;
+	static C(Other: UObject | any): AudioSynesthesiaSettings;
+}
+
+declare class SynesthesiaSpectrumAnalysisSettings extends AudioSynesthesiaSettings { 
+	AnalysisPeriod: number;
+	FFTSize: EFFTSize;
+	SpectrumType: EAudioSpectrumType;
+	WindowType: EFFTWindowType;
+	bDownmixToMono: boolean;
+	static Load(ResourceName: string): SynesthesiaSpectrumAnalysisSettings;
+	static Find(Outer: UObject, ResourceName: string): SynesthesiaSpectrumAnalysisSettings;
+	static GetDefaultObject(): SynesthesiaSpectrumAnalysisSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynesthesiaSpectrumAnalysisSettings;
+	static C(Other: UObject | any): SynesthesiaSpectrumAnalysisSettings;
+}
+
+declare class SynesthesiaSpectrumResults { 
+	TimeSeconds: number;
+	SpectrumValues: number[];
+	clone() : SynesthesiaSpectrumResults;
+	static C(Other: UObject | any): SynesthesiaSpectrumResults;
+}
+
+declare class SynesthesiaSpectrumAnalyzer extends AudioAnalyzer { 
+	Settings: SynesthesiaSpectrumAnalysisSettings;
+	OnSpectrumResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, SpectrumResults: SynesthesiaSpectrumResults[]) => void>;
+	OnLatestSpectrumResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, LatestSpectrumResults: SynesthesiaSpectrumResults) => void>;
+	static Load(ResourceName: string): SynesthesiaSpectrumAnalyzer;
+	static Find(Outer: UObject, ResourceName: string): SynesthesiaSpectrumAnalyzer;
+	static GetDefaultObject(): SynesthesiaSpectrumAnalyzer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynesthesiaSpectrumAnalyzer;
+	GetNumCenterFrequencies(): number;
+	GetCenterFrequencies(InSampleRate: number,OutCenterFrequencies?: number[]): {OutCenterFrequencies: number[]};
+	static C(Other: UObject | any): SynesthesiaSpectrumAnalyzer;
+}
+
+declare class AudioSynesthesiaNRTSettings extends AudioAnalyzerNRTSettings { 
+	static Load(ResourceName: string): AudioSynesthesiaNRTSettings;
+	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaNRTSettings;
+	static GetDefaultObject(): AudioSynesthesiaNRTSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaNRTSettings;
+	static C(Other: UObject | any): AudioSynesthesiaNRTSettings;
+}
+
+declare class AudioSynesthesiaNRT extends AudioAnalyzerNRT { 
+	static Load(ResourceName: string): AudioSynesthesiaNRT;
+	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaNRT;
+	static GetDefaultObject(): AudioSynesthesiaNRT;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaNRT;
+	static C(Other: UObject | any): AudioSynesthesiaNRT;
+}
+
+declare type EConstantQFFTSizeEnum = 'Min' | 'XXSmall' | 'XSmall' | 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Max' | 'EConstantQFFTSizeEnum_MAX';
+declare var EConstantQFFTSizeEnum : { Min:'Min',XXSmall:'XXSmall',XSmall:'XSmall',Small:'Small',Medium:'Medium',Large:'Large',XLarge:'XLarge',XXLarge:'XXLarge',Max:'Max',EConstantQFFTSizeEnum_MAX:'EConstantQFFTSizeEnum_MAX', };
+declare type EConstantQNormalizationEnum = 'EqualEuclideanNorm' | 'EqualEnergy' | 'EqualAmplitude' | 'EConstantQNormalizationEnum_MAX';
+declare var EConstantQNormalizationEnum : { EqualEuclideanNorm:'EqualEuclideanNorm',EqualEnergy:'EqualEnergy',EqualAmplitude:'EqualAmplitude',EConstantQNormalizationEnum_MAX:'EConstantQNormalizationEnum_MAX', };
+declare class ConstantQNRTSettings extends AudioSynesthesiaNRTSettings { 
+	StartingFrequency: number;
+	NumBands: number;
+	NumBandsPerOctave: number;
+	AnalysisPeriod: number;
+	bDownmixToMono: boolean;
+	FFTSize: EConstantQFFTSizeEnum;
+	WindowType: EFFTWindowType;
+	SpectrumType: EAudioSpectrumType;
+	BandWidthStretch: number;
+	CQTNormalization: EConstantQNormalizationEnum;
+	NoiseFloorDb: number;
+	static Load(ResourceName: string): ConstantQNRTSettings;
+	static Find(Outer: UObject, ResourceName: string): ConstantQNRTSettings;
+	static GetDefaultObject(): ConstantQNRTSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ConstantQNRTSettings;
+	static C(Other: UObject | any): ConstantQNRTSettings;
+}
+
+declare class ConstantQNRT extends AudioSynesthesiaNRT { 
+	Settings: ConstantQNRTSettings;
+	static Load(ResourceName: string): ConstantQNRT;
+	static Find(Outer: UObject, ResourceName: string): ConstantQNRT;
+	static GetDefaultObject(): ConstantQNRT;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ConstantQNRT;
+	GetNormalizedChannelConstantQAtTime(InSeconds: number,InChannel: number,OutConstantQ?: number[]): {OutConstantQ: number[]};
+	GetChannelConstantQAtTime(InSeconds: number,InChannel: number,OutConstantQ?: number[]): {OutConstantQ: number[]};
+	static C(Other: UObject | any): ConstantQNRT;
+}
+
+declare type ELoudnessCurveTypeEnum = 'A' | 'B' | 'C' | 'D' | 'None' | 'ELoudnessCurveTypeEnum_MAX';
+declare var ELoudnessCurveTypeEnum : { A:'A',B:'B',C:'C',D:'D',None:'None',ELoudnessCurveTypeEnum_MAX:'ELoudnessCurveTypeEnum_MAX', };
+declare class LoudnessSettings extends AudioSynesthesiaSettings { 
+	AnalysisPeriod: number;
+	MinimumFrequency: number;
+	MaximumFrequency: number;
+	CurveType: ELoudnessCurveTypeEnum;
+	NoiseFloorDb: number;
+	ExpectedMaxLoudness: number;
+	static Load(ResourceName: string): LoudnessSettings;
+	static Find(Outer: UObject, ResourceName: string): LoudnessSettings;
+	static GetDefaultObject(): LoudnessSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LoudnessSettings;
+	static C(Other: UObject | any): LoudnessSettings;
+}
+
+declare class LoudnessResults { 
+	Loudness: number;
+	NormalizedLoudness: number;
+	PerceptualEnergy: number;
+	TimeSeconds: number;
+	clone() : LoudnessResults;
+	static C(Other: UObject | any): LoudnessResults;
+}
+
+declare class LoudnessAnalyzer extends AudioAnalyzer { 
+	Settings: LoudnessSettings;
+	OnOverallLoudnessResults: UnrealEngineMulticastDelegate<(OverallLoudnessResults: LoudnessResults[]) => void>;
+	OnPerChannelLoudnessResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, LoudnessResults: LoudnessResults[]) => void>;
+	OnLatestOverallLoudnessResults: UnrealEngineMulticastDelegate<(LatestOverallLoudnessResults: LoudnessResults) => void>;
+	OnLatestPerChannelLoudnessResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, LatestLoudnessResults: LoudnessResults) => void>;
+	static Load(ResourceName: string): LoudnessAnalyzer;
+	static Find(Outer: UObject, ResourceName: string): LoudnessAnalyzer;
+	static GetDefaultObject(): LoudnessAnalyzer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LoudnessAnalyzer;
+	static C(Other: UObject | any): LoudnessAnalyzer;
+}
+
+declare type ELoudnessNRTCurveTypeEnum = 'A' | 'B' | 'C' | 'D' | 'None' | 'ELoudnessNRTCurveTypeEnum_MAX';
+declare var ELoudnessNRTCurveTypeEnum : { A:'A',B:'B',C:'C',D:'D',None:'None',ELoudnessNRTCurveTypeEnum_MAX:'ELoudnessNRTCurveTypeEnum_MAX', };
+declare class LoudnessNRTSettings extends AudioSynesthesiaNRTSettings { 
+	AnalysisPeriod: number;
+	MinimumFrequency: number;
+	MaximumFrequency: number;
+	CurveType: ELoudnessNRTCurveTypeEnum;
+	NoiseFloorDb: number;
+	static Load(ResourceName: string): LoudnessNRTSettings;
+	static Find(Outer: UObject, ResourceName: string): LoudnessNRTSettings;
+	static GetDefaultObject(): LoudnessNRTSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LoudnessNRTSettings;
+	static C(Other: UObject | any): LoudnessNRTSettings;
+}
+
+declare class LoudnessNRT extends AudioSynesthesiaNRT { 
+	Settings: LoudnessNRTSettings;
+	static Load(ResourceName: string): LoudnessNRT;
+	static Find(Outer: UObject, ResourceName: string): LoudnessNRT;
+	static GetDefaultObject(): LoudnessNRT;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LoudnessNRT;
+	GetNormalizedLoudnessAtTime(InSeconds: number,OutLoudness?: number): {OutLoudness: number};
+	GetNormalizedChannelLoudnessAtTime(InSeconds: number,InChannel: number,OutLoudness?: number): {OutLoudness: number};
+	GetLoudnessAtTime(InSeconds: number,OutLoudness?: number): {OutLoudness: number};
+	GetChannelLoudnessAtTime(InSeconds: number,InChannel: number,OutLoudness?: number): {OutLoudness: number};
+	static C(Other: UObject | any): LoudnessNRT;
+}
+
+declare type EMeterPeakType = 'MeanSquared' | 'RootMeanSquared' | 'Peak' | 'Count' | 'EMeterPeakType_MAX';
+declare var EMeterPeakType : { MeanSquared:'MeanSquared',RootMeanSquared:'RootMeanSquared',Peak:'Peak',Count:'Count',EMeterPeakType_MAX:'EMeterPeakType_MAX', };
+declare class MeterSettings extends AudioSynesthesiaSettings { 
+	AnalysisPeriod: number;
+	PeakMode: EMeterPeakType;
+	MeterAttackTime: number;
+	MeterReleaseTime: number;
+	PeakHoldTime: number;
+	ClippingThreshold: number;
+	static Load(ResourceName: string): MeterSettings;
+	static Find(Outer: UObject, ResourceName: string): MeterSettings;
+	static GetDefaultObject(): MeterSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MeterSettings;
+	static C(Other: UObject | any): MeterSettings;
+}
+
+declare class MeterResults { 
+	TimeSeconds: number;
+	MeterValue: number;
+	PeakValue: number;
+	NumSamplesClipping: number;
+	ClippingValue: number;
+	clone() : MeterResults;
+	static C(Other: UObject | any): MeterResults;
+}
+
+declare class MeterAnalyzer extends AudioAnalyzer { 
+	Settings: MeterSettings;
+	OnOverallMeterResults: UnrealEngineMulticastDelegate<(MeterResults: MeterResults[]) => void>;
+	OnPerChannelMeterResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, MeterResults: MeterResults[]) => void>;
+	OnLatestOverallMeterResults: UnrealEngineMulticastDelegate<(LatestOverallMeterResults: MeterResults) => void>;
+	OnLatestPerChannelMeterResults: UnrealEngineMulticastDelegate<(ChannelIndex: number, LatestMeterResults: MeterResults) => void>;
+	static Load(ResourceName: string): MeterAnalyzer;
+	static Find(Outer: UObject, ResourceName: string): MeterAnalyzer;
+	static GetDefaultObject(): MeterAnalyzer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MeterAnalyzer;
+	static C(Other: UObject | any): MeterAnalyzer;
+}
+
+declare class OnsetNRTSettings extends AudioSynesthesiaNRTSettings { 
+	bDownmixToMono: boolean;
+	GranularityInSeconds: number;
+	Sensitivity: number;
+	MinimumFrequency: number;
+	MaximumFrequency: number;
+	static Load(ResourceName: string): OnsetNRTSettings;
+	static Find(Outer: UObject, ResourceName: string): OnsetNRTSettings;
+	static GetDefaultObject(): OnsetNRTSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnsetNRTSettings;
+	static C(Other: UObject | any): OnsetNRTSettings;
+}
+
+declare class OnsetNRT extends AudioSynesthesiaNRT { 
+	Settings: OnsetNRTSettings;
+	static Load(ResourceName: string): OnsetNRT;
+	static Find(Outer: UObject, ResourceName: string): OnsetNRT;
+	static GetDefaultObject(): OnsetNRT;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnsetNRT;
+	GetNormalizedChannelOnsetsBetweenTimes(InStartSeconds: number,InEndSeconds: number,InChannel: number,OutOnsetTimestamps?: number[],OutOnsetStrengths?: number[]): {OutOnsetTimestamps: number[], OutOnsetStrengths: number[]};
+	GetChannelOnsetsBetweenTimes(InStartSeconds: number,InEndSeconds: number,InChannel: number,OutOnsetTimestamps?: number[],OutOnsetStrengths?: number[]): {OutOnsetTimestamps: number[], OutOnsetStrengths: number[]};
+	static C(Other: UObject | any): OnsetNRT;
+}
+
+declare class CableComponent extends MeshComponent { 
+	bAttachStart: boolean;
+	bAttachEnd: boolean;
+	AttachEndTo: ComponentReference;
+	AttachEndToSocketName: string;
+	EndLocation: Vector;
+	CableLength: number;
+	NumSegments: number;
+	SubstepTime: number;
+	SolverIterations: number;
+	bEnableStiffness: boolean;
+	bUseSubstepping: boolean;
+	bSkipCableUpdateWhenNotVisible: boolean;
+	bSkipCableUpdateWhenNotOwnerRecentlyRendered: boolean;
+	bEnableCollision: boolean;
+	CollisionFriction: number;
+	CableForce: Vector;
+	CableGravityScale: number;
+	CableWidth: number;
+	NumSides: number;
+	TileMaterial: number;
+	static Load(ResourceName: string): CableComponent;
+	static Find(Outer: UObject, ResourceName: string): CableComponent;
+	static GetDefaultObject(): CableComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CableComponent;
+	SetAttachEndToComponent(Component: SceneComponent,SocketName: string): void;
+	SetAttachEndTo(Actor: Actor,ComponentProperty: string,SocketName: string): void;
+	GetCableParticleLocations(Locations?: Vector[]): {Locations: Vector[]};
+	GetAttachedComponent(): SceneComponent;
+	GetAttachedActor(): Actor;
+	static C(Other: UObject | any): CableComponent;
+}
+
+declare class CableActor extends Actor { 
+	CableComponent: CableComponent;
+	static GetDefaultObject(): CableActor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CableActor;
+	static C(Other: UObject | any): CableActor;
+}
+
+declare class CustomMeshTriangle { 
+	Vertex0: Vector;
+	Vertex1: Vector;
+	Vertex2: Vector;
+	clone() : CustomMeshTriangle;
+	static C(Other: UObject | any): CustomMeshTriangle;
+}
+
+declare class CustomMeshComponent extends MeshComponent { 
+	static Load(ResourceName: string): CustomMeshComponent;
+	static Find(Outer: UObject, ResourceName: string): CustomMeshComponent;
+	static GetDefaultObject(): CustomMeshComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CustomMeshComponent;
+	SetCustomMeshTriangles(Triangles: CustomMeshTriangle[]): boolean;
+	ClearCustomMeshTriangles(): void;
+	AddCustomMeshTriangles(Triangles: CustomMeshTriangle[]): void;
+	static C(Other: UObject | any): CustomMeshComponent;
+}
+
+declare type ELocationAccuracy = 'LA_ThreeKilometers' | 'LA_OneKilometer' | 'LA_HundredMeters' | 'LA_TenMeters' | 'LA_Best' | 'LA_Navigation' | 'LA_MAX';
+declare var ELocationAccuracy : { LA_ThreeKilometers:'LA_ThreeKilometers',LA_OneKilometer:'LA_OneKilometer',LA_HundredMeters:'LA_HundredMeters',LA_TenMeters:'LA_TenMeters',LA_Best:'LA_Best',LA_Navigation:'LA_Navigation',LA_MAX:'LA_MAX', };
+declare class LocationServicesData { 
+	Timestamp: number;
+	Longitude: number;
+	Latitude: number;
+	HorizontalAccuracy: number;
+	VerticalAccuracy: number;
+	Altitude: number;
+	clone() : LocationServicesData;
+	static C(Other: UObject | any): LocationServicesData;
+	static GetLastKnownLocation(): LocationServicesData;
+}
+
+declare class LocationServicesImpl extends UObject { 
+	OnLocationChanged: UnrealEngineMulticastDelegate<(LocationData: LocationServicesData) => void>;
+	static Load(ResourceName: string): LocationServicesImpl;
+	static Find(Outer: UObject, ResourceName: string): LocationServicesImpl;
+	static GetDefaultObject(): LocationServicesImpl;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LocationServicesImpl;
+	static C(Other: UObject | any): LocationServicesImpl;
+}
+
+declare class LocationServices extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): LocationServices;
+	static Find(Outer: UObject, ResourceName: string): LocationServices;
+	static GetDefaultObject(): LocationServices;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LocationServices;
+	static StopLocationServices(): boolean;
+	static StartLocationServices(): boolean;
+	static IsLocationAccuracyAvailable(Accuracy: ELocationAccuracy): boolean;
+	static InitLocationServices(Accuracy: ELocationAccuracy,UpdateFrequency: number,MinDistanceFilter: number): boolean;
+	static GetLocationServicesImpl(): LocationServicesImpl;
+	static GetLastKnownLocation(): LocationServicesData;
+	static AreLocationServicesEnabled(): boolean;
+	static C(Other: UObject | any): LocationServices;
+}
+
+declare type EWaveTableResolution = 'None' | 'Res_8' | 'Res_16' | 'Res_32' | 'Res_64' | 'Res_128' | 'Res_256' | 'Res_512' | 'Res_1024' | 'Res_2048' | 'Res_4096' | 'Res_Max' | 'Maximum' | 'EWaveTableResolution_MAX';
+declare var EWaveTableResolution : { None:'None',Res_8:'Res_8',Res_16:'Res_16',Res_32:'Res_32',Res_64:'Res_64',Res_128:'Res_128',Res_256:'Res_256',Res_512:'Res_512',Res_1024:'Res_1024',Res_2048:'Res_2048',Res_4096:'Res_4096',Res_Max:'Res_Max',Maximum:'Maximum',EWaveTableResolution_MAX:'EWaveTableResolution_MAX', };
+declare type EWaveTableCurve = 'Linear' | 'Linear_Inv' | 'Exp' | 'Exp_Inverse' | 'Log' | 'Sin' | 'Sin_Full' | 'SCurve' | 'Shared' | 'Custom' | 'File' | 'Count' | 'EWaveTableCurve_MAX';
+declare var EWaveTableCurve : { Linear:'Linear',Linear_Inv:'Linear_Inv',Exp:'Exp',Exp_Inverse:'Exp_Inverse',Log:'Log',Sin:'Sin',Sin_Full:'Sin_Full',SCurve:'SCurve',Shared:'Shared',Custom:'Custom',File:'File',Count:'Count',EWaveTableCurve_MAX:'EWaveTableCurve_MAX', };
+declare class WaveTableSettings { 
+	FilePath: FilePath;
+	ChannelIndex: number;
+	Phase: number;
+	Top: number;
+	Tail: number;
+	FadeIn: number;
+	FadeOut: number;
+	bNormalize: boolean;
+	bRemoveOffset: boolean;
+	SourcePCMData: number[];
+	clone() : WaveTableSettings;
+	static C(Other: UObject | any): WaveTableSettings;
+}
+
+declare class WaveTableTransform { 
+	Curve: EWaveTableCurve;
+	Scalar: number;
+	CurveCustom: RichCurve;
+	CurveShared: CurveFloat;
+	WaveTable: number[];
+	WaveTableSettings: WaveTableSettings;
+	clone() : WaveTableTransform;
+	static C(Other: UObject | any): WaveTableTransform;
+}
+
+declare class WaveTableBankEntry { 
+	Transform: WaveTableTransform;
+	clone() : WaveTableBankEntry;
+	static C(Other: UObject | any): WaveTableBankEntry;
+}
+
+declare class WaveTableBank extends UObject { 
+	Resolution: EWaveTableResolution;
+	bBipolar: boolean;
+	WaveTableSizeMB: number;
+	WaveTableLengthSec: number;
+	Entries: WaveTableBankEntry[];
+	static Load(ResourceName: string): WaveTableBank;
+	static Find(Outer: UObject, ResourceName: string): WaveTableBank;
+	static GetDefaultObject(): WaveTableBank;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): WaveTableBank;
+	static C(Other: UObject | any): WaveTableBank;
+}
+
+declare class MetasoundFrontendClassName { 
+	Namespace: string;
+	Name: string;
+	Variant: string;
+	clone() : MetasoundFrontendClassName;
+	static C(Other: UObject | any): MetasoundFrontendClassName;
+}
+
+declare class DefaultMetaSoundAssetAutoUpdateSettings { 
+	Metasound: SoftObjectPath;
+	clone() : DefaultMetaSoundAssetAutoUpdateSettings;
+	static C(Other: UObject | any): DefaultMetaSoundAssetAutoUpdateSettings;
+}
+
+declare class MetaSoundSettings extends DeveloperSettings { 
+	bAutoUpdateEnabled: boolean;
+	AutoUpdateDenylist: MetasoundFrontendClassName[];
+	AutoUpdateAssetDenylist: DefaultMetaSoundAssetAutoUpdateSettings[];
+	bAutoUpdateLogWarningOnDroppedConnection: boolean;
+	DirectoriesToRegister: DirectoryPath[];
+	DenyListCacheChangeID: number;
+	static Load(ResourceName: string): MetaSoundSettings;
+	static Find(Outer: UObject, ResourceName: string): MetaSoundSettings;
+	static GetDefaultObject(): MetaSoundSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundSettings;
+	static C(Other: UObject | any): MetaSoundSettings;
+}
+
+declare class MetasoundEditorGraphBase extends EdGraph { 
+	static Load(ResourceName: string): MetasoundEditorGraphBase;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphBase;
+	static GetDefaultObject(): MetasoundEditorGraphBase;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphBase;
+	static C(Other: UObject | any): MetasoundEditorGraphBase;
+}
+
+declare class MetasoundFrontendVersionNumber { 
+	Major: number;
+	Minor: number;
+	clone() : MetasoundFrontendVersionNumber;
+	static C(Other: UObject | any): MetasoundFrontendVersionNumber;
+}
+
+declare class MetasoundFrontendVersion { 
+	Name: string;
+	Number: MetasoundFrontendVersionNumber;
+	clone() : MetasoundFrontendVersion;
+	static C(Other: UObject | any): MetasoundFrontendVersion;
+}
+
+declare class MetasoundFrontendDocumentMetadata { 
+	Version: MetasoundFrontendVersion;
+	clone() : MetasoundFrontendDocumentMetadata;
+	static C(Other: UObject | any): MetasoundFrontendDocumentMetadata;
+}
+
+declare type EMetasoundFrontendClassType = 'External' | 'Graph' | 'Input' | 'Output' | 'Literal' | 'Variable' | 'VariableDeferredAccessor' | 'VariableAccessor' | 'VariableMutator' | 'Template' | 'Invalid' | 'EMetasoundFrontendClassType_MAX';
+declare var EMetasoundFrontendClassType : { External:'External',Graph:'Graph',Input:'Input',Output:'Output',Literal:'Literal',Variable:'Variable',VariableDeferredAccessor:'VariableDeferredAccessor',VariableAccessor:'VariableAccessor',VariableMutator:'VariableMutator',Template:'Template',Invalid:'Invalid',EMetasoundFrontendClassType_MAX:'EMetasoundFrontendClassType_MAX', };
+declare class MetasoundFrontendClassMetadata { 
+	ClassName: MetasoundFrontendClassName;
+	Version: MetasoundFrontendVersionNumber;
+	Type: EMetasoundFrontendClassType;
+	DisplayName: string;
+	DisplayNameTransient: string;
+	Description: string;
+	DescriptionTransient: string;
+	PromptIfMissingTransient: string;
+	Author: string;
+	Keywords: string[];
+	KeywordsTransient: string[];
+	CategoryHierarchy: string[];
+	CategoryHierarchyTransient: string[];
+	bIsDeprecated: boolean;
+	bAutoUpdateManagesInterface: boolean;
+	bSerializeText: boolean;
+	ChangeId: Guid;
+	clone() : MetasoundFrontendClassMetadata;
+	static C(Other: UObject | any): MetasoundFrontendClassMetadata;
+}
+
+declare class MetasoundFrontendInterfaceStyle { 
+	DefaultSortOrder: number[];
+	RequiredMembers: Map<string, string>;
+	clone() : MetasoundFrontendInterfaceStyle;
+	static C(Other: UObject | any): MetasoundFrontendInterfaceStyle;
+}
+
+declare class MetasoundFrontendVertex { 
+	Name: string;
+	TypeName: string;
+	VertexID: Guid;
+	clone() : MetasoundFrontendVertex;
+	static C(Other: UObject | any): MetasoundFrontendVertex;
+}
+
+declare class MetasoundFrontendVertexMetadata { 
+	DisplayName: string;
+	DisplayNameTransient: string;
+	Description: string;
+	DescriptionTransient: string;
+	SortOrderIndex: number;
+	bIsAdvancedDisplay: boolean;
+	bSerializeText: boolean;
+	clone() : MetasoundFrontendVertexMetadata;
+	static C(Other: UObject | any): MetasoundFrontendVertexMetadata;
+}
+
+declare type EMetasoundFrontendVertexAccessType = 'Reference' | 'Value' | 'Unset' | 'EMetasoundFrontendVertexAccessType_MAX';
+declare var EMetasoundFrontendVertexAccessType : { Reference:'Reference',Value:'Value',Unset:'Unset',EMetasoundFrontendVertexAccessType_MAX:'EMetasoundFrontendVertexAccessType_MAX', };
+declare class MetasoundFrontendClassVertex extends MetasoundFrontendVertex { 
+	NodeID: Guid;
+	MetaData: MetasoundFrontendVertexMetadata;
+	AccessType: EMetasoundFrontendVertexAccessType;
+	clone() : MetasoundFrontendClassVertex;
+	static C(Other: UObject | any): MetasoundFrontendClassVertex;
+}
+
+declare type EMetasoundFrontendLiteralType = 'None' | 'Boolean' | 'Integer' | 'Float' | 'String' | 'UObject' | 'NoneArray' | 'BooleanArray' | 'IntegerArray' | 'FloatArray' | 'StringArray' | 'UObjectArray' | 'Invalid' | 'EMetasoundFrontendLiteralType_MAX';
+declare var EMetasoundFrontendLiteralType : { None:'None',Boolean:'Boolean',Integer:'Integer',Float:'Float',String:'String',UObject:'UObject',NoneArray:'NoneArray',BooleanArray:'BooleanArray',IntegerArray:'IntegerArray',FloatArray:'FloatArray',StringArray:'StringArray',UObjectArray:'UObjectArray',Invalid:'Invalid',EMetasoundFrontendLiteralType_MAX:'EMetasoundFrontendLiteralType_MAX', };
+declare class MetasoundFrontendLiteral { 
+	Type: EMetasoundFrontendLiteralType;
+	AsNumDefault: number;
+	AsBoolean: boolean[];
+	AsInteger: number[];
+	AsFloat: number[];
+	AsString: string[];
+	AsUObject: UObject[];
+	clone() : MetasoundFrontendLiteral;
+	static C(Other: UObject | any): MetasoundFrontendLiteral;
+}
+
+declare class MetasoundFrontendClassInput extends MetasoundFrontendClassVertex { 
+	DefaultLiteral: MetasoundFrontendLiteral;
+	clone() : MetasoundFrontendClassInput;
+	static C(Other: UObject | any): MetasoundFrontendClassInput;
+}
+
+declare class MetasoundFrontendClassOutput extends MetasoundFrontendClassVertex { 
+	clone() : MetasoundFrontendClassOutput;
+	static C(Other: UObject | any): MetasoundFrontendClassOutput;
+}
+
+declare class MetasoundFrontendClassEnvironmentVariable { 
+	Name: string;
+	TypeName: string;
+	bIsRequired: boolean;
+	clone() : MetasoundFrontendClassEnvironmentVariable;
+	static C(Other: UObject | any): MetasoundFrontendClassEnvironmentVariable;
+}
+
+declare class MetasoundFrontendClassInterface { 
+	InputStyle: MetasoundFrontendInterfaceStyle;
+	OutputStyle: MetasoundFrontendInterfaceStyle;
+	Inputs: MetasoundFrontendClassInput[];
+	Outputs: MetasoundFrontendClassOutput[];
+	Environment: MetasoundFrontendClassEnvironmentVariable[];
+	ChangeId: Guid;
+	clone() : MetasoundFrontendClassInterface;
+	static C(Other: UObject | any): MetasoundFrontendClassInterface;
+}
+
+declare class MetasoundFrontendClassStyleDisplay { 
+	ImageName: string;
+	bShowName: boolean;
+	bShowInputNames: boolean;
+	bShowOutputNames: boolean;
+	bShowLiterals: boolean;
+	clone() : MetasoundFrontendClassStyleDisplay;
+	static C(Other: UObject | any): MetasoundFrontendClassStyleDisplay;
+}
+
+declare class MetasoundFrontendClassStyle { 
+	Display: MetasoundFrontendClassStyleDisplay;
+	ChangeId: Guid;
+	clone() : MetasoundFrontendClassStyle;
+	static C(Other: UObject | any): MetasoundFrontendClassStyle;
+}
+
+declare class MetasoundFrontendClass { 
+	ID: Guid;
+	MetaData: MetasoundFrontendClassMetadata;
+	Interface: MetasoundFrontendClassInterface;
+	Style: MetasoundFrontendClassStyle;
+	clone() : MetasoundFrontendClass;
+	static C(Other: UObject | any): MetasoundFrontendClass;
+}
+
+declare class MetasoundFrontendNodeInterface { 
+	Inputs: MetasoundFrontendVertex[];
+	Outputs: MetasoundFrontendVertex[];
+	Environment: MetasoundFrontendVertex[];
+	clone() : MetasoundFrontendNodeInterface;
+	static C(Other: UObject | any): MetasoundFrontendNodeInterface;
+}
+
+declare class MetasoundFrontendVertexLiteral { 
+	VertexID: Guid;
+	Value: MetasoundFrontendLiteral;
+	clone() : MetasoundFrontendVertexLiteral;
+	static C(Other: UObject | any): MetasoundFrontendVertexLiteral;
+}
+
+declare type EMetasoundFrontendNodeStyleDisplayVisibility = 'Visible' | 'Hidden' | 'EMetasoundFrontendNodeStyleDisplayVisibility_MAX';
+declare var EMetasoundFrontendNodeStyleDisplayVisibility : { Visible:'Visible',Hidden:'Hidden',EMetasoundFrontendNodeStyleDisplayVisibility_MAX:'EMetasoundFrontendNodeStyleDisplayVisibility_MAX', };
+declare class MetasoundFrontendNodeStyleDisplay { 
+	Visibility: EMetasoundFrontendNodeStyleDisplayVisibility;
+	Locations: Map<Guid, Vector2D>;
+	clone() : MetasoundFrontendNodeStyleDisplay;
+	static C(Other: UObject | any): MetasoundFrontendNodeStyleDisplay;
+}
+
+declare class MetasoundFrontendNodeStyle { 
+	Display: MetasoundFrontendNodeStyleDisplay;
+	bMessageNodeUpdated: boolean;
+	bIsPrivate: boolean;
+	clone() : MetasoundFrontendNodeStyle;
+	static C(Other: UObject | any): MetasoundFrontendNodeStyle;
+}
+
+declare class MetasoundFrontendNode { 
+	ID: Guid;
+	ClassID: Guid;
+	Name: string;
+	Interface: MetasoundFrontendNodeInterface;
+	InputLiterals: MetasoundFrontendVertexLiteral[];
+	Style: MetasoundFrontendNodeStyle;
+	clone() : MetasoundFrontendNode;
+	static C(Other: UObject | any): MetasoundFrontendNode;
+}
+
+declare class MetasoundFrontendEdge { 
+	FromNodeID: Guid;
+	FromVertexID: Guid;
+	ToNodeID: Guid;
+	ToVertexID: Guid;
+	clone() : MetasoundFrontendEdge;
+	static C(Other: UObject | any): MetasoundFrontendEdge;
+}
+
+declare class MetasoundFrontendVariable { 
+	Name: string;
+	DisplayName: string;
+	Description: string;
+	TypeName: string;
+	Literal: MetasoundFrontendLiteral;
+	ID: Guid;
+	VariableNodeID: Guid;
+	MutatorNodeID: Guid;
+	AccessorNodeIDs: Guid[];
+	DeferredAccessorNodeIDs: Guid[];
+	clone() : MetasoundFrontendVariable;
+	static C(Other: UObject | any): MetasoundFrontendVariable;
+}
+
+declare class MetasoundFrontendEdgeStyleLiteralColorPair { 
+	Value: MetasoundFrontendLiteral;
+	Color: LinearColor;
+	clone() : MetasoundFrontendEdgeStyleLiteralColorPair;
+	static C(Other: UObject | any): MetasoundFrontendEdgeStyleLiteralColorPair;
+}
+
+declare class MetasoundFrontendEdgeStyle { 
+	NodeID: Guid;
+	OutputName: string;
+	LiteralColorPairs: MetasoundFrontendEdgeStyleLiteralColorPair[];
+	clone() : MetasoundFrontendEdgeStyle;
+	static C(Other: UObject | any): MetasoundFrontendEdgeStyle;
+}
+
+declare class MetasoundFrontendGraphStyle { 
+	bIsGraphEditable: boolean;
+	EdgeStyles: MetasoundFrontendEdgeStyle[];
+	clone() : MetasoundFrontendGraphStyle;
+	static C(Other: UObject | any): MetasoundFrontendGraphStyle;
+}
+
+declare class MetasoundFrontendGraph { 
+	Nodes: MetasoundFrontendNode[];
+	Edges: MetasoundFrontendEdge[];
+	Variables: MetasoundFrontendVariable[];
+	Style: MetasoundFrontendGraphStyle;
+	clone() : MetasoundFrontendGraph;
+	static C(Other: UObject | any): MetasoundFrontendGraph;
+}
+
+declare class MetasoundFrontendGraphClassPresetOptions { 
+	bIsPreset: boolean;
+	InputsInheritingDefault: Set<string>;
+	clone() : MetasoundFrontendGraphClassPresetOptions;
+	static C(Other: UObject | any): MetasoundFrontendGraphClassPresetOptions;
+}
+
+declare class MetasoundFrontendGraphClass extends MetasoundFrontendClass { 
+	Graph: MetasoundFrontendGraph;
+	PresetOptions: MetasoundFrontendGraphClassPresetOptions;
+	clone() : MetasoundFrontendGraphClass;
+	static C(Other: UObject | any): MetasoundFrontendGraphClass;
+}
+
+declare class MetasoundFrontendDocument { 
+	MetaData: MetasoundFrontendDocumentMetadata;
+	Interfaces: Set<MetasoundFrontendVersion>;
+	RootGraph: MetasoundFrontendGraphClass;
+	SubGraphs: MetasoundFrontendGraphClass[];
+	Dependencies: MetasoundFrontendClass[];
+	ArchetypeVersion: MetasoundFrontendVersion;
+	InterfaceVersions: MetasoundFrontendVersion[];
+	clone() : MetasoundFrontendDocument;
+	static C(Other: UObject | any): MetasoundFrontendDocument;
+}
+
+declare class MetaSoundPatch extends UObject { 
+	RootMetaSoundDocument: MetasoundFrontendDocument;
+	ReferencedAssetClassKeys: Set<string>;
+	ReferencedAssetClassObjects: Set<UObject>;
+	ReferenceAssetClassCache: Set<SoftObjectPath>;
+	Graph: MetasoundEditorGraphBase;
+	AssetClassID: Guid;
+	RegistryInputTypes: string;
+	RegistryOutputTypes: string;
+	RegistryVersionMajor: number;
+	RegistryVersionMinor: number;
+	bIsPreset: boolean;
+	static Load(ResourceName: string): MetaSoundPatch;
+	static Find(Outer: UObject, ResourceName: string): MetaSoundPatch;
+	static GetDefaultObject(): MetaSoundPatch;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundPatch;
+	static C(Other: UObject | any): MetaSoundPatch;
+}
+
+declare class MetaSoundAsyncAssetDependencies { 
+	Metasound: UObject;
+	clone() : MetaSoundAsyncAssetDependencies;
+	static C(Other: UObject | any): MetaSoundAsyncAssetDependencies;
+}
+
+declare class MetaSoundAssetDirectory { 
+	Directory: DirectoryPath;
+	clone() : MetaSoundAssetDirectory;
+	static C(Other: UObject | any): MetaSoundAssetDirectory;
+}
+
+declare class MetaSoundAssetSubsystem extends EngineSubsystem { 
+	LoadingDependencies: MetaSoundAsyncAssetDependencies[];
+	static Load(ResourceName: string): MetaSoundAssetSubsystem;
+	static Find(Outer: UObject, ResourceName: string): MetaSoundAssetSubsystem;
+	static GetDefaultObject(): MetaSoundAssetSubsystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundAssetSubsystem;
+	UnregisterAssetClassesInDirectories(Directories: MetaSoundAssetDirectory[]): void;
+	RegisterAssetClassesInDirectories(Directories: MetaSoundAssetDirectory[]): void;
+	static C(Other: UObject | any): MetaSoundAssetSubsystem;
+}
+
+declare type EMetasoundSourceAudioFormat = 'Mono' | 'Stereo' | 'Quad' | 'FiveDotOne' | 'SevenDotOne' | 'COUNT' | 'EMetasoundSourceAudioFormat_MAX';
+declare var EMetasoundSourceAudioFormat : { Mono:'Mono',Stereo:'Stereo',Quad:'Quad',FiveDotOne:'FiveDotOne',SevenDotOne:'SevenDotOne',COUNT:'COUNT',EMetasoundSourceAudioFormat_MAX:'EMetasoundSourceAudioFormat_MAX', };
+declare class MetaSoundSource extends SoundWaveProcedural { 
+	RootMetaSoundDocument: MetasoundFrontendDocument;
+	ReferencedAssetClassKeys: Set<string>;
+	ReferencedAssetClassObjects: Set<UObject>;
+	ReferenceAssetClassCache: Set<SoftObjectPath>;
+	Graph: MetasoundEditorGraphBase;
+	OutputFormat: EMetasoundSourceAudioFormat;
+	AssetClassID: Guid;
+	RegistryInputTypes: string;
+	RegistryOutputTypes: string;
+	RegistryVersionMajor: number;
+	RegistryVersionMinor: number;
+	bIsPreset: boolean;
+	static Load(ResourceName: string): MetaSoundSource;
+	static Find(Outer: UObject, ResourceName: string): MetaSoundSource;
+	static GetDefaultObject(): MetaSoundSource;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundSource;
+	static C(Other: UObject | any): MetaSoundSource;
+}
+
+declare class RadialSlider extends Widget { 
+	Value: number;
+	ValueDelegate: UnrealEngineDelegate<() => number>;
+	bUseCustomDefaultValue: boolean;
+	CustomDefaultValue: number;
+	SliderRange: RuntimeFloatCurve;
+	ValueTags: number[];
+	SliderHandleStartAngle: number;
+	SliderHandleEndAngle: number;
+	AngularOffset: number;
+	HandStartEndRatio: Vector2D;
+	WidgetStyle: SliderStyle;
+	SliderBarColor: LinearColor;
+	SliderProgressColor: LinearColor;
+	SliderHandleColor: LinearColor;
+	CenterBackgroundColor: LinearColor;
+	Locked: boolean;
+	MouseUsesStep: boolean;
+	RequiresControllerLock: boolean;
+	StepSize: number;
+	IsFocusable: boolean;
+	UseVerticalDrag: boolean;
+	ShowSliderHandle: boolean;
+	ShowSliderHand: boolean;
+	OnMouseCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
+	OnMouseCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
+	OnControllerCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
+	OnControllerCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
+	OnValueChanged: UnrealEngineMulticastDelegate<(Value: number) => void>;
+	static Load(ResourceName: string): RadialSlider;
+	static Find(Outer: UObject, ResourceName: string): RadialSlider;
+	static GetDefaultObject(): RadialSlider;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RadialSlider;
+	SetValueTags(InValueTags: number[]): void;
+	SetValue(InValue: number): void;
+	SetUseVerticalDrag(InUseVerticalDrag: boolean): void;
+	SetStepSize(InValue: number): void;
+	SetSliderRange(InSliderRange: RuntimeFloatCurve): void;
+	SetSliderProgressColor(InValue: LinearColor): void;
+	SetSliderHandleStartAngle(InValue: number): void;
+	SetSliderHandleEndAngle(InValue: number): void;
+	SetSliderHandleColor(InValue: LinearColor): void;
+	SetSliderBarColor(InValue: LinearColor): void;
+	SetShowSliderHandle(InShowSliderHandle: boolean): void;
+	SetShowSliderHand(InShowSliderHand: boolean): void;
+	SetLocked(InValue: boolean): void;
+	SetHandStartEndRatio(InValue: Vector2D): void;
+	SetCustomDefaultValue(InValue: number): void;
+	SetCenterBackgroundColor(InValue: LinearColor): void;
+	SetAngularOffset(InValue: number): void;
+	GetValue(): number;
+	GetNormalizedSliderHandlePosition(): number;
+	GetCustomDefaultValue(): number;
+	static C(Other: UObject | any): RadialSlider;
+}
+
+declare class MeterChannelInfo { 
+	MeterValue: number;
+	PeakValue: number;
+	ClippingValue: number;
+	clone() : MeterChannelInfo;
+	static C(Other: UObject | any): MeterChannelInfo;
+}
+
+declare class AudioMeterStyle extends SlateWidgetStyle { 
+	MeterValueImage: SlateBrush;
+	BackgroundImage: SlateBrush;
+	MeterBackgroundImage: SlateBrush;
+	MeterValueBackgroundImage: SlateBrush;
+	MeterPeakImage: SlateBrush;
+	MeterSize: Vector2D;
+	MeterPadding: Vector2D;
+	MeterValuePadding: number;
+	PeakValueWidth: number;
+	ValueRangeDb: Vector2D;
+	bShowScale: boolean;
+	bScaleSide: boolean;
+	ScaleHashOffset: number;
+	ScaleHashWidth: number;
+	ScaleHashHeight: number;
+	DecibelsPerHash: number;
+	Font: SlateFontInfo;
+	clone() : AudioMeterStyle;
+	static C(Other: UObject | any): AudioMeterStyle;
+}
+
+declare class AudioMeter extends Widget { 
+	MeterChannelInfo: MeterChannelInfo[];
+	MeterChannelInfoDelegate: UnrealEngineDelegate<() => MeterChannelInfo[]>;
+	WidgetStyle: AudioMeterStyle;
+	Orientation: EOrientation;
+	BackgroundColor: LinearColor;
+	MeterBackgroundColor: LinearColor;
+	MeterValueColor: LinearColor;
+	MeterPeakColor: LinearColor;
+	MeterClippingColor: LinearColor;
+	MeterScaleColor: LinearColor;
+	MeterScaleLabelColor: LinearColor;
+	static Load(ResourceName: string): AudioMeter;
+	static Find(Outer: UObject, ResourceName: string): AudioMeter;
+	static GetDefaultObject(): AudioMeter;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioMeter;
+	SetMeterValueColor(InValue: LinearColor): void;
+	SetMeterScaleLabelColor(InValue: LinearColor): void;
+	SetMeterScaleColor(InValue: LinearColor): void;
+	SetMeterPeakColor(InValue: LinearColor): void;
+	SetMeterClippingColor(InValue: LinearColor): void;
+	SetMeterChannelInfo(InMeterChannelInfo: MeterChannelInfo[]): void;
+	SetMeterBackgroundColor(InValue: LinearColor): void;
+	SetBackgroundColor(InValue: LinearColor): void;
+	GetMeterChannelInfo(): MeterChannelInfo[];
+	static C(Other: UObject | any): AudioMeter;
+}
+
+declare type EAudioRadialSliderLayout = 'Layout_LabelTop' | 'Layout_LabelCenter' | 'Layout_LabelBottom' | 'Layout_MAX';
+declare var EAudioRadialSliderLayout : { Layout_LabelTop:'Layout_LabelTop',Layout_LabelCenter:'Layout_LabelCenter',Layout_LabelBottom:'Layout_LabelBottom',Layout_MAX:'Layout_MAX', };
+declare class AudioRadialSlider extends Widget { 
+	Value: number;
+	ValueDelegate: UnrealEngineDelegate<() => number>;
+	WidgetLayout: EAudioRadialSliderLayout;
+	CenterBackgroundColor: LinearColor;
+	SliderProgressColor: LinearColor;
+	SliderBarColor: LinearColor;
+	HandStartEndRatio: Vector2D;
+	UnitsText: string;
+	TextLabelBackgroundColor: LinearColor;
+	ShowLabelOnlyOnHover: boolean;
+	ShowUnitsText: boolean;
+	IsUnitsTextReadOnly: boolean;
+	IsValueTextReadOnly: boolean;
+	SliderThickness: number;
+	OutputRange: Vector2D;
+	OnValueChanged: UnrealEngineMulticastDelegate<(Value: number) => void>;
+	static Load(ResourceName: string): AudioRadialSlider;
+	static Find(Outer: UObject, ResourceName: string): AudioRadialSlider;
+	static GetDefaultObject(): AudioRadialSlider;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioRadialSlider;
+	SetWidgetLayout(InLayout: EAudioRadialSliderLayout): void;
+	SetValueTextReadOnly(bIsReadOnly: boolean): void;
+	SetUnitsTextReadOnly(bIsReadOnly: boolean): void;
+	SetUnitsText(Units: string): void;
+	SetTextLabelBackgroundColor(InColor: SlateColor): void;
+	SetSliderThickness(InThickness: number): void;
+	SetSliderProgressColor(InValue: LinearColor): void;
+	SetSliderBarColor(InValue: LinearColor): void;
+	SetShowUnitsText(bShowUnitsText: boolean): void;
+	SetShowLabelOnlyOnHover(bShowLabelOnlyOnHover: boolean): void;
+	SetOutputRange(InOutputRange: Vector2D): void;
+	SetHandStartEndRatio(InHandStartEndRatio: Vector2D): void;
+	SetCenterBackgroundColor(InValue: LinearColor): void;
+	GetSliderValue(OutputValue: number): number;
+	GetOutputValue(InSliderValue: number): number;
+	static C(Other: UObject | any): AudioRadialSlider;
+}
+
+declare class AudioVolumeRadialSlider extends AudioRadialSlider { 
+	static Load(ResourceName: string): AudioVolumeRadialSlider;
+	static Find(Outer: UObject, ResourceName: string): AudioVolumeRadialSlider;
+	static GetDefaultObject(): AudioVolumeRadialSlider;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioVolumeRadialSlider;
+	static C(Other: UObject | any): AudioVolumeRadialSlider;
+}
+
+declare class AudioFrequencyRadialSlider extends AudioRadialSlider { 
+	static Load(ResourceName: string): AudioFrequencyRadialSlider;
+	static Find(Outer: UObject, ResourceName: string): AudioFrequencyRadialSlider;
+	static GetDefaultObject(): AudioFrequencyRadialSlider;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioFrequencyRadialSlider;
+	static C(Other: UObject | any): AudioFrequencyRadialSlider;
+}
+
+declare class AudioSliderBase extends Widget { 
+	Value: number;
+	UnitsText: string;
+	TextLabelBackgroundColor: LinearColor;
+	TextLabelBackgroundColorDelegate: UnrealEngineDelegate<() => LinearColor>;
+	ShowLabelOnlyOnHover: boolean;
+	ShowUnitsText: boolean;
+	IsUnitsTextReadOnly: boolean;
+	IsValueTextReadOnly: boolean;
+	ValueDelegate: UnrealEngineDelegate<() => number>;
+	SliderBackgroundColor: LinearColor;
+	SliderBackgroundColorDelegate: UnrealEngineDelegate<() => LinearColor>;
+	SliderBarColor: LinearColor;
+	SliderBarColorDelegate: UnrealEngineDelegate<() => LinearColor>;
+	SliderThumbColor: LinearColor;
+	SliderThumbColorDelegate: UnrealEngineDelegate<() => LinearColor>;
+	WidgetBackgroundColor: LinearColor;
+	WidgetBackgroundColorDelegate: UnrealEngineDelegate<() => LinearColor>;
+	Orientation: EOrientation;
+	OnValueChanged: UnrealEngineMulticastDelegate<(Value: number) => void>;
+	static Load(ResourceName: string): AudioSliderBase;
+	static Find(Outer: UObject, ResourceName: string): AudioSliderBase;
+	static GetDefaultObject(): AudioSliderBase;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSliderBase;
+	SetWidgetBackgroundColor(InValue: LinearColor): void;
+	SetValueTextReadOnly(bIsReadOnly: boolean): void;
+	SetUnitsTextReadOnly(bIsReadOnly: boolean): void;
+	SetUnitsText(Units: string): void;
+	SetTextLabelBackgroundColor(InColor: SlateColor): void;
+	SetSliderThumbColor(InValue: LinearColor): void;
+	SetSliderBarColor(InValue: LinearColor): void;
+	SetSliderBackgroundColor(InValue: LinearColor): void;
+	SetShowUnitsText(bShowUnitsText: boolean): void;
+	SetShowLabelOnlyOnHover(bShowLabelOnlyOnHover: boolean): void;
+	GetSliderValue(OutputValue: number): number;
+	GetOutputValue(InSliderValue: number): number;
+	GetLinValue(OutputValue: number): number;
+	static C(Other: UObject | any): AudioSliderBase;
+}
+
+declare class AudioSlider extends AudioSliderBase { 
+	LinToOutputCurve: CurveFloat;
+	OutputToLinCurve: CurveFloat;
+	static Load(ResourceName: string): AudioSlider;
+	static Find(Outer: UObject, ResourceName: string): AudioSlider;
+	static GetDefaultObject(): AudioSlider;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSlider;
+	static C(Other: UObject | any): AudioSlider;
+}
+
+declare class AudioVolumeSlider extends AudioSlider { 
+	static Load(ResourceName: string): AudioVolumeSlider;
+	static Find(Outer: UObject, ResourceName: string): AudioVolumeSlider;
+	static GetDefaultObject(): AudioVolumeSlider;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioVolumeSlider;
+	static C(Other: UObject | any): AudioVolumeSlider;
+}
+
+declare class AudioFrequencySlider extends AudioSliderBase { 
+	OutputRange: Vector2D;
+	static Load(ResourceName: string): AudioFrequencySlider;
+	static Find(Outer: UObject, ResourceName: string): AudioFrequencySlider;
+	static GetDefaultObject(): AudioFrequencySlider;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioFrequencySlider;
+	static C(Other: UObject | any): AudioFrequencySlider;
+}
+
+declare class MetasoundInterfacesView extends UObject { 
+	static Load(ResourceName: string): MetasoundInterfacesView;
+	static Find(Outer: UObject, ResourceName: string): MetasoundInterfacesView;
+	static GetDefaultObject(): MetasoundInterfacesView;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundInterfacesView;
+	static C(Other: UObject | any): MetasoundInterfacesView;
+}
+
+declare class MetasoundEditorGraphMemberDefaultLiteral extends UObject { 
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultLiteral;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultLiteral;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultLiteral;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultLiteral;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultLiteral;
+}
+
+declare class MetasoundEditorGraphMember extends UObject { 
+	Literal: MetasoundEditorGraphMemberDefaultLiteral;
+	TypeName: string;
+	static Load(ResourceName: string): MetasoundEditorGraphMember;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMember;
+	static GetDefaultObject(): MetasoundEditorGraphMember;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMember;
+	static C(Other: UObject | any): MetasoundEditorGraphMember;
+}
+
+declare class MetasoundEditorGraphVertex extends MetasoundEditorGraphMember { 
+	NodeID: Guid;
+	ClassName: MetasoundFrontendClassName;
+	static Load(ResourceName: string): MetasoundEditorGraphVertex;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphVertex;
+	static GetDefaultObject(): MetasoundEditorGraphVertex;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphVertex;
+	static C(Other: UObject | any): MetasoundEditorGraphVertex;
+}
+
+declare class MetasoundEditorGraphInput extends MetasoundEditorGraphVertex { 
+	static Load(ResourceName: string): MetasoundEditorGraphInput;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphInput;
+	static GetDefaultObject(): MetasoundEditorGraphInput;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphInput;
+	static C(Other: UObject | any): MetasoundEditorGraphInput;
+}
+
+declare class MetasoundEditorGraphOutput extends MetasoundEditorGraphVertex { 
+	static Load(ResourceName: string): MetasoundEditorGraphOutput;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphOutput;
+	static GetDefaultObject(): MetasoundEditorGraphOutput;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphOutput;
+	static C(Other: UObject | any): MetasoundEditorGraphOutput;
+}
+
+declare class MetasoundEditorGraphVariable extends MetasoundEditorGraphMember { 
+	VariableID: Guid;
+	static Load(ResourceName: string): MetasoundEditorGraphVariable;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphVariable;
+	static GetDefaultObject(): MetasoundEditorGraphVariable;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphVariable;
+	static C(Other: UObject | any): MetasoundEditorGraphVariable;
+}
+
+declare class MetasoundEditorGraph extends MetasoundEditorGraphBase { 
+	Inputs: MetasoundEditorGraphInput[];
+	Outputs: MetasoundEditorGraphOutput[];
+	Variables: MetasoundEditorGraphVariable[];
+	static Load(ResourceName: string): MetasoundEditorGraph;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraph;
+	static GetDefaultObject(): MetasoundEditorGraph;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraph;
+	static C(Other: UObject | any): MetasoundEditorGraph;
+}
+
+declare class MetasoundEditorGraphNode extends EdGraphNode { 
+	static Load(ResourceName: string): MetasoundEditorGraphNode;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphNode;
+	static GetDefaultObject(): MetasoundEditorGraphNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphNode;
+	static C(Other: UObject | any): MetasoundEditorGraphNode;
+}
+
+declare class MetasoundEditorGraphMemberNode extends MetasoundEditorGraphNode { 
+	static Load(ResourceName: string): MetasoundEditorGraphMemberNode;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberNode;
+	static GetDefaultObject(): MetasoundEditorGraphMemberNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberNode;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberNode;
+}
+
+declare class MetasoundEditorGraphInputNode extends MetasoundEditorGraphMemberNode { 
+	Input: MetasoundEditorGraphInput;
+	static Load(ResourceName: string): MetasoundEditorGraphInputNode;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphInputNode;
+	static GetDefaultObject(): MetasoundEditorGraphInputNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphInputNode;
+	static C(Other: UObject | any): MetasoundEditorGraphInputNode;
+}
+
+declare class MetasoundEditorGraphMemberDefaultBoolRef { 
+	Value: boolean;
+	clone() : MetasoundEditorGraphMemberDefaultBoolRef;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultBoolRef;
+}
+
+declare class MetasoundEditorGraphMemberDefaultBool extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: MetasoundEditorGraphMemberDefaultBoolRef;
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultBool;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultBool;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultBool;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultBool;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultBool;
+}
+
+declare class MetasoundEditorGraphMemberDefaultBoolArray extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: MetasoundEditorGraphMemberDefaultBoolRef[];
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultBoolArray;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultBoolArray;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultBoolArray;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultBoolArray;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultBoolArray;
+}
+
+declare class MetasoundEditorGraphMemberDefaultIntRef { 
+	Value: number;
+	clone() : MetasoundEditorGraphMemberDefaultIntRef;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultIntRef;
+}
+
+declare class MetasoundEditorGraphMemberDefaultInt extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: MetasoundEditorGraphMemberDefaultIntRef;
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultInt;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultInt;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultInt;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultInt;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultInt;
+}
+
+declare class MetasoundEditorGraphMemberDefaultIntArray extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: MetasoundEditorGraphMemberDefaultIntRef[];
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultIntArray;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultIntArray;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultIntArray;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultIntArray;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultIntArray;
+}
+
+declare type EMetasoundMemberDefaultWidget = 'None' | 'Slider' | 'RadialSlider' | 'EMetasoundMemberDefaultWidget_MAX';
+declare var EMetasoundMemberDefaultWidget : { None:'None',Slider:'Slider',RadialSlider:'RadialSlider',EMetasoundMemberDefaultWidget_MAX:'EMetasoundMemberDefaultWidget_MAX', };
+declare type EMetasoundMemberDefaultWidgetValueType = 'Linear' | 'Frequency' | 'Volume' | 'EMetasoundMemberDefaultWidgetValueType_MAX';
+declare var EMetasoundMemberDefaultWidgetValueType : { Linear:'Linear',Frequency:'Frequency',Volume:'Volume',EMetasoundMemberDefaultWidgetValueType_MAX:'EMetasoundMemberDefaultWidgetValueType_MAX', };
+declare class MetasoundEditorGraphMemberDefaultFloat extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: number;
+	ClampDefault: boolean;
+	Range: Vector2D;
+	WidgetType: EMetasoundMemberDefaultWidget;
+	WidgetOrientation: EOrientation;
+	WidgetValueType: EMetasoundMemberDefaultWidgetValueType;
+	VolumeWidgetUseLinearOutput: boolean;
+	VolumeWidgetDecibelRange: Vector2D;
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultFloat;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultFloat;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultFloat;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultFloat;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultFloat;
+}
+
+declare class MetasoundEditorGraphMemberDefaultFloatArray extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: number[];
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultFloatArray;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultFloatArray;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultFloatArray;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultFloatArray;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultFloatArray;
+}
+
+declare class MetasoundEditorGraphMemberDefaultString extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: string;
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultString;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultString;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultString;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultString;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultString;
+}
+
+declare class MetasoundEditorGraphMemberDefaultStringArray extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: string[];
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultStringArray;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultStringArray;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultStringArray;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultStringArray;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultStringArray;
+}
+
+declare class MetasoundEditorGraphMemberDefaultObjectRef { 
+	UObject: UObject;
+	clone() : MetasoundEditorGraphMemberDefaultObjectRef;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultObjectRef;
+}
+
+declare class MetasoundEditorGraphMemberDefaultObject extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: MetasoundEditorGraphMemberDefaultObjectRef;
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultObject;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultObject;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultObject;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultObject;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultObject;
+}
+
+declare class MetasoundEditorGraphMemberDefaultObjectArray extends MetasoundEditorGraphMemberDefaultLiteral { 
+	Default: MetasoundEditorGraphMemberDefaultObjectRef[];
+	static Load(ResourceName: string): MetasoundEditorGraphMemberDefaultObjectArray;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphMemberDefaultObjectArray;
+	static GetDefaultObject(): MetasoundEditorGraphMemberDefaultObjectArray;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphMemberDefaultObjectArray;
+	static C(Other: UObject | any): MetasoundEditorGraphMemberDefaultObjectArray;
+}
+
+declare class MetasoundEditorGraphOutputNode extends MetasoundEditorGraphMemberNode { 
+	Output: MetasoundEditorGraphOutput;
+	static Load(ResourceName: string): MetasoundEditorGraphOutputNode;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphOutputNode;
+	static GetDefaultObject(): MetasoundEditorGraphOutputNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphOutputNode;
+	static C(Other: UObject | any): MetasoundEditorGraphOutputNode;
+}
+
+declare class MetasoundEditorGraphExternalNode extends MetasoundEditorGraphNode { 
+	ClassName: MetasoundFrontendClassName;
+	NodeID: Guid;
+	bIsClassNative: boolean;
+	static Load(ResourceName: string): MetasoundEditorGraphExternalNode;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphExternalNode;
+	static GetDefaultObject(): MetasoundEditorGraphExternalNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphExternalNode;
+	static C(Other: UObject | any): MetasoundEditorGraphExternalNode;
+}
+
+declare class MetasoundEditorGraphVariableNode extends MetasoundEditorGraphMemberNode { 
+	ClassType: EMetasoundFrontendClassType;
+	ClassName: MetasoundFrontendClassName;
+	NodeID: Guid;
+	Variable: MetasoundEditorGraphVariable;
+	static Load(ResourceName: string): MetasoundEditorGraphVariableNode;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphVariableNode;
+	static GetDefaultObject(): MetasoundEditorGraphVariableNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphVariableNode;
+	static C(Other: UObject | any): MetasoundEditorGraphVariableNode;
+}
+
+declare class MetasoundEditorGraphSchema extends EdGraphSchema { 
+	static Load(ResourceName: string): MetasoundEditorGraphSchema;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorGraphSchema;
+	static GetDefaultObject(): MetasoundEditorGraphSchema;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorGraphSchema;
+	static C(Other: UObject | any): MetasoundEditorGraphSchema;
+}
+
+declare type EMetasoundActiveAnalyzerEnvelopeDirection = 'FromSourceOutput' | 'FromDestinationInput' | 'EMetasoundActiveAnalyzerEnvelopeDirection_MAX';
+declare var EMetasoundActiveAnalyzerEnvelopeDirection : { FromSourceOutput:'FromSourceOutput',FromDestinationInput:'FromDestinationInput',EMetasoundActiveAnalyzerEnvelopeDirection_MAX:'EMetasoundActiveAnalyzerEnvelopeDirection_MAX', };
+declare class MetasoundAnalyzerAnimationSettings { 
+	bAnimateConnections: boolean;
+	EnvelopeWireThickness: number;
+	EnvelopeSpeed: number;
+	EnvelopeDirection: EMetasoundActiveAnalyzerEnvelopeDirection;
+	NumericWireThickness: number;
+	WireScalarMin: number;
+	WireScalarMax: number;
+	clone() : MetasoundAnalyzerAnimationSettings;
+	static C(Other: UObject | any): MetasoundAnalyzerAnimationSettings;
+}
+
+declare type EMetasoundActiveDetailView = 'Metasound' | 'General' | 'EMetasoundActiveDetailView_MAX';
+declare var EMetasoundActiveDetailView : { Metasound:'Metasound',General:'General',EMetasoundActiveDetailView_MAX:'EMetasoundActiveDetailView_MAX', };
+declare class MetasoundEditorSettings extends UObject { 
+	bPinMetaSoundPatchInAssetMenu: boolean;
+	bPinMetaSoundSourceInAssetMenu: boolean;
+	DefaultAuthor: string;
+	DefaultPinTypeColor: LinearColor;
+	AudioPinTypeColor: LinearColor;
+	BooleanPinTypeColor: LinearColor;
+	FloatPinTypeColor: LinearColor;
+	IntPinTypeColor: LinearColor;
+	ObjectPinTypeColor: LinearColor;
+	StringPinTypeColor: LinearColor;
+	TimePinTypeColor: LinearColor;
+	TriggerPinTypeColor: LinearColor;
+	WaveTablePinTypeColor: LinearColor;
+	NativeNodeTitleColor: LinearColor;
+	AssetReferenceNodeTitleColor: LinearColor;
+	InputNodeTitleColor: LinearColor;
+	OutputNodeTitleColor: LinearColor;
+	VariableNodeTitleColor: LinearColor;
+	DefaultInputWidgetType: EMetasoundMemberDefaultWidget;
+	AnalyzerAnimationSettings: MetasoundAnalyzerAnimationSettings;
+	DetailView: EMetasoundActiveDetailView;
+	static Load(ResourceName: string): MetasoundEditorSettings;
+	static Find(Outer: UObject, ResourceName: string): MetasoundEditorSettings;
+	static GetDefaultObject(): MetasoundEditorSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetasoundEditorSettings;
+	static C(Other: UObject | any): MetasoundEditorSettings;
+}
+
+declare class MetaSoundBaseFactory extends Factory { 
+	ReferencedMetaSoundObject: UObject;
+	static Load(ResourceName: string): MetaSoundBaseFactory;
+	static Find(Outer: UObject, ResourceName: string): MetaSoundBaseFactory;
+	static GetDefaultObject(): MetaSoundBaseFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundBaseFactory;
+	static C(Other: UObject | any): MetaSoundBaseFactory;
+}
+
+declare class MetaSoundFactory extends MetaSoundBaseFactory { 
+	static Load(ResourceName: string): MetaSoundFactory;
+	static Find(Outer: UObject, ResourceName: string): MetaSoundFactory;
+	static GetDefaultObject(): MetaSoundFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundFactory;
+	static C(Other: UObject | any): MetaSoundFactory;
+}
+
+declare class MetaSoundSourceFactory extends MetaSoundBaseFactory { 
+	static Load(ResourceName: string): MetaSoundSourceFactory;
+	static Find(Outer: UObject, ResourceName: string): MetaSoundSourceFactory;
+	static GetDefaultObject(): MetaSoundSourceFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MetaSoundSourceFactory;
+	static C(Other: UObject | any): MetaSoundSourceFactory;
+}
+
+declare class KismetProceduralMeshLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): KismetProceduralMeshLibrary;
+	static Find(Outer: UObject, ResourceName: string): KismetProceduralMeshLibrary;
+	static GetDefaultObject(): KismetProceduralMeshLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): KismetProceduralMeshLibrary;
+	static SliceProceduralMesh(InProcMesh: ProceduralMeshComponent,PlanePosition: Vector,PlaneNormal: Vector,bCreateOtherHalf: boolean,OutOtherHalfProcMesh?: ProceduralMeshComponent,CapOption?: EProcMeshSliceCapOption,CapMaterial?: MaterialInterface): {OutOtherHalfProcMesh: ProceduralMeshComponent};
+	static GetSectionFromStaticMesh(InMesh: StaticMesh,LODIndex: number,SectionIndex: number,Vertices?: Vector[],Triangles?: number[],Normals?: Vector[],UVs?: Vector2D[],Tangents?: ProcMeshTangent[]): {Vertices: Vector[], Triangles: number[], Normals: Vector[], UVs: Vector2D[], Tangents: ProcMeshTangent[]};
+	static GetSectionFromProceduralMesh(InProcMesh: ProceduralMeshComponent,SectionIndex: number,Vertices?: Vector[],Triangles?: number[],Normals?: Vector[],UVs?: Vector2D[],Tangents?: ProcMeshTangent[]): {Vertices: Vector[], Triangles: number[], Normals: Vector[], UVs: Vector2D[], Tangents: ProcMeshTangent[]};
+	static GenerateBoxMesh(BoxRadius: Vector,Vertices?: Vector[],Triangles?: number[],Normals?: Vector[],UVs?: Vector2D[],Tangents?: ProcMeshTangent[]): {Vertices: Vector[], Triangles: number[], Normals: Vector[], UVs: Vector2D[], Tangents: ProcMeshTangent[]};
+	static CreateGridMeshWelded(NumX: number,NumY: number,Triangles?: number[],Vertices?: Vector[],UVs?: Vector2D[],GridSpacing?: number): {Triangles: number[], Vertices: Vector[], UVs: Vector2D[]};
+	static CreateGridMeshTriangles(NumX: number,NumY: number,bWinding: boolean,Triangles?: number[]): {Triangles: number[]};
+	static CreateGridMeshSplit(NumX: number,NumY: number,Triangles?: number[],Vertices?: Vector[],UVs?: Vector2D[],UV1s?: Vector2D[],GridSpacing?: number): {Triangles: number[], Vertices: Vector[], UVs: Vector2D[], UV1s: Vector2D[]};
+	static CopyProceduralMeshFromStaticMeshComponent(StaticMeshComponent: StaticMeshComponent,LODIndex: number,ProcMeshComponent: ProceduralMeshComponent,bCreateCollision: boolean): void;
+	static ConvertQuadToTriangles(Triangles?: number[],Vert0?: number,Vert1?: number,Vert2?: number,Vert3?: number): {Triangles: number[]};
+	static CalculateTangentsForMesh(Vertices: Vector[],Triangles: number[],UVs: Vector2D[],Normals?: Vector[],Tangents?: ProcMeshTangent[]): {Normals: Vector[], Tangents: ProcMeshTangent[]};
+	static C(Other: UObject | any): KismetProceduralMeshLibrary;
+}
+
+declare class SignificanceManager extends UObject { 
+	SignificanceManagerClassName: SoftClassPath;
+	static Load(ResourceName: string): SignificanceManager;
+	static Find(Outer: UObject, ResourceName: string): SignificanceManager;
+	static GetDefaultObject(): SignificanceManager;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SignificanceManager;
+	static C(Other: UObject | any): SignificanceManager;
+}
+
+declare class AmbisonicsEncodingSettings extends SoundfieldEncodingSettingsBase { 
+	AmbisonicsOrder: number;
+	static Load(ResourceName: string): AmbisonicsEncodingSettings;
+	static Find(Outer: UObject, ResourceName: string): AmbisonicsEncodingSettings;
+	static GetDefaultObject(): AmbisonicsEncodingSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AmbisonicsEncodingSettings;
+	static C(Other: UObject | any): AmbisonicsEncodingSettings;
+}
+
+declare class AudioImpulseResponse extends UObject { 
+	ImpulseResponse: number[];
+	NumChannels: number;
+	SampleRate: number;
+	NormalizationVolumeDb: number;
+	bTrueStereo: boolean;
+	IRData: number[];
+	static Load(ResourceName: string): AudioImpulseResponse;
+	static Find(Outer: UObject, ResourceName: string): AudioImpulseResponse;
+	static GetDefaultObject(): AudioImpulseResponse;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioImpulseResponse;
+	static C(Other: UObject | any): AudioImpulseResponse;
+}
+
+declare type ESynth1OscType = 'Sine' | 'Saw' | 'Triangle' | 'Square' | 'Noise' | 'Count' | 'ESynth1OscType_MAX';
+declare var ESynth1OscType : { Sine:'Sine',Saw:'Saw',Triangle:'Triangle',Square:'Square',Noise:'Noise',Count:'Count',ESynth1OscType_MAX:'ESynth1OscType_MAX', };
+declare type ESynthLFOType = 'Sine' | 'UpSaw' | 'DownSaw' | 'Square' | 'Triangle' | 'Exponential' | 'RandomSampleHold' | 'Count' | 'ESynthLFOType_MAX';
+declare var ESynthLFOType : { Sine:'Sine',UpSaw:'UpSaw',DownSaw:'DownSaw',Square:'Square',Triangle:'Triangle',Exponential:'Exponential',RandomSampleHold:'RandomSampleHold',Count:'Count',ESynthLFOType_MAX:'ESynthLFOType_MAX', };
+declare type ESynthLFOMode = 'Sync' | 'OneShot' | 'Free' | 'Count' | 'ESynthLFOMode_MAX';
+declare var ESynthLFOMode : { Sync:'Sync',OneShot:'OneShot',Free:'Free',Count:'Count',ESynthLFOMode_MAX:'ESynthLFOMode_MAX', };
+declare type ESynthLFOPatchType = 'PatchToNone' | 'PatchToGain' | 'PatchToOscFreq' | 'PatchToFilterFreq' | 'PatchToFilterQ' | 'PatchToOscPulseWidth' | 'PatchToOscPan' | 'PatchLFO1ToLFO2Frequency' | 'PatchLFO1ToLFO2Gain' | 'Count' | 'ESynthLFOPatchType_MAX';
+declare var ESynthLFOPatchType : { PatchToNone:'PatchToNone',PatchToGain:'PatchToGain',PatchToOscFreq:'PatchToOscFreq',PatchToFilterFreq:'PatchToFilterFreq',PatchToFilterQ:'PatchToFilterQ',PatchToOscPulseWidth:'PatchToOscPulseWidth',PatchToOscPan:'PatchToOscPan',PatchLFO1ToLFO2Frequency:'PatchLFO1ToLFO2Frequency',PatchLFO1ToLFO2Gain:'PatchLFO1ToLFO2Gain',Count:'Count',ESynthLFOPatchType_MAX:'ESynthLFOPatchType_MAX', };
+declare type ESynthModEnvPatch = 'PatchToNone' | 'PatchToOscFreq' | 'PatchToFilterFreq' | 'PatchToFilterQ' | 'PatchToLFO1Gain' | 'PatchToLFO2Gain' | 'PatchToLFO1Freq' | 'PatchToLFO2Freq' | 'Count' | 'ESynthModEnvPatch_MAX';
+declare var ESynthModEnvPatch : { PatchToNone:'PatchToNone',PatchToOscFreq:'PatchToOscFreq',PatchToFilterFreq:'PatchToFilterFreq',PatchToFilterQ:'PatchToFilterQ',PatchToLFO1Gain:'PatchToLFO1Gain',PatchToLFO2Gain:'PatchToLFO2Gain',PatchToLFO1Freq:'PatchToLFO1Freq',PatchToLFO2Freq:'PatchToLFO2Freq',Count:'Count',ESynthModEnvPatch_MAX:'ESynthModEnvPatch_MAX', };
+declare type ESynthModEnvBiasPatch = 'PatchToNone' | 'PatchToOscFreq' | 'PatchToFilterFreq' | 'PatchToFilterQ' | 'PatchToLFO1Gain' | 'PatchToLFO2Gain' | 'PatchToLFO1Freq' | 'PatchToLFO2Freq' | 'Count' | 'ESynthModEnvBiasPatch_MAX';
+declare var ESynthModEnvBiasPatch : { PatchToNone:'PatchToNone',PatchToOscFreq:'PatchToOscFreq',PatchToFilterFreq:'PatchToFilterFreq',PatchToFilterQ:'PatchToFilterQ',PatchToLFO1Gain:'PatchToLFO1Gain',PatchToLFO2Gain:'PatchToLFO2Gain',PatchToLFO1Freq:'PatchToLFO1Freq',PatchToLFO2Freq:'PatchToLFO2Freq',Count:'Count',ESynthModEnvBiasPatch_MAX:'ESynthModEnvBiasPatch_MAX', };
+declare type ESynthFilterType = 'LowPass' | 'HighPass' | 'BandPass' | 'BandStop' | 'Count' | 'ESynthFilterType_MAX';
+declare var ESynthFilterType : { LowPass:'LowPass',HighPass:'HighPass',BandPass:'BandPass',BandStop:'BandStop',Count:'Count',ESynthFilterType_MAX:'ESynthFilterType_MAX', };
+declare type ESynthFilterAlgorithm = 'OnePole' | 'StateVariable' | 'Ladder' | 'Count' | 'ESynthFilterAlgorithm_MAX';
+declare var ESynthFilterAlgorithm : { OnePole:'OnePole',StateVariable:'StateVariable',Ladder:'Ladder',Count:'Count',ESynthFilterAlgorithm_MAX:'ESynthFilterAlgorithm_MAX', };
+declare type ESynthStereoDelayMode = 'Normal' | 'Cross' | 'PingPong' | 'Count' | 'ESynthStereoDelayMode_MAX';
+declare var ESynthStereoDelayMode : { Normal:'Normal',Cross:'Cross',PingPong:'PingPong',Count:'Count',ESynthStereoDelayMode_MAX:'ESynthStereoDelayMode_MAX', };
+declare type ESynth1PatchSource = 'LFO1' | 'LFO2' | 'Envelope' | 'BiasEnvelope' | 'Count' | 'ESynth1PatchSource_MAX';
+declare var ESynth1PatchSource : { LFO1:'LFO1',LFO2:'LFO2',Envelope:'Envelope',BiasEnvelope:'BiasEnvelope',Count:'Count',ESynth1PatchSource_MAX:'ESynth1PatchSource_MAX', };
+declare type ESynth1PatchDestination = 'Osc1Gain' | 'Osc1Frequency' | 'Osc1Pulsewidth' | 'Osc2Gain' | 'Osc2Frequency' | 'Osc2Pulsewidth' | 'FilterFrequency' | 'FilterQ' | 'Gain' | 'Pan' | 'LFO1Frequency' | 'LFO1Gain' | 'LFO2Frequency' | 'LFO2Gain' | 'Count' | 'ESynth1PatchDestination_MAX';
+declare var ESynth1PatchDestination : { Osc1Gain:'Osc1Gain',Osc1Frequency:'Osc1Frequency',Osc1Pulsewidth:'Osc1Pulsewidth',Osc2Gain:'Osc2Gain',Osc2Frequency:'Osc2Frequency',Osc2Pulsewidth:'Osc2Pulsewidth',FilterFrequency:'FilterFrequency',FilterQ:'FilterQ',Gain:'Gain',Pan:'Pan',LFO1Frequency:'LFO1Frequency',LFO1Gain:'LFO1Gain',LFO2Frequency:'LFO2Frequency',LFO2Gain:'LFO2Gain',Count:'Count',ESynth1PatchDestination_MAX:'ESynth1PatchDestination_MAX', };
+declare class Synth1PatchCable { 
+	Depth: number;
+	Destination: ESynth1PatchDestination;
+	clone() : Synth1PatchCable;
+	static C(Other: UObject | any): Synth1PatchCable;
+}
+
+declare class EpicSynth1Patch { 
+	PatchSource: ESynth1PatchSource;
+	PatchCables: Synth1PatchCable[];
+	clone() : EpicSynth1Patch;
+	static C(Other: UObject | any): EpicSynth1Patch;
+}
+
+declare class ModularSynthPreset extends TableRowBase { 
+	bEnablePolyphony: boolean;
+	Osc1Type: ESynth1OscType;
+	Osc1Gain: number;
+	Osc1Octave: number;
+	Osc1Semitones: number;
+	Osc1Cents: number;
+	Osc1PulseWidth: number;
+	Osc2Type: ESynth1OscType;
+	Osc2Gain: number;
+	Osc2Octave: number;
+	Osc2Semitones: number;
+	Osc2Cents: number;
+	Osc2PulseWidth: number;
+	Portamento: number;
+	bEnableUnison: boolean;
+	bEnableOscillatorSync: boolean;
+	Spread: number;
+	Pan: number;
+	LFO1Frequency: number;
+	LFO1Gain: number;
+	LFO1Type: ESynthLFOType;
+	LFO1Mode: ESynthLFOMode;
+	LFO1PatchType: ESynthLFOPatchType;
+	LFO2Frequency: number;
+	LFO2Gain: number;
+	LFO2Type: ESynthLFOType;
+	LFO2Mode: ESynthLFOMode;
+	LFO2PatchType: ESynthLFOPatchType;
+	GainDb: number;
+	AttackTime: number;
+	DecayTime: number;
+	SustainGain: number;
+	ReleaseTime: number;
+	ModEnvPatchType: ESynthModEnvPatch;
+	ModEnvBiasPatchType: ESynthModEnvBiasPatch;
+	bInvertModulationEnvelope: boolean;
+	bInvertModulationEnvelopeBias: boolean;
+	ModulationEnvelopeDepth: number;
+	ModulationEnvelopeAttackTime: number;
+	ModulationEnvelopeDecayTime: number;
+	ModulationEnvelopeSustainGain: number;
+	ModulationEnvelopeReleaseTime: number;
+	bLegato: boolean;
+	bRetrigger: boolean;
+	FilterFrequency: number;
+	FilterQ: number;
+	FilterType: ESynthFilterType;
+	FilterAlgorithm: ESynthFilterAlgorithm;
+	bStereoDelayEnabled: boolean;
+	StereoDelayMode: ESynthStereoDelayMode;
+	StereoDelayTime: number;
+	StereoDelayFeedback: number;
+	StereoDelayWetlevel: number;
+	StereoDelayRatio: number;
+	bChorusEnabled: boolean;
+	ChorusDepth: number;
+	ChorusFeedback: number;
+	ChorusFrequency: number;
+	Patches: EpicSynth1Patch[];
+	clone() : ModularSynthPreset;
+	static C(Other: UObject | any): ModularSynthPreset;
+}
+
+declare class ModularSynthPresetBankEntry { 
+	PresetName: string;
+	Preset: ModularSynthPreset;
+	clone() : ModularSynthPresetBankEntry;
+	static C(Other: UObject | any): ModularSynthPresetBankEntry;
+}
+
+declare class ModularSynthPresetBank extends UObject { 
+	Presets: ModularSynthPresetBankEntry[];
+	static Load(ResourceName: string): ModularSynthPresetBank;
+	static Find(Outer: UObject, ResourceName: string): ModularSynthPresetBank;
+	static GetDefaultObject(): ModularSynthPresetBank;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ModularSynthPresetBank;
+	static C(Other: UObject | any): ModularSynthPresetBank;
+	AddModularSynthPresetToBankAsset(Preset: ModularSynthPreset,PresetName: string): void;
+	static AddModularSynthPresetToBankAsset(InBank: ModularSynthPresetBank,Preset: ModularSynthPreset,PresetName: string): void;
+}
+
+declare class ModularSynthLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): ModularSynthLibrary;
+	static Find(Outer: UObject, ResourceName: string): ModularSynthLibrary;
+	static GetDefaultObject(): ModularSynthLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ModularSynthLibrary;
+	static AddModularSynthPresetToBankAsset(InBank: ModularSynthPresetBank,Preset: ModularSynthPreset,PresetName: string): void;
+	static C(Other: UObject | any): ModularSynthLibrary;
+}
+
+declare class PatchId { 
+	ID: number;
+	clone() : PatchId;
+	static C(Other: UObject | any): PatchId;
+}
+
+declare class ModularSynthComponent extends SynthComponent { 
+	VoiceCount: number;
+	static Load(ResourceName: string): ModularSynthComponent;
+	static Find(Outer: UObject, ResourceName: string): ModularSynthComponent;
+	static GetDefaultObject(): ModularSynthComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ModularSynthComponent;
+	SetSynthPreset(SynthPreset: ModularSynthPreset): void;
+	SetSustainGain(SustainGain: number): void;
+	SetStereoDelayWetlevel(DelayWetlevel: number): void;
+	SetStereoDelayTime(DelayTimeMsec: number): void;
+	SetStereoDelayRatio(DelayRatio: number): void;
+	SetStereoDelayMode(StereoDelayMode: ESynthStereoDelayMode): void;
+	SetStereoDelayIsEnabled(StereoDelayEnabled: boolean): void;
+	SetStereoDelayFeedback(DelayFeedback: number): void;
+	SetSpread(Spread: number): void;
+	SetReleaseTime(ReleaseTimeMsec: number): void;
+	SetPortamento(Portamento: number): void;
+	SetPitchBend(PitchBend: number): void;
+	SetPan(Pan: number): void;
+	SetOscType(OscIndex: number,OscType: ESynth1OscType): void;
+	SetOscSync(bIsSynced: boolean): void;
+	SetOscSemitones(OscIndex: number,Semitones: number): void;
+	SetOscPulsewidth(OscIndex: number,Pulsewidth: number): void;
+	SetOscOctave(OscIndex: number,Octave: number): void;
+	SetOscGainMod(OscIndex: number,OscGainMod: number): void;
+	SetOscGain(OscIndex: number,OscGain: number): void;
+	SetOscFrequencyMod(OscIndex: number,OscFreqMod: number): void;
+	SetOscCents(OscIndex: number,Cents: number): void;
+	SetModEnvSustainGain(SustainGain: number): void;
+	SetModEnvReleaseTime(Release: number): void;
+	SetModEnvPatch(InPatchType: ESynthModEnvPatch): void;
+	SetModEnvInvert(bInvert: boolean): void;
+	SetModEnvDepth(Depth: number): void;
+	SetModEnvDecayTime(DecayTimeMsec: number): void;
+	SetModEnvBiasPatch(InPatchType: ESynthModEnvBiasPatch): void;
+	SetModEnvBiasInvert(bInvert: boolean): void;
+	SetModEnvAttackTime(AttackTimeMsec: number): void;
+	SetLFOType(LFOIndex: number,LFOType: ESynthLFOType): void;
+	SetLFOPatch(LFOIndex: number,LFOPatchType: ESynthLFOPatchType): void;
+	SetLFOMode(LFOIndex: number,LFOMode: ESynthLFOMode): void;
+	SetLFOGainMod(LFOIndex: number,GainMod: number): void;
+	SetLFOGain(LFOIndex: number,Gain: number): void;
+	SetLFOFrequencyMod(LFOIndex: number,FrequencyModHz: number): void;
+	SetLFOFrequency(LFOIndex: number,FrequencyHz: number): void;
+	SetGainDb(GainDb: number): void;
+	SetFilterType(FilterType: ESynthFilterType): void;
+	SetFilterQMod(FilterQ: number): void;
+	SetFilterQ(FilterQ: number): void;
+	SetFilterFrequencyMod(FilterFrequencyHz: number): void;
+	SetFilterFrequency(FilterFrequencyHz: number): void;
+	SetFilterAlgorithm(FilterAlgorithm: ESynthFilterAlgorithm): void;
+	SetEnableUnison(EnableUnison: boolean): void;
+	SetEnableRetrigger(RetriggerEnabled: boolean): void;
+	SetEnablePolyphony(bEnablePolyphony: boolean): void;
+	SetEnablePatch(PatchId: PatchId,bIsEnabled: boolean): boolean;
+	SetEnableLegato(LegatoEnabled: boolean): void;
+	SetDecayTime(DecayTimeMsec: number): void;
+	SetChorusFrequency(Frequency: number): void;
+	SetChorusFeedback(Feedback: number): void;
+	SetChorusEnabled(EnableChorus: boolean): void;
+	SetChorusDepth(Depth: number): void;
+	SetAttackTime(AttackTimeMsec: number): void;
+	NoteOn(Note: number,Velocity: number,Duration: number): void;
+	NoteOff(Note: number,bAllNotesOff: boolean,bKillAllNotes: boolean): void;
+	CreatePatch(PatchSource: ESynth1PatchSource,PatchCables: Synth1PatchCable[],bEnableByDefault: boolean): PatchId;
+	static C(Other: UObject | any): ModularSynthComponent;
+}
+
+declare class SourceEffectBitCrusherSettings { 
+	CrushedSampleRate: number;
+	SampleRateModulation: SoundModulationDestinationSettings;
+	CrushedBits: number;
+	BitModulation: SoundModulationDestinationSettings;
+	clone() : SourceEffectBitCrusherSettings;
+	static C(Other: UObject | any): SourceEffectBitCrusherSettings;
+}
+
+declare class SourceEffectBitCrusherBaseSettings { 
+	SampleRate: number;
+	BitDepth: number;
+	clone() : SourceEffectBitCrusherBaseSettings;
+	static C(Other: UObject | any): SourceEffectBitCrusherBaseSettings;
+}
+
+declare class SourceEffectBitCrusherPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectBitCrusherSettings;
+	static Load(ResourceName: string): SourceEffectBitCrusherPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectBitCrusherPreset;
+	static GetDefaultObject(): SourceEffectBitCrusherPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectBitCrusherPreset;
+	SetSettings(Settings: SourceEffectBitCrusherBaseSettings): void;
+	SetSampleRateModulators(InModulators: Set<SoundModulatorBase>): void;
+	SetSampleRateModulator(Modulator: SoundModulatorBase): void;
+	SetSampleRate(SampleRate: number): void;
+	SetModulationSettings(ModulationSettings: SourceEffectBitCrusherSettings): void;
+	SetBits(Bits: number): void;
+	SetBitModulators(InModulators: Set<SoundModulatorBase>): void;
+	SetBitModulator(Modulator: SoundModulatorBase): void;
+	static C(Other: UObject | any): SourceEffectBitCrusherPreset;
+}
+
+declare class SourceEffectChorusSettings { 
+	Depth: number;
+	Frequency: number;
+	Feedback: number;
+	WetLevel: number;
+	DryLevel: number;
+	Spread: number;
+	DepthModulation: SoundModulationDestinationSettings;
+	FrequencyModulation: SoundModulationDestinationSettings;
+	FeedbackModulation: SoundModulationDestinationSettings;
+	WetModulation: SoundModulationDestinationSettings;
+	DryModulation: SoundModulationDestinationSettings;
+	SpreadModulation: SoundModulationDestinationSettings;
+	clone() : SourceEffectChorusSettings;
+	static C(Other: UObject | any): SourceEffectChorusSettings;
+}
+
+declare class SourceEffectChorusBaseSettings { 
+	Depth: number;
+	Frequency: number;
+	Feedback: number;
+	WetLevel: number;
+	DryLevel: number;
+	Spread: number;
+	clone() : SourceEffectChorusBaseSettings;
+	static C(Other: UObject | any): SourceEffectChorusBaseSettings;
+}
+
+declare class SourceEffectChorusPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectChorusSettings;
+	static Load(ResourceName: string): SourceEffectChorusPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectChorusPreset;
+	static GetDefaultObject(): SourceEffectChorusPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectChorusPreset;
+	SetWetModulators(Modulators: Set<SoundModulatorBase>): void;
+	SetWetModulator(Modulator: SoundModulatorBase): void;
+	SetWet(WetAmount: number): void;
+	SetSpreadModulators(Modulators: Set<SoundModulatorBase>): void;
+	SetSpreadModulator(Modulator: SoundModulatorBase): void;
+	SetSpread(Spread: number): void;
+	SetSettings(Settings: SourceEffectChorusBaseSettings): void;
+	SetModulationSettings(ModulationSettings: SourceEffectChorusSettings): void;
+	SetFrequencyModulators(Modulators: Set<SoundModulatorBase>): void;
+	SetFrequencyModulator(Modulator: SoundModulatorBase): void;
+	SetFrequency(Frequency: number): void;
+	SetFeedbackModulators(Modulators: Set<SoundModulatorBase>): void;
+	SetFeedbackModulator(Modulator: SoundModulatorBase): void;
+	SetFeedback(Feedback: number): void;
+	SetDryModulators(Modulators: Set<SoundModulatorBase>): void;
+	SetDryModulator(Modulator: SoundModulatorBase): void;
+	SetDry(DryAmount: number): void;
+	SetDepthModulators(Modulators: Set<SoundModulatorBase>): void;
+	SetDepthModulator(Modulator: SoundModulatorBase): void;
+	SetDepth(Depth: number): void;
+	static C(Other: UObject | any): SourceEffectChorusPreset;
+}
+
+declare class SourceEffectConvolutionReverbSettings { 
+	NormalizationVolumeDb: number;
+	WetVolumeDb: number;
+	DryVolumeDb: number;
+	bBypass: boolean;
+	clone() : SourceEffectConvolutionReverbSettings;
+	static C(Other: UObject | any): SourceEffectConvolutionReverbSettings;
+}
+
+declare type ESubmixEffectConvolutionReverbBlockSize = 'BlockSize256' | 'BlockSize512' | 'BlockSize1024' | 'ESubmixEffectConvolutionReverbBlockSize_MAX';
+declare var ESubmixEffectConvolutionReverbBlockSize : { BlockSize256:'BlockSize256',BlockSize512:'BlockSize512',BlockSize1024:'BlockSize1024',ESubmixEffectConvolutionReverbBlockSize_MAX:'ESubmixEffectConvolutionReverbBlockSize_MAX', };
+declare class SourceEffectConvolutionReverbPreset extends SoundEffectSourcePreset { 
+	ImpulseResponse: AudioImpulseResponse;
+	Settings: SourceEffectConvolutionReverbSettings;
+	BlockSize: ESubmixEffectConvolutionReverbBlockSize;
+	bEnableHardwareAcceleration: boolean;
+	static Load(ResourceName: string): SourceEffectConvolutionReverbPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectConvolutionReverbPreset;
+	static GetDefaultObject(): SourceEffectConvolutionReverbPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectConvolutionReverbPreset;
+	SetSettings(InSettings: SourceEffectConvolutionReverbSettings): void;
+	SetImpulseResponse(InImpulseResponse: AudioImpulseResponse): void;
+	static C(Other: UObject | any): SourceEffectConvolutionReverbPreset;
+}
+
+declare type ESourceEffectDynamicsProcessorType = 'Compressor' | 'Limiter' | 'Expander' | 'Gate' | 'UpwardsCompressor' | 'Count' | 'ESourceEffectDynamicsProcessorType_MAX';
+declare var ESourceEffectDynamicsProcessorType : { Compressor:'Compressor',Limiter:'Limiter',Expander:'Expander',Gate:'Gate',UpwardsCompressor:'UpwardsCompressor',Count:'Count',ESourceEffectDynamicsProcessorType_MAX:'ESourceEffectDynamicsProcessorType_MAX', };
+declare type ESourceEffectDynamicsPeakMode = 'MeanSquared' | 'RootMeanSquared' | 'Peak' | 'Count' | 'ESourceEffectDynamicsPeakMode_MAX';
+declare var ESourceEffectDynamicsPeakMode : { MeanSquared:'MeanSquared',RootMeanSquared:'RootMeanSquared',Peak:'Peak',Count:'Count',ESourceEffectDynamicsPeakMode_MAX:'ESourceEffectDynamicsPeakMode_MAX', };
+declare class SourceEffectDynamicsProcessorSettings { 
+	DynamicsProcessorType: ESourceEffectDynamicsProcessorType;
+	PeakMode: ESourceEffectDynamicsPeakMode;
+	LookAheadMsec: number;
+	AttackTimeMsec: number;
+	ReleaseTimeMsec: number;
+	ThresholdDb: number;
+	Ratio: number;
+	KneeBandwidthDb: number;
+	InputGainDb: number;
+	OutputGainDb: number;
+	bStereoLinked: boolean;
+	bAnalogMode: boolean;
+	clone() : SourceEffectDynamicsProcessorSettings;
+	static C(Other: UObject | any): SourceEffectDynamicsProcessorSettings;
+}
+
+declare class SourceEffectDynamicsProcessorPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectDynamicsProcessorSettings;
+	static Load(ResourceName: string): SourceEffectDynamicsProcessorPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectDynamicsProcessorPreset;
+	static GetDefaultObject(): SourceEffectDynamicsProcessorPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectDynamicsProcessorPreset;
+	SetSettings(InSettings: SourceEffectDynamicsProcessorSettings): void;
+	static C(Other: UObject | any): SourceEffectDynamicsProcessorPreset;
+}
+
+declare class EnvelopeFollowerListener extends ActorComponent { 
+	OnEnvelopeFollowerUpdate: UnrealEngineMulticastDelegate<(EnvelopeValue: number) => void>;
+	static Load(ResourceName: string): EnvelopeFollowerListener;
+	static Find(Outer: UObject, ResourceName: string): EnvelopeFollowerListener;
+	static GetDefaultObject(): EnvelopeFollowerListener;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EnvelopeFollowerListener;
+	static C(Other: UObject | any): EnvelopeFollowerListener;
+}
+
+declare type EEnvelopeFollowerPeakMode = 'MeanSquared' | 'RootMeanSquared' | 'Peak' | 'Count' | 'EEnvelopeFollowerPeakMode_MAX';
+declare var EEnvelopeFollowerPeakMode : { MeanSquared:'MeanSquared',RootMeanSquared:'RootMeanSquared',Peak:'Peak',Count:'Count',EEnvelopeFollowerPeakMode_MAX:'EEnvelopeFollowerPeakMode_MAX', };
+declare class SourceEffectEnvelopeFollowerSettings { 
+	AttackTime: number;
+	ReleaseTime: number;
+	PeakMode: EEnvelopeFollowerPeakMode;
+	bIsAnalogMode: boolean;
+	clone() : SourceEffectEnvelopeFollowerSettings;
+	static C(Other: UObject | any): SourceEffectEnvelopeFollowerSettings;
+}
+
+declare class SourceEffectEnvelopeFollowerPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectEnvelopeFollowerSettings;
+	static Load(ResourceName: string): SourceEffectEnvelopeFollowerPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectEnvelopeFollowerPreset;
+	static GetDefaultObject(): SourceEffectEnvelopeFollowerPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectEnvelopeFollowerPreset;
+	UnregisterEnvelopeFollowerListener(EnvelopeFollowerListener: EnvelopeFollowerListener): void;
+	SetSettings(InSettings: SourceEffectEnvelopeFollowerSettings): void;
+	RegisterEnvelopeFollowerListener(EnvelopeFollowerListener: EnvelopeFollowerListener): void;
+	static C(Other: UObject | any): SourceEffectEnvelopeFollowerPreset;
+}
+
+declare class SourceEffectEQBand { 
+	Frequency: number;
+	Bandwidth: number;
+	GainDb: number;
+	bEnabled: boolean;
+	clone() : SourceEffectEQBand;
+	static C(Other: UObject | any): SourceEffectEQBand;
+}
+
+declare class SourceEffectEQSettings { 
+	EQBands: SourceEffectEQBand[];
+	clone() : SourceEffectEQSettings;
+	static C(Other: UObject | any): SourceEffectEQSettings;
+}
+
+declare class SourceEffectEQPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectEQSettings;
+	static Load(ResourceName: string): SourceEffectEQPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectEQPreset;
+	static GetDefaultObject(): SourceEffectEQPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectEQPreset;
+	SetSettings(InSettings: SourceEffectEQSettings): void;
+	static C(Other: UObject | any): SourceEffectEQPreset;
+}
+
+declare type ESourceEffectFilterCircuit = 'OnePole' | 'StateVariable' | 'Ladder' | 'Count' | 'ESourceEffectFilterCircuit_MAX';
+declare var ESourceEffectFilterCircuit : { OnePole:'OnePole',StateVariable:'StateVariable',Ladder:'Ladder',Count:'Count',ESourceEffectFilterCircuit_MAX:'ESourceEffectFilterCircuit_MAX', };
+declare type ESourceEffectFilterType = 'LowPass' | 'HighPass' | 'BandPass' | 'BandStop' | 'Count' | 'ESourceEffectFilterType_MAX';
+declare var ESourceEffectFilterType : { LowPass:'LowPass',HighPass:'HighPass',BandPass:'BandPass',BandStop:'BandStop',Count:'Count',ESourceEffectFilterType_MAX:'ESourceEffectFilterType_MAX', };
+declare type ESourceEffectFilterParam = 'FilterFrequency' | 'FilterResonance' | 'Count' | 'ESourceEffectFilterParam_MAX';
+declare var ESourceEffectFilterParam : { FilterFrequency:'FilterFrequency',FilterResonance:'FilterResonance',Count:'Count',ESourceEffectFilterParam_MAX:'ESourceEffectFilterParam_MAX', };
+declare class SourceEffectFilterAudioBusModulationSettings { 
+	AudioBus: AudioBus;
+	EnvelopeFollowerAttackTimeMsec: number;
+	EnvelopeFollowerReleaseTimeMsec: number;
+	EnvelopeGainMultiplier: number;
+	FilterParam: ESourceEffectFilterParam;
+	MinFrequencyModulation: number;
+	MaxFrequencyModulation: number;
+	MinResonanceModulation: number;
+	MaxResonanceModulation: number;
+	clone() : SourceEffectFilterAudioBusModulationSettings;
+	static C(Other: UObject | any): SourceEffectFilterAudioBusModulationSettings;
+}
+
+declare class SourceEffectFilterSettings { 
+	FilterCircuit: ESourceEffectFilterCircuit;
+	FilterType: ESourceEffectFilterType;
+	CutoffFrequency: number;
+	FilterQ: number;
+	AudioBusModulation: SourceEffectFilterAudioBusModulationSettings[];
+	clone() : SourceEffectFilterSettings;
+	static C(Other: UObject | any): SourceEffectFilterSettings;
+}
+
+declare class SourceEffectFilterPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectFilterSettings;
+	static Load(ResourceName: string): SourceEffectFilterPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectFilterPreset;
+	static GetDefaultObject(): SourceEffectFilterPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectFilterPreset;
+	SetSettings(InSettings: SourceEffectFilterSettings): void;
+	static C(Other: UObject | any): SourceEffectFilterPreset;
+}
+
+declare class SourceEffectFoldbackDistortionSettings { 
+	InputGainDb: number;
+	ThresholdDb: number;
+	OutputGainDb: number;
+	clone() : SourceEffectFoldbackDistortionSettings;
+	static C(Other: UObject | any): SourceEffectFoldbackDistortionSettings;
+}
+
+declare class SourceEffectFoldbackDistortionPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectFoldbackDistortionSettings;
+	static Load(ResourceName: string): SourceEffectFoldbackDistortionPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectFoldbackDistortionPreset;
+	static GetDefaultObject(): SourceEffectFoldbackDistortionPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectFoldbackDistortionPreset;
+	SetSettings(InSettings: SourceEffectFoldbackDistortionSettings): void;
+	static C(Other: UObject | any): SourceEffectFoldbackDistortionPreset;
+}
+
+declare type EStereoChannelMode = 'MidSide' | 'LeftRight' | 'count' | 'EStereoChannelMode_MAX';
+declare var EStereoChannelMode : { MidSide:'MidSide',LeftRight:'LeftRight',count:'count',EStereoChannelMode_MAX:'EStereoChannelMode_MAX', };
+declare class SourceEffectMidSideSpreaderSettings { 
+	SpreadAmount: number;
+	InputMode: EStereoChannelMode;
+	OutputMode: EStereoChannelMode;
+	bEqualPower: boolean;
+	clone() : SourceEffectMidSideSpreaderSettings;
+	static C(Other: UObject | any): SourceEffectMidSideSpreaderSettings;
+}
+
+declare class SourceEffectMidSideSpreaderPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectMidSideSpreaderSettings;
+	static Load(ResourceName: string): SourceEffectMidSideSpreaderPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectMidSideSpreaderPreset;
+	static GetDefaultObject(): SourceEffectMidSideSpreaderPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectMidSideSpreaderPreset;
+	SetSettings(InSettings: SourceEffectMidSideSpreaderSettings): void;
+	static C(Other: UObject | any): SourceEffectMidSideSpreaderPreset;
+}
+
+declare type ESourceEffectMotionFilterTopology = 'SerialMode' | 'ParallelMode' | 'Count' | 'ESourceEffectMotionFilterTopology_MAX';
+declare var ESourceEffectMotionFilterTopology : { SerialMode:'SerialMode',ParallelMode:'ParallelMode',Count:'Count',ESourceEffectMotionFilterTopology_MAX:'ESourceEffectMotionFilterTopology_MAX', };
+declare type ESourceEffectMotionFilterCircuit = 'OnePole' | 'StateVariable' | 'Ladder' | 'Count' | 'ESourceEffectMotionFilterCircuit_MAX';
+declare var ESourceEffectMotionFilterCircuit : { OnePole:'OnePole',StateVariable:'StateVariable',Ladder:'Ladder',Count:'Count',ESourceEffectMotionFilterCircuit_MAX:'ESourceEffectMotionFilterCircuit_MAX', };
+declare type ESourceEffectMotionFilterType = 'LowPass' | 'HighPass' | 'BandPass' | 'BandStop' | 'Count' | 'ESourceEffectMotionFilterType_MAX';
+declare var ESourceEffectMotionFilterType : { LowPass:'LowPass',HighPass:'HighPass',BandPass:'BandPass',BandStop:'BandStop',Count:'Count',ESourceEffectMotionFilterType_MAX:'ESourceEffectMotionFilterType_MAX', };
+declare class SourceEffectIndividualFilterSettings { 
+	FilterCircuit: ESourceEffectMotionFilterCircuit;
+	FilterType: ESourceEffectMotionFilterType;
+	CutoffFrequency: number;
+	FilterQ: number;
+	clone() : SourceEffectIndividualFilterSettings;
+	static C(Other: UObject | any): SourceEffectIndividualFilterSettings;
+}
+
+declare type ESourceEffectMotionFilterModDestination = 'FilterACutoffFrequency' | 'FilterAResonance' | 'FilterAOutputVolumeDB' | 'FilterBCutoffFrequency' | 'FilterBResonance' | 'FilterBOutputVolumeDB' | 'FilterMix' | 'Count' | 'ESourceEffectMotionFilterModDestination_MAX';
+declare var ESourceEffectMotionFilterModDestination : { FilterACutoffFrequency:'FilterACutoffFrequency',FilterAResonance:'FilterAResonance',FilterAOutputVolumeDB:'FilterAOutputVolumeDB',FilterBCutoffFrequency:'FilterBCutoffFrequency',FilterBResonance:'FilterBResonance',FilterBOutputVolumeDB:'FilterBOutputVolumeDB',FilterMix:'FilterMix',Count:'Count',ESourceEffectMotionFilterModDestination_MAX:'ESourceEffectMotionFilterModDestination_MAX', };
+declare type ESourceEffectMotionFilterModSource = 'DistanceFromListener' | 'SpeedRelativeToListener' | 'SpeedOfSourceEmitter' | 'SpeedOfListener' | 'SpeedOfAngleDelta' | 'Count' | 'ESourceEffectMotionFilterModSource_MAX';
+declare var ESourceEffectMotionFilterModSource : { DistanceFromListener:'DistanceFromListener',SpeedRelativeToListener:'SpeedRelativeToListener',SpeedOfSourceEmitter:'SpeedOfSourceEmitter',SpeedOfListener:'SpeedOfListener',SpeedOfAngleDelta:'SpeedOfAngleDelta',Count:'Count',ESourceEffectMotionFilterModSource_MAX:'ESourceEffectMotionFilterModSource_MAX', };
+declare class SourceEffectMotionFilterModulationSettings { 
+	ModulationSource: ESourceEffectMotionFilterModSource;
+	ModulationInputRange: Vector2D;
+	ModulationOutputMinimumRange: Vector2D;
+	ModulationOutputMaximumRange: Vector2D;
+	UpdateEaseMS: number;
+	clone() : SourceEffectMotionFilterModulationSettings;
+	static C(Other: UObject | any): SourceEffectMotionFilterModulationSettings;
+}
+
+declare class SourceEffectMotionFilterSettings { 
+	MotionFilterTopology: ESourceEffectMotionFilterTopology;
+	MotionFilterMix: number;
+	FilterASettings: SourceEffectIndividualFilterSettings;
+	FilterBSettings: SourceEffectIndividualFilterSettings;
+	ModulationMappings: Map<ESourceEffectMotionFilterModDestination, SourceEffectMotionFilterModulationSettings>;
+	DryVolumeDb: number;
+	clone() : SourceEffectMotionFilterSettings;
+	static C(Other: UObject | any): SourceEffectMotionFilterSettings;
+}
+
+declare class SourceEffectMotionFilterPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectMotionFilterSettings;
+	static Load(ResourceName: string): SourceEffectMotionFilterPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectMotionFilterPreset;
+	static GetDefaultObject(): SourceEffectMotionFilterPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectMotionFilterPreset;
+	SetSettings(InSettings: SourceEffectMotionFilterSettings): void;
+	static C(Other: UObject | any): SourceEffectMotionFilterPreset;
+}
+
+declare class SourceEffectPannerSettings { 
+	Spread: number;
+	Pan: number;
+	clone() : SourceEffectPannerSettings;
+	static C(Other: UObject | any): SourceEffectPannerSettings;
+}
+
+declare class SourceEffectPannerPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectPannerSettings;
+	static Load(ResourceName: string): SourceEffectPannerPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectPannerPreset;
+	static GetDefaultObject(): SourceEffectPannerPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectPannerPreset;
+	SetSettings(InSettings: SourceEffectPannerSettings): void;
+	static C(Other: UObject | any): SourceEffectPannerPreset;
+}
+
+declare type EPhaserLFOType = 'Sine' | 'UpSaw' | 'DownSaw' | 'Square' | 'Triangle' | 'Exponential' | 'RandomSampleHold' | 'Count' | 'EPhaserLFOType_MAX';
+declare var EPhaserLFOType : { Sine:'Sine',UpSaw:'UpSaw',DownSaw:'DownSaw',Square:'Square',Triangle:'Triangle',Exponential:'Exponential',RandomSampleHold:'RandomSampleHold',Count:'Count',EPhaserLFOType_MAX:'EPhaserLFOType_MAX', };
+declare class SourceEffectPhaserSettings { 
+	WetLevel: number;
+	Frequency: number;
+	Feedback: number;
+	LFOType: EPhaserLFOType;
+	UseQuadraturePhase: boolean;
+	clone() : SourceEffectPhaserSettings;
+	static C(Other: UObject | any): SourceEffectPhaserSettings;
+}
+
+declare class SourceEffectPhaserPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectPhaserSettings;
+	static Load(ResourceName: string): SourceEffectPhaserPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectPhaserPreset;
+	static GetDefaultObject(): SourceEffectPhaserPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectPhaserPreset;
+	SetSettings(InSettings: SourceEffectPhaserSettings): void;
+	static C(Other: UObject | any): SourceEffectPhaserPreset;
+}
+
+declare type ERingModulatorTypeSourceEffect = 'Sine' | 'Saw' | 'Triangle' | 'Square' | 'Count' | 'ERingModulatorTypeSourceEffect_MAX';
+declare var ERingModulatorTypeSourceEffect : { Sine:'Sine',Saw:'Saw',Triangle:'Triangle',Square:'Square',Count:'Count',ERingModulatorTypeSourceEffect_MAX:'ERingModulatorTypeSourceEffect_MAX', };
+declare class SourceEffectRingModulationSettings { 
+	ModulatorType: ERingModulatorTypeSourceEffect;
+	Frequency: number;
+	Depth: number;
+	DryLevel: number;
+	WetLevel: number;
+	AudioBusModulator: AudioBus;
+	clone() : SourceEffectRingModulationSettings;
+	static C(Other: UObject | any): SourceEffectRingModulationSettings;
+}
+
+declare class SourceEffectRingModulationPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectRingModulationSettings;
+	static Load(ResourceName: string): SourceEffectRingModulationPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectRingModulationPreset;
+	static GetDefaultObject(): SourceEffectRingModulationPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectRingModulationPreset;
+	SetSettings(InSettings: SourceEffectRingModulationSettings): void;
+	static C(Other: UObject | any): SourceEffectRingModulationPreset;
+}
+
+declare class SourceEffectSimpleDelaySettings { 
+	SpeedOfSound: number;
+	DelayAmount: number;
+	DryAmount: number;
+	WetAmount: number;
+	Feedback: number;
+	bDelayBasedOnDistance: boolean;
+	bUseDistanceOverride: boolean;
+	clone() : SourceEffectSimpleDelaySettings;
+	static C(Other: UObject | any): SourceEffectSimpleDelaySettings;
+}
+
+declare class SourceEffectSimpleDelayPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectSimpleDelaySettings;
+	static Load(ResourceName: string): SourceEffectSimpleDelayPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectSimpleDelayPreset;
+	static GetDefaultObject(): SourceEffectSimpleDelayPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectSimpleDelayPreset;
+	SetSettings(InSettings: SourceEffectSimpleDelaySettings): void;
+	static C(Other: UObject | any): SourceEffectSimpleDelayPreset;
+}
+
+declare type EStereoDelaySourceEffect = 'Normal' | 'Cross' | 'PingPong' | 'Count' | 'EStereoDelaySourceEffect_MAX';
+declare var EStereoDelaySourceEffect : { Normal:'Normal',Cross:'Cross',PingPong:'PingPong',Count:'Count',EStereoDelaySourceEffect_MAX:'EStereoDelaySourceEffect_MAX', };
+declare type EStereoDelayFiltertype = 'Lowpass' | 'Highpass' | 'Bandpass' | 'Notch' | 'Count' | 'EStereoDelayFiltertype_MAX';
+declare var EStereoDelayFiltertype : { Lowpass:'Lowpass',Highpass:'Highpass',Bandpass:'Bandpass',Notch:'Notch',Count:'Count',EStereoDelayFiltertype_MAX:'EStereoDelayFiltertype_MAX', };
+declare class SourceEffectStereoDelaySettings { 
+	DelayMode: EStereoDelaySourceEffect;
+	DelayTimeMsec: number;
+	Feedback: number;
+	DelayRatio: number;
+	WetLevel: number;
+	DryLevel: number;
+	bFilterEnabled: boolean;
+	FilterType: EStereoDelayFiltertype;
+	FilterFrequency: number;
+	FilterQ: number;
+	clone() : SourceEffectStereoDelaySettings;
+	static C(Other: UObject | any): SourceEffectStereoDelaySettings;
+}
+
+declare class SourceEffectStereoDelayPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectStereoDelaySettings;
+	static Load(ResourceName: string): SourceEffectStereoDelayPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectStereoDelayPreset;
+	static GetDefaultObject(): SourceEffectStereoDelayPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectStereoDelayPreset;
+	SetSettings(InSettings: SourceEffectStereoDelaySettings): void;
+	static C(Other: UObject | any): SourceEffectStereoDelayPreset;
+}
+
+declare class SourceEffectWaveShaperSettings { 
+	Amount: number;
+	OutputGainDb: number;
+	clone() : SourceEffectWaveShaperSettings;
+	static C(Other: UObject | any): SourceEffectWaveShaperSettings;
+}
+
+declare class SourceEffectWaveShaperPreset extends SoundEffectSourcePreset { 
+	Settings: SourceEffectWaveShaperSettings;
+	static Load(ResourceName: string): SourceEffectWaveShaperPreset;
+	static Find(Outer: UObject, ResourceName: string): SourceEffectWaveShaperPreset;
+	static GetDefaultObject(): SourceEffectWaveShaperPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SourceEffectWaveShaperPreset;
+	SetSettings(InSettings: SourceEffectWaveShaperSettings): void;
+	static C(Other: UObject | any): SourceEffectWaveShaperPreset;
+}
+
+declare class SubmixEffectConvolutionReverbSettings { 
+	NormalizationVolumeDb: number;
+	WetVolumeDb: number;
+	DryVolumeDb: number;
+	bBypass: boolean;
+	bMixInputChannelFormatToImpulseResponseFormat: boolean;
+	bMixReverbOutputToOutputChannelFormat: boolean;
+	SurroundRearChannelBleedDb: number;
+	bInvertRearChannelBleedPhase: boolean;
+	bSurroundRearChannelFlip: boolean;
+	SurroundRearChannelBleedAmount: number;
+	ImpulseResponse: AudioImpulseResponse;
+	AllowHardwareAcceleration: boolean;
+	clone() : SubmixEffectConvolutionReverbSettings;
+	static C(Other: UObject | any): SubmixEffectConvolutionReverbSettings;
+}
+
+declare class SubmixEffectConvolutionReverbPreset extends SoundEffectSubmixPreset { 
+	ImpulseResponse: AudioImpulseResponse;
+	Settings: SubmixEffectConvolutionReverbSettings;
+	BlockSize: ESubmixEffectConvolutionReverbBlockSize;
+	bEnableHardwareAcceleration: boolean;
+	static Load(ResourceName: string): SubmixEffectConvolutionReverbPreset;
+	static Find(Outer: UObject, ResourceName: string): SubmixEffectConvolutionReverbPreset;
+	static GetDefaultObject(): SubmixEffectConvolutionReverbPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectConvolutionReverbPreset;
+	SetSettings(InSettings: SubmixEffectConvolutionReverbSettings): void;
+	SetImpulseResponse(InImpulseResponse: AudioImpulseResponse): void;
+	static C(Other: UObject | any): SubmixEffectConvolutionReverbPreset;
+}
+
+declare class SubmixEffectDelaySettings { 
+	MaximumDelayLength: number;
+	InterpolationTime: number;
+	DelayLength: number;
+	clone() : SubmixEffectDelaySettings;
+	static C(Other: UObject | any): SubmixEffectDelaySettings;
+	SetDelayLength(DelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
+	SetInterpolationTime(InterpolationTime?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
+	SetMaximumDelayLength(MaximumDelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
+	static SetDelayLength(DelaySettings?: SubmixEffectDelaySettings,DelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
+	static SetInterpolationTime(DelaySettings?: SubmixEffectDelaySettings,InterpolationTime?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
+	static SetMaximumDelayLength(DelaySettings?: SubmixEffectDelaySettings,MaximumDelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
+}
+
+declare class SubmixEffectDelayStatics extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): SubmixEffectDelayStatics;
+	static Find(Outer: UObject, ResourceName: string): SubmixEffectDelayStatics;
+	static GetDefaultObject(): SubmixEffectDelayStatics;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectDelayStatics;
+	static SetMaximumDelayLength(DelaySettings?: SubmixEffectDelaySettings,MaximumDelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
+	static SetInterpolationTime(DelaySettings?: SubmixEffectDelaySettings,InterpolationTime?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
+	static SetDelayLength(DelaySettings?: SubmixEffectDelaySettings,DelayLength?: number): {DelaySettings: SubmixEffectDelaySettings, $: SubmixEffectDelaySettings};
+	static C(Other: UObject | any): SubmixEffectDelayStatics;
+}
+
+declare class SubmixEffectDelayPreset extends SoundEffectSubmixPreset { 
+	Settings: SubmixEffectDelaySettings;
+	DynamicSettings: SubmixEffectDelaySettings;
+	static Load(ResourceName: string): SubmixEffectDelayPreset;
+	static Find(Outer: UObject, ResourceName: string): SubmixEffectDelayPreset;
+	static GetDefaultObject(): SubmixEffectDelayPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectDelayPreset;
+	SetSettings(InSettings: SubmixEffectDelaySettings): void;
+	SetInterpolationTime(Time: number): void;
+	SetDelay(Length: number): void;
+	SetDefaultSettings(InSettings: SubmixEffectDelaySettings): void;
+	GetMaxDelayInMilliseconds(): number;
+	static C(Other: UObject | any): SubmixEffectDelayPreset;
+}
+
+declare type ESubmixFilterType = 'LowPass' | 'HighPass' | 'BandPass' | 'BandStop' | 'Count' | 'ESubmixFilterType_MAX';
+declare var ESubmixFilterType : { LowPass:'LowPass',HighPass:'HighPass',BandPass:'BandPass',BandStop:'BandStop',Count:'Count',ESubmixFilterType_MAX:'ESubmixFilterType_MAX', };
+declare type ESubmixFilterAlgorithm = 'OnePole' | 'StateVariable' | 'Ladder' | 'Count' | 'ESubmixFilterAlgorithm_MAX';
+declare var ESubmixFilterAlgorithm : { OnePole:'OnePole',StateVariable:'StateVariable',Ladder:'Ladder',Count:'Count',ESubmixFilterAlgorithm_MAX:'ESubmixFilterAlgorithm_MAX', };
+declare class SubmixEffectFilterSettings { 
+	FilterType: ESubmixFilterType;
+	FilterAlgorithm: ESubmixFilterAlgorithm;
+	FilterFrequency: number;
+	FilterQ: number;
+	clone() : SubmixEffectFilterSettings;
+	static C(Other: UObject | any): SubmixEffectFilterSettings;
+}
+
+declare class SubmixEffectFilterPreset extends SoundEffectSubmixPreset { 
+	Settings: SubmixEffectFilterSettings;
+	static Load(ResourceName: string): SubmixEffectFilterPreset;
+	static Find(Outer: UObject, ResourceName: string): SubmixEffectFilterPreset;
+	static GetDefaultObject(): SubmixEffectFilterPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectFilterPreset;
+	SetSettings(InSettings: SubmixEffectFilterSettings): void;
+	SetFilterType(InType: ESubmixFilterType): void;
+	SetFilterQMod(InQ: number): void;
+	SetFilterQ(InQ: number): void;
+	SetFilterCutoffFrequencyMod(InFrequency: number): void;
+	SetFilterCutoffFrequency(InFrequency: number): void;
+	SetFilterAlgorithm(InAlgorithm: ESubmixFilterAlgorithm): void;
+	static C(Other: UObject | any): SubmixEffectFilterPreset;
+}
+
+declare class SubmixEffectFlexiverbSettings { 
+	PreDelay: number;
+	DecayTime: number;
+	RoomDampening: number;
+	Complexity: number;
+	clone() : SubmixEffectFlexiverbSettings;
+	static C(Other: UObject | any): SubmixEffectFlexiverbSettings;
+}
+
+declare class SubmixEffectFlexiverbPreset extends SoundEffectSubmixPreset { 
+	Settings: SubmixEffectFlexiverbSettings;
+	static Load(ResourceName: string): SubmixEffectFlexiverbPreset;
+	static Find(Outer: UObject, ResourceName: string): SubmixEffectFlexiverbPreset;
+	static GetDefaultObject(): SubmixEffectFlexiverbPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectFlexiverbPreset;
+	SetSettings(InSettings: SubmixEffectFlexiverbSettings): void;
+	static C(Other: UObject | any): SubmixEffectFlexiverbPreset;
+}
+
+declare class DynamicsBandSettings { 
+	CrossoverTopFrequency: number;
+	AttackTimeMsec: number;
+	ReleaseTimeMsec: number;
+	ThresholdDb: number;
+	Ratio: number;
+	KneeBandwidthDb: number;
+	InputGainDb: number;
+	OutputGainDb: number;
+	clone() : DynamicsBandSettings;
+	static C(Other: UObject | any): DynamicsBandSettings;
+}
+
+declare class SubmixEffectMultibandCompressorSettings { 
+	DynamicsProcessorType: ESubmixEffectDynamicsProcessorType;
+	PeakMode: ESubmixEffectDynamicsPeakMode;
+	LinkMode: ESubmixEffectDynamicsChannelLinkMode;
+	LookAheadMsec: number;
+	bAnalogMode: boolean;
+	bFourPole: boolean;
+	bBypass: boolean;
+	KeySource: ESubmixEffectDynamicsKeySource;
+	ExternalAudioBus: AudioBus;
+	ExternalSubmix: SoundSubmix;
+	KeyGainDb: number;
+	bKeyAudition: boolean;
+	Bands: DynamicsBandSettings[];
+	clone() : SubmixEffectMultibandCompressorSettings;
+	static C(Other: UObject | any): SubmixEffectMultibandCompressorSettings;
+}
+
+declare class SubmixEffectMultibandCompressorPreset extends SoundEffectSubmixPreset { 
+	Settings: SubmixEffectMultibandCompressorSettings;
+	static Load(ResourceName: string): SubmixEffectMultibandCompressorPreset;
+	static Find(Outer: UObject, ResourceName: string): SubmixEffectMultibandCompressorPreset;
+	static GetDefaultObject(): SubmixEffectMultibandCompressorPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectMultibandCompressorPreset;
+	SetSettings(InSettings: SubmixEffectMultibandCompressorSettings): void;
+	SetExternalSubmix(Submix: SoundSubmix): void;
+	SetAudioBus(AudioBus: AudioBus): void;
+	ResetKey(): void;
+	static C(Other: UObject | any): SubmixEffectMultibandCompressorPreset;
+}
+
+declare class SubmixEffectStereoDelaySettings { 
+	DelayMode: EStereoDelaySourceEffect;
+	DelayTimeMsec: number;
+	Feedback: number;
+	DelayRatio: number;
+	WetLevel: number;
+	DryLevel: number;
+	bFilterEnabled: boolean;
+	FilterType: EStereoDelayFiltertype;
+	FilterFrequency: number;
+	FilterQ: number;
+	clone() : SubmixEffectStereoDelaySettings;
+	static C(Other: UObject | any): SubmixEffectStereoDelaySettings;
+}
+
+declare class SubmixEffectStereoDelayPreset extends SoundEffectSubmixPreset { 
+	Settings: SubmixEffectStereoDelaySettings;
+	static Load(ResourceName: string): SubmixEffectStereoDelayPreset;
+	static Find(Outer: UObject, ResourceName: string): SubmixEffectStereoDelayPreset;
+	static GetDefaultObject(): SubmixEffectStereoDelayPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectStereoDelayPreset;
+	SetSettings(InSettings: SubmixEffectStereoDelaySettings): void;
+	static C(Other: UObject | any): SubmixEffectStereoDelayPreset;
+}
+
+declare type ETapLineMode = 'SendToChannel' | 'Panning' | 'Disabled' | 'ETapLineMode_MAX';
+declare var ETapLineMode : { SendToChannel:'SendToChannel',Panning:'Panning',Disabled:'Disabled',ETapLineMode_MAX:'ETapLineMode_MAX', };
+declare class TapDelayInfo { 
+	TapLineMode: ETapLineMode;
+	DelayLength: number;
+	Gain: number;
+	OutputChannel: number;
+	PanInDegrees: number;
+	TapId: number;
+	clone() : TapDelayInfo;
+	static C(Other: UObject | any): TapDelayInfo;
+}
+
+declare class SubmixEffectTapDelaySettings { 
+	MaximumDelayLength: number;
+	InterpolationTime: number;
+	Taps: TapDelayInfo[];
+	clone() : SubmixEffectTapDelaySettings;
+	static C(Other: UObject | any): SubmixEffectTapDelaySettings;
+}
+
+declare class SubmixEffectTapDelayPreset extends SoundEffectSubmixPreset { 
+	Settings: SubmixEffectTapDelaySettings;
+	static Load(ResourceName: string): SubmixEffectTapDelayPreset;
+	static Find(Outer: UObject, ResourceName: string): SubmixEffectTapDelayPreset;
+	static GetDefaultObject(): SubmixEffectTapDelayPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SubmixEffectTapDelayPreset;
+	SetTap(TapId: number,TapInfo: TapDelayInfo): void;
+	SetSettings(InSettings: SubmixEffectTapDelaySettings): void;
+	SetInterpolationTime(Time: number): void;
+	RemoveTap(TapId: number): void;
+	GetTapIds(TapIds?: number[]): {TapIds: number[]};
+	GetTap(TapId: number,TapInfo?: TapDelayInfo): {TapInfo: TapDelayInfo};
+	GetMaxDelayInMilliseconds(): number;
+	AddTap(TapId?: number): {TapId: number};
+	static C(Other: UObject | any): SubmixEffectTapDelayPreset;
+}
+
+declare type EGranularSynthSeekType = 'FromBeginning' | 'FromCurrentPosition' | 'Count' | 'EGranularSynthSeekType_MAX';
+declare var EGranularSynthSeekType : { FromBeginning:'FromBeginning',FromCurrentPosition:'FromCurrentPosition',Count:'Count',EGranularSynthSeekType_MAX:'EGranularSynthSeekType_MAX', };
+declare type EGranularSynthEnvelopeType = 'Rectangular' | 'Triangle' | 'DownwardTriangle' | 'UpwardTriangle' | 'ExponentialDecay' | 'ExponentialIncrease' | 'Gaussian' | 'Hanning' | 'Lanczos' | 'Cosine' | 'CosineSquared' | 'Welch' | 'Blackman' | 'BlackmanHarris' | 'Count' | 'EGranularSynthEnvelopeType_MAX';
+declare var EGranularSynthEnvelopeType : { Rectangular:'Rectangular',Triangle:'Triangle',DownwardTriangle:'DownwardTriangle',UpwardTriangle:'UpwardTriangle',ExponentialDecay:'ExponentialDecay',ExponentialIncrease:'ExponentialIncrease',Gaussian:'Gaussian',Hanning:'Hanning',Lanczos:'Lanczos',Cosine:'Cosine',CosineSquared:'CosineSquared',Welch:'Welch',Blackman:'Blackman',BlackmanHarris:'BlackmanHarris',Count:'Count',EGranularSynthEnvelopeType_MAX:'EGranularSynthEnvelopeType_MAX', };
+declare class GranularSynth extends SynthComponent { 
+	GranulatedSoundWave: SoundWave;
+	static Load(ResourceName: string): GranularSynth;
+	static Find(Outer: UObject, ResourceName: string): GranularSynth;
+	static GetDefaultObject(): GranularSynth;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GranularSynth;
+	SetSustainGain(SustainGain: number): void;
+	SetSoundWave(InSoundWave: SoundWave): void;
+	SetScrubMode(bScrubMode: boolean): void;
+	SetReleaseTimeMsec(ReleaseTimeMsec: number): void;
+	SetPlayheadTime(InPositionSec: number,LerpTimeSec: number,SeekType: EGranularSynthSeekType): void;
+	SetPlaybackSpeed(InPlayheadRate: number): void;
+	SetGrainVolume(BaseVolume: number,VolumeRange: Vector2D): void;
+	SetGrainsPerSecond(InGrainsPerSecond: number): void;
+	SetGrainProbability(InGrainProbability: number): void;
+	SetGrainPitch(BasePitch: number,PitchRange: Vector2D): void;
+	SetGrainPan(BasePan: number,PanRange: Vector2D): void;
+	SetGrainEnvelopeType(EnvelopeType: EGranularSynthEnvelopeType): void;
+	SetGrainDuration(BaseDurationMsec: number,DurationRange: Vector2D): void;
+	SetDecayTime(DecayTimeMsec: number): void;
+	SetAttackTime(AttackTimeMsec: number): void;
+	NoteOn(Note: number,Velocity: number,Duration: number): void;
+	NoteOff(Note: number,bKill: boolean): void;
+	IsLoaded(): boolean;
+	GetSampleDuration(): number;
+	GetCurrentPlayheadTime(): number;
+	static C(Other: UObject | any): GranularSynth;
+}
+
+declare class MonoWaveTableSynthPreset extends UObject { 
+	PresetName: string;
+	bLockKeyframesToGridBool: boolean;
+	LockKeyframesToGrid: number;
+	WaveTableResolution: number;
+	WaveTable: RuntimeFloatCurve[];
+	bNormalizeWaveTables: boolean;
+	static Load(ResourceName: string): MonoWaveTableSynthPreset;
+	static Find(Outer: UObject, ResourceName: string): MonoWaveTableSynthPreset;
+	static GetDefaultObject(): MonoWaveTableSynthPreset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MonoWaveTableSynthPreset;
+	static C(Other: UObject | any): MonoWaveTableSynthPreset;
+}
+
+declare type CurveInterpolationType = 'AUTOINTERP' | 'LINEAR' | 'CONSTANT' | 'CurveInterpolationType_MAX';
+declare var CurveInterpolationType : { AUTOINTERP:'AUTOINTERP',LINEAR:'LINEAR',CONSTANT:'CONSTANT',CurveInterpolationType_MAX:'CurveInterpolationType_MAX', };
+declare class SynthComponentMonoWaveTable extends SynthComponent { 
+	OnTableAltered: UnrealEngineMulticastDelegate<(TableIndex: number) => void>;
+	OnNumTablesChanged: UnrealEngineMulticastDelegate<() => void>;
+	CurrentPreset: MonoWaveTableSynthPreset;
+	static Load(ResourceName: string): SynthComponentMonoWaveTable;
+	static Find(Outer: UObject, ResourceName: string): SynthComponentMonoWaveTable;
+	static GetDefaultObject(): SynthComponentMonoWaveTable;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthComponentMonoWaveTable;
+	SetWaveTablePosition(InPosition: number): void;
+	SetSustainPedalState(InSustainPedalState: boolean): void;
+	SetPosLfoType(InLfoType: ESynthLFOType): void;
+	SetPosLfoFrequency(InLfoFrequency: number): void;
+	SetPosLfoDepth(InLfoDepth: number): void;
+	SetPositionEnvelopeSustainGain(InSustainGain: number): void;
+	SetPositionEnvelopeReleaseTime(InReleaseTimeMsec: number): void;
+	SetPositionEnvelopeInvert(bInInvert: boolean): void;
+	SetPositionEnvelopeDepth(InDepth: number): void;
+	SetPositionEnvelopeDecayTime(InDecayTimeMsec: number): void;
+	SetPositionEnvelopeBiasInvert(bInBiasInvert: boolean): void;
+	SetPositionEnvelopeBiasDepth(InDepth: number): void;
+	SetPositionEnvelopeAttackTime(InAttackTimeMsec: number): void;
+	SetLowPassFilterResonance(InNewQ: number): void;
+	SetFrequencyWithMidiNote(InMidiNote: number): void;
+	SetFrequencyPitchBend(FrequencyOffsetCents: number): void;
+	SetFrequency(FrequencyHz: number): void;
+	SetFilterEnvelopeSustainGain(InSustainGain: number): void;
+	SetFilterEnvelopeReleaseTime(InReleaseTimeMsec: number): void;
+	SetFilterEnvelopenDecayTime(InDecayTimeMsec: number): void;
+	SetFilterEnvelopeInvert(bInInvert: boolean): void;
+	SetFilterEnvelopeDepth(InDepth: number): void;
+	SetFilterEnvelopeBiasInvert(bInBiasInvert: boolean): void;
+	SetFilterEnvelopeBiasDepth(InDepth: number): void;
+	SetFilterEnvelopeAttackTime(InAttackTimeMsec: number): void;
+	SetCurveValue(TableIndex: number,KeyframeIndex: number,NewValue: number): boolean;
+	SetCurveTangent(TableIndex: number,InNewTangent: number): boolean;
+	SetCurveInterpolationType(InterpolationType: CurveInterpolationType,TableIndex: number): boolean;
+	SetAmpEnvelopeSustainGain(InSustainGain: number): void;
+	SetAmpEnvelopeReleaseTime(InReleaseTimeMsec: number): void;
+	SetAmpEnvelopeInvert(bInInvert: boolean): void;
+	SetAmpEnvelopeDepth(InDepth: number): void;
+	SetAmpEnvelopeDecayTime(InDecayTimeMsec: number): void;
+	SetAmpEnvelopeBiasInvert(bInBiasInvert: boolean): void;
+	SetAmpEnvelopeBiasDepth(InDepth: number): void;
+	SetAmpEnvelopeAttackTime(InAttackTimeMsec: number): void;
+	RefreshWaveTable(Index: number): void;
+	RefreshAllWaveTables(): void;
+	NoteOn(InMidiNote: number,InVelocity: number): void;
+	NoteOff(InMidiNote: number): void;
+	GetNumTableEntries(): number;
+	GetMaxTableIndex(): number;
+	GetKeyFrameValuesForTable(TableIndex: number): number[];
+	GetCurveTangent(TableIndex: number): number;
+	static C(Other: UObject | any): SynthComponentMonoWaveTable;
+}
+
+declare class SynthComponentToneGenerator extends SynthComponent { 
+	Frequency: number;
+	Volume: number;
+	DistanceAttenuationCurve: RuntimeFloatCurve;
+	DistanceRange: Vector2D;
+	AttenuationDbAtMaxRange: number;
+	static Load(ResourceName: string): SynthComponentToneGenerator;
+	static Find(Outer: UObject, ResourceName: string): SynthComponentToneGenerator;
+	static GetDefaultObject(): SynthComponentToneGenerator;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthComponentToneGenerator;
+	SetVolume(InVolume: number): void;
+	SetFrequency(InFrequency: number): void;
+	static C(Other: UObject | any): SynthComponentToneGenerator;
+}
+
+declare type ESamplePlayerSeekType = 'FromBeginning' | 'FromCurrentPosition' | 'FromEnd' | 'Count' | 'ESamplePlayerSeekType_MAX';
+declare var ESamplePlayerSeekType : { FromBeginning:'FromBeginning',FromCurrentPosition:'FromCurrentPosition',FromEnd:'FromEnd',Count:'Count',ESamplePlayerSeekType_MAX:'ESamplePlayerSeekType_MAX', };
+declare class SynthSamplePlayer extends SynthComponent { 
+	SoundWave: SoundWave;
+	OnSampleLoaded: UnrealEngineMulticastDelegate<() => void>;
+	OnSamplePlaybackProgress: UnrealEngineMulticastDelegate<(ProgressPercent: number, ProgressTimeSeconds: number) => void>;
+	static Load(ResourceName: string): SynthSamplePlayer;
+	static Find(Outer: UObject, ResourceName: string): SynthSamplePlayer;
+	static GetDefaultObject(): SynthSamplePlayer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthSamplePlayer;
+	SetSoundWave(InSoundWave: SoundWave): void;
+	SetScrubTimeWidth(InScrubTimeWidthSec: number): void;
+	SetScrubMode(bScrubMode: boolean): void;
+	SetPitch(InPitch: number,TimeSec: number): void;
+	SeekToTime(TimeSec: number,SeekType: ESamplePlayerSeekType,bWrap: boolean): void;
+	IsLoaded(): boolean;
+	GetSampleDuration(): number;
+	GetCurrentPlaybackProgressTime(): number;
+	GetCurrentPlaybackProgressPercent(): number;
+	static C(Other: UObject | any): SynthSamplePlayer;
+}
+
+declare class SynthesisUtilitiesBlueprintFunctionLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): SynthesisUtilitiesBlueprintFunctionLibrary;
+	static Find(Outer: UObject, ResourceName: string): SynthesisUtilitiesBlueprintFunctionLibrary;
+	static GetDefaultObject(): SynthesisUtilitiesBlueprintFunctionLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthesisUtilitiesBlueprintFunctionLibrary;
+	static GetLogFrequency(InLinearValue: number,InDomainMin: number,InDomainMax: number,InRangeMin: number,InRangeMax: number): number;
+	static GetLinearFrequency(InLogFrequencyValue: number,InDomainMin: number,InDomainMax: number,InRangeMin: number,InRangeMax: number): number;
+	static C(Other: UObject | any): SynthesisUtilitiesBlueprintFunctionLibrary;
+}
+
+declare class Synth2DSliderStyle extends SlateWidgetStyle { 
+	NormalThumbImage: SlateBrush;
+	DisabledThumbImage: SlateBrush;
+	NormalBarImage: SlateBrush;
+	DisabledBarImage: SlateBrush;
+	BackgroundImage: SlateBrush;
+	BarThickness: number;
+	clone() : Synth2DSliderStyle;
+	static C(Other: UObject | any): Synth2DSliderStyle;
+}
+
+declare class Synth2DSlider extends Widget { 
+	ValueX: number;
+	ValueY: number;
+	ValueXDelegate: UnrealEngineDelegate<() => number>;
+	ValueYDelegate: UnrealEngineDelegate<() => number>;
+	WidgetStyle: Synth2DSliderStyle;
+	SliderHandleColor: LinearColor;
+	IndentHandle: boolean;
+	Locked: boolean;
+	StepSize: number;
+	IsFocusable: boolean;
+	OnMouseCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
+	OnMouseCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
+	OnControllerCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
+	OnControllerCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
+	OnValueChangedX: UnrealEngineMulticastDelegate<(Value: number) => void>;
+	OnValueChangedY: UnrealEngineMulticastDelegate<(Value: number) => void>;
+	static Load(ResourceName: string): Synth2DSlider;
+	static Find(Outer: UObject, ResourceName: string): Synth2DSlider;
+	static GetDefaultObject(): Synth2DSlider;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): Synth2DSlider;
+	SetValue(InValue: Vector2D): void;
+	SetStepSize(InValue: number): void;
+	SetSliderHandleColor(InValue: LinearColor): void;
+	SetLocked(InValue: boolean): void;
+	SetIndentHandle(InValue: boolean): void;
+	GetValue(): Vector2D;
+	static C(Other: UObject | any): Synth2DSlider;
+}
+
+declare type ESynthKnobSize = 'Medium' | 'Large' | 'Count' | 'ESynthKnobSize_MAX';
+declare var ESynthKnobSize : { Medium:'Medium',Large:'Large',Count:'Count',ESynthKnobSize_MAX:'ESynthKnobSize_MAX', };
+declare class SynthKnobStyle extends SlateWidgetStyle { 
+	LargeKnob: SlateBrush;
+	LargeKnobOverlay: SlateBrush;
+	MediumKnob: SlateBrush;
+	MediumKnobOverlay: SlateBrush;
+	MinValueAngle: number;
+	MaxValueAngle: number;
+	KnobSize: ESynthKnobSize;
+	clone() : SynthKnobStyle;
+	static C(Other: UObject | any): SynthKnobStyle;
+}
+
+declare class SynthKnob extends Widget { 
+	Value: number;
+	StepSize: number;
+	MouseSpeed: number;
+	MouseFineTuneSpeed: number;
+	ShowTooltipInfo: boolean;
+	ParameterName: string;
+	ParameterUnits: string;
+	ValueDelegate: UnrealEngineDelegate<() => number>;
+	WidgetStyle: SynthKnobStyle;
+	Locked: boolean;
+	IsFocusable: boolean;
+	OnMouseCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
+	OnMouseCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
+	OnControllerCaptureBegin: UnrealEngineMulticastDelegate<() => void>;
+	OnControllerCaptureEnd: UnrealEngineMulticastDelegate<() => void>;
+	OnValueChanged: UnrealEngineMulticastDelegate<(Value: number) => void>;
+	static Load(ResourceName: string): SynthKnob;
+	static Find(Outer: UObject, ResourceName: string): SynthKnob;
+	static GetDefaultObject(): SynthKnob;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SynthKnob;
+	SetValue(InValue: number): void;
+	SetStepSize(InValue: number): void;
+	SetLocked(InValue: boolean): void;
+	GetValue(): number;
+	static C(Other: UObject | any): SynthKnob;
+}
+
+declare class AnimationSharingStateProcessor extends UObject { 
+	AnimationStateEnum: Enum;
+	static Load(ResourceName: string): AnimationSharingStateProcessor;
+	static Find(Outer: UObject, ResourceName: string): AnimationSharingStateProcessor;
+	static GetDefaultObject(): AnimationSharingStateProcessor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationSharingStateProcessor;
+	ProcessActorState(OutState?: number,InActor?: Actor,CurrentState?: number,OnDemandState?: number,bShouldProcess?: boolean): {OutState: number, bShouldProcess: boolean};
+	GetAnimationStateEnum(): Enum;
+	static C(Other: UObject | any): AnimationSharingStateProcessor;
+}
+
+declare class AnimSharingInstance extends UObject { 
+	RegisteredActors: Actor[];
+	StateProcessor: AnimationSharingStateProcessor;
+	UsedAnimationSequences: AnimSequence[];
+	StateEnum: Enum;
+	SharingActor: Actor;
+	static Load(ResourceName: string): AnimSharingInstance;
+	static Find(Outer: UObject, ResourceName: string): AnimSharingInstance;
+	static GetDefaultObject(): AnimSharingInstance;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimSharingInstance;
+	static C(Other: UObject | any): AnimSharingInstance;
+}
+
+declare class AnimSharingStateInstance extends AnimInstance { 
+	AnimationToPlay: AnimSequence;
+	PermutationTimeOffset: number;
+	PlayRate: number;
+	bStateBool: boolean;
+	Instance: AnimSharingInstance;
+	static Load(ResourceName: string): AnimSharingStateInstance;
+	static Find(Outer: UObject, ResourceName: string): AnimSharingStateInstance;
+	static GetDefaultObject(): AnimSharingStateInstance;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimSharingStateInstance;
+	GetInstancedActors(Actors?: Actor[]): {Actors: Actor[]};
+	static C(Other: UObject | any): AnimSharingStateInstance;
+}
+
+declare class AnimSharingTransitionInstance extends AnimInstance { 
+	FromComponent: SkeletalMeshComponent;
+	ToComponent: SkeletalMeshComponent;
+	BlendTime: number;
+	bBlendBool: boolean;
+	static Load(ResourceName: string): AnimSharingTransitionInstance;
+	static Find(Outer: UObject, ResourceName: string): AnimSharingTransitionInstance;
+	static GetDefaultObject(): AnimSharingTransitionInstance;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimSharingTransitionInstance;
+	static C(Other: UObject | any): AnimSharingTransitionInstance;
+}
+
+declare class AnimSharingAdditiveInstance extends AnimInstance { 
+	BaseComponent: SkeletalMeshComponent;
+	AdditiveAnimation: AnimSequence;
+	Alpha: number;
+	bStateBool: boolean;
+	static Load(ResourceName: string): AnimSharingAdditiveInstance;
+	static Find(Outer: UObject, ResourceName: string): AnimSharingAdditiveInstance;
+	static GetDefaultObject(): AnimSharingAdditiveInstance;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimSharingAdditiveInstance;
+	static C(Other: UObject | any): AnimSharingAdditiveInstance;
+}
+
+declare class AnimationSetup { 
+	AnimSequence: AnimSequence;
+	AnimBlueprint: UnrealEngineClass;
+	NumRandomizedInstances: PerPlatformInt;
+	Enabled: PerPlatformBool;
+	clone() : AnimationSetup;
+	static C(Other: UObject | any): AnimationSetup;
+}
+
+declare class AnimationStateEntry { 
+	State: number;
+	AnimationSetups: AnimationSetup[];
+	bOnDemand: boolean;
+	bAdditive: boolean;
+	BlendTime: number;
+	bReturnToPreviousState: boolean;
+	bSetNextState: boolean;
+	NextState: number;
+	MaximumNumberOfConcurrentInstances: PerPlatformInt;
+	WiggleTimePercentage: number;
+	bRequiresCurves: boolean;
+	clone() : AnimationStateEntry;
+	static C(Other: UObject | any): AnimationStateEntry;
+}
+
+declare class PerSkeletonAnimationSharingSetup { 
+	Skeleton: Skeleton;
+	SkeletalMesh: SkeletalMesh;
+	BlendAnimBlueprint: UnrealEngineClass;
+	AdditiveAnimBlueprint: UnrealEngineClass;
+	StateProcessorClass: UnrealEngineClass;
+	AnimationStates: AnimationStateEntry[];
+	clone() : PerSkeletonAnimationSharingSetup;
+	static C(Other: UObject | any): PerSkeletonAnimationSharingSetup;
+}
+
+declare class AnimationSharingScalability { 
+	UseBlendTransitions: PerPlatformBool;
+	BlendSignificanceValue: PerPlatformFloat;
+	MaximumNumberConcurrentBlends: PerPlatformInt;
+	TickSignificanceValue: PerPlatformFloat;
+	clone() : AnimationSharingScalability;
+	static C(Other: UObject | any): AnimationSharingScalability;
+}
+
+declare class AnimationSharingSetup extends UObject { 
+	SkeletonSetups: PerSkeletonAnimationSharingSetup[];
+	ScalabilitySettings: AnimationSharingScalability;
+	static Load(ResourceName: string): AnimationSharingSetup;
+	static Find(Outer: UObject, ResourceName: string): AnimationSharingSetup;
+	static GetDefaultObject(): AnimationSharingSetup;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationSharingSetup;
+	static C(Other: UObject | any): AnimationSharingSetup;
+}
+
+declare class AnimationSharingManager extends UObject { 
+	Skeletons: Skeleton[];
+	PerSkeletonData: AnimSharingInstance[];
+	static Load(ResourceName: string): AnimationSharingManager;
+	static Find(Outer: UObject, ResourceName: string): AnimationSharingManager;
+	static GetDefaultObject(): AnimationSharingManager;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationSharingManager;
+	RegisterActorWithSkeletonBP(InActor: Actor,SharingSkeleton: Skeleton): void;
+	static GetAnimationSharingManager(WorldContextObject: UObject): AnimationSharingManager;
+	static CreateAnimationSharingManager(WorldContextObject: UObject,Setup: AnimationSharingSetup): boolean;
+	static AnimationSharingEnabled(): boolean;
+	static C(Other: UObject | any): AnimationSharingManager;
+}
+
+declare class K2Node_PropertyAccess extends K2Node { 
+	Path: string[];
+	TextPath: string;
+	ResolvedPinType: EdGraphPinType;
+	GeneratedPropertyName: string;
+	ContextId: string;
+	static Load(ResourceName: string): K2Node_PropertyAccess;
+	static Find(Outer: UObject, ResourceName: string): K2Node_PropertyAccess;
+	static GetDefaultObject(): K2Node_PropertyAccess;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_PropertyAccess;
+	static C(Other: UObject | any): K2Node_PropertyAccess;
+}
+
+declare class FilterData { 
+	Name: string;
+	AllowlistedNames: string[];
+	clone() : FilterData;
+	static C(Other: UObject | any): FilterData;
+}
+
+declare class LocalFilterPresetContainer extends UObject { 
+	UserPresets: FilterData[];
+	static Load(ResourceName: string): LocalFilterPresetContainer;
+	static Find(Outer: UObject, ResourceName: string): LocalFilterPresetContainer;
+	static GetDefaultObject(): LocalFilterPresetContainer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LocalFilterPresetContainer;
+	static C(Other: UObject | any): LocalFilterPresetContainer;
+}
+
+declare class SharedFilterPresetContainer extends UObject { 
+	SharedPresets: FilterData[];
+	static Load(ResourceName: string): SharedFilterPresetContainer;
+	static Find(Outer: UObject, ResourceName: string): SharedFilterPresetContainer;
+	static GetDefaultObject(): SharedFilterPresetContainer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SharedFilterPresetContainer;
+	static C(Other: UObject | any): SharedFilterPresetContainer;
+}
+
+declare class EngineFilterPresetContainer extends UObject { 
+	EnginePresets: FilterData[];
+	static Load(ResourceName: string): EngineFilterPresetContainer;
+	static Find(Outer: UObject, ResourceName: string): EngineFilterPresetContainer;
+	static GetDefaultObject(): EngineFilterPresetContainer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): EngineFilterPresetContainer;
+	static C(Other: UObject | any): EngineFilterPresetContainer;
+}
+
+declare type EUdpMessageFormat = 'None' | 'Json' | 'TaggedProperty' | 'CborPlatformEndianness' | 'CborStandardEndianness' | 'EUdpMessageFormat_MAX';
+declare var EUdpMessageFormat : { None:'None',Json:'Json',TaggedProperty:'TaggedProperty',CborPlatformEndianness:'CborPlatformEndianness',CborStandardEndianness:'CborStandardEndianness',EUdpMessageFormat_MAX:'EUdpMessageFormat_MAX', };
+declare class UdpMessagingSettings extends UObject { 
+	EnabledByDefault: boolean;
+	EnableTransport: boolean;
+	bAutoRepair: boolean;
+	MaxSendRate: number;
+	AutoRepairAttemptLimit: number;
+	WorkQueueSize: number;
+	bStopServiceWhenAppDeactivates: boolean;
+	UnicastEndpoint: string;
+	MulticastEndpoint: string;
+	MessageFormat: EUdpMessageFormat;
+	MulticastTimeToLive: number;
+	StaticEndpoints: string[];
+	ExcludedEndpoints: string[];
+	EnableTunnel: boolean;
+	TunnelUnicastEndpoint: string;
+	TunnelMulticastEndpoint: string;
+	RemoteTunnelEndpoints: string[];
+	static Load(ResourceName: string): UdpMessagingSettings;
+	static Find(Outer: UObject, ResourceName: string): UdpMessagingSettings;
+	static GetDefaultObject(): UdpMessagingSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): UdpMessagingSettings;
+	static C(Other: UObject | any): UdpMessagingSettings;
+}
+
+declare class TcpMessagingSettings extends UObject { 
+	EnableTransport: boolean;
+	ListenEndpoint: string;
+	ConnectToEndpoints: string[];
+	ConnectionRetryDelay: number;
+	ConnectionRetryPeriod: number;
+	bStopServiceWhenAppDeactivates: boolean;
+	static Load(ResourceName: string): TcpMessagingSettings;
+	static Find(Outer: UObject, ResourceName: string): TcpMessagingSettings;
+	static GetDefaultObject(): TcpMessagingSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TcpMessagingSettings;
+	static C(Other: UObject | any): TcpMessagingSettings;
+}
+
+declare class CameraAnimationSpawnableSystem extends MovieSceneEntitySystem { 
+	static Load(ResourceName: string): CameraAnimationSpawnableSystem;
+	static Find(Outer: UObject, ResourceName: string): CameraAnimationSpawnableSystem;
+	static GetDefaultObject(): CameraAnimationSpawnableSystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CameraAnimationSpawnableSystem;
+	static C(Other: UObject | any): CameraAnimationSpawnableSystem;
+}
+
+declare class CameraAnimationBoundObjectInstantiator extends MovieSceneEntityInstantiatorSystem { 
+	static Load(ResourceName: string): CameraAnimationBoundObjectInstantiator;
+	static Find(Outer: UObject, ResourceName: string): CameraAnimationBoundObjectInstantiator;
+	static GetDefaultObject(): CameraAnimationBoundObjectInstantiator;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CameraAnimationBoundObjectInstantiator;
+	static C(Other: UObject | any): CameraAnimationBoundObjectInstantiator;
+}
+
+declare class CameraAnimationEntitySystemLinker extends MovieSceneEntitySystemLinker { 
+	static Load(ResourceName: string): CameraAnimationEntitySystemLinker;
+	static Find(Outer: UObject, ResourceName: string): CameraAnimationEntitySystemLinker;
+	static GetDefaultObject(): CameraAnimationEntitySystemLinker;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CameraAnimationEntitySystemLinker;
+	static C(Other: UObject | any): CameraAnimationEntitySystemLinker;
+}
+
+declare class CameraAnimationSequenceSubsystem extends WorldSubsystem { 
+	Linker: MovieSceneEntitySystemLinker;
+	static Load(ResourceName: string): CameraAnimationSequenceSubsystem;
+	static Find(Outer: UObject, ResourceName: string): CameraAnimationSequenceSubsystem;
+	static GetDefaultObject(): CameraAnimationSequenceSubsystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CameraAnimationSequenceSubsystem;
+	static C(Other: UObject | any): CameraAnimationSequenceSubsystem;
+}
+
+declare type ETemplateSectionPropertyScaleType = 'FloatProperty' | 'TransformPropertyLocationOnly' | 'TransformPropertyRotationOnly' | 'ETemplateSectionPropertyScaleType_MAX';
+declare var ETemplateSectionPropertyScaleType : { FloatProperty:'FloatProperty',TransformPropertyLocationOnly:'TransformPropertyLocationOnly',TransformPropertyRotationOnly:'TransformPropertyRotationOnly',ETemplateSectionPropertyScaleType_MAX:'ETemplateSectionPropertyScaleType_MAX', };
+declare class TemplateSectionPropertyScale { 
+	ObjectBinding: Guid;
+	PropertyBinding: MovieScenePropertyBinding;
+	PropertyScaleType: ETemplateSectionPropertyScaleType;
+	FloatChannel: MovieSceneFloatChannel;
+	clone() : TemplateSectionPropertyScale;
+	static C(Other: UObject | any): TemplateSectionPropertyScale;
+}
+
+declare class TemplateSequenceSection extends MovieSceneSubSection { 
+	PropertyScales: TemplateSectionPropertyScale[];
+	static Load(ResourceName: string): TemplateSequenceSection;
+	static Find(Outer: UObject, ResourceName: string): TemplateSequenceSection;
+	static GetDefaultObject(): TemplateSequenceSection;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequenceSection;
+	static C(Other: UObject | any): TemplateSequenceSection;
+}
+
+declare class TemplateSequenceSystem extends MovieSceneEntitySystem { 
+	static Load(ResourceName: string): TemplateSequenceSystem;
+	static Find(Outer: UObject, ResourceName: string): TemplateSequenceSystem;
+	static GetDefaultObject(): TemplateSequenceSystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequenceSystem;
+	static C(Other: UObject | any): TemplateSequenceSystem;
+}
+
+declare class TemplateSequencePropertyScalingInstantiatorSystem extends MovieSceneEntitySystem { 
+	static Load(ResourceName: string): TemplateSequencePropertyScalingInstantiatorSystem;
+	static Find(Outer: UObject, ResourceName: string): TemplateSequencePropertyScalingInstantiatorSystem;
+	static GetDefaultObject(): TemplateSequencePropertyScalingInstantiatorSystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequencePropertyScalingInstantiatorSystem;
+	static C(Other: UObject | any): TemplateSequencePropertyScalingInstantiatorSystem;
+}
+
+declare class TemplateSequencePropertyScalingEvaluatorSystem extends MovieSceneEntitySystem { 
+	static Load(ResourceName: string): TemplateSequencePropertyScalingEvaluatorSystem;
+	static Find(Outer: UObject, ResourceName: string): TemplateSequencePropertyScalingEvaluatorSystem;
+	static GetDefaultObject(): TemplateSequencePropertyScalingEvaluatorSystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequencePropertyScalingEvaluatorSystem;
+	static C(Other: UObject | any): TemplateSequencePropertyScalingEvaluatorSystem;
+}
+
+declare class TemplateSequencePlayer extends MovieSceneSequencePlayer { 
+	static Load(ResourceName: string): TemplateSequencePlayer;
+	static Find(Outer: UObject, ResourceName: string): TemplateSequencePlayer;
+	static GetDefaultObject(): TemplateSequencePlayer;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequencePlayer;
+	static CreateTemplateSequencePlayer(WorldContextObject: UObject,TemplateSequence: TemplateSequence,Settings: MovieSceneSequencePlaybackSettings,OutActor?: TemplateSequenceActor): {OutActor: TemplateSequenceActor, $: TemplateSequencePlayer};
+	static C(Other: UObject | any): TemplateSequencePlayer;
+}
+
+declare class TemplateSequenceBindingOverrideData { 
+	UObject: UObject;
+	bOverridesDefault: boolean;
+	clone() : TemplateSequenceBindingOverrideData;
+	static C(Other: UObject | any): TemplateSequenceBindingOverrideData;
+}
+
+declare class TemplateSequenceActor extends Actor { 
+	PlaybackSettings: MovieSceneSequencePlaybackSettings;
+	SequencePlayer: TemplateSequencePlayer;
+	TemplateSequence: SoftObjectPath;
+	BindingOverride: TemplateSequenceBindingOverrideData;
+	static GetDefaultObject(): TemplateSequenceActor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequenceActor;
+	SetSequence(InSequence: TemplateSequence): void;
+	SetBinding(Actor: Actor,bOverridesDefault: boolean): void;
+	LoadSequence(): TemplateSequence;
+	GetSequencePlayer(): TemplateSequencePlayer;
+	GetSequence(): TemplateSequence;
+	static C(Other: UObject | any): TemplateSequenceActor;
+}
+
+declare class SequenceCameraShakeTestUtil extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): SequenceCameraShakeTestUtil;
+	static Find(Outer: UObject, ResourceName: string): SequenceCameraShakeTestUtil;
+	static GetDefaultObject(): SequenceCameraShakeTestUtil;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SequenceCameraShakeTestUtil;
+	static GetPostProcessBlendCache(PlayerController: PlayerController,PPIndex: number,OutPPSettings?: PostProcessSettings,OutPPBlendWeight?: number): {OutPPSettings: PostProcessSettings, OutPPBlendWeight: number, $: boolean};
+	static GetLastFrameCameraCachePOV(PlayerController: PlayerController): MinimalViewInfo;
+	static GetCameraCachePOV(PlayerController: PlayerController): MinimalViewInfo;
+	static C(Other: UObject | any): SequenceCameraShakeTestUtil;
+}
+
+declare class TemplateSequenceTrack extends MovieSceneSubTrack { 
+	static Load(ResourceName: string): TemplateSequenceTrack;
+	static Find(Outer: UObject, ResourceName: string): TemplateSequenceTrack;
+	static GetDefaultObject(): TemplateSequenceTrack;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequenceTrack;
+	static C(Other: UObject | any): TemplateSequenceTrack;
+}
+
+declare class LegacyCameraShakePattern extends CameraShakePattern { 
+	static Load(ResourceName: string): LegacyCameraShakePattern;
+	static Find(Outer: UObject, ResourceName: string): LegacyCameraShakePattern;
+	static GetDefaultObject(): LegacyCameraShakePattern;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LegacyCameraShakePattern;
+	static C(Other: UObject | any): LegacyCameraShakePattern;
+}
+
+declare class LegacyCameraShakeFunctionLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): LegacyCameraShakeFunctionLibrary;
+	static Find(Outer: UObject, ResourceName: string): LegacyCameraShakeFunctionLibrary;
+	static GetDefaultObject(): LegacyCameraShakeFunctionLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LegacyCameraShakeFunctionLibrary;
+	static Conv_LegacyCameraShake(CameraShake: CameraShakeBase): LegacyCameraShake;
+	static C(Other: UObject | any): LegacyCameraShakeFunctionLibrary;
+}
+
+declare class GameplayCamerasFunctionLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): GameplayCamerasFunctionLibrary;
+	static Find(Outer: UObject, ResourceName: string): GameplayCamerasFunctionLibrary;
+	static GetDefaultObject(): GameplayCamerasFunctionLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GameplayCamerasFunctionLibrary;
+	static Conv_CameraShakePlaySpace(CameraAnimationPlaySpace: ECameraAnimationPlaySpace): ECameraShakePlaySpace;
+	static Conv_CameraAnimationPlaySpace(CameraShakePlaySpace: ECameraShakePlaySpace): ECameraAnimationPlaySpace;
+	static Conv_CameraAnimationCameraModifier(PlayerCameraManager: PlayerCameraManager): CameraAnimationCameraModifier;
+	static C(Other: UObject | any): GameplayCamerasFunctionLibrary;
+}
+
+declare class CompositeCameraShakePattern extends CameraShakePattern { 
+	ChildPatterns: CameraShakePattern[];
+	static Load(ResourceName: string): CompositeCameraShakePattern;
+	static Find(Outer: UObject, ResourceName: string): CompositeCameraShakePattern;
+	static GetDefaultObject(): CompositeCameraShakePattern;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CompositeCameraShakePattern;
+	static C(Other: UObject | any): CompositeCameraShakePattern;
+}
+
+declare class DefaultCameraShakeBase extends CameraShakeBase { 
+	static Load(ResourceName: string): DefaultCameraShakeBase;
+	static Find(Outer: UObject, ResourceName: string): DefaultCameraShakeBase;
+	static GetDefaultObject(): DefaultCameraShakeBase;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): DefaultCameraShakeBase;
+	static C(Other: UObject | any): DefaultCameraShakeBase;
+}
+
+declare class GameplayCamerasSubsystem extends WorldSubsystem { 
+	static Load(ResourceName: string): GameplayCamerasSubsystem;
+	static Find(Outer: UObject, ResourceName: string): GameplayCamerasSubsystem;
+	static GetDefaultObject(): GameplayCamerasSubsystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GameplayCamerasSubsystem;
+	StopCameraAnimation(PlayerController: PlayerController,Handle: CameraAnimationHandle,bImmediate: boolean): void;
+	StopAllCameraAnimationsOf(PlayerController: PlayerController,Sequence: CameraAnimationSequence,bImmediate: boolean): void;
+	StopAllCameraAnimations(PlayerController: PlayerController,bImmediate: boolean): void;
+	PlayCameraAnimation(PlayerController: PlayerController,Sequence: CameraAnimationSequence,Params: CameraAnimationParams): CameraAnimationHandle;
+	IsCameraAnimationActive(PlayerController: PlayerController,Handle: CameraAnimationHandle): boolean;
+	static C(Other: UObject | any): GameplayCamerasSubsystem;
+}
+
+declare class SimpleCameraShakePattern extends CameraShakePattern { 
+	Duration: number;
+	BlendInTime: number;
+	BlendOutTime: number;
+	static Load(ResourceName: string): SimpleCameraShakePattern;
+	static Find(Outer: UObject, ResourceName: string): SimpleCameraShakePattern;
+	static GetDefaultObject(): SimpleCameraShakePattern;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SimpleCameraShakePattern;
+	static C(Other: UObject | any): SimpleCameraShakePattern;
+}
+
+declare class PerlinNoiseShaker { 
+	Amplitude: number;
+	Frequency: number;
+	clone() : PerlinNoiseShaker;
+	static C(Other: UObject | any): PerlinNoiseShaker;
+}
+
+declare class PerlinNoiseCameraShakePattern extends SimpleCameraShakePattern { 
+	LocationAmplitudeMultiplier: number;
+	LocationFrequencyMultiplier: number;
+	X: PerlinNoiseShaker;
+	Y: PerlinNoiseShaker;
+	Z: PerlinNoiseShaker;
+	RotationAmplitudeMultiplier: number;
+	RotationFrequencyMultiplier: number;
+	Pitch: PerlinNoiseShaker;
+	Yaw: PerlinNoiseShaker;
+	Roll: PerlinNoiseShaker;
+	FOV: PerlinNoiseShaker;
+	static Load(ResourceName: string): PerlinNoiseCameraShakePattern;
+	static Find(Outer: UObject, ResourceName: string): PerlinNoiseCameraShakePattern;
+	static GetDefaultObject(): PerlinNoiseCameraShakePattern;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PerlinNoiseCameraShakePattern;
+	static C(Other: UObject | any): PerlinNoiseCameraShakePattern;
+}
+
+declare class TestCameraShake extends CameraShakeBase { 
+	static Load(ResourceName: string): TestCameraShake;
+	static Find(Outer: UObject, ResourceName: string): TestCameraShake;
+	static GetDefaultObject(): TestCameraShake;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TestCameraShake;
+	static C(Other: UObject | any): TestCameraShake;
+}
+
+declare class ConstantCameraShakePattern extends SimpleCameraShakePattern { 
+	LocationOffset: Vector;
+	RotationOffset: Rotator;
+	static Load(ResourceName: string): ConstantCameraShakePattern;
+	static Find(Outer: UObject, ResourceName: string): ConstantCameraShakePattern;
+	static GetDefaultObject(): ConstantCameraShakePattern;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ConstantCameraShakePattern;
+	static C(Other: UObject | any): ConstantCameraShakePattern;
+}
+
+declare type EInitialWaveOscillatorOffsetType = 'Random' | 'Zero' | 'EInitialWaveOscillatorOffsetType_MAX';
+declare var EInitialWaveOscillatorOffsetType : { Random:'Random',Zero:'Zero',EInitialWaveOscillatorOffsetType_MAX:'EInitialWaveOscillatorOffsetType_MAX', };
+declare class WaveOscillator { 
+	Amplitude: number;
+	Frequency: number;
+	InitialOffsetType: EInitialWaveOscillatorOffsetType;
+	clone() : WaveOscillator;
+	static C(Other: UObject | any): WaveOscillator;
+}
+
+declare class WaveOscillatorCameraShakePattern extends SimpleCameraShakePattern { 
+	LocationAmplitudeMultiplier: number;
+	LocationFrequencyMultiplier: number;
+	X: WaveOscillator;
+	Y: WaveOscillator;
+	Z: WaveOscillator;
+	RotationAmplitudeMultiplier: number;
+	RotationFrequencyMultiplier: number;
+	Pitch: WaveOscillator;
+	Yaw: WaveOscillator;
+	Roll: WaveOscillator;
+	FOV: WaveOscillator;
+	static Load(ResourceName: string): WaveOscillatorCameraShakePattern;
+	static Find(Outer: UObject, ResourceName: string): WaveOscillatorCameraShakePattern;
+	static GetDefaultObject(): WaveOscillatorCameraShakePattern;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): WaveOscillatorCameraShakePattern;
+	static C(Other: UObject | any): WaveOscillatorCameraShakePattern;
 }
 
 declare class PaperSpriteSocket { 
@@ -7403,275 +7653,6 @@ declare class TileMapBlueprintLibrary extends BlueprintFunctionLibrary {
 	static GetTileTransform(Tile: PaperTileInfo): Transform;
 	static BreakTile(Tile: PaperTileInfo,TileIndex?: number,TileSet?: PaperTileSet,bFlipH?: boolean,bFlipV?: boolean,bFlipD?: boolean): {TileIndex: number, TileSet: PaperTileSet, bFlipH: boolean, bFlipV: boolean, bFlipD: boolean};
 	static C(Other: UObject | any): TileMapBlueprintLibrary;
-}
-
-declare class CameraAnimationSpawnableSystem extends MovieSceneEntitySystem { 
-	static Load(ResourceName: string): CameraAnimationSpawnableSystem;
-	static Find(Outer: UObject, ResourceName: string): CameraAnimationSpawnableSystem;
-	static GetDefaultObject(): CameraAnimationSpawnableSystem;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CameraAnimationSpawnableSystem;
-	static C(Other: UObject | any): CameraAnimationSpawnableSystem;
-}
-
-declare class CameraAnimationBoundObjectInstantiator extends MovieSceneEntityInstantiatorSystem { 
-	static Load(ResourceName: string): CameraAnimationBoundObjectInstantiator;
-	static Find(Outer: UObject, ResourceName: string): CameraAnimationBoundObjectInstantiator;
-	static GetDefaultObject(): CameraAnimationBoundObjectInstantiator;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CameraAnimationBoundObjectInstantiator;
-	static C(Other: UObject | any): CameraAnimationBoundObjectInstantiator;
-}
-
-declare class CameraAnimationEntitySystemLinker extends MovieSceneEntitySystemLinker { 
-	static Load(ResourceName: string): CameraAnimationEntitySystemLinker;
-	static Find(Outer: UObject, ResourceName: string): CameraAnimationEntitySystemLinker;
-	static GetDefaultObject(): CameraAnimationEntitySystemLinker;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CameraAnimationEntitySystemLinker;
-	static C(Other: UObject | any): CameraAnimationEntitySystemLinker;
-}
-
-declare class CameraAnimationSequenceSubsystem extends WorldSubsystem { 
-	Linker: MovieSceneEntitySystemLinker;
-	static Load(ResourceName: string): CameraAnimationSequenceSubsystem;
-	static Find(Outer: UObject, ResourceName: string): CameraAnimationSequenceSubsystem;
-	static GetDefaultObject(): CameraAnimationSequenceSubsystem;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CameraAnimationSequenceSubsystem;
-	static C(Other: UObject | any): CameraAnimationSequenceSubsystem;
-}
-
-declare type ETemplateSectionPropertyScaleType = 'FloatProperty' | 'TransformPropertyLocationOnly' | 'TransformPropertyRotationOnly' | 'ETemplateSectionPropertyScaleType_MAX';
-declare var ETemplateSectionPropertyScaleType : { FloatProperty:'FloatProperty',TransformPropertyLocationOnly:'TransformPropertyLocationOnly',TransformPropertyRotationOnly:'TransformPropertyRotationOnly',ETemplateSectionPropertyScaleType_MAX:'ETemplateSectionPropertyScaleType_MAX', };
-declare class TemplateSectionPropertyScale { 
-	ObjectBinding: Guid;
-	PropertyBinding: MovieScenePropertyBinding;
-	PropertyScaleType: ETemplateSectionPropertyScaleType;
-	FloatChannel: MovieSceneFloatChannel;
-	clone() : TemplateSectionPropertyScale;
-	static C(Other: UObject | any): TemplateSectionPropertyScale;
-}
-
-declare class TemplateSequenceSection extends MovieSceneSubSection { 
-	PropertyScales: TemplateSectionPropertyScale[];
-	static Load(ResourceName: string): TemplateSequenceSection;
-	static Find(Outer: UObject, ResourceName: string): TemplateSequenceSection;
-	static GetDefaultObject(): TemplateSequenceSection;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequenceSection;
-	static C(Other: UObject | any): TemplateSequenceSection;
-}
-
-declare class TemplateSequenceSystem extends MovieSceneEntitySystem { 
-	static Load(ResourceName: string): TemplateSequenceSystem;
-	static Find(Outer: UObject, ResourceName: string): TemplateSequenceSystem;
-	static GetDefaultObject(): TemplateSequenceSystem;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequenceSystem;
-	static C(Other: UObject | any): TemplateSequenceSystem;
-}
-
-declare class TemplateSequencePropertyScalingInstantiatorSystem extends MovieSceneEntitySystem { 
-	static Load(ResourceName: string): TemplateSequencePropertyScalingInstantiatorSystem;
-	static Find(Outer: UObject, ResourceName: string): TemplateSequencePropertyScalingInstantiatorSystem;
-	static GetDefaultObject(): TemplateSequencePropertyScalingInstantiatorSystem;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequencePropertyScalingInstantiatorSystem;
-	static C(Other: UObject | any): TemplateSequencePropertyScalingInstantiatorSystem;
-}
-
-declare class TemplateSequencePropertyScalingEvaluatorSystem extends MovieSceneEntitySystem { 
-	static Load(ResourceName: string): TemplateSequencePropertyScalingEvaluatorSystem;
-	static Find(Outer: UObject, ResourceName: string): TemplateSequencePropertyScalingEvaluatorSystem;
-	static GetDefaultObject(): TemplateSequencePropertyScalingEvaluatorSystem;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequencePropertyScalingEvaluatorSystem;
-	static C(Other: UObject | any): TemplateSequencePropertyScalingEvaluatorSystem;
-}
-
-declare class TemplateSequencePlayer extends MovieSceneSequencePlayer { 
-	static Load(ResourceName: string): TemplateSequencePlayer;
-	static Find(Outer: UObject, ResourceName: string): TemplateSequencePlayer;
-	static GetDefaultObject(): TemplateSequencePlayer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequencePlayer;
-	static CreateTemplateSequencePlayer(WorldContextObject: UObject,TemplateSequence: TemplateSequence,Settings: MovieSceneSequencePlaybackSettings,OutActor?: TemplateSequenceActor): {OutActor: TemplateSequenceActor, $: TemplateSequencePlayer};
-	static C(Other: UObject | any): TemplateSequencePlayer;
-}
-
-declare class TemplateSequenceBindingOverrideData { 
-	UObject: UObject;
-	bOverridesDefault: boolean;
-	clone() : TemplateSequenceBindingOverrideData;
-	static C(Other: UObject | any): TemplateSequenceBindingOverrideData;
-}
-
-declare class TemplateSequenceActor extends Actor { 
-	PlaybackSettings: MovieSceneSequencePlaybackSettings;
-	SequencePlayer: TemplateSequencePlayer;
-	TemplateSequence: SoftObjectPath;
-	BindingOverride: TemplateSequenceBindingOverrideData;
-	static GetDefaultObject(): TemplateSequenceActor;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequenceActor;
-	SetSequence(InSequence: TemplateSequence): void;
-	SetBinding(Actor: Actor,bOverridesDefault: boolean): void;
-	LoadSequence(): TemplateSequence;
-	GetSequencePlayer(): TemplateSequencePlayer;
-	GetSequence(): TemplateSequence;
-	static C(Other: UObject | any): TemplateSequenceActor;
-}
-
-declare class SequenceCameraShakeTestUtil extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): SequenceCameraShakeTestUtil;
-	static Find(Outer: UObject, ResourceName: string): SequenceCameraShakeTestUtil;
-	static GetDefaultObject(): SequenceCameraShakeTestUtil;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SequenceCameraShakeTestUtil;
-	static GetPostProcessBlendCache(PlayerController: PlayerController,PPIndex: number,OutPPSettings?: PostProcessSettings,OutPPBlendWeight?: number): {OutPPSettings: PostProcessSettings, OutPPBlendWeight: number, $: boolean};
-	static GetLastFrameCameraCachePOV(PlayerController: PlayerController): MinimalViewInfo;
-	static GetCameraCachePOV(PlayerController: PlayerController): MinimalViewInfo;
-	static C(Other: UObject | any): SequenceCameraShakeTestUtil;
-}
-
-declare class TemplateSequenceTrack extends MovieSceneSubTrack { 
-	static Load(ResourceName: string): TemplateSequenceTrack;
-	static Find(Outer: UObject, ResourceName: string): TemplateSequenceTrack;
-	static GetDefaultObject(): TemplateSequenceTrack;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TemplateSequenceTrack;
-	static C(Other: UObject | any): TemplateSequenceTrack;
-}
-
-declare class LegacyCameraShakePattern extends CameraShakePattern { 
-	static Load(ResourceName: string): LegacyCameraShakePattern;
-	static Find(Outer: UObject, ResourceName: string): LegacyCameraShakePattern;
-	static GetDefaultObject(): LegacyCameraShakePattern;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LegacyCameraShakePattern;
-	static C(Other: UObject | any): LegacyCameraShakePattern;
-}
-
-declare class LegacyCameraShakeFunctionLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): LegacyCameraShakeFunctionLibrary;
-	static Find(Outer: UObject, ResourceName: string): LegacyCameraShakeFunctionLibrary;
-	static GetDefaultObject(): LegacyCameraShakeFunctionLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LegacyCameraShakeFunctionLibrary;
-	static Conv_LegacyCameraShake(CameraShake: CameraShakeBase): LegacyCameraShake;
-	static C(Other: UObject | any): LegacyCameraShakeFunctionLibrary;
-}
-
-declare class GameplayCamerasFunctionLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): GameplayCamerasFunctionLibrary;
-	static Find(Outer: UObject, ResourceName: string): GameplayCamerasFunctionLibrary;
-	static GetDefaultObject(): GameplayCamerasFunctionLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GameplayCamerasFunctionLibrary;
-	static Conv_CameraShakePlaySpace(CameraAnimationPlaySpace: ECameraAnimationPlaySpace): ECameraShakePlaySpace;
-	static Conv_CameraAnimationPlaySpace(CameraShakePlaySpace: ECameraShakePlaySpace): ECameraAnimationPlaySpace;
-	static Conv_CameraAnimationCameraModifier(PlayerCameraManager: PlayerCameraManager): CameraAnimationCameraModifier;
-	static C(Other: UObject | any): GameplayCamerasFunctionLibrary;
-}
-
-declare class CompositeCameraShakePattern extends CameraShakePattern { 
-	ChildPatterns: CameraShakePattern[];
-	static Load(ResourceName: string): CompositeCameraShakePattern;
-	static Find(Outer: UObject, ResourceName: string): CompositeCameraShakePattern;
-	static GetDefaultObject(): CompositeCameraShakePattern;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CompositeCameraShakePattern;
-	static C(Other: UObject | any): CompositeCameraShakePattern;
-}
-
-declare class DefaultCameraShakeBase extends CameraShakeBase { 
-	static Load(ResourceName: string): DefaultCameraShakeBase;
-	static Find(Outer: UObject, ResourceName: string): DefaultCameraShakeBase;
-	static GetDefaultObject(): DefaultCameraShakeBase;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): DefaultCameraShakeBase;
-	static C(Other: UObject | any): DefaultCameraShakeBase;
-}
-
-declare class GameplayCamerasSubsystem extends WorldSubsystem { 
-	static Load(ResourceName: string): GameplayCamerasSubsystem;
-	static Find(Outer: UObject, ResourceName: string): GameplayCamerasSubsystem;
-	static GetDefaultObject(): GameplayCamerasSubsystem;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GameplayCamerasSubsystem;
-	StopCameraAnimation(PlayerController: PlayerController,Handle: CameraAnimationHandle,bImmediate: boolean): void;
-	StopAllCameraAnimationsOf(PlayerController: PlayerController,Sequence: CameraAnimationSequence,bImmediate: boolean): void;
-	StopAllCameraAnimations(PlayerController: PlayerController,bImmediate: boolean): void;
-	PlayCameraAnimation(PlayerController: PlayerController,Sequence: CameraAnimationSequence,Params: CameraAnimationParams): CameraAnimationHandle;
-	IsCameraAnimationActive(PlayerController: PlayerController,Handle: CameraAnimationHandle): boolean;
-	static C(Other: UObject | any): GameplayCamerasSubsystem;
-}
-
-declare class SimpleCameraShakePattern extends CameraShakePattern { 
-	Duration: number;
-	BlendInTime: number;
-	BlendOutTime: number;
-	static Load(ResourceName: string): SimpleCameraShakePattern;
-	static Find(Outer: UObject, ResourceName: string): SimpleCameraShakePattern;
-	static GetDefaultObject(): SimpleCameraShakePattern;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SimpleCameraShakePattern;
-	static C(Other: UObject | any): SimpleCameraShakePattern;
-}
-
-declare class PerlinNoiseShaker { 
-	Amplitude: number;
-	Frequency: number;
-	clone() : PerlinNoiseShaker;
-	static C(Other: UObject | any): PerlinNoiseShaker;
-}
-
-declare class PerlinNoiseCameraShakePattern extends SimpleCameraShakePattern { 
-	LocationAmplitudeMultiplier: number;
-	LocationFrequencyMultiplier: number;
-	X: PerlinNoiseShaker;
-	Y: PerlinNoiseShaker;
-	Z: PerlinNoiseShaker;
-	RotationAmplitudeMultiplier: number;
-	RotationFrequencyMultiplier: number;
-	Pitch: PerlinNoiseShaker;
-	Yaw: PerlinNoiseShaker;
-	Roll: PerlinNoiseShaker;
-	FOV: PerlinNoiseShaker;
-	static Load(ResourceName: string): PerlinNoiseCameraShakePattern;
-	static Find(Outer: UObject, ResourceName: string): PerlinNoiseCameraShakePattern;
-	static GetDefaultObject(): PerlinNoiseCameraShakePattern;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PerlinNoiseCameraShakePattern;
-	static C(Other: UObject | any): PerlinNoiseCameraShakePattern;
-}
-
-declare class TestCameraShake extends CameraShakeBase { 
-	static Load(ResourceName: string): TestCameraShake;
-	static Find(Outer: UObject, ResourceName: string): TestCameraShake;
-	static GetDefaultObject(): TestCameraShake;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TestCameraShake;
-	static C(Other: UObject | any): TestCameraShake;
-}
-
-declare class ConstantCameraShakePattern extends SimpleCameraShakePattern { 
-	LocationOffset: Vector;
-	RotationOffset: Rotator;
-	static Load(ResourceName: string): ConstantCameraShakePattern;
-	static Find(Outer: UObject, ResourceName: string): ConstantCameraShakePattern;
-	static GetDefaultObject(): ConstantCameraShakePattern;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ConstantCameraShakePattern;
-	static C(Other: UObject | any): ConstantCameraShakePattern;
-}
-
-declare type EInitialWaveOscillatorOffsetType = 'Random' | 'Zero' | 'EInitialWaveOscillatorOffsetType_MAX';
-declare var EInitialWaveOscillatorOffsetType : { Random:'Random',Zero:'Zero',EInitialWaveOscillatorOffsetType_MAX:'EInitialWaveOscillatorOffsetType_MAX', };
-declare class WaveOscillator { 
-	Amplitude: number;
-	Frequency: number;
-	InitialOffsetType: EInitialWaveOscillatorOffsetType;
-	clone() : WaveOscillator;
-	static C(Other: UObject | any): WaveOscillator;
-}
-
-declare class WaveOscillatorCameraShakePattern extends SimpleCameraShakePattern { 
-	LocationAmplitudeMultiplier: number;
-	LocationFrequencyMultiplier: number;
-	X: WaveOscillator;
-	Y: WaveOscillator;
-	Z: WaveOscillator;
-	RotationAmplitudeMultiplier: number;
-	RotationFrequencyMultiplier: number;
-	Pitch: WaveOscillator;
-	Yaw: WaveOscillator;
-	Roll: WaveOscillator;
-	FOV: WaveOscillator;
-	static Load(ResourceName: string): WaveOscillatorCameraShakePattern;
-	static Find(Outer: UObject, ResourceName: string): WaveOscillatorCameraShakePattern;
-	static GetDefaultObject(): WaveOscillatorCameraShakePattern;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): WaveOscillatorCameraShakePattern;
-	static C(Other: UObject | any): WaveOscillatorCameraShakePattern;
 }
 
 declare class ActorRecordedProperty { 
@@ -10252,6 +10233,14 @@ declare class OnImageWriteComplete__PythonCallable extends PythonCallableForDele
 	static C(Other: UObject | any): OnImageWriteComplete__PythonCallable;
 }
 
+declare class OnNiagaraScriptCompilationComplete__PythonCallable extends PythonCallableForDelegate { 
+	static Load(ResourceName: string): OnNiagaraScriptCompilationComplete__PythonCallable;
+	static Find(Outer: UObject, ResourceName: string): OnNiagaraScriptCompilationComplete__PythonCallable;
+	static GetDefaultObject(): OnNiagaraScriptCompilationComplete__PythonCallable;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnNiagaraScriptCompilationComplete__PythonCallable;
+	static C(Other: UObject | any): OnNiagaraScriptCompilationComplete__PythonCallable;
+}
+
 declare class AchievementWriteDelegate__PythonCallable extends PythonCallableForDelegate { 
 	static Load(ResourceName: string): AchievementWriteDelegate__PythonCallable;
 	static Find(Outer: UObject, ResourceName: string): AchievementWriteDelegate__PythonCallable;
@@ -10338,14 +10327,6 @@ declare class OnlineTurnBasedMatchResult__PythonCallable extends PythonCallableF
 	static GetDefaultObject(): OnlineTurnBasedMatchResult__PythonCallable;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnlineTurnBasedMatchResult__PythonCallable;
 	static C(Other: UObject | any): OnlineTurnBasedMatchResult__PythonCallable;
-}
-
-declare class OnNiagaraScriptCompilationComplete__PythonCallable extends PythonCallableForDelegate { 
-	static Load(ResourceName: string): OnNiagaraScriptCompilationComplete__PythonCallable;
-	static Find(Outer: UObject, ResourceName: string): OnNiagaraScriptCompilationComplete__PythonCallable;
-	static GetDefaultObject(): OnNiagaraScriptCompilationComplete__PythonCallable;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnNiagaraScriptCompilationComplete__PythonCallable;
-	static C(Other: UObject | any): OnNiagaraScriptCompilationComplete__PythonCallable;
 }
 
 declare class OnChaosPhysicsCollision__PythonCallable extends PythonCallableForDelegate { 
@@ -10642,6 +10623,14 @@ declare class OnExportImageAsyncComplete__PythonCallable extends PythonCallableF
 	static GetDefaultObject(): OnExportImageAsyncComplete__PythonCallable;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnExportImageAsyncComplete__PythonCallable;
 	static C(Other: UObject | any): OnExportImageAsyncComplete__PythonCallable;
+}
+
+declare class NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable extends PythonCallableForDelegate { 
+	static Load(ResourceName: string): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
+	static Find(Outer: UObject, ResourceName: string): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
+	static GetDefaultObject(): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
+	static C(Other: UObject | any): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
 }
 
 declare class JavascriptComponent_JavascriptNameSignature__PythonCallable extends PythonCallableForDelegate { 
@@ -11180,14 +11169,6 @@ declare class OnTableAltered__PythonCallable extends PythonCallableForDelegate {
 	static C(Other: UObject | any): OnTableAltered__PythonCallable;
 }
 
-declare class NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable extends PythonCallableForDelegate { 
-	static Load(ResourceName: string): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
-	static Find(Outer: UObject, ResourceName: string): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
-	static GetDefaultObject(): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
-	static C(Other: UObject | any): NiagaraClipboardFunction_OnPastedFunctionCallNode__PythonCallable;
-}
-
 declare class FlipbookFinishedPlaySignature__PythonCallable extends PythonCallableForDelegate { 
 	static Load(ResourceName: string): FlipbookFinishedPlaySignature__PythonCallable;
 	static Find(Outer: UObject, ResourceName: string): FlipbookFinishedPlaySignature__PythonCallable;
@@ -11628,60 +11609,13 @@ declare class ControlRig_OnControlSelectedBP__PythonCallable extends PythonCalla
 	static C(Other: UObject | any): ControlRig_OnControlSelectedBP__PythonCallable;
 }
 
-declare type EActorSequenceObjectReferenceType = 'ContextActor' | 'ExternalActor' | 'Component' | 'EActorSequenceObjectReferenceType_MAX';
-declare var EActorSequenceObjectReferenceType : { ContextActor:'ContextActor',ExternalActor:'ExternalActor',Component:'Component',EActorSequenceObjectReferenceType_MAX:'EActorSequenceObjectReferenceType_MAX', };
-declare class ActorSequenceObjectReference { 
-	Type: EActorSequenceObjectReferenceType;
-	ActorId: Guid;
-	PathToComponent: string;
-	clone() : ActorSequenceObjectReference;
-	static C(Other: UObject | any): ActorSequenceObjectReference;
-}
-
-declare class ActorSequenceObjectReferences { 
-	Array: ActorSequenceObjectReference[];
-	clone() : ActorSequenceObjectReferences;
-	static C(Other: UObject | any): ActorSequenceObjectReferences;
-}
-
-declare class ActorSequenceObjectReferenceMap { 
-	BindingIds: Guid[];
-	References: ActorSequenceObjectReferences[];
-	clone() : ActorSequenceObjectReferenceMap;
-	static C(Other: UObject | any): ActorSequenceObjectReferenceMap;
-}
-
-declare class ActorSequence extends MovieSceneSequence { 
-	MovieScene: MovieScene;
-	ObjectReferences: ActorSequenceObjectReferenceMap;
-	bHasBeenInitialized: boolean;
-	static Load(ResourceName: string): ActorSequence;
-	static Find(Outer: UObject, ResourceName: string): ActorSequence;
-	static GetDefaultObject(): ActorSequence;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorSequence;
-	static C(Other: UObject | any): ActorSequence;
-}
-
-declare class ActorSequencePlayer extends MovieSceneSequencePlayer { 
-	static Load(ResourceName: string): ActorSequencePlayer;
-	static Find(Outer: UObject, ResourceName: string): ActorSequencePlayer;
-	static GetDefaultObject(): ActorSequencePlayer;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorSequencePlayer;
-	static C(Other: UObject | any): ActorSequencePlayer;
-}
-
-declare class ActorSequenceComponent extends ActorComponent { 
-	PlaybackSettings: MovieSceneSequencePlaybackSettings;
-	Sequence: ActorSequence;
-	SequencePlayer: ActorSequencePlayer;
-	static Load(ResourceName: string): ActorSequenceComponent;
-	static Find(Outer: UObject, ResourceName: string): ActorSequenceComponent;
-	static GetDefaultObject(): ActorSequenceComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorSequenceComponent;
-	StopSequence(): void;
-	PlaySequence(): void;
-	PauseSequence(): void;
-	static C(Other: UObject | any): ActorSequenceComponent;
+declare class ImgMediaPlaybackComponent extends ActorComponent { 
+	LODBias: number;
+	static Load(ResourceName: string): ImgMediaPlaybackComponent;
+	static Find(Outer: UObject, ResourceName: string): ImgMediaPlaybackComponent;
+	static GetDefaultObject(): ImgMediaPlaybackComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ImgMediaPlaybackComponent;
+	static C(Other: UObject | any): ImgMediaPlaybackComponent;
 }
 
 declare class survivaludemyCharacter extends Character { 
@@ -11759,6 +11693,12 @@ declare class HitInterface extends Interface {
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): HitInterface;
 	GetHit(ImpactPoint: Vector): void;
 	static C(Other: UObject | any): HitInterface;
+}
+
+declare class Pages extends Actor { 
+	static GetDefaultObject(): Pages;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): Pages;
+	static C(Other: UObject | any): Pages;
 }
 
 declare class survivaludemyGameMode extends GameModeBase { 
@@ -13943,6 +13883,47 @@ declare class TraceUtilLibrary extends BlueprintFunctionLibrary {
 	static C(Other: UObject | any): TraceUtilLibrary;
 }
 
+declare class CachedMotionAnalysisProperties extends CachedAnalysisProperties { 
+	static Load(ResourceName: string): CachedMotionAnalysisProperties;
+	static Find(Outer: UObject, ResourceName: string): CachedMotionAnalysisProperties;
+	static GetDefaultObject(): CachedMotionAnalysisProperties;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CachedMotionAnalysisProperties;
+	static C(Other: UObject | any): CachedMotionAnalysisProperties;
+}
+
+declare type EAnalysisLocomotionAxis = 'Speed' | 'Direction' | 'ForwardSpeed' | 'RightwardSpeed' | 'UpwardSpeed' | 'ForwardSlope' | 'RightwardSlope' | 'EAnalysisLocomotionAxis_MAX';
+declare var EAnalysisLocomotionAxis : { Speed:'Speed',Direction:'Direction',ForwardSpeed:'ForwardSpeed',RightwardSpeed:'RightwardSpeed',UpwardSpeed:'UpwardSpeed',ForwardSlope:'ForwardSlope',RightwardSlope:'RightwardSlope',EAnalysisLocomotionAxis_MAX:'EAnalysisLocomotionAxis_MAX', };
+declare class LocomotionAnalysisProperties extends AnalysisProperties { 
+	FunctionAxis: EAnalysisLocomotionAxis;
+	PrimaryBoneSocket: BoneSocketTarget;
+	SecondaryBoneSocket: BoneSocketTarget;
+	CharacterFacingAxis: EAnalysisLinearAxis;
+	CharacterUpAxis: EAnalysisLinearAxis;
+	static Load(ResourceName: string): LocomotionAnalysisProperties;
+	static Find(Outer: UObject, ResourceName: string): LocomotionAnalysisProperties;
+	static GetDefaultObject(): LocomotionAnalysisProperties;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LocomotionAnalysisProperties;
+	static C(Other: UObject | any): LocomotionAnalysisProperties;
+}
+
+declare type EAnalysisRootMotionAxis = 'Speed' | 'Direction' | 'ForwardSpeed' | 'RightwardSpeed' | 'UpwardSpeed' | 'ForwardSlope' | 'RightwardSlope' | 'EAnalysisRootMotionAxis_MAX';
+declare var EAnalysisRootMotionAxis : { Speed:'Speed',Direction:'Direction',ForwardSpeed:'ForwardSpeed',RightwardSpeed:'RightwardSpeed',UpwardSpeed:'UpwardSpeed',ForwardSlope:'ForwardSlope',RightwardSlope:'RightwardSlope',EAnalysisRootMotionAxis_MAX:'EAnalysisRootMotionAxis_MAX', };
+declare class RootMotionAnalysisProperties extends AnalysisProperties { 
+	FunctionAxis: EAnalysisRootMotionAxis;
+	BoneSocket: BoneSocketTarget;
+	Space: EAnalysisSpace;
+	SpaceBoneSocket: BoneSocketTarget;
+	CharacterFacingAxis: EAnalysisLinearAxis;
+	CharacterUpAxis: EAnalysisLinearAxis;
+	StartTimeFraction: number;
+	EndTimeFraction: number;
+	static Load(ResourceName: string): RootMotionAnalysisProperties;
+	static Find(Outer: UObject, ResourceName: string): RootMotionAnalysisProperties;
+	static GetDefaultObject(): RootMotionAnalysisProperties;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RootMotionAnalysisProperties;
+	static C(Other: UObject | any): RootMotionAnalysisProperties;
+}
+
 declare class BoneReferencePair { 
 	SourceBone: BoneReference;
 	TargetBone: BoneReference;
@@ -14002,47 +13983,6 @@ declare class MotionExtractorModifier extends AnimationModifier {
 	static GetDefaultObject(): MotionExtractorModifier;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MotionExtractorModifier;
 	static C(Other: UObject | any): MotionExtractorModifier;
-}
-
-declare class CachedMotionAnalysisProperties extends CachedAnalysisProperties { 
-	static Load(ResourceName: string): CachedMotionAnalysisProperties;
-	static Find(Outer: UObject, ResourceName: string): CachedMotionAnalysisProperties;
-	static GetDefaultObject(): CachedMotionAnalysisProperties;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CachedMotionAnalysisProperties;
-	static C(Other: UObject | any): CachedMotionAnalysisProperties;
-}
-
-declare type EAnalysisLocomotionAxis = 'Speed' | 'Direction' | 'ForwardSpeed' | 'RightwardSpeed' | 'UpwardSpeed' | 'ForwardSlope' | 'RightwardSlope' | 'EAnalysisLocomotionAxis_MAX';
-declare var EAnalysisLocomotionAxis : { Speed:'Speed',Direction:'Direction',ForwardSpeed:'ForwardSpeed',RightwardSpeed:'RightwardSpeed',UpwardSpeed:'UpwardSpeed',ForwardSlope:'ForwardSlope',RightwardSlope:'RightwardSlope',EAnalysisLocomotionAxis_MAX:'EAnalysisLocomotionAxis_MAX', };
-declare class LocomotionAnalysisProperties extends AnalysisProperties { 
-	FunctionAxis: EAnalysisLocomotionAxis;
-	PrimaryBoneSocket: BoneSocketTarget;
-	SecondaryBoneSocket: BoneSocketTarget;
-	CharacterFacingAxis: EAnalysisLinearAxis;
-	CharacterUpAxis: EAnalysisLinearAxis;
-	static Load(ResourceName: string): LocomotionAnalysisProperties;
-	static Find(Outer: UObject, ResourceName: string): LocomotionAnalysisProperties;
-	static GetDefaultObject(): LocomotionAnalysisProperties;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LocomotionAnalysisProperties;
-	static C(Other: UObject | any): LocomotionAnalysisProperties;
-}
-
-declare type EAnalysisRootMotionAxis = 'Speed' | 'Direction' | 'ForwardSpeed' | 'RightwardSpeed' | 'UpwardSpeed' | 'ForwardSlope' | 'RightwardSlope' | 'EAnalysisRootMotionAxis_MAX';
-declare var EAnalysisRootMotionAxis : { Speed:'Speed',Direction:'Direction',ForwardSpeed:'ForwardSpeed',RightwardSpeed:'RightwardSpeed',UpwardSpeed:'UpwardSpeed',ForwardSlope:'ForwardSlope',RightwardSlope:'RightwardSlope',EAnalysisRootMotionAxis_MAX:'EAnalysisRootMotionAxis_MAX', };
-declare class RootMotionAnalysisProperties extends AnalysisProperties { 
-	FunctionAxis: EAnalysisRootMotionAxis;
-	BoneSocket: BoneSocketTarget;
-	Space: EAnalysisSpace;
-	SpaceBoneSocket: BoneSocketTarget;
-	CharacterFacingAxis: EAnalysisLinearAxis;
-	CharacterUpAxis: EAnalysisLinearAxis;
-	StartTimeFraction: number;
-	EndTimeFraction: number;
-	static Load(ResourceName: string): RootMotionAnalysisProperties;
-	static Find(Outer: UObject, ResourceName: string): RootMotionAnalysisProperties;
-	static GetDefaultObject(): RootMotionAnalysisProperties;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RootMotionAnalysisProperties;
-	static C(Other: UObject | any): RootMotionAnalysisProperties;
 }
 
 declare class HeaderViewSyntaxColors { 
@@ -14479,50 +14419,6 @@ declare class GLTFImportOptions extends UObject {
 	static GetDefaultObject(): GLTFImportOptions;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GLTFImportOptions;
 	static C(Other: UObject | any): GLTFImportOptions;
-}
-
-declare class NewPluginDescriptorData extends UObject { 
-	CreatedBy: string;
-	CreatedByURL: string;
-	Description: string;
-	bIsBetaVersion: boolean;
-	static Load(ResourceName: string): NewPluginDescriptorData;
-	static Find(Outer: UObject, ResourceName: string): NewPluginDescriptorData;
-	static GetDefaultObject(): NewPluginDescriptorData;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): NewPluginDescriptorData;
-	static C(Other: UObject | any): NewPluginDescriptorData;
-}
-
-declare class PluginReferenceMetadata { 
-	Name: string;
-	bOptional: boolean;
-	bEnabled: boolean;
-	clone() : PluginReferenceMetadata;
-	static C(Other: UObject | any): PluginReferenceMetadata;
-}
-
-declare class PluginMetadataObject extends UObject { 
-	Version: number;
-	VersionName: string;
-	FriendlyName: string;
-	Description: string;
-	Category: string;
-	CreatedBy: string;
-	CreatedByURL: string;
-	DocsURL: string;
-	MarketplaceURL: string;
-	SupportURL: string;
-	bCanContainContent: boolean;
-	bIsBetaVersion: boolean;
-	bIsEnabledByDefault: boolean;
-	bExplicitlyLoaded: boolean;
-	Plugins: PluginReferenceMetadata[];
-	static Load(ResourceName: string): PluginMetadataObject;
-	static Find(Outer: UObject, ResourceName: string): PluginMetadataObject;
-	static GetDefaultObject(): PluginMetadataObject;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PluginMetadataObject;
-	GetAvailablePluginDependencies(): string[];
-	static C(Other: UObject | any): PluginMetadataObject;
 }
 
 declare class MeshCommandChangeTarget extends Interface { 
@@ -17746,5 +17642,39 @@ declare class CubeGridToolBuilder extends InteractiveToolWithToolTargetsBuilder 
 	static GetDefaultObject(): CubeGridToolBuilder;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CubeGridToolBuilder;
 	static C(Other: UObject | any): CubeGridToolBuilder;
+}
+
+declare type ECubeGridToolFaceSelectionMode = 'OutsideBasedOnNormal' | 'InsideBasedOnNormal' | 'OutsideBasedOnViewRay' | 'InsideBasedOnViewRay' | 'ECubeGridToolFaceSelectionMode_MAX';
+declare var ECubeGridToolFaceSelectionMode : { OutsideBasedOnNormal:'OutsideBasedOnNormal',InsideBasedOnNormal:'InsideBasedOnNormal',OutsideBasedOnViewRay:'OutsideBasedOnViewRay',InsideBasedOnViewRay:'InsideBasedOnViewRay',ECubeGridToolFaceSelectionMode_MAX:'ECubeGridToolFaceSelectionMode_MAX', };
+declare class CubeGridToolProperties extends InteractiveToolPropertySet { 
+	GridFrameOrigin: Vector;
+	GridFrameOrientation: Rotator;
+	bShowGizmo: boolean;
+	GridPower: number;
+	CurrentBlockSize: number;
+	BlocksPerStep: number;
+	bPowerOfTwoBlockSizes: boolean;
+	BlockBaseSize: number;
+	bCrosswiseDiagonal: boolean;
+	bKeepSideGroups: boolean;
+	PlaneTolerance: number;
+	bHitUnrelatedGeometry: boolean;
+	bHitGridGroundPlaneIfCloser: boolean;
+	FaceSelectionMode: ECubeGridToolFaceSelectionMode;
+	ToggleCornerMode: string;
+	PushPull: string;
+	ResizeGrid: string;
+	SlideSelection: string;
+	FlipSelection: string;
+	GridGizmo: string;
+	QuickShiftGizmo: string;
+	AlignGizmo: string;
+	bInCornerMode: boolean;
+	bAllowedToEditGrid: boolean;
+	static Load(ResourceName: string): CubeGridToolProperties;
+	static Find(Outer: UObject, ResourceName: string): CubeGridToolProperties;
+	static GetDefaultObject(): CubeGridToolProperties;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CubeGridToolProperties;
+	static C(Other: UObject | any): CubeGridToolProperties;
 }
 

@@ -3,40 +3,6 @@
 /// <reference path="_part_2_ue.d.ts">/>
 /// <reference path="_part_3_ue.d.ts">/>
 /// <reference path="_part_4_ue.d.ts">/>
-declare type ECubeGridToolFaceSelectionMode = 'OutsideBasedOnNormal' | 'InsideBasedOnNormal' | 'OutsideBasedOnViewRay' | 'InsideBasedOnViewRay' | 'ECubeGridToolFaceSelectionMode_MAX';
-declare var ECubeGridToolFaceSelectionMode : { OutsideBasedOnNormal:'OutsideBasedOnNormal',InsideBasedOnNormal:'InsideBasedOnNormal',OutsideBasedOnViewRay:'OutsideBasedOnViewRay',InsideBasedOnViewRay:'InsideBasedOnViewRay',ECubeGridToolFaceSelectionMode_MAX:'ECubeGridToolFaceSelectionMode_MAX', };
-declare class CubeGridToolProperties extends InteractiveToolPropertySet { 
-	GridFrameOrigin: Vector;
-	GridFrameOrientation: Rotator;
-	bShowGizmo: boolean;
-	GridPower: number;
-	CurrentBlockSize: number;
-	BlocksPerStep: number;
-	bPowerOfTwoBlockSizes: boolean;
-	BlockBaseSize: number;
-	bCrosswiseDiagonal: boolean;
-	bKeepSideGroups: boolean;
-	PlaneTolerance: number;
-	bHitUnrelatedGeometry: boolean;
-	bHitGridGroundPlaneIfCloser: boolean;
-	FaceSelectionMode: ECubeGridToolFaceSelectionMode;
-	ToggleCornerMode: string;
-	PushPull: string;
-	ResizeGrid: string;
-	SlideSelection: string;
-	FlipSelection: string;
-	GridGizmo: string;
-	QuickShiftGizmo: string;
-	AlignGizmo: string;
-	bInCornerMode: boolean;
-	bAllowedToEditGrid: boolean;
-	static Load(ResourceName: string): CubeGridToolProperties;
-	static Find(Outer: UObject, ResourceName: string): CubeGridToolProperties;
-	static GetDefaultObject(): CubeGridToolProperties;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CubeGridToolProperties;
-	static C(Other: UObject | any): CubeGridToolProperties;
-}
-
 declare class CubeGridToolActions extends InteractiveToolPropertySet { 
 	GridSourceActor: Actor;
 	static Load(ResourceName: string): CubeGridToolActions;
@@ -3313,6 +3279,50 @@ declare class ModelingToolsModeCustomizationSettings extends DeveloperSettings {
 	static C(Other: UObject | any): ModelingToolsModeCustomizationSettings;
 }
 
+declare class NewPluginDescriptorData extends UObject { 
+	CreatedBy: string;
+	CreatedByURL: string;
+	Description: string;
+	bIsBetaVersion: boolean;
+	static Load(ResourceName: string): NewPluginDescriptorData;
+	static Find(Outer: UObject, ResourceName: string): NewPluginDescriptorData;
+	static GetDefaultObject(): NewPluginDescriptorData;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): NewPluginDescriptorData;
+	static C(Other: UObject | any): NewPluginDescriptorData;
+}
+
+declare class PluginReferenceMetadata { 
+	Name: string;
+	bOptional: boolean;
+	bEnabled: boolean;
+	clone() : PluginReferenceMetadata;
+	static C(Other: UObject | any): PluginReferenceMetadata;
+}
+
+declare class PluginMetadataObject extends UObject { 
+	Version: number;
+	VersionName: string;
+	FriendlyName: string;
+	Description: string;
+	Category: string;
+	CreatedBy: string;
+	CreatedByURL: string;
+	DocsURL: string;
+	MarketplaceURL: string;
+	SupportURL: string;
+	bCanContainContent: boolean;
+	bIsBetaVersion: boolean;
+	bIsEnabledByDefault: boolean;
+	bExplicitlyLoaded: boolean;
+	Plugins: PluginReferenceMetadata[];
+	static Load(ResourceName: string): PluginMetadataObject;
+	static Find(Outer: UObject, ResourceName: string): PluginMetadataObject;
+	static GetDefaultObject(): PluginMetadataObject;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PluginMetadataObject;
+	GetAvailablePluginDependencies(): string[];
+	static C(Other: UObject | any): PluginMetadataObject;
+}
+
 declare class MovieSceneScriptingKey extends UObject { 
 	static Load(ResourceName: string): MovieSceneScriptingKey;
 	static Find(Outer: UObject, ResourceName: string): MovieSceneScriptingKey;
@@ -4712,57 +4722,404 @@ declare class HLODBuilderMeshSimplify extends HLODBuilder {
 	static C(Other: UObject | any): HLODBuilderMeshSimplify;
 }
 
-declare class LevelVariantSetsActorFactory extends ActorFactory { 
-	static Load(ResourceName: string): LevelVariantSetsActorFactory;
-	static Find(Outer: UObject, ResourceName: string): LevelVariantSetsActorFactory;
-	static GetDefaultObject(): LevelVariantSetsActorFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LevelVariantSetsActorFactory;
-	static C(Other: UObject | any): LevelVariantSetsActorFactory;
+declare class InterchangeBlueprintPipelineBaseFactory extends Factory { 
+	BlueprintType: EBlueprintType;
+	ParentClass: UnrealEngineClass;
+	static Load(ResourceName: string): InterchangeBlueprintPipelineBaseFactory;
+	static Find(Outer: UObject, ResourceName: string): InterchangeBlueprintPipelineBaseFactory;
+	static GetDefaultObject(): InterchangeBlueprintPipelineBaseFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeBlueprintPipelineBaseFactory;
+	static C(Other: UObject | any): InterchangeBlueprintPipelineBaseFactory;
 }
 
-declare class SwitchActorFactory extends ActorFactory { 
-	static Load(ResourceName: string): SwitchActorFactory;
-	static Find(Outer: UObject, ResourceName: string): SwitchActorFactory;
-	static GetDefaultObject(): SwitchActorFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SwitchActorFactory;
-	static C(Other: UObject | any): SwitchActorFactory;
+declare class InterchangePipelineBaseFactory extends Factory { 
+	static Load(ResourceName: string): InterchangePipelineBaseFactory;
+	static Find(Outer: UObject, ResourceName: string): InterchangePipelineBaseFactory;
+	static GetDefaultObject(): InterchangePipelineBaseFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangePipelineBaseFactory;
+	static C(Other: UObject | any): InterchangePipelineBaseFactory;
 }
 
-declare class VariantManagerFactoryNew extends Factory { 
-	static Load(ResourceName: string): VariantManagerFactoryNew;
-	static Find(Outer: UObject, ResourceName: string): VariantManagerFactoryNew;
-	static GetDefaultObject(): VariantManagerFactoryNew;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): VariantManagerFactoryNew;
-	static C(Other: UObject | any): VariantManagerFactoryNew;
+declare class InterchangePythonPipelineAssetFactory extends Factory { 
+	static Load(ResourceName: string): InterchangePythonPipelineAssetFactory;
+	static Find(Outer: UObject, ResourceName: string): InterchangePythonPipelineAssetFactory;
+	static GetDefaultObject(): InterchangePythonPipelineAssetFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangePythonPipelineAssetFactory;
+	static C(Other: UObject | any): InterchangePythonPipelineAssetFactory;
 }
 
-declare type EVariantManagerTestEnum = 'None' | 'FirstOption' | 'SecondOption' | 'ThirdOption' | 'EVariantManagerTestEnum_MAX';
-declare var EVariantManagerTestEnum : { None:'None',FirstOption:'FirstOption',SecondOption:'SecondOption',ThirdOption:'ThirdOption',EVariantManagerTestEnum_MAX:'EVariantManagerTestEnum_MAX', };
-declare class VariantManagerTestActor extends Actor { 
-	EnumWithNoDefault: EVariantManagerTestEnum;
-	EnumWithSecondDefault: EVariantManagerTestEnum;
-	CapturedByteProperty: number;
-	CapturedIntProperty: number;
-	CapturedFloatProperty: number;
-	bCapturedBoolProperty: boolean;
-	CapturedObjectProperty: UObject;
-	CapturedInterfaceProperty: Interface;
-	CapturedNameProperty: string;
-	CapturedStrProperty: string;
-	CapturedTextProperty: string;
-	CapturedRotatorProperty: Rotator;
-	CapturedColorProperty: Color;
-	CapturedLinearColorProperty: LinearColor;
-	CapturedVectorProperty: Vector;
-	CapturedQuatProperty: Quat;
-	CapturedVector4Property: Vector4;
-	CapturedVector2DProperty: Vector2D;
-	CapturedIntPointProperty: IntPoint;
-	CapturedUObjectArrayProperty: UObject[];
-	CapturedVectorArrayProperty: Vector[];
-	static GetDefaultObject(): VariantManagerTestActor;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): VariantManagerTestActor;
-	static C(Other: UObject | any): VariantManagerTestActor;
+declare class InterchangeGraphInspectorPipeline extends InterchangePipelineBase { 
+	static Load(ResourceName: string): InterchangeGraphInspectorPipeline;
+	static Find(Outer: UObject, ResourceName: string): InterchangeGraphInspectorPipeline;
+	static GetDefaultObject(): InterchangeGraphInspectorPipeline;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeGraphInspectorPipeline;
+	static C(Other: UObject | any): InterchangeGraphInspectorPipeline;
+}
+
+declare class InterchangePipelineConfigurationGeneric extends InterchangePipelineConfigurationBase { 
+	static Load(ResourceName: string): InterchangePipelineConfigurationGeneric;
+	static Find(Outer: UObject, ResourceName: string): InterchangePipelineConfigurationGeneric;
+	static GetDefaultObject(): InterchangePipelineConfigurationGeneric;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangePipelineConfigurationGeneric;
+	static C(Other: UObject | any): InterchangePipelineConfigurationGeneric;
+}
+
+declare class InterchangeFilePickerGeneric extends InterchangeFilePickerBase { 
+	static Load(ResourceName: string): InterchangeFilePickerGeneric;
+	static Find(Outer: UObject, ResourceName: string): InterchangeFilePickerGeneric;
+	static GetDefaultObject(): InterchangeFilePickerGeneric;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeFilePickerGeneric;
+	static C(Other: UObject | any): InterchangeFilePickerGeneric;
+}
+
+declare class InterchangeResultMeshWarning extends InterchangeResultWarning { 
+	MeshName: string;
+	static Load(ResourceName: string): InterchangeResultMeshWarning;
+	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshWarning;
+	static GetDefaultObject(): InterchangeResultMeshWarning;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshWarning;
+	static C(Other: UObject | any): InterchangeResultMeshWarning;
+}
+
+declare class InterchangeResultTextureWarning extends InterchangeResultWarning { 
+	TextureName: string;
+	static Load(ResourceName: string): InterchangeResultTextureWarning;
+	static Find(Outer: UObject, ResourceName: string): InterchangeResultTextureWarning;
+	static GetDefaultObject(): InterchangeResultTextureWarning;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultTextureWarning;
+	static C(Other: UObject | any): InterchangeResultTextureWarning;
+}
+
+declare class InterchangeResultMeshError extends InterchangeResultError { 
+	MeshName: string;
+	static Load(ResourceName: string): InterchangeResultMeshError;
+	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshError;
+	static GetDefaultObject(): InterchangeResultMeshError;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshError;
+	static C(Other: UObject | any): InterchangeResultMeshError;
+}
+
+declare class InterchangeResultMeshWarning_Generic extends InterchangeResultMeshWarning { 
+	Text: string;
+	static Load(ResourceName: string): InterchangeResultMeshWarning_Generic;
+	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshWarning_Generic;
+	static GetDefaultObject(): InterchangeResultMeshWarning_Generic;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshWarning_Generic;
+	static C(Other: UObject | any): InterchangeResultMeshWarning_Generic;
+}
+
+declare class InterchangeResultMeshError_Generic extends InterchangeResultMeshError { 
+	Text: string;
+	static Load(ResourceName: string): InterchangeResultMeshError_Generic;
+	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshError_Generic;
+	static GetDefaultObject(): InterchangeResultMeshError_Generic;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshError_Generic;
+	static C(Other: UObject | any): InterchangeResultMeshError_Generic;
+}
+
+declare class InterchangeResultMeshWarning_TooManyUVs extends InterchangeResultMeshWarning { 
+	ExcessUVs: number;
+	static Load(ResourceName: string): InterchangeResultMeshWarning_TooManyUVs;
+	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshWarning_TooManyUVs;
+	static GetDefaultObject(): InterchangeResultMeshWarning_TooManyUVs;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshWarning_TooManyUVs;
+	static C(Other: UObject | any): InterchangeResultMeshWarning_TooManyUVs;
+}
+
+declare class InterchangeResultTextureWarning_TextureFileDoNotExist extends InterchangeResultTextureWarning { 
+	Text: string;
+	MaterialName: string;
+	static Load(ResourceName: string): InterchangeResultTextureWarning_TextureFileDoNotExist;
+	static Find(Outer: UObject, ResourceName: string): InterchangeResultTextureWarning_TextureFileDoNotExist;
+	static GetDefaultObject(): InterchangeResultTextureWarning_TextureFileDoNotExist;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultTextureWarning_TextureFileDoNotExist;
+	static C(Other: UObject | any): InterchangeResultTextureWarning_TextureFileDoNotExist;
+}
+
+declare class InterchangeTextureWriter extends InterchangeWriterBase { 
+	static Load(ResourceName: string): InterchangeTextureWriter;
+	static Find(Outer: UObject, ResourceName: string): InterchangeTextureWriter;
+	static GetDefaultObject(): InterchangeTextureWriter;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeTextureWriter;
+	static C(Other: UObject | any): InterchangeTextureWriter;
+}
+
+declare class SequencerExportFBXParams { 
+	World: World;
+	Sequence: LevelSequence;
+	RootSequence: LevelSequence;
+	Bindings: MovieSceneBindingProxy[];
+	MasterTracks: MovieSceneTrack[];
+	OverrideOptions: FbxExportOption;
+	FBXFileName: string;
+	clone() : SequencerExportFBXParams;
+	static C(Other: UObject | any): SequencerExportFBXParams;
+	ExportLevelSequenceFBX(): boolean;
+	static ExportLevelSequenceFBX(InParams: SequencerExportFBXParams): boolean;
+}
+
+declare class SequencerToolsFunctionLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): SequencerToolsFunctionLibrary;
+	static Find(Outer: UObject, ResourceName: string): SequencerToolsFunctionLibrary;
+	static GetDefaultObject(): SequencerToolsFunctionLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SequencerToolsFunctionLibrary;
+	static LinkAnimSequence(Sequence: LevelSequence,AnimSequence: AnimSequence,ExportOptions: AnimSeqExportOption,Binding: MovieSceneBindingProxy): boolean;
+	static IsRenderingMovie(): boolean;
+	static IsEventEndpointValid(InEndpoint: SequencerQuickBindingResult): boolean;
+	static ImportLevelSequenceFBX(InWorld: World,InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InImportFBXSettings: MovieSceneUserImportFBXSettings,InImportFilename: string): boolean;
+	static ImportFBXToControlRig(World: World,InSequence: LevelSequence,ActorWithControlRigTrack: string,SelectedControlRigNames: string[],ImportFBXControlRigSettings: MovieSceneUserImportFBXControlRigSettings,ImportFilename: string): boolean;
+	static GetObjectBindings(InWorld: World,InSequence: LevelSequence,InObject: UObject[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
+	static GetLevelSequenceLinkFromAnimSequence(InAnimSequence: AnimSequence): AnimSequenceLevelSequenceLink;
+	static GetBoundObjects(InWorld: World,InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
+	static GetAnimSequenceLinkFromLevelSequence(InLevelSequence: LevelSequence): LevelSequenceAnimSequenceLink;
+	static ExportLevelSequenceFBX(InParams: SequencerExportFBXParams): boolean;
+	static ExportAnimSequence(World: World,Sequence: LevelSequence,AnimSequence: AnimSequence,ExportOption: AnimSeqExportOption,Binding: MovieSceneBindingProxy,bCreateLink: boolean): boolean;
+	static CreateQuickBinding(InSequence: MovieSceneSequence,InObject: UObject,InFunctionName: string,bCallInEditor: boolean): SequencerQuickBindingResult;
+	static CreateEvent(InSequence: MovieSceneSequence,InSection: MovieSceneEventSectionBase,InEndpoint: SequencerQuickBindingResult,InPayload: string[]): MovieSceneEvent;
+	static ClearLinkedAnimSequences(InLevelSequence: LevelSequence): void;
+	static CancelMovieRender(): void;
+	static C(Other: UObject | any): SequencerToolsFunctionLibrary;
+}
+
+declare class OnRenderMovieStopped__PythonCallable extends PythonCallableForDelegate { 
+	static Load(ResourceName: string): OnRenderMovieStopped__PythonCallable;
+	static Find(Outer: UObject, ResourceName: string): OnRenderMovieStopped__PythonCallable;
+	static GetDefaultObject(): OnRenderMovieStopped__PythonCallable;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnRenderMovieStopped__PythonCallable;
+	static C(Other: UObject | any): OnRenderMovieStopped__PythonCallable;
+}
+
+declare class LayersBlueprintLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): LayersBlueprintLibrary;
+	static Find(Outer: UObject, ResourceName: string): LayersBlueprintLibrary;
+	static GetDefaultObject(): LayersBlueprintLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LayersBlueprintLibrary;
+	static RemoveActorFromLayer(InActor: Actor,Layer: ActorLayer): void;
+	static GetActors(WorldContextObject: UObject,ActorLayer: ActorLayer): Actor[];
+	static AddActorToLayer(InActor: Actor,Layer: ActorLayer): void;
+	static C(Other: UObject | any): LayersBlueprintLibrary;
+}
+
+declare class AndroidPermissionCallbackProxy extends UObject { 
+	OnPermissionsGrantedDynamicDelegate: UnrealEngineMulticastDelegate<(Permissions: string[], GrantResults: boolean[]) => void>;
+	static Load(ResourceName: string): AndroidPermissionCallbackProxy;
+	static Find(Outer: UObject, ResourceName: string): AndroidPermissionCallbackProxy;
+	static GetDefaultObject(): AndroidPermissionCallbackProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AndroidPermissionCallbackProxy;
+	static C(Other: UObject | any): AndroidPermissionCallbackProxy;
+}
+
+declare class AndroidPermissionFunctionLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): AndroidPermissionFunctionLibrary;
+	static Find(Outer: UObject, ResourceName: string): AndroidPermissionFunctionLibrary;
+	static GetDefaultObject(): AndroidPermissionFunctionLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AndroidPermissionFunctionLibrary;
+	static CheckPermission(permission: string): boolean;
+	static AcquirePermissions(Permissions: string[]): AndroidPermissionCallbackProxy;
+	static C(Other: UObject | any): AndroidPermissionFunctionLibrary;
+}
+
+declare class AndroidPermissionDynamicDelegate__PythonCallable extends PythonCallableForDelegate { 
+	static Load(ResourceName: string): AndroidPermissionDynamicDelegate__PythonCallable;
+	static Find(Outer: UObject, ResourceName: string): AndroidPermissionDynamicDelegate__PythonCallable;
+	static GetDefaultObject(): AndroidPermissionDynamicDelegate__PythonCallable;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AndroidPermissionDynamicDelegate__PythonCallable;
+	static C(Other: UObject | any): AndroidPermissionDynamicDelegate__PythonCallable;
+}
+
+declare class AppleImageInterface extends Interface { 
+	static Load(ResourceName: string): AppleImageInterface;
+	static Find(Outer: UObject, ResourceName: string): AppleImageInterface;
+	static GetDefaultObject(): AppleImageInterface;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AppleImageInterface;
+	static C(Other: UObject | any): AppleImageInterface;
+}
+
+declare class AppleImageUtilsImageConversionResult { 
+	Error: string;
+	ImageData: number[];
+	clone() : AppleImageUtilsImageConversionResult;
+	static C(Other: UObject | any): AppleImageUtilsImageConversionResult;
+}
+
+declare type ETextureRotationDirection = 'None' | 'Left' | 'Right' | 'Down' | 'LeftMirrored' | 'RightMirrored' | 'DownMirrored' | 'UpMirrored' | 'ETextureRotationDirection_MAX';
+declare var ETextureRotationDirection : { None:'None',Left:'Left',Right:'Right',Down:'Down',LeftMirrored:'LeftMirrored',RightMirrored:'RightMirrored',DownMirrored:'DownMirrored',UpMirrored:'UpMirrored',ETextureRotationDirection_MAX:'ETextureRotationDirection_MAX', };
+declare class AppleImageUtilsBaseAsyncTaskBlueprintProxy extends UObject { 
+	OnSuccess: UnrealEngineMulticastDelegate<(ConversionResult: AppleImageUtilsImageConversionResult) => void>;
+	OnFailure: UnrealEngineMulticastDelegate<(ConversionResult: AppleImageUtilsImageConversionResult) => void>;
+	ConversionResult: AppleImageUtilsImageConversionResult;
+	static Load(ResourceName: string): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
+	static Find(Outer: UObject, ResourceName: string): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
+	static GetDefaultObject(): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
+	static CreateProxyObjectForConvertToTIFF(SourceImage: Texture,bWantColor: boolean,bUseGpu: boolean,Scale: number,Rotate: ETextureRotationDirection): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
+	static CreateProxyObjectForConvertToPNG(SourceImage: Texture,bWantColor: boolean,bUseGpu: boolean,Scale: number,Rotate: ETextureRotationDirection): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
+	static CreateProxyObjectForConvertToJPEG(SourceImage: Texture,Quality: number,bWantColor: boolean,bUseGpu: boolean,Scale: number,Rotate: ETextureRotationDirection): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
+	static CreateProxyObjectForConvertToHEIF(SourceImage: Texture,Quality: number,bWantColor: boolean,bUseGpu: boolean,Scale: number,Rotate: ETextureRotationDirection): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
+	static C(Other: UObject | any): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
+}
+
+declare class AppleImageConversionDelegate__PythonCallable extends PythonCallableForDelegate { 
+	static Load(ResourceName: string): AppleImageConversionDelegate__PythonCallable;
+	static Find(Outer: UObject, ResourceName: string): AppleImageConversionDelegate__PythonCallable;
+	static GetDefaultObject(): AppleImageConversionDelegate__PythonCallable;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AppleImageConversionDelegate__PythonCallable;
+	static C(Other: UObject | any): AppleImageConversionDelegate__PythonCallable;
+}
+
+declare class K2Node_ConvertToJPEG extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_ConvertToJPEG;
+	static Find(Outer: UObject, ResourceName: string): K2Node_ConvertToJPEG;
+	static GetDefaultObject(): K2Node_ConvertToJPEG;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_ConvertToJPEG;
+	static C(Other: UObject | any): K2Node_ConvertToJPEG;
+}
+
+declare class K2Node_ConvertToHEIF extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_ConvertToHEIF;
+	static Find(Outer: UObject, ResourceName: string): K2Node_ConvertToHEIF;
+	static GetDefaultObject(): K2Node_ConvertToHEIF;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_ConvertToHEIF;
+	static C(Other: UObject | any): K2Node_ConvertToHEIF;
+}
+
+declare class K2Node_ConvertToTIFF extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_ConvertToTIFF;
+	static Find(Outer: UObject, ResourceName: string): K2Node_ConvertToTIFF;
+	static GetDefaultObject(): K2Node_ConvertToTIFF;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_ConvertToTIFF;
+	static C(Other: UObject | any): K2Node_ConvertToTIFF;
+}
+
+declare class K2Node_ConvertToPNG extends K2Node_BaseAsyncTask { 
+	static Load(ResourceName: string): K2Node_ConvertToPNG;
+	static Find(Outer: UObject, ResourceName: string): K2Node_ConvertToPNG;
+	static GetDefaultObject(): K2Node_ConvertToPNG;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_ConvertToPNG;
+	static C(Other: UObject | any): K2Node_ConvertToPNG;
+}
+
+declare type ECollectionScriptingShareType = 'Local' | 'Private' | 'Shared' | 'ECollectionScriptingShareType_MAX';
+declare var ECollectionScriptingShareType : { Local:'Local',Private:'Private',Shared:'Shared',ECollectionScriptingShareType_MAX:'ECollectionScriptingShareType_MAX', };
+declare class AssetTagsSubsystem extends EngineSubsystem { 
+	static Load(ResourceName: string): AssetTagsSubsystem;
+	static Find(Outer: UObject, ResourceName: string): AssetTagsSubsystem;
+	static GetDefaultObject(): AssetTagsSubsystem;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AssetTagsSubsystem;
+	ReparentCollection(Name: string,NewParentName: string): boolean;
+	RenameCollection(Name: string,NewName: string): boolean;
+	RemoveAssetsFromCollection(Name: string,AssetPathNames: string[]): boolean;
+	RemoveAssetPtrsFromCollection(Name: string,AssetPtrs: UObject[]): boolean;
+	RemoveAssetPtrFromCollection(Name: string,AssetPtr: UObject): boolean;
+	RemoveAssetFromCollection(Name: string,AssetPathName: string): boolean;
+	RemoveAssetDatasFromCollection(Name: string,AssetDatas: AssetData[]): boolean;
+	RemoveAssetDataFromCollection(Name: string,AssetData: AssetData): boolean;
+	K2_RemoveAssetsFromCollection(Name: string,AssetPaths: SoftObjectPath[]): boolean;
+	K2_RemoveAssetFromCollection(Name: string,AssetPath: SoftObjectPath): boolean;
+	K2_GetCollectionsContainingAsset(AssetPath: SoftObjectPath): string[];
+	K2_AddAssetToCollection(Name: string,AssetPath: SoftObjectPath): boolean;
+	K2_AddAssetsToCollection(Name: string,AssetPaths: SoftObjectPath[]): boolean;
+	GetCollectionsContainingAssetPtr(AssetPtr: UObject): string[];
+	GetCollectionsContainingAssetData(AssetData: AssetData): string[];
+	GetCollectionsContainingAsset(AssetPathName: string): string[];
+	GetCollections(): string[];
+	GetAssetsInCollection(Name: string): AssetData[];
+	EmptyCollection(Name: string): boolean;
+	DestroyCollection(Name: string): boolean;
+	CreateCollection(Name: string,ShareType: ECollectionScriptingShareType): boolean;
+	CollectionExists(Name: string): boolean;
+	AddAssetToCollection(Name: string,AssetPathName: string): boolean;
+	AddAssetsToCollection(Name: string,AssetPathNames: string[]): boolean;
+	AddAssetPtrToCollection(Name: string,AssetPtr: UObject): boolean;
+	AddAssetPtrsToCollection(Name: string,AssetPtrs: UObject[]): boolean;
+	AddAssetDataToCollection(Name: string,AssetData: AssetData): boolean;
+	AddAssetDatasToCollection(Name: string,AssetDatas: AssetData[]): boolean;
+	static C(Other: UObject | any): AssetTagsSubsystem;
+}
+
+declare class ArchVisCharacter extends Character { 
+	LookUpAxisName: string;
+	LookUpAtRateAxisName: string;
+	TurnAxisName: string;
+	TurnAtRateAxisName: string;
+	MoveForwardAxisName: string;
+	MoveRightAxisName: string;
+	MouseSensitivityScale_Pitch: number;
+	MouseSensitivityScale_Yaw: number;
+	static GetDefaultObject(): ArchVisCharacter;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ArchVisCharacter;
+	static C(Other: UObject | any): ArchVisCharacter;
+}
+
+declare class ArchVisCharMovementComponent extends CharacterMovementComponent { 
+	RotationalAcceleration: Rotator;
+	RotationalDeceleration: Rotator;
+	MaxRotationalVelocity: Rotator;
+	MinPitch: number;
+	MaxPitch: number;
+	WalkingFriction: number;
+	WalkingSpeed: number;
+	WalkingAcceleration: number;
+	static Load(ResourceName: string): ArchVisCharMovementComponent;
+	static Find(Outer: UObject, ResourceName: string): ArchVisCharMovementComponent;
+	static GetDefaultObject(): ArchVisCharMovementComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ArchVisCharMovementComponent;
+	static C(Other: UObject | any): ArchVisCharMovementComponent;
+}
+
+declare class AudioCaptureDeviceInfo { 
+	DeviceName: string;
+	NumInputChannels: number;
+	SampleRate: number;
+	clone() : AudioCaptureDeviceInfo;
+	static C(Other: UObject | any): AudioCaptureDeviceInfo;
+}
+
+declare class AudioCapture extends AudioGenerator { 
+	static Load(ResourceName: string): AudioCapture;
+	static Find(Outer: UObject, ResourceName: string): AudioCapture;
+	static GetDefaultObject(): AudioCapture;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioCapture;
+	StopCapturingAudio(): void;
+	StartCapturingAudio(): void;
+	IsCapturingAudio(): boolean;
+	GetAudioCaptureDeviceInfo(OutInfo?: AudioCaptureDeviceInfo): {OutInfo: AudioCaptureDeviceInfo, $: boolean};
+	static C(Other: UObject | any): AudioCapture;
+}
+
+declare class AudioCaptureFunctionLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): AudioCaptureFunctionLibrary;
+	static Find(Outer: UObject, ResourceName: string): AudioCaptureFunctionLibrary;
+	static GetDefaultObject(): AudioCaptureFunctionLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioCaptureFunctionLibrary;
+	static CreateAudioCapture(): AudioCapture;
+	static C(Other: UObject | any): AudioCaptureFunctionLibrary;
+}
+
+declare class AudioCaptureBlueprintLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): AudioCaptureBlueprintLibrary;
+	static Find(Outer: UObject, ResourceName: string): AudioCaptureBlueprintLibrary;
+	static GetDefaultObject(): AudioCaptureBlueprintLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioCaptureBlueprintLibrary;
+	static Conv_AudioInputDeviceInfoToString(Info: AudioInputDeviceInfo): string;
+	static C(Other: UObject | any): AudioCaptureBlueprintLibrary;
+}
+
+declare class AudioCaptureComponent extends SynthComponent { 
+	JitterLatencyFrames: number;
+	static Load(ResourceName: string): AudioCaptureComponent;
+	static Find(Outer: UObject, ResourceName: string): AudioCaptureComponent;
+	static GetDefaultObject(): AudioCaptureComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioCaptureComponent;
+	static C(Other: UObject | any): AudioCaptureComponent;
+}
+
+declare class OnAudioInputDevicesObtained__PythonCallable extends PythonCallableForDelegate { 
+	static Load(ResourceName: string): OnAudioInputDevicesObtained__PythonCallable;
+	static Find(Outer: UObject, ResourceName: string): OnAudioInputDevicesObtained__PythonCallable;
+	static GetDefaultObject(): OnAudioInputDevicesObtained__PythonCallable;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnAudioInputDevicesObtained__PythonCallable;
+	static C(Other: UObject | any): OnAudioInputDevicesObtained__PythonCallable;
 }
 
 declare class GeometryCacheTrack extends UObject { 
@@ -4943,136 +5300,6 @@ declare class NiagaraGeometryCacheRendererProperties extends NiagaraRendererProp
 	static C(Other: UObject | any): NiagaraGeometryCacheRendererProperties;
 }
 
-declare type EAlembicSamplingType = 'PerFrame' | 'PerXFrames' | 'PerTimeStep' | 'EAlembicSamplingType_MAX';
-declare var EAlembicSamplingType : { PerFrame:'PerFrame',PerXFrames:'PerXFrames',PerTimeStep:'PerTimeStep',EAlembicSamplingType_MAX:'EAlembicSamplingType_MAX', };
-declare class AbcSamplingSettings { 
-	SamplingType: EAlembicSamplingType;
-	FrameSteps: number;
-	TimeSteps: number;
-	FrameStart: number;
-	FrameEnd: number;
-	bSkipEmpty: boolean;
-	clone() : AbcSamplingSettings;
-	static C(Other: UObject | any): AbcSamplingSettings;
-}
-
-declare class AbcNormalGenerationSettings { 
-	bForceOneSmoothingGroupPerObject: boolean;
-	HardEdgeAngleThreshold: number;
-	bRecomputeNormals: boolean;
-	bIgnoreDegenerateTriangles: boolean;
-	bSkipComputingTangents: boolean;
-	clone() : AbcNormalGenerationSettings;
-	static C(Other: UObject | any): AbcNormalGenerationSettings;
-}
-
-declare class AbcMaterialSettings { 
-	bCreateMaterials: boolean;
-	bFindMaterials: boolean;
-	clone() : AbcMaterialSettings;
-	static C(Other: UObject | any): AbcMaterialSettings;
-}
-
-declare type EBaseCalculationType = 'None' | 'PercentageBased' | 'FixedNumber' | 'NoCompression' | 'EBaseCalculationType_MAX';
-declare var EBaseCalculationType : { None:'None',PercentageBased:'PercentageBased',FixedNumber:'FixedNumber',NoCompression:'NoCompression',EBaseCalculationType_MAX:'EBaseCalculationType_MAX', };
-declare class AbcCompressionSettings { 
-	bMergeMeshes: boolean;
-	bBakeMatrixAnimation: boolean;
-	BaseCalculationType: EBaseCalculationType;
-	PercentageOfTotalBases: number;
-	MaxNumberOfBases: number;
-	MinimumNumberOfVertexInfluencePercentage: number;
-	clone() : AbcCompressionSettings;
-	static C(Other: UObject | any): AbcCompressionSettings;
-}
-
-declare class AbcStaticMeshSettings { 
-	bMergeMeshes: boolean;
-	bPropagateMatrixTransformations: boolean;
-	bGenerateLightmapUVs: boolean;
-	clone() : AbcStaticMeshSettings;
-	static C(Other: UObject | any): AbcStaticMeshSettings;
-}
-
-declare type EAbcGeometryCacheMotionVectorsImport = 'NoMotionVectors' | 'ImportAbcVelocitiesAsMotionVectors' | 'CalculateMotionVectorsDuringImport' | 'EAbcGeometryCacheMotionVectorsImport_MAX';
-declare var EAbcGeometryCacheMotionVectorsImport : { NoMotionVectors:'NoMotionVectors',ImportAbcVelocitiesAsMotionVectors:'ImportAbcVelocitiesAsMotionVectors',CalculateMotionVectorsDuringImport:'CalculateMotionVectorsDuringImport',EAbcGeometryCacheMotionVectorsImport_MAX:'EAbcGeometryCacheMotionVectorsImport_MAX', };
-declare class AbcGeometryCacheSettings { 
-	bFlattenTracks: boolean;
-	bStoreImportedVertexNumbers: boolean;
-	bApplyConstantTopologyOptimizations: boolean;
-	bCalculateMotionVectorsDuringImport: boolean;
-	MotionVectors: EAbcGeometryCacheMotionVectorsImport;
-	bOptimizeIndexBuffers: boolean;
-	CompressedPositionPrecision: number;
-	CompressedTextureCoordinatesNumberOfBits: number;
-	clone() : AbcGeometryCacheSettings;
-	static C(Other: UObject | any): AbcGeometryCacheSettings;
-}
-
-declare type EAbcConversionPreset = 'Maya' | 'Max' | 'Custom' | 'EAbcConversionPreset_MAX';
-declare var EAbcConversionPreset : { Maya:'Maya',Max:'Max',Custom:'Custom',EAbcConversionPreset_MAX:'EAbcConversionPreset_MAX', };
-declare class AbcConversionSettings { 
-	Preset: EAbcConversionPreset;
-	bFlipU: boolean;
-	bFlipV: boolean;
-	Scale: Vector;
-	Rotation: Vector;
-	clone() : AbcConversionSettings;
-	static C(Other: UObject | any): AbcConversionSettings;
-}
-
-declare class AbcAssetImportData extends AssetImportData { 
-	TrackNames: string[];
-	SamplingSettings: AbcSamplingSettings;
-	NormalGenerationSettings: AbcNormalGenerationSettings;
-	MaterialSettings: AbcMaterialSettings;
-	CompressionSettings: AbcCompressionSettings;
-	StaticMeshSettings: AbcStaticMeshSettings;
-	GeometryCacheSettings: AbcGeometryCacheSettings;
-	ConversionSettings: AbcConversionSettings;
-	static Load(ResourceName: string): AbcAssetImportData;
-	static Find(Outer: UObject, ResourceName: string): AbcAssetImportData;
-	static GetDefaultObject(): AbcAssetImportData;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AbcAssetImportData;
-	static C(Other: UObject | any): AbcAssetImportData;
-}
-
-declare type EAlembicImportType = 'StaticMesh' | 'GeometryCache' | 'Skeletal' | 'EAlembicImportType_MAX';
-declare var EAlembicImportType : { StaticMesh:'StaticMesh',GeometryCache:'GeometryCache',Skeletal:'Skeletal',EAlembicImportType_MAX:'EAlembicImportType_MAX', };
-declare class AbcImportSettings extends UObject { 
-	ImportType: EAlembicImportType;
-	SamplingSettings: AbcSamplingSettings;
-	NormalGenerationSettings: AbcNormalGenerationSettings;
-	MaterialSettings: AbcMaterialSettings;
-	CompressionSettings: AbcCompressionSettings;
-	StaticMeshSettings: AbcStaticMeshSettings;
-	GeometryCacheSettings: AbcGeometryCacheSettings;
-	ConversionSettings: AbcConversionSettings;
-	static Load(ResourceName: string): AbcImportSettings;
-	static Find(Outer: UObject, ResourceName: string): AbcImportSettings;
-	static GetDefaultObject(): AbcImportSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AbcImportSettings;
-	static C(Other: UObject | any): AbcImportSettings;
-}
-
-declare class AlembicTestCommandlet extends Commandlet { 
-	static Load(ResourceName: string): AlembicTestCommandlet;
-	static Find(Outer: UObject, ResourceName: string): AlembicTestCommandlet;
-	static GetDefaultObject(): AlembicTestCommandlet;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AlembicTestCommandlet;
-	static C(Other: UObject | any): AlembicTestCommandlet;
-}
-
-declare class AlembicImportFactory extends Factory { 
-	ImportSettings: AbcImportSettings;
-	bShowOption: boolean;
-	static Load(ResourceName: string): AlembicImportFactory;
-	static Find(Outer: UObject, ResourceName: string): AlembicImportFactory;
-	static GetDefaultObject(): AlembicImportFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AlembicImportFactory;
-	static C(Other: UObject | any): AlembicImportFactory;
-}
-
 declare class ActorFactoryGeometryCache extends ActorFactory { 
 	static Load(ResourceName: string): ActorFactoryGeometryCache;
 	static Find(Outer: UObject, ResourceName: string): ActorFactoryGeometryCache;
@@ -5087,480 +5314,6 @@ declare class GeometryCacheThumbnailRenderer extends DefaultSizedThumbnailRender
 	static GetDefaultObject(): GeometryCacheThumbnailRenderer;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): GeometryCacheThumbnailRenderer;
 	static C(Other: UObject | any): GeometryCacheThumbnailRenderer;
-}
-
-declare class AnimationSharingSetupFactory extends Factory { 
-	static Load(ResourceName: string): AnimationSharingSetupFactory;
-	static Find(Outer: UObject, ResourceName: string): AnimationSharingSetupFactory;
-	static GetDefaultObject(): AnimationSharingSetupFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationSharingSetupFactory;
-	static C(Other: UObject | any): AnimationSharingSetupFactory;
-}
-
-declare class PlasticSourceControlProjectSettings extends DeveloperSettings { 
-	UserNameToDisplayName: Map<string, string>;
-	bHideEmailDomainInUsername: boolean;
-	bPromptForCheckoutOnChange: boolean;
-	static Load(ResourceName: string): PlasticSourceControlProjectSettings;
-	static Find(Outer: UObject, ResourceName: string): PlasticSourceControlProjectSettings;
-	static GetDefaultObject(): PlasticSourceControlProjectSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PlasticSourceControlProjectSettings;
-	static C(Other: UObject | any): PlasticSourceControlProjectSettings;
-}
-
-declare class MyPluginStruct { 
-	TestString: string;
-	clone() : MyPluginStruct;
-	static C(Other: UObject | any): MyPluginStruct;
-}
-
-declare class MyPluginObject extends UObject { 
-	MyStruct: MyPluginStruct;
-	static Load(ResourceName: string): MyPluginObject;
-	static Find(Outer: UObject, ResourceName: string): MyPluginObject;
-	static GetDefaultObject(): MyPluginObject;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MyPluginObject;
-	static C(Other: UObject | any): MyPluginObject;
-}
-
-declare class InterchangeImportTestSettings extends UObject { 
-	ImportTestsPath: string;
-	ImportFiles: string[];
-	static Load(ResourceName: string): InterchangeImportTestSettings;
-	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestSettings;
-	static GetDefaultObject(): InterchangeImportTestSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestSettings;
-	static C(Other: UObject | any): InterchangeImportTestSettings;
-}
-
-declare class ImportTestFunctionsBase extends UObject { 
-	static Load(ResourceName: string): ImportTestFunctionsBase;
-	static Find(Outer: UObject, ResourceName: string): ImportTestFunctionsBase;
-	static GetDefaultObject(): ImportTestFunctionsBase;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ImportTestFunctionsBase;
-	static C(Other: UObject | any): ImportTestFunctionsBase;
-}
-
-declare class InterchangeTestFunctionResult { 
-	Infos: string[];
-	Warnings: string[];
-	Errors: string[];
-	clone() : InterchangeTestFunctionResult;
-	static C(Other: UObject | any): InterchangeTestFunctionResult;
-}
-
-declare class MaterialXTestFunctions extends ImportTestFunctionsBase { 
-	static Load(ResourceName: string): MaterialXTestFunctions;
-	static Find(Outer: UObject, ResourceName: string): MaterialXTestFunctions;
-	static GetDefaultObject(): MaterialXTestFunctions;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MaterialXTestFunctions;
-	static CheckInputConnected(MaterialInterface: MaterialInterface,InputName: string,bIsConnected: boolean): InterchangeTestFunctionResult;
-	static CheckConnectedInputCount(MaterialInterface: MaterialInterface,ExpectedNumber: number): InterchangeTestFunctionResult;
-	static C(Other: UObject | any): MaterialXTestFunctions;
-}
-
-declare class ActorImportTestFunctions extends ImportTestFunctionsBase { 
-	static Load(ResourceName: string): ActorImportTestFunctions;
-	static Find(Outer: UObject, ResourceName: string): ActorImportTestFunctions;
-	static GetDefaultObject(): ActorImportTestFunctions;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorImportTestFunctions;
-	static CheckImportedActorCount(Actors: Actor[],ExpectedNumberOfImportedActors: number): InterchangeTestFunctionResult;
-	static C(Other: UObject | any): ActorImportTestFunctions;
-}
-
-declare class AnimationImportTestFunctions extends ImportTestFunctionsBase { 
-	static Load(ResourceName: string): AnimationImportTestFunctions;
-	static Find(Outer: UObject, ResourceName: string): AnimationImportTestFunctions;
-	static GetDefaultObject(): AnimationImportTestFunctions;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationImportTestFunctions;
-	static C(Other: UObject | any): AnimationImportTestFunctions;
-}
-
-declare class AssetImportTestFunctions extends ImportTestFunctionsBase { 
-	static Load(ResourceName: string): AssetImportTestFunctions;
-	static Find(Outer: UObject, ResourceName: string): AssetImportTestFunctions;
-	static GetDefaultObject(): AssetImportTestFunctions;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AssetImportTestFunctions;
-	static CheckMetadataValue(UObject: UObject,ExpectedMetadataKey: string,ExpectedMetadataValue: string): InterchangeTestFunctionResult;
-	static CheckMetadataExist(UObject: UObject,ExpectedMetadataKey: string): InterchangeTestFunctionResult;
-	static CheckImportedMetadataCount(UObject: UObject,ExpectedNumberOfMetadataForThisObject: number): InterchangeTestFunctionResult;
-	static C(Other: UObject | any): AssetImportTestFunctions;
-}
-
-declare class InterchangeResultImportTestFunctions extends ImportTestFunctionsBase { 
-	static Load(ResourceName: string): InterchangeResultImportTestFunctions;
-	static Find(Outer: UObject, ResourceName: string): InterchangeResultImportTestFunctions;
-	static GetDefaultObject(): InterchangeResultImportTestFunctions;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultImportTestFunctions;
-	static CheckIfErrorOrWarningWasGenerated(ResultsContainer: InterchangeResultsContainer,ErrorOrWarningClass: UnrealEngineClass): InterchangeTestFunctionResult;
-	static C(Other: UObject | any): InterchangeResultImportTestFunctions;
-}
-
-declare class MaterialImportTestFunctions extends ImportTestFunctionsBase { 
-	static Load(ResourceName: string): MaterialImportTestFunctions;
-	static Find(Outer: UObject, ResourceName: string): MaterialImportTestFunctions;
-	static GetDefaultObject(): MaterialImportTestFunctions;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MaterialImportTestFunctions;
-	static CheckImportedMaterialInstanceCount(MaterialInterfaces: MaterialInterface[],ExpectedNumberOfImportedMaterialInstances: number): InterchangeTestFunctionResult;
-	static CheckImportedMaterialCount(MaterialInterfaces: MaterialInterface[],ExpectedNumberOfImportedMaterials: number): InterchangeTestFunctionResult;
-	static C(Other: UObject | any): MaterialImportTestFunctions;
-}
-
-declare class SkeletalMeshImportTestFunctions extends ImportTestFunctionsBase { 
-	static Load(ResourceName: string): SkeletalMeshImportTestFunctions;
-	static Find(Outer: UObject, ResourceName: string): SkeletalMeshImportTestFunctions;
-	static GetDefaultObject(): SkeletalMeshImportTestFunctions;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SkeletalMeshImportTestFunctions;
-	static CheckVertexIndexPosition(Mesh: SkeletalMesh,LODIndex: number,VertexIndex: number,ExpectedVertexPosition: Vector): InterchangeTestFunctionResult;
-	static CheckUVChannelCount(Mesh: SkeletalMesh,LODIndex: number,ExpectedNumberOfUVChannels: number): InterchangeTestFunctionResult;
-	static CheckTriangleCountInSection(Mesh: SkeletalMesh,LODIndex: number,SectionIndex: number,ExpectedNumberOfTriangles: number): InterchangeTestFunctionResult;
-	static CheckSkinnedVertexCountForBone(Mesh: SkeletalMesh,BoneName: string,bTestFirstAlternateProfile: boolean,ExpectedSkinnedVertexCount: number): InterchangeTestFunctionResult;
-	static CheckSectionMaterialName(Mesh: SkeletalMesh,LODIndex: number,SectionIndex: number,ExpectedMaterialName: string): InterchangeTestFunctionResult;
-	static CheckSectionCount(Mesh: SkeletalMesh,LODIndex: number,ExpectedNumberOfSections: number): InterchangeTestFunctionResult;
-	static CheckRenderVertexCount(Mesh: SkeletalMesh,LODIndex: number,ExpectedNumberOfRenderVertices: number): InterchangeTestFunctionResult;
-	static CheckMaterialSlotCount(Mesh: SkeletalMesh,ExpectedNumberOfMaterialSlots: number): InterchangeTestFunctionResult;
-	static CheckLodCount(Mesh: SkeletalMesh,ExpectedNumberOfLods: number): InterchangeTestFunctionResult;
-	static CheckImportedSkeletalMeshCount(Meshes: SkeletalMesh[],ExpectedNumberOfImportedSkeletalMeshes: number): InterchangeTestFunctionResult;
-	static CheckBonePosition(Mesh: SkeletalMesh,BoneIndex: number,ExpectedBonePosition: Vector): InterchangeTestFunctionResult;
-	static CheckBoneCount(Mesh: SkeletalMesh,ExpectedNumberOfBones: number): InterchangeTestFunctionResult;
-	static C(Other: UObject | any): SkeletalMeshImportTestFunctions;
-}
-
-declare class StaticMeshImportTestFunctions extends ImportTestFunctionsBase { 
-	static Load(ResourceName: string): StaticMeshImportTestFunctions;
-	static Find(Outer: UObject, ResourceName: string): StaticMeshImportTestFunctions;
-	static GetDefaultObject(): StaticMeshImportTestFunctions;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): StaticMeshImportTestFunctions;
-	static CheckVertexIndexPosition(Mesh: StaticMesh,LODIndex: number,VertexIndex: number,ExpectedVertexPosition: Vector): InterchangeTestFunctionResult;
-	static CheckVertexCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfVertices: number): InterchangeTestFunctionResult;
-	static CheckUVChannelCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfUVChannels: number): InterchangeTestFunctionResult;
-	static CheckTriangleCountInPolygonGroup(Mesh: StaticMesh,LODIndex: number,PolygonGroupIndex: number,ExpectedNumberOfTriangles: number): InterchangeTestFunctionResult;
-	static CheckTotalTriangleCount(Mesh: StaticMesh,LODIndex: number,ExpectedTotalNumberOfTriangles: number): InterchangeTestFunctionResult;
-	static CheckTotalPolygonCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfPolygons: number): InterchangeTestFunctionResult;
-	static CheckThatMeshHasQuadsOrNgons(Mesh: StaticMesh,LODIndex: number,bMeshHasQuadsOrNgons: boolean): InterchangeTestFunctionResult;
-	static CheckSocketName(Mesh: StaticMesh,SocketIndex: number,ExpectedSocketName: string): InterchangeTestFunctionResult;
-	static CheckSocketLocation(Mesh: StaticMesh,SocketIndex: number,ExpectedSocketLocation: Vector): InterchangeTestFunctionResult;
-	static CheckSocketCount(Mesh: StaticMesh,ExpectedSocketCount: number): InterchangeTestFunctionResult;
-	static CheckSimpleCollisionPrimitiveCount(Mesh: StaticMesh,ExpectedSphereElementCount: number,ExpectedBoxElementCount: number,ExpectedCapsuleElementCount: number,ExpectedConvexElementCount: number,ExpectedTaperedCapsuleElementCount: number): InterchangeTestFunctionResult;
-	static CheckSectionMaterialName(Mesh: StaticMesh,LODIndex: number,SectionIndex: number,ExpectedMaterialName: string): InterchangeTestFunctionResult;
-	static CheckSectionMaterialIndex(Mesh: StaticMesh,LODIndex: number,SectionIndex: number,ExpectedMaterialIndex: number): InterchangeTestFunctionResult;
-	static CheckSectionCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfSections: number): InterchangeTestFunctionResult;
-	static CheckRenderVertexCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfRenderVertices: number): InterchangeTestFunctionResult;
-	static CheckPolygonGroupImportedMaterialSlotName(Mesh: StaticMesh,LODIndex: number,PolygonGroupIndex: number,ExpectedImportedMaterialSlotName: string): InterchangeTestFunctionResult;
-	static CheckPolygonGroupCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfPolygonGroups: number): InterchangeTestFunctionResult;
-	static CheckPolygonCountInPolygonGroup(Mesh: StaticMesh,LODIndex: number,PolygonGroupIndex: number,ExpectedNumberOfPolygons: number): InterchangeTestFunctionResult;
-	static CheckNaniteSettings(Mesh: StaticMesh,ExpectedNaniteSettings: MeshNaniteSettings): InterchangeTestFunctionResult;
-	static CheckMaterialSlotCount(Mesh: StaticMesh,ExpectedNumberOfMaterialSlots: number): InterchangeTestFunctionResult;
-	static CheckLodCount(Mesh: StaticMesh,ExpectedNumberOfLods: number): InterchangeTestFunctionResult;
-	static CheckImportedStaticMeshCount(Meshes: StaticMesh[],ExpectedNumberOfImportedStaticMeshes: number): InterchangeTestFunctionResult;
-	static CheckBuildSettings(Mesh: StaticMesh,LODIndex: number,ExpectedBuildSettings: MeshBuildSettings): InterchangeTestFunctionResult;
-	static CheckAgainstGroundTruth(Mesh: StaticMesh,MeshToCompare: StaticMesh,bCheckVertexCountEqual: boolean,bCheckTriangleCountEqual: boolean,bCheckUVChannelCountEqual: boolean,bCheckCollisionPrimitiveCountEqual: boolean,bCheckVertexPositionsEqual: boolean,bCheckNormalsEqual: boolean): InterchangeTestFunctionResult;
-	static C(Other: UObject | any): StaticMeshImportTestFunctions;
-}
-
-declare class TextureImportTestFunctions extends ImportTestFunctionsBase { 
-	static Load(ResourceName: string): TextureImportTestFunctions;
-	static Find(Outer: UObject, ResourceName: string): TextureImportTestFunctions;
-	static GetDefaultObject(): TextureImportTestFunctions;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TextureImportTestFunctions;
-	static CheckImportedTextureCount(Textures: Texture[],ExpectedNumberOfImportedTextures: number): InterchangeTestFunctionResult;
-	static C(Other: UObject | any): TextureImportTestFunctions;
-}
-
-declare class InterchangeTestFunction { 
-	AssetClass: UnrealEngineClass;
-	OptionalAssetName: string;
-	CheckFunction: UFunction;
-	Parameters: Map<string, string>;
-	clone() : InterchangeTestFunction;
-	static C(Other: UObject | any): InterchangeTestFunction;
-}
-
-declare class InterchangeImportTestStepBase extends UObject { 
-	Tests: InterchangeTestFunction[];
-	static Load(ResourceName: string): InterchangeImportTestStepBase;
-	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestStepBase;
-	static GetDefaultObject(): InterchangeImportTestStepBase;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestStepBase;
-	static C(Other: UObject | any): InterchangeImportTestStepBase;
-}
-
-declare class InterchangeImportTestPlan extends UObject { 
-	Steps: InterchangeImportTestStepBase[];
-	bIsEnabledInAutomationTests: boolean;
-	DisabledTestReason: string;
-	static Load(ResourceName: string): InterchangeImportTestPlan;
-	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestPlan;
-	static GetDefaultObject(): InterchangeImportTestPlan;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestPlan;
-	RunThisTest(): void;
-	static C(Other: UObject | any): InterchangeImportTestPlan;
-}
-
-declare class InterchangeImportTestStepImport extends InterchangeImportTestStepBase { 
-	SourceFile: FilePath;
-	PipelineStack: InterchangePipelineBase[];
-	bEmptyDestinationFolderPriorToImport: boolean;
-	bSaveThenReloadImportedAssets: boolean;
-	bImportIntoLevel: boolean;
-	static Load(ResourceName: string): InterchangeImportTestStepImport;
-	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestStepImport;
-	static GetDefaultObject(): InterchangeImportTestStepImport;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestStepImport;
-	static C(Other: UObject | any): InterchangeImportTestStepImport;
-}
-
-declare class InterchangeImportTestStepReimport extends InterchangeImportTestStepBase { 
-	SourceFileToReimport: FilePath;
-	AssetTypeToReimport: UnrealEngineClass;
-	AssetNameToReimport: string;
-	bSaveThenReloadImportedAssets: boolean;
-	static Load(ResourceName: string): InterchangeImportTestStepReimport;
-	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestStepReimport;
-	static GetDefaultObject(): InterchangeImportTestStepReimport;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestStepReimport;
-	static C(Other: UObject | any): InterchangeImportTestStepReimport;
-}
-
-declare class InterchangeImportTestPlanFactory extends Factory { 
-	static Load(ResourceName: string): InterchangeImportTestPlanFactory;
-	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestPlanFactory;
-	static GetDefaultObject(): InterchangeImportTestPlanFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestPlanFactory;
-	static C(Other: UObject | any): InterchangeImportTestPlanFactory;
-}
-
-declare class LayersBlueprintLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): LayersBlueprintLibrary;
-	static Find(Outer: UObject, ResourceName: string): LayersBlueprintLibrary;
-	static GetDefaultObject(): LayersBlueprintLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LayersBlueprintLibrary;
-	static RemoveActorFromLayer(InActor: Actor,Layer: ActorLayer): void;
-	static GetActors(WorldContextObject: UObject,ActorLayer: ActorLayer): Actor[];
-	static AddActorToLayer(InActor: Actor,Layer: ActorLayer): void;
-	static C(Other: UObject | any): LayersBlueprintLibrary;
-}
-
-declare class AndroidPermissionCallbackProxy extends UObject { 
-	OnPermissionsGrantedDynamicDelegate: UnrealEngineMulticastDelegate<(Permissions: string[], GrantResults: boolean[]) => void>;
-	static Load(ResourceName: string): AndroidPermissionCallbackProxy;
-	static Find(Outer: UObject, ResourceName: string): AndroidPermissionCallbackProxy;
-	static GetDefaultObject(): AndroidPermissionCallbackProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AndroidPermissionCallbackProxy;
-	static C(Other: UObject | any): AndroidPermissionCallbackProxy;
-}
-
-declare class AndroidPermissionFunctionLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): AndroidPermissionFunctionLibrary;
-	static Find(Outer: UObject, ResourceName: string): AndroidPermissionFunctionLibrary;
-	static GetDefaultObject(): AndroidPermissionFunctionLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AndroidPermissionFunctionLibrary;
-	static CheckPermission(permission: string): boolean;
-	static AcquirePermissions(Permissions: string[]): AndroidPermissionCallbackProxy;
-	static C(Other: UObject | any): AndroidPermissionFunctionLibrary;
-}
-
-declare class AndroidPermissionDynamicDelegate__PythonCallable extends PythonCallableForDelegate { 
-	static Load(ResourceName: string): AndroidPermissionDynamicDelegate__PythonCallable;
-	static Find(Outer: UObject, ResourceName: string): AndroidPermissionDynamicDelegate__PythonCallable;
-	static GetDefaultObject(): AndroidPermissionDynamicDelegate__PythonCallable;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AndroidPermissionDynamicDelegate__PythonCallable;
-	static C(Other: UObject | any): AndroidPermissionDynamicDelegate__PythonCallable;
-}
-
-declare type ECollectionScriptingShareType = 'Local' | 'Private' | 'Shared' | 'ECollectionScriptingShareType_MAX';
-declare var ECollectionScriptingShareType : { Local:'Local',Private:'Private',Shared:'Shared',ECollectionScriptingShareType_MAX:'ECollectionScriptingShareType_MAX', };
-declare class AssetTagsSubsystem extends EngineSubsystem { 
-	static Load(ResourceName: string): AssetTagsSubsystem;
-	static Find(Outer: UObject, ResourceName: string): AssetTagsSubsystem;
-	static GetDefaultObject(): AssetTagsSubsystem;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AssetTagsSubsystem;
-	ReparentCollection(Name: string,NewParentName: string): boolean;
-	RenameCollection(Name: string,NewName: string): boolean;
-	RemoveAssetsFromCollection(Name: string,AssetPathNames: string[]): boolean;
-	RemoveAssetPtrsFromCollection(Name: string,AssetPtrs: UObject[]): boolean;
-	RemoveAssetPtrFromCollection(Name: string,AssetPtr: UObject): boolean;
-	RemoveAssetFromCollection(Name: string,AssetPathName: string): boolean;
-	RemoveAssetDatasFromCollection(Name: string,AssetDatas: AssetData[]): boolean;
-	RemoveAssetDataFromCollection(Name: string,AssetData: AssetData): boolean;
-	K2_RemoveAssetsFromCollection(Name: string,AssetPaths: SoftObjectPath[]): boolean;
-	K2_RemoveAssetFromCollection(Name: string,AssetPath: SoftObjectPath): boolean;
-	K2_GetCollectionsContainingAsset(AssetPath: SoftObjectPath): string[];
-	K2_AddAssetToCollection(Name: string,AssetPath: SoftObjectPath): boolean;
-	K2_AddAssetsToCollection(Name: string,AssetPaths: SoftObjectPath[]): boolean;
-	GetCollectionsContainingAssetPtr(AssetPtr: UObject): string[];
-	GetCollectionsContainingAssetData(AssetData: AssetData): string[];
-	GetCollectionsContainingAsset(AssetPathName: string): string[];
-	GetCollections(): string[];
-	GetAssetsInCollection(Name: string): AssetData[];
-	EmptyCollection(Name: string): boolean;
-	DestroyCollection(Name: string): boolean;
-	CreateCollection(Name: string,ShareType: ECollectionScriptingShareType): boolean;
-	CollectionExists(Name: string): boolean;
-	AddAssetToCollection(Name: string,AssetPathName: string): boolean;
-	AddAssetsToCollection(Name: string,AssetPathNames: string[]): boolean;
-	AddAssetPtrToCollection(Name: string,AssetPtr: UObject): boolean;
-	AddAssetPtrsToCollection(Name: string,AssetPtrs: UObject[]): boolean;
-	AddAssetDataToCollection(Name: string,AssetData: AssetData): boolean;
-	AddAssetDatasToCollection(Name: string,AssetDatas: AssetData[]): boolean;
-	static C(Other: UObject | any): AssetTagsSubsystem;
-}
-
-declare class AppleImageInterface extends Interface { 
-	static Load(ResourceName: string): AppleImageInterface;
-	static Find(Outer: UObject, ResourceName: string): AppleImageInterface;
-	static GetDefaultObject(): AppleImageInterface;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AppleImageInterface;
-	static C(Other: UObject | any): AppleImageInterface;
-}
-
-declare class AppleImageUtilsImageConversionResult { 
-	Error: string;
-	ImageData: number[];
-	clone() : AppleImageUtilsImageConversionResult;
-	static C(Other: UObject | any): AppleImageUtilsImageConversionResult;
-}
-
-declare type ETextureRotationDirection = 'None' | 'Left' | 'Right' | 'Down' | 'LeftMirrored' | 'RightMirrored' | 'DownMirrored' | 'UpMirrored' | 'ETextureRotationDirection_MAX';
-declare var ETextureRotationDirection : { None:'None',Left:'Left',Right:'Right',Down:'Down',LeftMirrored:'LeftMirrored',RightMirrored:'RightMirrored',DownMirrored:'DownMirrored',UpMirrored:'UpMirrored',ETextureRotationDirection_MAX:'ETextureRotationDirection_MAX', };
-declare class AppleImageUtilsBaseAsyncTaskBlueprintProxy extends UObject { 
-	OnSuccess: UnrealEngineMulticastDelegate<(ConversionResult: AppleImageUtilsImageConversionResult) => void>;
-	OnFailure: UnrealEngineMulticastDelegate<(ConversionResult: AppleImageUtilsImageConversionResult) => void>;
-	ConversionResult: AppleImageUtilsImageConversionResult;
-	static Load(ResourceName: string): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
-	static Find(Outer: UObject, ResourceName: string): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
-	static GetDefaultObject(): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
-	static CreateProxyObjectForConvertToTIFF(SourceImage: Texture,bWantColor: boolean,bUseGpu: boolean,Scale: number,Rotate: ETextureRotationDirection): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
-	static CreateProxyObjectForConvertToPNG(SourceImage: Texture,bWantColor: boolean,bUseGpu: boolean,Scale: number,Rotate: ETextureRotationDirection): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
-	static CreateProxyObjectForConvertToJPEG(SourceImage: Texture,Quality: number,bWantColor: boolean,bUseGpu: boolean,Scale: number,Rotate: ETextureRotationDirection): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
-	static CreateProxyObjectForConvertToHEIF(SourceImage: Texture,Quality: number,bWantColor: boolean,bUseGpu: boolean,Scale: number,Rotate: ETextureRotationDirection): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
-	static C(Other: UObject | any): AppleImageUtilsBaseAsyncTaskBlueprintProxy;
-}
-
-declare class AppleImageConversionDelegate__PythonCallable extends PythonCallableForDelegate { 
-	static Load(ResourceName: string): AppleImageConversionDelegate__PythonCallable;
-	static Find(Outer: UObject, ResourceName: string): AppleImageConversionDelegate__PythonCallable;
-	static GetDefaultObject(): AppleImageConversionDelegate__PythonCallable;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AppleImageConversionDelegate__PythonCallable;
-	static C(Other: UObject | any): AppleImageConversionDelegate__PythonCallable;
-}
-
-declare class K2Node_ConvertToJPEG extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_ConvertToJPEG;
-	static Find(Outer: UObject, ResourceName: string): K2Node_ConvertToJPEG;
-	static GetDefaultObject(): K2Node_ConvertToJPEG;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_ConvertToJPEG;
-	static C(Other: UObject | any): K2Node_ConvertToJPEG;
-}
-
-declare class K2Node_ConvertToHEIF extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_ConvertToHEIF;
-	static Find(Outer: UObject, ResourceName: string): K2Node_ConvertToHEIF;
-	static GetDefaultObject(): K2Node_ConvertToHEIF;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_ConvertToHEIF;
-	static C(Other: UObject | any): K2Node_ConvertToHEIF;
-}
-
-declare class K2Node_ConvertToTIFF extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_ConvertToTIFF;
-	static Find(Outer: UObject, ResourceName: string): K2Node_ConvertToTIFF;
-	static GetDefaultObject(): K2Node_ConvertToTIFF;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_ConvertToTIFF;
-	static C(Other: UObject | any): K2Node_ConvertToTIFF;
-}
-
-declare class K2Node_ConvertToPNG extends K2Node_BaseAsyncTask { 
-	static Load(ResourceName: string): K2Node_ConvertToPNG;
-	static Find(Outer: UObject, ResourceName: string): K2Node_ConvertToPNG;
-	static GetDefaultObject(): K2Node_ConvertToPNG;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_ConvertToPNG;
-	static C(Other: UObject | any): K2Node_ConvertToPNG;
-}
-
-declare class ArchVisCharacter extends Character { 
-	LookUpAxisName: string;
-	LookUpAtRateAxisName: string;
-	TurnAxisName: string;
-	TurnAtRateAxisName: string;
-	MoveForwardAxisName: string;
-	MoveRightAxisName: string;
-	MouseSensitivityScale_Pitch: number;
-	MouseSensitivityScale_Yaw: number;
-	static GetDefaultObject(): ArchVisCharacter;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ArchVisCharacter;
-	static C(Other: UObject | any): ArchVisCharacter;
-}
-
-declare class ArchVisCharMovementComponent extends CharacterMovementComponent { 
-	RotationalAcceleration: Rotator;
-	RotationalDeceleration: Rotator;
-	MaxRotationalVelocity: Rotator;
-	MinPitch: number;
-	MaxPitch: number;
-	WalkingFriction: number;
-	WalkingSpeed: number;
-	WalkingAcceleration: number;
-	static Load(ResourceName: string): ArchVisCharMovementComponent;
-	static Find(Outer: UObject, ResourceName: string): ArchVisCharMovementComponent;
-	static GetDefaultObject(): ArchVisCharMovementComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ArchVisCharMovementComponent;
-	static C(Other: UObject | any): ArchVisCharMovementComponent;
-}
-
-declare class AudioCaptureDeviceInfo { 
-	DeviceName: string;
-	NumInputChannels: number;
-	SampleRate: number;
-	clone() : AudioCaptureDeviceInfo;
-	static C(Other: UObject | any): AudioCaptureDeviceInfo;
-}
-
-declare class AudioCapture extends AudioGenerator { 
-	static Load(ResourceName: string): AudioCapture;
-	static Find(Outer: UObject, ResourceName: string): AudioCapture;
-	static GetDefaultObject(): AudioCapture;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioCapture;
-	StopCapturingAudio(): void;
-	StartCapturingAudio(): void;
-	IsCapturingAudio(): boolean;
-	GetAudioCaptureDeviceInfo(OutInfo?: AudioCaptureDeviceInfo): {OutInfo: AudioCaptureDeviceInfo, $: boolean};
-	static C(Other: UObject | any): AudioCapture;
-}
-
-declare class AudioCaptureFunctionLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): AudioCaptureFunctionLibrary;
-	static Find(Outer: UObject, ResourceName: string): AudioCaptureFunctionLibrary;
-	static GetDefaultObject(): AudioCaptureFunctionLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioCaptureFunctionLibrary;
-	static CreateAudioCapture(): AudioCapture;
-	static C(Other: UObject | any): AudioCaptureFunctionLibrary;
-}
-
-declare class AudioCaptureBlueprintLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): AudioCaptureBlueprintLibrary;
-	static Find(Outer: UObject, ResourceName: string): AudioCaptureBlueprintLibrary;
-	static GetDefaultObject(): AudioCaptureBlueprintLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioCaptureBlueprintLibrary;
-	static Conv_AudioInputDeviceInfoToString(Info: AudioInputDeviceInfo): string;
-	static C(Other: UObject | any): AudioCaptureBlueprintLibrary;
-}
-
-declare class AudioCaptureComponent extends SynthComponent { 
-	JitterLatencyFrames: number;
-	static Load(ResourceName: string): AudioCaptureComponent;
-	static Find(Outer: UObject, ResourceName: string): AudioCaptureComponent;
-	static GetDefaultObject(): AudioCaptureComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioCaptureComponent;
-	static C(Other: UObject | any): AudioCaptureComponent;
-}
-
-declare class OnAudioInputDevicesObtained__PythonCallable extends PythonCallableForDelegate { 
-	static Load(ResourceName: string): OnAudioInputDevicesObtained__PythonCallable;
-	static Find(Outer: UObject, ResourceName: string): OnAudioInputDevicesObtained__PythonCallable;
-	static GetDefaultObject(): OnAudioInputDevicesObtained__PythonCallable;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnAudioInputDevicesObtained__PythonCallable;
-	static C(Other: UObject | any): OnAudioInputDevicesObtained__PythonCallable;
 }
 
 declare class MovieSceneGeometryCacheParams { 
@@ -5853,403 +5606,428 @@ declare class MonoWaveTableSynthPresetFactory extends Factory {
 	static C(Other: UObject | any): MonoWaveTableSynthPresetFactory;
 }
 
-declare class InterchangeBlueprintPipelineBaseFactory extends Factory { 
-	BlueprintType: EBlueprintType;
-	ParentClass: UnrealEngineClass;
-	static Load(ResourceName: string): InterchangeBlueprintPipelineBaseFactory;
-	static Find(Outer: UObject, ResourceName: string): InterchangeBlueprintPipelineBaseFactory;
-	static GetDefaultObject(): InterchangeBlueprintPipelineBaseFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeBlueprintPipelineBaseFactory;
-	static C(Other: UObject | any): InterchangeBlueprintPipelineBaseFactory;
+declare class AnimationSharingSetupFactory extends Factory { 
+	static Load(ResourceName: string): AnimationSharingSetupFactory;
+	static Find(Outer: UObject, ResourceName: string): AnimationSharingSetupFactory;
+	static GetDefaultObject(): AnimationSharingSetupFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationSharingSetupFactory;
+	static C(Other: UObject | any): AnimationSharingSetupFactory;
 }
 
-declare class InterchangePipelineBaseFactory extends Factory { 
-	static Load(ResourceName: string): InterchangePipelineBaseFactory;
-	static Find(Outer: UObject, ResourceName: string): InterchangePipelineBaseFactory;
-	static GetDefaultObject(): InterchangePipelineBaseFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangePipelineBaseFactory;
-	static C(Other: UObject | any): InterchangePipelineBaseFactory;
+declare class PlasticSourceControlProjectSettings extends DeveloperSettings { 
+	UserNameToDisplayName: Map<string, string>;
+	bHideEmailDomainInUsername: boolean;
+	bPromptForCheckoutOnChange: boolean;
+	static Load(ResourceName: string): PlasticSourceControlProjectSettings;
+	static Find(Outer: UObject, ResourceName: string): PlasticSourceControlProjectSettings;
+	static GetDefaultObject(): PlasticSourceControlProjectSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PlasticSourceControlProjectSettings;
+	static C(Other: UObject | any): PlasticSourceControlProjectSettings;
 }
 
-declare class InterchangePythonPipelineAssetFactory extends Factory { 
-	static Load(ResourceName: string): InterchangePythonPipelineAssetFactory;
-	static Find(Outer: UObject, ResourceName: string): InterchangePythonPipelineAssetFactory;
-	static GetDefaultObject(): InterchangePythonPipelineAssetFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangePythonPipelineAssetFactory;
-	static C(Other: UObject | any): InterchangePythonPipelineAssetFactory;
+declare class MyPluginStruct { 
+	TestString: string;
+	clone() : MyPluginStruct;
+	static C(Other: UObject | any): MyPluginStruct;
 }
 
-declare class InterchangeGraphInspectorPipeline extends InterchangePipelineBase { 
-	static Load(ResourceName: string): InterchangeGraphInspectorPipeline;
-	static Find(Outer: UObject, ResourceName: string): InterchangeGraphInspectorPipeline;
-	static GetDefaultObject(): InterchangeGraphInspectorPipeline;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeGraphInspectorPipeline;
-	static C(Other: UObject | any): InterchangeGraphInspectorPipeline;
+declare class MyPluginObject extends UObject { 
+	MyStruct: MyPluginStruct;
+	static Load(ResourceName: string): MyPluginObject;
+	static Find(Outer: UObject, ResourceName: string): MyPluginObject;
+	static GetDefaultObject(): MyPluginObject;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MyPluginObject;
+	static C(Other: UObject | any): MyPluginObject;
 }
 
-declare class InterchangePipelineConfigurationGeneric extends InterchangePipelineConfigurationBase { 
-	static Load(ResourceName: string): InterchangePipelineConfigurationGeneric;
-	static Find(Outer: UObject, ResourceName: string): InterchangePipelineConfigurationGeneric;
-	static GetDefaultObject(): InterchangePipelineConfigurationGeneric;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangePipelineConfigurationGeneric;
-	static C(Other: UObject | any): InterchangePipelineConfigurationGeneric;
+declare class LevelVariantSetsActorFactory extends ActorFactory { 
+	static Load(ResourceName: string): LevelVariantSetsActorFactory;
+	static Find(Outer: UObject, ResourceName: string): LevelVariantSetsActorFactory;
+	static GetDefaultObject(): LevelVariantSetsActorFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LevelVariantSetsActorFactory;
+	static C(Other: UObject | any): LevelVariantSetsActorFactory;
 }
 
-declare class InterchangeFilePickerGeneric extends InterchangeFilePickerBase { 
-	static Load(ResourceName: string): InterchangeFilePickerGeneric;
-	static Find(Outer: UObject, ResourceName: string): InterchangeFilePickerGeneric;
-	static GetDefaultObject(): InterchangeFilePickerGeneric;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeFilePickerGeneric;
-	static C(Other: UObject | any): InterchangeFilePickerGeneric;
+declare class SwitchActorFactory extends ActorFactory { 
+	static Load(ResourceName: string): SwitchActorFactory;
+	static Find(Outer: UObject, ResourceName: string): SwitchActorFactory;
+	static GetDefaultObject(): SwitchActorFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SwitchActorFactory;
+	static C(Other: UObject | any): SwitchActorFactory;
 }
 
-declare class InterchangeResultMeshWarning extends InterchangeResultWarning { 
-	MeshName: string;
-	static Load(ResourceName: string): InterchangeResultMeshWarning;
-	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshWarning;
-	static GetDefaultObject(): InterchangeResultMeshWarning;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshWarning;
-	static C(Other: UObject | any): InterchangeResultMeshWarning;
+declare class VariantManagerFactoryNew extends Factory { 
+	static Load(ResourceName: string): VariantManagerFactoryNew;
+	static Find(Outer: UObject, ResourceName: string): VariantManagerFactoryNew;
+	static GetDefaultObject(): VariantManagerFactoryNew;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): VariantManagerFactoryNew;
+	static C(Other: UObject | any): VariantManagerFactoryNew;
 }
 
-declare class InterchangeResultTextureWarning extends InterchangeResultWarning { 
-	TextureName: string;
-	static Load(ResourceName: string): InterchangeResultTextureWarning;
-	static Find(Outer: UObject, ResourceName: string): InterchangeResultTextureWarning;
-	static GetDefaultObject(): InterchangeResultTextureWarning;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultTextureWarning;
-	static C(Other: UObject | any): InterchangeResultTextureWarning;
+declare type EVariantManagerTestEnum = 'None' | 'FirstOption' | 'SecondOption' | 'ThirdOption' | 'EVariantManagerTestEnum_MAX';
+declare var EVariantManagerTestEnum : { None:'None',FirstOption:'FirstOption',SecondOption:'SecondOption',ThirdOption:'ThirdOption',EVariantManagerTestEnum_MAX:'EVariantManagerTestEnum_MAX', };
+declare class VariantManagerTestActor extends Actor { 
+	EnumWithNoDefault: EVariantManagerTestEnum;
+	EnumWithSecondDefault: EVariantManagerTestEnum;
+	CapturedByteProperty: number;
+	CapturedIntProperty: number;
+	CapturedFloatProperty: number;
+	bCapturedBoolProperty: boolean;
+	CapturedObjectProperty: UObject;
+	CapturedInterfaceProperty: Interface;
+	CapturedNameProperty: string;
+	CapturedStrProperty: string;
+	CapturedTextProperty: string;
+	CapturedRotatorProperty: Rotator;
+	CapturedColorProperty: Color;
+	CapturedLinearColorProperty: LinearColor;
+	CapturedVectorProperty: Vector;
+	CapturedQuatProperty: Quat;
+	CapturedVector4Property: Vector4;
+	CapturedVector2DProperty: Vector2D;
+	CapturedIntPointProperty: IntPoint;
+	CapturedUObjectArrayProperty: UObject[];
+	CapturedVectorArrayProperty: Vector[];
+	static GetDefaultObject(): VariantManagerTestActor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): VariantManagerTestActor;
+	static C(Other: UObject | any): VariantManagerTestActor;
 }
 
-declare class InterchangeResultMeshError extends InterchangeResultError { 
-	MeshName: string;
-	static Load(ResourceName: string): InterchangeResultMeshError;
-	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshError;
-	static GetDefaultObject(): InterchangeResultMeshError;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshError;
-	static C(Other: UObject | any): InterchangeResultMeshError;
+declare type EAlembicSamplingType = 'PerFrame' | 'PerXFrames' | 'PerTimeStep' | 'EAlembicSamplingType_MAX';
+declare var EAlembicSamplingType : { PerFrame:'PerFrame',PerXFrames:'PerXFrames',PerTimeStep:'PerTimeStep',EAlembicSamplingType_MAX:'EAlembicSamplingType_MAX', };
+declare class AbcSamplingSettings { 
+	SamplingType: EAlembicSamplingType;
+	FrameSteps: number;
+	TimeSteps: number;
+	FrameStart: number;
+	FrameEnd: number;
+	bSkipEmpty: boolean;
+	clone() : AbcSamplingSettings;
+	static C(Other: UObject | any): AbcSamplingSettings;
 }
 
-declare class InterchangeResultMeshWarning_Generic extends InterchangeResultMeshWarning { 
-	Text: string;
-	static Load(ResourceName: string): InterchangeResultMeshWarning_Generic;
-	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshWarning_Generic;
-	static GetDefaultObject(): InterchangeResultMeshWarning_Generic;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshWarning_Generic;
-	static C(Other: UObject | any): InterchangeResultMeshWarning_Generic;
+declare class AbcNormalGenerationSettings { 
+	bForceOneSmoothingGroupPerObject: boolean;
+	HardEdgeAngleThreshold: number;
+	bRecomputeNormals: boolean;
+	bIgnoreDegenerateTriangles: boolean;
+	bSkipComputingTangents: boolean;
+	clone() : AbcNormalGenerationSettings;
+	static C(Other: UObject | any): AbcNormalGenerationSettings;
 }
 
-declare class InterchangeResultMeshError_Generic extends InterchangeResultMeshError { 
-	Text: string;
-	static Load(ResourceName: string): InterchangeResultMeshError_Generic;
-	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshError_Generic;
-	static GetDefaultObject(): InterchangeResultMeshError_Generic;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshError_Generic;
-	static C(Other: UObject | any): InterchangeResultMeshError_Generic;
+declare class AbcMaterialSettings { 
+	bCreateMaterials: boolean;
+	bFindMaterials: boolean;
+	clone() : AbcMaterialSettings;
+	static C(Other: UObject | any): AbcMaterialSettings;
 }
 
-declare class InterchangeResultMeshWarning_TooManyUVs extends InterchangeResultMeshWarning { 
-	ExcessUVs: number;
-	static Load(ResourceName: string): InterchangeResultMeshWarning_TooManyUVs;
-	static Find(Outer: UObject, ResourceName: string): InterchangeResultMeshWarning_TooManyUVs;
-	static GetDefaultObject(): InterchangeResultMeshWarning_TooManyUVs;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultMeshWarning_TooManyUVs;
-	static C(Other: UObject | any): InterchangeResultMeshWarning_TooManyUVs;
+declare type EBaseCalculationType = 'None' | 'PercentageBased' | 'FixedNumber' | 'NoCompression' | 'EBaseCalculationType_MAX';
+declare var EBaseCalculationType : { None:'None',PercentageBased:'PercentageBased',FixedNumber:'FixedNumber',NoCompression:'NoCompression',EBaseCalculationType_MAX:'EBaseCalculationType_MAX', };
+declare class AbcCompressionSettings { 
+	bMergeMeshes: boolean;
+	bBakeMatrixAnimation: boolean;
+	BaseCalculationType: EBaseCalculationType;
+	PercentageOfTotalBases: number;
+	MaxNumberOfBases: number;
+	MinimumNumberOfVertexInfluencePercentage: number;
+	clone() : AbcCompressionSettings;
+	static C(Other: UObject | any): AbcCompressionSettings;
 }
 
-declare class InterchangeResultTextureWarning_TextureFileDoNotExist extends InterchangeResultTextureWarning { 
-	Text: string;
-	MaterialName: string;
-	static Load(ResourceName: string): InterchangeResultTextureWarning_TextureFileDoNotExist;
-	static Find(Outer: UObject, ResourceName: string): InterchangeResultTextureWarning_TextureFileDoNotExist;
-	static GetDefaultObject(): InterchangeResultTextureWarning_TextureFileDoNotExist;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultTextureWarning_TextureFileDoNotExist;
-	static C(Other: UObject | any): InterchangeResultTextureWarning_TextureFileDoNotExist;
+declare class AbcStaticMeshSettings { 
+	bMergeMeshes: boolean;
+	bPropagateMatrixTransformations: boolean;
+	bGenerateLightmapUVs: boolean;
+	clone() : AbcStaticMeshSettings;
+	static C(Other: UObject | any): AbcStaticMeshSettings;
 }
 
-declare class InterchangeTextureWriter extends InterchangeWriterBase { 
-	static Load(ResourceName: string): InterchangeTextureWriter;
-	static Find(Outer: UObject, ResourceName: string): InterchangeTextureWriter;
-	static GetDefaultObject(): InterchangeTextureWriter;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeTextureWriter;
-	static C(Other: UObject | any): InterchangeTextureWriter;
+declare type EAbcGeometryCacheMotionVectorsImport = 'NoMotionVectors' | 'ImportAbcVelocitiesAsMotionVectors' | 'CalculateMotionVectorsDuringImport' | 'EAbcGeometryCacheMotionVectorsImport_MAX';
+declare var EAbcGeometryCacheMotionVectorsImport : { NoMotionVectors:'NoMotionVectors',ImportAbcVelocitiesAsMotionVectors:'ImportAbcVelocitiesAsMotionVectors',CalculateMotionVectorsDuringImport:'CalculateMotionVectorsDuringImport',EAbcGeometryCacheMotionVectorsImport_MAX:'EAbcGeometryCacheMotionVectorsImport_MAX', };
+declare class AbcGeometryCacheSettings { 
+	bFlattenTracks: boolean;
+	bStoreImportedVertexNumbers: boolean;
+	bApplyConstantTopologyOptimizations: boolean;
+	bCalculateMotionVectorsDuringImport: boolean;
+	MotionVectors: EAbcGeometryCacheMotionVectorsImport;
+	bOptimizeIndexBuffers: boolean;
+	CompressedPositionPrecision: number;
+	CompressedTextureCoordinatesNumberOfBits: number;
+	clone() : AbcGeometryCacheSettings;
+	static C(Other: UObject | any): AbcGeometryCacheSettings;
 }
 
-declare class ImgMediaSettings extends UObject { 
-	DefaultFrameRate: FrameRate;
-	CacheBehindPercentage: number;
-	CacheSizeGB: number;
-	CacheThreads: number;
-	CacheThreadStackSizeKB: number;
-	GlobalCacheSizeGB: number;
-	UseGlobalCache: boolean;
-	ExrDecoderThreads: number;
-	DefaultProxy: string;
-	UseDefaultProxy: boolean;
-	static Load(ResourceName: string): ImgMediaSettings;
-	static Find(Outer: UObject, ResourceName: string): ImgMediaSettings;
-	static GetDefaultObject(): ImgMediaSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ImgMediaSettings;
-	static C(Other: UObject | any): ImgMediaSettings;
+declare type EAbcConversionPreset = 'Maya' | 'Max' | 'Custom' | 'EAbcConversionPreset_MAX';
+declare var EAbcConversionPreset : { Maya:'Maya',Max:'Max',Custom:'Custom',EAbcConversionPreset_MAX:'EAbcConversionPreset_MAX', };
+declare class AbcConversionSettings { 
+	Preset: EAbcConversionPreset;
+	bFlipU: boolean;
+	bFlipV: boolean;
+	Scale: Vector;
+	Rotation: Vector;
+	clone() : AbcConversionSettings;
+	static C(Other: UObject | any): AbcConversionSettings;
 }
 
-declare class ImgMediaSourceCustomizationSequenceProxy { 
-	clone() : ImgMediaSourceCustomizationSequenceProxy;
-	static C(Other: UObject | any): ImgMediaSourceCustomizationSequenceProxy;
+declare class AbcAssetImportData extends AssetImportData { 
+	TrackNames: string[];
+	SamplingSettings: AbcSamplingSettings;
+	NormalGenerationSettings: AbcNormalGenerationSettings;
+	MaterialSettings: AbcMaterialSettings;
+	CompressionSettings: AbcCompressionSettings;
+	StaticMeshSettings: AbcStaticMeshSettings;
+	GeometryCacheSettings: AbcGeometryCacheSettings;
+	ConversionSettings: AbcConversionSettings;
+	static Load(ResourceName: string): AbcAssetImportData;
+	static Find(Outer: UObject, ResourceName: string): AbcAssetImportData;
+	static GetDefaultObject(): AbcAssetImportData;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AbcAssetImportData;
+	static C(Other: UObject | any): AbcAssetImportData;
 }
 
-declare class ImgMediaSource extends BaseMediaSource { 
-	IsPathRelativeToProjectRoot: boolean;
-	FrameRateOverride: FrameRate;
-	ProxyOverride: string;
-	bFillGapsInSequence: boolean;
-	SequenceProxy: ImgMediaSourceCustomizationSequenceProxy;
-	SequencePath: DirectoryPath;
-	static Load(ResourceName: string): ImgMediaSource;
-	static Find(Outer: UObject, ResourceName: string): ImgMediaSource;
-	static GetDefaultObject(): ImgMediaSource;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ImgMediaSource;
-	SetTokenizedSequencePath(Path: string): void;
-	SetSequencePath(Path: string): void;
-	SetMipLevelDistance(Distance: number): void;
-	RemoveTargetObject(InActor: Actor): void;
-	RemoveGlobalCamera(InActor: Actor): void;
-	GetSequencePath(): string;
-	GetProxies(OutProxies?: string[]): {OutProxies: string[]};
-	AddTargetObject(InActor: Actor): void;
-	AddGlobalCamera(InActor: Actor): void;
-	static C(Other: UObject | any): ImgMediaSource;
+declare type EAlembicImportType = 'StaticMesh' | 'GeometryCache' | 'Skeletal' | 'EAlembicImportType_MAX';
+declare var EAlembicImportType : { StaticMesh:'StaticMesh',GeometryCache:'GeometryCache',Skeletal:'Skeletal',EAlembicImportType_MAX:'EAlembicImportType_MAX', };
+declare class AbcImportSettings extends UObject { 
+	ImportType: EAlembicImportType;
+	SamplingSettings: AbcSamplingSettings;
+	NormalGenerationSettings: AbcNormalGenerationSettings;
+	MaterialSettings: AbcMaterialSettings;
+	CompressionSettings: AbcCompressionSettings;
+	StaticMeshSettings: AbcStaticMeshSettings;
+	GeometryCacheSettings: AbcGeometryCacheSettings;
+	ConversionSettings: AbcConversionSettings;
+	static Load(ResourceName: string): AbcImportSettings;
+	static Find(Outer: UObject, ResourceName: string): AbcImportSettings;
+	static GetDefaultObject(): AbcImportSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AbcImportSettings;
+	static C(Other: UObject | any): AbcImportSettings;
 }
 
-declare class MovieSceneMediaPlayerPropertySection extends MovieSceneSection { 
-	MediaSource: MediaSource;
-	bLoop: boolean;
-	static Load(ResourceName: string): MovieSceneMediaPlayerPropertySection;
-	static Find(Outer: UObject, ResourceName: string): MovieSceneMediaPlayerPropertySection;
-	static GetDefaultObject(): MovieSceneMediaPlayerPropertySection;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneMediaPlayerPropertySection;
-	static C(Other: UObject | any): MovieSceneMediaPlayerPropertySection;
+declare class AlembicTestCommandlet extends Commandlet { 
+	static Load(ResourceName: string): AlembicTestCommandlet;
+	static Find(Outer: UObject, ResourceName: string): AlembicTestCommandlet;
+	static GetDefaultObject(): AlembicTestCommandlet;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AlembicTestCommandlet;
+	static C(Other: UObject | any): AlembicTestCommandlet;
 }
 
-declare class MovieSceneMediaPlayerPropertyTrack extends MovieScenePropertyTrack { 
-	static Load(ResourceName: string): MovieSceneMediaPlayerPropertyTrack;
-	static Find(Outer: UObject, ResourceName: string): MovieSceneMediaPlayerPropertyTrack;
-	static GetDefaultObject(): MovieSceneMediaPlayerPropertyTrack;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneMediaPlayerPropertyTrack;
-	static C(Other: UObject | any): MovieSceneMediaPlayerPropertyTrack;
+declare class AlembicImportFactory extends Factory { 
+	ImportSettings: AbcImportSettings;
+	bShowOption: boolean;
+	static Load(ResourceName: string): AlembicImportFactory;
+	static Find(Outer: UObject, ResourceName: string): AlembicImportFactory;
+	static GetDefaultObject(): AlembicImportFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AlembicImportFactory;
+	static C(Other: UObject | any): AlembicImportFactory;
 }
 
-declare class MediaSourceCacheSettings { 
-	bOverride: boolean;
-	TimeToLookAhead: number;
-	clone() : MediaSourceCacheSettings;
-	static C(Other: UObject | any): MediaSourceCacheSettings;
+declare class InterchangeImportTestSettings extends UObject { 
+	ImportTestsPath: string;
+	ImportFiles: string[];
+	static Load(ResourceName: string): InterchangeImportTestSettings;
+	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestSettings;
+	static GetDefaultObject(): InterchangeImportTestSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestSettings;
+	static C(Other: UObject | any): InterchangeImportTestSettings;
 }
 
-declare class MovieSceneMediaSection extends MovieSceneSection { 
-	MediaSource: MediaSource;
-	bLooping: boolean;
-	StartFrameOffset: FrameNumber;
-	MediaTexture: MediaTexture;
-	MediaSoundComponent: MediaSoundComponent;
-	bUseExternalMediaPlayer: boolean;
-	ExternalMediaPlayer: MediaPlayer;
-	CacheSettings: MediaSourceCacheSettings;
-	bHasMediaPlayerProxy: boolean;
-	ThumbnailReferenceOffset: number;
-	static Load(ResourceName: string): MovieSceneMediaSection;
-	static Find(Outer: UObject, ResourceName: string): MovieSceneMediaSection;
-	static GetDefaultObject(): MovieSceneMediaSection;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneMediaSection;
-	static C(Other: UObject | any): MovieSceneMediaSection;
+declare class ImportTestFunctionsBase extends UObject { 
+	static Load(ResourceName: string): ImportTestFunctionsBase;
+	static Find(Outer: UObject, ResourceName: string): ImportTestFunctionsBase;
+	static GetDefaultObject(): ImportTestFunctionsBase;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ImportTestFunctionsBase;
+	static C(Other: UObject | any): ImportTestFunctionsBase;
 }
 
-declare class MovieSceneMediaTrack extends MovieSceneNameableTrack { 
-	MediaSections: MovieSceneSection[];
-	static Load(ResourceName: string): MovieSceneMediaTrack;
-	static Find(Outer: UObject, ResourceName: string): MovieSceneMediaTrack;
-	static GetDefaultObject(): MovieSceneMediaTrack;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneMediaTrack;
-	static C(Other: UObject | any): MovieSceneMediaTrack;
+declare class InterchangeTestFunctionResult { 
+	Infos: string[];
+	Warnings: string[];
+	Errors: string[];
+	clone() : InterchangeTestFunctionResult;
+	static C(Other: UObject | any): InterchangeTestFunctionResult;
 }
 
-declare class MediaPlateAssetUserData extends AssetUserData { 
-	static Load(ResourceName: string): MediaPlateAssetUserData;
-	static Find(Outer: UObject, ResourceName: string): MediaPlateAssetUserData;
-	static GetDefaultObject(): MediaPlateAssetUserData;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlateAssetUserData;
-	static C(Other: UObject | any): MediaPlateAssetUserData;
+declare class MaterialXTestFunctions extends ImportTestFunctionsBase { 
+	static Load(ResourceName: string): MaterialXTestFunctions;
+	static Find(Outer: UObject, ResourceName: string): MaterialXTestFunctions;
+	static GetDefaultObject(): MaterialXTestFunctions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MaterialXTestFunctions;
+	static CheckInputConnected(MaterialInterface: MaterialInterface,InputName: string,bIsConnected: boolean): InterchangeTestFunctionResult;
+	static CheckConnectedInputCount(MaterialInterface: MaterialInterface,ExpectedNumber: number): InterchangeTestFunctionResult;
+	static C(Other: UObject | any): MaterialXTestFunctions;
 }
 
-declare type EMediaTextureVisibleMipsTiles = 'None' | 'Plane' | 'Sphere' | 'EMediaTextureVisibleMipsTiles_MAX';
-declare var EMediaTextureVisibleMipsTiles : { None:'None',Plane:'Plane',Sphere:'Sphere',EMediaTextureVisibleMipsTiles_MAX:'EMediaTextureVisibleMipsTiles_MAX', };
-declare class MediaPlateComponent extends ActorComponent { 
-	bPlayOnOpen: boolean;
-	bAutoPlay: boolean;
-	bEnableAudio: boolean;
-	StartTime: number;
-	bIsAspectRatioAuto: boolean;
-	SoundComponent: MediaSoundComponent;
-	StaticMeshComponent: StaticMeshComponent;
-	Letterboxes: StaticMeshComponent[];
-	MediaPlaylist: MediaPlaylist;
-	PlaylistIndex: number;
-	CacheSettings: MediaSourceCacheSettings;
-	bIsMediaPlatePlaying: boolean;
-	bPlayOnlyWhenVisible: boolean;
-	bLoop: boolean;
-	VisibleMipsTilesCalculations: EMediaTextureVisibleMipsTiles;
-	MipMapBias: number;
-	LetterboxAspectRatio: number;
-	MeshRange: Vector2D;
-	MediaTexture: MediaTexture;
-	MediaPlayer: MediaPlayer;
-	static Load(ResourceName: string): MediaPlateComponent;
-	static Find(Outer: UObject, ResourceName: string): MediaPlateComponent;
-	static GetDefaultObject(): MediaPlateComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlateComponent;
-	SetPlayOnlyWhenVisible(bInPlayOnlyWhenVisible: boolean): void;
-	SetMeshRange(InMeshRange: Vector2D): void;
-	SetLoop(bInLoop: boolean): void;
-	SetLetterboxAspectRatio(AspectRatio: number): void;
-	Seek(Time: Timespan): boolean;
-	Rewind(): boolean;
-	Play(): void;
-	Pause(): void;
-	Open(): void;
-	OnMediaOpened(DeviceUrl: string): void;
-	OnMediaEnd(): void;
-	IsMediaPlatePlaying(): boolean;
-	GetMeshRange(): Vector2D;
-	GetMediaTexture(): MediaTexture;
-	GetMediaPlayer(): MediaPlayer;
-	GetLoop(): boolean;
-	GetLetterboxAspectRatio(): number;
-	Close(): void;
-	static C(Other: UObject | any): MediaPlateComponent;
+declare class ActorImportTestFunctions extends ImportTestFunctionsBase { 
+	static Load(ResourceName: string): ActorImportTestFunctions;
+	static Find(Outer: UObject, ResourceName: string): ActorImportTestFunctions;
+	static GetDefaultObject(): ActorImportTestFunctions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorImportTestFunctions;
+	static CheckImportedActorCount(Actors: Actor[],ExpectedNumberOfImportedActors: number): InterchangeTestFunctionResult;
+	static C(Other: UObject | any): ActorImportTestFunctions;
 }
 
-declare class MediaPlate extends Actor { 
-	MediaPlateComponent: MediaPlateComponent;
-	StaticMeshComponent: StaticMeshComponent;
-	static GetDefaultObject(): MediaPlate;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlate;
-	static C(Other: UObject | any): MediaPlate;
+declare class AnimationImportTestFunctions extends ImportTestFunctionsBase { 
+	static Load(ResourceName: string): AnimationImportTestFunctions;
+	static Find(Outer: UObject, ResourceName: string): AnimationImportTestFunctions;
+	static GetDefaultObject(): AnimationImportTestFunctions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AnimationImportTestFunctions;
+	static C(Other: UObject | any): AnimationImportTestFunctions;
 }
 
-declare type EMediaPlayerRecordingNumerationStyle = 'AppendFrameNumber' | 'AppendSampleTime' | 'EMediaPlayerRecordingNumerationStyle_MAX';
-declare var EMediaPlayerRecordingNumerationStyle : { AppendFrameNumber:'AppendFrameNumber',AppendSampleTime:'AppendSampleTime',EMediaPlayerRecordingNumerationStyle_MAX:'EMediaPlayerRecordingNumerationStyle_MAX', };
-declare type EMediaPlayerRecordingImageFormat = 'PNG' | 'JPEG' | 'BMP' | 'EXR' | 'EMediaPlayerRecordingImageFormat_MAX';
-declare var EMediaPlayerRecordingImageFormat : { PNG:'PNG',JPEG:'JPEG',BMP:'BMP',EXR:'EXR',EMediaPlayerRecordingImageFormat_MAX:'EMediaPlayerRecordingImageFormat_MAX', };
-declare class MediaPlayerRecordingSettings { 
-	bActive: boolean;
-	bRecordMediaFrame: boolean;
-	BaseFilename: string;
-	NumerationStyle: EMediaPlayerRecordingNumerationStyle;
-	ImageFormat: EMediaPlayerRecordingImageFormat;
-	CompressionQuality: number;
-	bResetAlpha: boolean;
-	clone() : MediaPlayerRecordingSettings;
-	static C(Other: UObject | any): MediaPlayerRecordingSettings;
+declare class AssetImportTestFunctions extends ImportTestFunctionsBase { 
+	static Load(ResourceName: string): AssetImportTestFunctions;
+	static Find(Outer: UObject, ResourceName: string): AssetImportTestFunctions;
+	static GetDefaultObject(): AssetImportTestFunctions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AssetImportTestFunctions;
+	static CheckMetadataValue(UObject: UObject,ExpectedMetadataKey: string,ExpectedMetadataValue: string): InterchangeTestFunctionResult;
+	static CheckMetadataExist(UObject: UObject,ExpectedMetadataKey: string): InterchangeTestFunctionResult;
+	static CheckImportedMetadataCount(UObject: UObject,ExpectedNumberOfMetadataForThisObject: number): InterchangeTestFunctionResult;
+	static C(Other: UObject | any): AssetImportTestFunctions;
 }
 
-declare class MediaPlayerRecording extends SequenceRecordingBase { 
-	RecordingSettings: MediaPlayerRecordingSettings;
-	MediaPlayerToRecord: MediaPlayer;
-	static Load(ResourceName: string): MediaPlayerRecording;
-	static Find(Outer: UObject, ResourceName: string): MediaPlayerRecording;
-	static GetDefaultObject(): MediaPlayerRecording;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlayerRecording;
-	static C(Other: UObject | any): MediaPlayerRecording;
+declare class InterchangeResultImportTestFunctions extends ImportTestFunctionsBase { 
+	static Load(ResourceName: string): InterchangeResultImportTestFunctions;
+	static Find(Outer: UObject, ResourceName: string): InterchangeResultImportTestFunctions;
+	static GetDefaultObject(): InterchangeResultImportTestFunctions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeResultImportTestFunctions;
+	static CheckIfErrorOrWarningWasGenerated(ResultsContainer: InterchangeResultsContainer,ErrorOrWarningClass: UnrealEngineClass): InterchangeTestFunctionResult;
+	static C(Other: UObject | any): InterchangeResultImportTestFunctions;
 }
 
-declare class MediaSequenceRecorderSettings extends UObject { 
-	bRecordMediaPlayerEnabled: boolean;
-	MediaPlayerSubDirectory: string;
-	static Load(ResourceName: string): MediaSequenceRecorderSettings;
-	static Find(Outer: UObject, ResourceName: string): MediaSequenceRecorderSettings;
-	static GetDefaultObject(): MediaSequenceRecorderSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaSequenceRecorderSettings;
-	static C(Other: UObject | any): MediaSequenceRecorderSettings;
+declare class MaterialImportTestFunctions extends ImportTestFunctionsBase { 
+	static Load(ResourceName: string): MaterialImportTestFunctions;
+	static Find(Outer: UObject, ResourceName: string): MaterialImportTestFunctions;
+	static GetDefaultObject(): MaterialImportTestFunctions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MaterialImportTestFunctions;
+	static CheckImportedMaterialInstanceCount(MaterialInterfaces: MaterialInterface[],ExpectedNumberOfImportedMaterialInstances: number): InterchangeTestFunctionResult;
+	static CheckImportedMaterialCount(MaterialInterfaces: MaterialInterface[],ExpectedNumberOfImportedMaterials: number): InterchangeTestFunctionResult;
+	static C(Other: UObject | any): MaterialImportTestFunctions;
 }
 
-declare class MediaPlayerEditorMediaContext extends ToolMenuContextBase { 
-	SelectedAsset: UObject;
-	StyleSetName: string;
-	static Load(ResourceName: string): MediaPlayerEditorMediaContext;
-	static Find(Outer: UObject, ResourceName: string): MediaPlayerEditorMediaContext;
-	static GetDefaultObject(): MediaPlayerEditorMediaContext;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlayerEditorMediaContext;
-	static C(Other: UObject | any): MediaPlayerEditorMediaContext;
+declare class SkeletalMeshImportTestFunctions extends ImportTestFunctionsBase { 
+	static Load(ResourceName: string): SkeletalMeshImportTestFunctions;
+	static Find(Outer: UObject, ResourceName: string): SkeletalMeshImportTestFunctions;
+	static GetDefaultObject(): SkeletalMeshImportTestFunctions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SkeletalMeshImportTestFunctions;
+	static CheckVertexIndexPosition(Mesh: SkeletalMesh,LODIndex: number,VertexIndex: number,ExpectedVertexPosition: Vector): InterchangeTestFunctionResult;
+	static CheckUVChannelCount(Mesh: SkeletalMesh,LODIndex: number,ExpectedNumberOfUVChannels: number): InterchangeTestFunctionResult;
+	static CheckTriangleCountInSection(Mesh: SkeletalMesh,LODIndex: number,SectionIndex: number,ExpectedNumberOfTriangles: number): InterchangeTestFunctionResult;
+	static CheckSkinnedVertexCountForBone(Mesh: SkeletalMesh,BoneName: string,bTestFirstAlternateProfile: boolean,ExpectedSkinnedVertexCount: number): InterchangeTestFunctionResult;
+	static CheckSectionMaterialName(Mesh: SkeletalMesh,LODIndex: number,SectionIndex: number,ExpectedMaterialName: string): InterchangeTestFunctionResult;
+	static CheckSectionCount(Mesh: SkeletalMesh,LODIndex: number,ExpectedNumberOfSections: number): InterchangeTestFunctionResult;
+	static CheckRenderVertexCount(Mesh: SkeletalMesh,LODIndex: number,ExpectedNumberOfRenderVertices: number): InterchangeTestFunctionResult;
+	static CheckMaterialSlotCount(Mesh: SkeletalMesh,ExpectedNumberOfMaterialSlots: number): InterchangeTestFunctionResult;
+	static CheckLodCount(Mesh: SkeletalMesh,ExpectedNumberOfLods: number): InterchangeTestFunctionResult;
+	static CheckImportedSkeletalMeshCount(Meshes: SkeletalMesh[],ExpectedNumberOfImportedSkeletalMeshes: number): InterchangeTestFunctionResult;
+	static CheckBonePosition(Mesh: SkeletalMesh,BoneIndex: number,ExpectedBonePosition: Vector): InterchangeTestFunctionResult;
+	static CheckBoneCount(Mesh: SkeletalMesh,ExpectedNumberOfBones: number): InterchangeTestFunctionResult;
+	static C(Other: UObject | any): SkeletalMeshImportTestFunctions;
 }
 
-declare type EMediaPlayerEditorScale = 'Fill' | 'Fit' | 'Original' | 'EMediaPlayerEditorScale_MAX';
-declare var EMediaPlayerEditorScale : { Fill:'Fill',Fit:'Fit',Original:'Original',EMediaPlayerEditorScale_MAX:'EMediaPlayerEditorScale_MAX', };
-declare class MediaPlayerEditorSettings extends UObject { 
-	DesiredPlayerName: string;
-	ShowTextOverlays: boolean;
-	ViewportScale: EMediaPlayerEditorScale;
-	static Load(ResourceName: string): MediaPlayerEditorSettings;
-	static Find(Outer: UObject, ResourceName: string): MediaPlayerEditorSettings;
-	static GetDefaultObject(): MediaPlayerEditorSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlayerEditorSettings;
-	static C(Other: UObject | any): MediaPlayerEditorSettings;
+declare class StaticMeshImportTestFunctions extends ImportTestFunctionsBase { 
+	static Load(ResourceName: string): StaticMeshImportTestFunctions;
+	static Find(Outer: UObject, ResourceName: string): StaticMeshImportTestFunctions;
+	static GetDefaultObject(): StaticMeshImportTestFunctions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): StaticMeshImportTestFunctions;
+	static CheckVertexIndexPosition(Mesh: StaticMesh,LODIndex: number,VertexIndex: number,ExpectedVertexPosition: Vector): InterchangeTestFunctionResult;
+	static CheckVertexCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfVertices: number): InterchangeTestFunctionResult;
+	static CheckUVChannelCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfUVChannels: number): InterchangeTestFunctionResult;
+	static CheckTriangleCountInPolygonGroup(Mesh: StaticMesh,LODIndex: number,PolygonGroupIndex: number,ExpectedNumberOfTriangles: number): InterchangeTestFunctionResult;
+	static CheckTotalTriangleCount(Mesh: StaticMesh,LODIndex: number,ExpectedTotalNumberOfTriangles: number): InterchangeTestFunctionResult;
+	static CheckTotalPolygonCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfPolygons: number): InterchangeTestFunctionResult;
+	static CheckThatMeshHasQuadsOrNgons(Mesh: StaticMesh,LODIndex: number,bMeshHasQuadsOrNgons: boolean): InterchangeTestFunctionResult;
+	static CheckSocketName(Mesh: StaticMesh,SocketIndex: number,ExpectedSocketName: string): InterchangeTestFunctionResult;
+	static CheckSocketLocation(Mesh: StaticMesh,SocketIndex: number,ExpectedSocketLocation: Vector): InterchangeTestFunctionResult;
+	static CheckSocketCount(Mesh: StaticMesh,ExpectedSocketCount: number): InterchangeTestFunctionResult;
+	static CheckSimpleCollisionPrimitiveCount(Mesh: StaticMesh,ExpectedSphereElementCount: number,ExpectedBoxElementCount: number,ExpectedCapsuleElementCount: number,ExpectedConvexElementCount: number,ExpectedTaperedCapsuleElementCount: number): InterchangeTestFunctionResult;
+	static CheckSectionMaterialName(Mesh: StaticMesh,LODIndex: number,SectionIndex: number,ExpectedMaterialName: string): InterchangeTestFunctionResult;
+	static CheckSectionMaterialIndex(Mesh: StaticMesh,LODIndex: number,SectionIndex: number,ExpectedMaterialIndex: number): InterchangeTestFunctionResult;
+	static CheckSectionCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfSections: number): InterchangeTestFunctionResult;
+	static CheckRenderVertexCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfRenderVertices: number): InterchangeTestFunctionResult;
+	static CheckPolygonGroupImportedMaterialSlotName(Mesh: StaticMesh,LODIndex: number,PolygonGroupIndex: number,ExpectedImportedMaterialSlotName: string): InterchangeTestFunctionResult;
+	static CheckPolygonGroupCount(Mesh: StaticMesh,LODIndex: number,ExpectedNumberOfPolygonGroups: number): InterchangeTestFunctionResult;
+	static CheckPolygonCountInPolygonGroup(Mesh: StaticMesh,LODIndex: number,PolygonGroupIndex: number,ExpectedNumberOfPolygons: number): InterchangeTestFunctionResult;
+	static CheckNaniteSettings(Mesh: StaticMesh,ExpectedNaniteSettings: MeshNaniteSettings): InterchangeTestFunctionResult;
+	static CheckMaterialSlotCount(Mesh: StaticMesh,ExpectedNumberOfMaterialSlots: number): InterchangeTestFunctionResult;
+	static CheckLodCount(Mesh: StaticMesh,ExpectedNumberOfLods: number): InterchangeTestFunctionResult;
+	static CheckImportedStaticMeshCount(Meshes: StaticMesh[],ExpectedNumberOfImportedStaticMeshes: number): InterchangeTestFunctionResult;
+	static CheckBuildSettings(Mesh: StaticMesh,LODIndex: number,ExpectedBuildSettings: MeshBuildSettings): InterchangeTestFunctionResult;
+	static CheckAgainstGroundTruth(Mesh: StaticMesh,MeshToCompare: StaticMesh,bCheckVertexCountEqual: boolean,bCheckTriangleCountEqual: boolean,bCheckUVChannelCountEqual: boolean,bCheckCollisionPrimitiveCountEqual: boolean,bCheckVertexPositionsEqual: boolean,bCheckNormalsEqual: boolean): InterchangeTestFunctionResult;
+	static C(Other: UObject | any): StaticMeshImportTestFunctions;
 }
 
-declare class FileMediaSourceFactoryNew extends Factory { 
-	static Load(ResourceName: string): FileMediaSourceFactoryNew;
-	static Find(Outer: UObject, ResourceName: string): FileMediaSourceFactoryNew;
-	static GetDefaultObject(): FileMediaSourceFactoryNew;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): FileMediaSourceFactoryNew;
-	static C(Other: UObject | any): FileMediaSourceFactoryNew;
+declare class TextureImportTestFunctions extends ImportTestFunctionsBase { 
+	static Load(ResourceName: string): TextureImportTestFunctions;
+	static Find(Outer: UObject, ResourceName: string): TextureImportTestFunctions;
+	static GetDefaultObject(): TextureImportTestFunctions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TextureImportTestFunctions;
+	static CheckImportedTextureCount(Textures: Texture[],ExpectedNumberOfImportedTextures: number): InterchangeTestFunctionResult;
+	static C(Other: UObject | any): TextureImportTestFunctions;
 }
 
-declare class MediaPlayerFactoryNew extends Factory { 
-	static Load(ResourceName: string): MediaPlayerFactoryNew;
-	static Find(Outer: UObject, ResourceName: string): MediaPlayerFactoryNew;
-	static GetDefaultObject(): MediaPlayerFactoryNew;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlayerFactoryNew;
-	static C(Other: UObject | any): MediaPlayerFactoryNew;
+declare class InterchangeTestFunction { 
+	AssetClass: UnrealEngineClass;
+	OptionalAssetName: string;
+	CheckFunction: UFunction;
+	Parameters: Map<string, string>;
+	clone() : InterchangeTestFunction;
+	static C(Other: UObject | any): InterchangeTestFunction;
 }
 
-declare class MediaPlaylistFactoryNew extends Factory { 
-	static Load(ResourceName: string): MediaPlaylistFactoryNew;
-	static Find(Outer: UObject, ResourceName: string): MediaPlaylistFactoryNew;
-	static GetDefaultObject(): MediaPlaylistFactoryNew;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlaylistFactoryNew;
-	static C(Other: UObject | any): MediaPlaylistFactoryNew;
+declare class InterchangeImportTestStepBase extends UObject { 
+	Tests: InterchangeTestFunction[];
+	static Load(ResourceName: string): InterchangeImportTestStepBase;
+	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestStepBase;
+	static GetDefaultObject(): InterchangeImportTestStepBase;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestStepBase;
+	static C(Other: UObject | any): InterchangeImportTestStepBase;
 }
 
-declare class MediaTextureFactoryNew extends Factory { 
-	static Load(ResourceName: string): MediaTextureFactoryNew;
-	static Find(Outer: UObject, ResourceName: string): MediaTextureFactoryNew;
-	static GetDefaultObject(): MediaTextureFactoryNew;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaTextureFactoryNew;
-	static C(Other: UObject | any): MediaTextureFactoryNew;
+declare class InterchangeImportTestPlan extends UObject { 
+	Steps: InterchangeImportTestStepBase[];
+	bIsEnabledInAutomationTests: boolean;
+	DisabledTestReason: string;
+	static Load(ResourceName: string): InterchangeImportTestPlan;
+	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestPlan;
+	static GetDefaultObject(): InterchangeImportTestPlan;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestPlan;
+	RunThisTest(): void;
+	static C(Other: UObject | any): InterchangeImportTestPlan;
 }
 
-declare class PlatformMediaSourceFactoryNew extends Factory { 
-	static Load(ResourceName: string): PlatformMediaSourceFactoryNew;
-	static Find(Outer: UObject, ResourceName: string): PlatformMediaSourceFactoryNew;
-	static GetDefaultObject(): PlatformMediaSourceFactoryNew;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PlatformMediaSourceFactoryNew;
-	static C(Other: UObject | any): PlatformMediaSourceFactoryNew;
+declare class InterchangeImportTestStepImport extends InterchangeImportTestStepBase { 
+	SourceFile: FilePath;
+	PipelineStack: InterchangePipelineBase[];
+	bEmptyDestinationFolderPriorToImport: boolean;
+	bSaveThenReloadImportedAssets: boolean;
+	bImportIntoLevel: boolean;
+	static Load(ResourceName: string): InterchangeImportTestStepImport;
+	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestStepImport;
+	static GetDefaultObject(): InterchangeImportTestStepImport;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestStepImport;
+	static C(Other: UObject | any): InterchangeImportTestStepImport;
 }
 
-declare class StreamMediaSourceFactoryNew extends Factory { 
-	static Load(ResourceName: string): StreamMediaSourceFactoryNew;
-	static Find(Outer: UObject, ResourceName: string): StreamMediaSourceFactoryNew;
-	static GetDefaultObject(): StreamMediaSourceFactoryNew;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): StreamMediaSourceFactoryNew;
-	static C(Other: UObject | any): StreamMediaSourceFactoryNew;
+declare class InterchangeImportTestStepReimport extends InterchangeImportTestStepBase { 
+	SourceFileToReimport: FilePath;
+	AssetTypeToReimport: UnrealEngineClass;
+	AssetNameToReimport: string;
+	bSaveThenReloadImportedAssets: boolean;
+	static Load(ResourceName: string): InterchangeImportTestStepReimport;
+	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestStepReimport;
+	static GetDefaultObject(): InterchangeImportTestStepReimport;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestStepReimport;
+	static C(Other: UObject | any): InterchangeImportTestStepReimport;
 }
 
-declare class ActorFactoryMediaPlate extends ActorFactory { 
-	static Load(ResourceName: string): ActorFactoryMediaPlate;
-	static Find(Outer: UObject, ResourceName: string): ActorFactoryMediaPlate;
-	static GetDefaultObject(): ActorFactoryMediaPlate;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorFactoryMediaPlate;
-	static C(Other: UObject | any): ActorFactoryMediaPlate;
+declare class InterchangeImportTestPlanFactory extends Factory { 
+	static Load(ResourceName: string): InterchangeImportTestPlanFactory;
+	static Find(Outer: UObject, ResourceName: string): InterchangeImportTestPlanFactory;
+	static GetDefaultObject(): InterchangeImportTestPlanFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InterchangeImportTestPlanFactory;
+	static C(Other: UObject | any): InterchangeImportTestPlanFactory;
 }
 
 declare type EMeshPaintColorViewMode = 'Normal' | 'RGB' | 'Alpha' | 'Red' | 'Green' | 'Blue' | 'EMeshPaintColorViewMode_MAX';
@@ -7543,22 +7321,6 @@ declare class OutlinerSettings extends UObject {
 	static C(Other: UObject | any): OutlinerSettings;
 }
 
-declare class ActorFactoryChaosSolver extends ActorFactory { 
-	static Load(ResourceName: string): ActorFactoryChaosSolver;
-	static Find(Outer: UObject, ResourceName: string): ActorFactoryChaosSolver;
-	static GetDefaultObject(): ActorFactoryChaosSolver;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorFactoryChaosSolver;
-	static C(Other: UObject | any): ActorFactoryChaosSolver;
-}
-
-declare class ChaosSolverFactory extends Factory { 
-	static Load(ResourceName: string): ChaosSolverFactory;
-	static Find(Outer: UObject, ResourceName: string): ChaosSolverFactory;
-	static GetDefaultObject(): ChaosSolverFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ChaosSolverFactory;
-	static C(Other: UObject | any): ChaosSolverFactory;
-}
-
 declare type EDataSourceTypeEnum = 'ChaosNiagara_DataSourceType_Collision' | 'ChaosNiagara_DataSourceType_Breaking' | 'ChaosNiagara_DataSourceType_Trailing' | 'ChaosNiagara_Max';
 declare var EDataSourceTypeEnum : { ChaosNiagara_DataSourceType_Collision:'ChaosNiagara_DataSourceType_Collision',ChaosNiagara_DataSourceType_Breaking:'ChaosNiagara_DataSourceType_Breaking',ChaosNiagara_DataSourceType_Trailing:'ChaosNiagara_DataSourceType_Trailing',ChaosNiagara_Max:'ChaosNiagara_Max', };
 declare type ELocationFilteringModeEnum = 'ChaosNiagara_LocationFilteringMode_Inclusive' | 'ChaosNiagara_LocationFilteringMode_Exclusive' | 'ChaosNiagara_Max';
@@ -7646,6 +7408,22 @@ declare class NiagaraDataInterfacePhysicsField extends NiagaraDataInterface {
 	static GetDefaultObject(): NiagaraDataInterfacePhysicsField;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): NiagaraDataInterfacePhysicsField;
 	static C(Other: UObject | any): NiagaraDataInterfacePhysicsField;
+}
+
+declare class ActorFactoryChaosSolver extends ActorFactory { 
+	static Load(ResourceName: string): ActorFactoryChaosSolver;
+	static Find(Outer: UObject, ResourceName: string): ActorFactoryChaosSolver;
+	static GetDefaultObject(): ActorFactoryChaosSolver;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorFactoryChaosSolver;
+	static C(Other: UObject | any): ActorFactoryChaosSolver;
+}
+
+declare class ChaosSolverFactory extends Factory { 
+	static Load(ResourceName: string): ChaosSolverFactory;
+	static Find(Outer: UObject, ResourceName: string): ChaosSolverFactory;
+	static GetDefaultObject(): ChaosSolverFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ChaosSolverFactory;
+	static C(Other: UObject | any): ChaosSolverFactory;
 }
 
 declare class DataflowSettings extends DeveloperSettings { 
@@ -8621,57 +8399,281 @@ declare class UVEditorSubsystem extends EditorSubsystem {
 	static C(Other: UObject | any): UVEditorSubsystem;
 }
 
-declare class SequencerExportFBXParams { 
-	World: World;
-	Sequence: LevelSequence;
-	RootSequence: LevelSequence;
-	Bindings: MovieSceneBindingProxy[];
-	MasterTracks: MovieSceneTrack[];
-	OverrideOptions: FbxExportOption;
-	FBXFileName: string;
-	clone() : SequencerExportFBXParams;
-	static C(Other: UObject | any): SequencerExportFBXParams;
-	ExportLevelSequenceFBX(): boolean;
-	static ExportLevelSequenceFBX(InParams: SequencerExportFBXParams): boolean;
+declare class ImgMediaSettings extends UObject { 
+	DefaultFrameRate: FrameRate;
+	CacheBehindPercentage: number;
+	CacheSizeGB: number;
+	CacheThreads: number;
+	CacheThreadStackSizeKB: number;
+	GlobalCacheSizeGB: number;
+	UseGlobalCache: boolean;
+	ExrDecoderThreads: number;
+	DefaultProxy: string;
+	UseDefaultProxy: boolean;
+	static Load(ResourceName: string): ImgMediaSettings;
+	static Find(Outer: UObject, ResourceName: string): ImgMediaSettings;
+	static GetDefaultObject(): ImgMediaSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ImgMediaSettings;
+	static C(Other: UObject | any): ImgMediaSettings;
 }
 
-declare class SequencerToolsFunctionLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): SequencerToolsFunctionLibrary;
-	static Find(Outer: UObject, ResourceName: string): SequencerToolsFunctionLibrary;
-	static GetDefaultObject(): SequencerToolsFunctionLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): SequencerToolsFunctionLibrary;
-	static LinkAnimSequence(Sequence: LevelSequence,AnimSequence: AnimSequence,ExportOptions: AnimSeqExportOption,Binding: MovieSceneBindingProxy): boolean;
-	static IsRenderingMovie(): boolean;
-	static IsEventEndpointValid(InEndpoint: SequencerQuickBindingResult): boolean;
-	static ImportLevelSequenceFBX(InWorld: World,InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InImportFBXSettings: MovieSceneUserImportFBXSettings,InImportFilename: string): boolean;
-	static ImportFBXToControlRig(World: World,InSequence: LevelSequence,ActorWithControlRigTrack: string,SelectedControlRigNames: string[],ImportFBXControlRigSettings: MovieSceneUserImportFBXControlRigSettings,ImportFilename: string): boolean;
-	static GetObjectBindings(InWorld: World,InSequence: LevelSequence,InObject: UObject[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
-	static GetLevelSequenceLinkFromAnimSequence(InAnimSequence: AnimSequence): AnimSequenceLevelSequenceLink;
-	static GetBoundObjects(InWorld: World,InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
-	static GetAnimSequenceLinkFromLevelSequence(InLevelSequence: LevelSequence): LevelSequenceAnimSequenceLink;
-	static ExportLevelSequenceFBX(InParams: SequencerExportFBXParams): boolean;
-	static ExportAnimSequence(World: World,Sequence: LevelSequence,AnimSequence: AnimSequence,ExportOption: AnimSeqExportOption,Binding: MovieSceneBindingProxy,bCreateLink: boolean): boolean;
-	static CreateQuickBinding(InSequence: MovieSceneSequence,InObject: UObject,InFunctionName: string,bCallInEditor: boolean): SequencerQuickBindingResult;
-	static CreateEvent(InSequence: MovieSceneSequence,InSection: MovieSceneEventSectionBase,InEndpoint: SequencerQuickBindingResult,InPayload: string[]): MovieSceneEvent;
-	static ClearLinkedAnimSequences(InLevelSequence: LevelSequence): void;
-	static CancelMovieRender(): void;
-	static C(Other: UObject | any): SequencerToolsFunctionLibrary;
+declare class ImgMediaSourceCustomizationSequenceProxy { 
+	clone() : ImgMediaSourceCustomizationSequenceProxy;
+	static C(Other: UObject | any): ImgMediaSourceCustomizationSequenceProxy;
 }
 
-declare class OnRenderMovieStopped__PythonCallable extends PythonCallableForDelegate { 
-	static Load(ResourceName: string): OnRenderMovieStopped__PythonCallable;
-	static Find(Outer: UObject, ResourceName: string): OnRenderMovieStopped__PythonCallable;
-	static GetDefaultObject(): OnRenderMovieStopped__PythonCallable;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): OnRenderMovieStopped__PythonCallable;
-	static C(Other: UObject | any): OnRenderMovieStopped__PythonCallable;
+declare class ImgMediaSource extends BaseMediaSource { 
+	IsPathRelativeToProjectRoot: boolean;
+	FrameRateOverride: FrameRate;
+	ProxyOverride: string;
+	bFillGapsInSequence: boolean;
+	SequenceProxy: ImgMediaSourceCustomizationSequenceProxy;
+	SequencePath: DirectoryPath;
+	static Load(ResourceName: string): ImgMediaSource;
+	static Find(Outer: UObject, ResourceName: string): ImgMediaSource;
+	static GetDefaultObject(): ImgMediaSource;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ImgMediaSource;
+	SetTokenizedSequencePath(Path: string): void;
+	SetSequencePath(Path: string): void;
+	SetMipLevelDistance(Distance: number): void;
+	RemoveTargetObject(InActor: Actor): void;
+	RemoveGlobalCamera(InActor: Actor): void;
+	GetSequencePath(): string;
+	GetProxies(OutProxies?: string[]): {OutProxies: string[]};
+	AddTargetObject(InActor: Actor): void;
+	AddGlobalCamera(InActor: Actor): void;
+	static C(Other: UObject | any): ImgMediaSource;
 }
 
-declare class ContentBrowserAssetDataSource extends ContentBrowserDataSource { 
-	static Load(ResourceName: string): ContentBrowserAssetDataSource;
-	static Find(Outer: UObject, ResourceName: string): ContentBrowserAssetDataSource;
-	static GetDefaultObject(): ContentBrowserAssetDataSource;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ContentBrowserAssetDataSource;
-	static C(Other: UObject | any): ContentBrowserAssetDataSource;
+declare class MovieSceneMediaPlayerPropertySection extends MovieSceneSection { 
+	MediaSource: MediaSource;
+	bLoop: boolean;
+	static Load(ResourceName: string): MovieSceneMediaPlayerPropertySection;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneMediaPlayerPropertySection;
+	static GetDefaultObject(): MovieSceneMediaPlayerPropertySection;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneMediaPlayerPropertySection;
+	static C(Other: UObject | any): MovieSceneMediaPlayerPropertySection;
+}
+
+declare class MovieSceneMediaPlayerPropertyTrack extends MovieScenePropertyTrack { 
+	static Load(ResourceName: string): MovieSceneMediaPlayerPropertyTrack;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneMediaPlayerPropertyTrack;
+	static GetDefaultObject(): MovieSceneMediaPlayerPropertyTrack;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneMediaPlayerPropertyTrack;
+	static C(Other: UObject | any): MovieSceneMediaPlayerPropertyTrack;
+}
+
+declare class MediaSourceCacheSettings { 
+	bOverride: boolean;
+	TimeToLookAhead: number;
+	clone() : MediaSourceCacheSettings;
+	static C(Other: UObject | any): MediaSourceCacheSettings;
+}
+
+declare class MovieSceneMediaSection extends MovieSceneSection { 
+	MediaSource: MediaSource;
+	bLooping: boolean;
+	StartFrameOffset: FrameNumber;
+	MediaTexture: MediaTexture;
+	MediaSoundComponent: MediaSoundComponent;
+	bUseExternalMediaPlayer: boolean;
+	ExternalMediaPlayer: MediaPlayer;
+	CacheSettings: MediaSourceCacheSettings;
+	bHasMediaPlayerProxy: boolean;
+	ThumbnailReferenceOffset: number;
+	static Load(ResourceName: string): MovieSceneMediaSection;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneMediaSection;
+	static GetDefaultObject(): MovieSceneMediaSection;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneMediaSection;
+	static C(Other: UObject | any): MovieSceneMediaSection;
+}
+
+declare class MovieSceneMediaTrack extends MovieSceneNameableTrack { 
+	MediaSections: MovieSceneSection[];
+	static Load(ResourceName: string): MovieSceneMediaTrack;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneMediaTrack;
+	static GetDefaultObject(): MovieSceneMediaTrack;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneMediaTrack;
+	static C(Other: UObject | any): MovieSceneMediaTrack;
+}
+
+declare class MediaPlateAssetUserData extends AssetUserData { 
+	static Load(ResourceName: string): MediaPlateAssetUserData;
+	static Find(Outer: UObject, ResourceName: string): MediaPlateAssetUserData;
+	static GetDefaultObject(): MediaPlateAssetUserData;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlateAssetUserData;
+	static C(Other: UObject | any): MediaPlateAssetUserData;
+}
+
+declare type EMediaTextureVisibleMipsTiles = 'None' | 'Plane' | 'Sphere' | 'EMediaTextureVisibleMipsTiles_MAX';
+declare var EMediaTextureVisibleMipsTiles : { None:'None',Plane:'Plane',Sphere:'Sphere',EMediaTextureVisibleMipsTiles_MAX:'EMediaTextureVisibleMipsTiles_MAX', };
+declare class MediaPlateComponent extends ActorComponent { 
+	bPlayOnOpen: boolean;
+	bAutoPlay: boolean;
+	bEnableAudio: boolean;
+	StartTime: number;
+	bIsAspectRatioAuto: boolean;
+	SoundComponent: MediaSoundComponent;
+	StaticMeshComponent: StaticMeshComponent;
+	Letterboxes: StaticMeshComponent[];
+	MediaPlaylist: MediaPlaylist;
+	PlaylistIndex: number;
+	CacheSettings: MediaSourceCacheSettings;
+	bIsMediaPlatePlaying: boolean;
+	bPlayOnlyWhenVisible: boolean;
+	bLoop: boolean;
+	VisibleMipsTilesCalculations: EMediaTextureVisibleMipsTiles;
+	MipMapBias: number;
+	LetterboxAspectRatio: number;
+	MeshRange: Vector2D;
+	MediaTexture: MediaTexture;
+	MediaPlayer: MediaPlayer;
+	static Load(ResourceName: string): MediaPlateComponent;
+	static Find(Outer: UObject, ResourceName: string): MediaPlateComponent;
+	static GetDefaultObject(): MediaPlateComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlateComponent;
+	SetPlayOnlyWhenVisible(bInPlayOnlyWhenVisible: boolean): void;
+	SetMeshRange(InMeshRange: Vector2D): void;
+	SetLoop(bInLoop: boolean): void;
+	SetLetterboxAspectRatio(AspectRatio: number): void;
+	Seek(Time: Timespan): boolean;
+	Rewind(): boolean;
+	Play(): void;
+	Pause(): void;
+	Open(): void;
+	OnMediaOpened(DeviceUrl: string): void;
+	OnMediaEnd(): void;
+	IsMediaPlatePlaying(): boolean;
+	GetMeshRange(): Vector2D;
+	GetMediaTexture(): MediaTexture;
+	GetMediaPlayer(): MediaPlayer;
+	GetLoop(): boolean;
+	GetLetterboxAspectRatio(): number;
+	Close(): void;
+	static C(Other: UObject | any): MediaPlateComponent;
+}
+
+declare class MediaPlate extends Actor { 
+	MediaPlateComponent: MediaPlateComponent;
+	StaticMeshComponent: StaticMeshComponent;
+	static GetDefaultObject(): MediaPlate;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlate;
+	static C(Other: UObject | any): MediaPlate;
+}
+
+declare type EMediaPlayerRecordingNumerationStyle = 'AppendFrameNumber' | 'AppendSampleTime' | 'EMediaPlayerRecordingNumerationStyle_MAX';
+declare var EMediaPlayerRecordingNumerationStyle : { AppendFrameNumber:'AppendFrameNumber',AppendSampleTime:'AppendSampleTime',EMediaPlayerRecordingNumerationStyle_MAX:'EMediaPlayerRecordingNumerationStyle_MAX', };
+declare type EMediaPlayerRecordingImageFormat = 'PNG' | 'JPEG' | 'BMP' | 'EXR' | 'EMediaPlayerRecordingImageFormat_MAX';
+declare var EMediaPlayerRecordingImageFormat : { PNG:'PNG',JPEG:'JPEG',BMP:'BMP',EXR:'EXR',EMediaPlayerRecordingImageFormat_MAX:'EMediaPlayerRecordingImageFormat_MAX', };
+declare class MediaPlayerRecordingSettings { 
+	bActive: boolean;
+	bRecordMediaFrame: boolean;
+	BaseFilename: string;
+	NumerationStyle: EMediaPlayerRecordingNumerationStyle;
+	ImageFormat: EMediaPlayerRecordingImageFormat;
+	CompressionQuality: number;
+	bResetAlpha: boolean;
+	clone() : MediaPlayerRecordingSettings;
+	static C(Other: UObject | any): MediaPlayerRecordingSettings;
+}
+
+declare class MediaPlayerRecording extends SequenceRecordingBase { 
+	RecordingSettings: MediaPlayerRecordingSettings;
+	MediaPlayerToRecord: MediaPlayer;
+	static Load(ResourceName: string): MediaPlayerRecording;
+	static Find(Outer: UObject, ResourceName: string): MediaPlayerRecording;
+	static GetDefaultObject(): MediaPlayerRecording;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlayerRecording;
+	static C(Other: UObject | any): MediaPlayerRecording;
+}
+
+declare class MediaSequenceRecorderSettings extends UObject { 
+	bRecordMediaPlayerEnabled: boolean;
+	MediaPlayerSubDirectory: string;
+	static Load(ResourceName: string): MediaSequenceRecorderSettings;
+	static Find(Outer: UObject, ResourceName: string): MediaSequenceRecorderSettings;
+	static GetDefaultObject(): MediaSequenceRecorderSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaSequenceRecorderSettings;
+	static C(Other: UObject | any): MediaSequenceRecorderSettings;
+}
+
+declare class MediaPlayerEditorMediaContext extends ToolMenuContextBase { 
+	SelectedAsset: UObject;
+	StyleSetName: string;
+	static Load(ResourceName: string): MediaPlayerEditorMediaContext;
+	static Find(Outer: UObject, ResourceName: string): MediaPlayerEditorMediaContext;
+	static GetDefaultObject(): MediaPlayerEditorMediaContext;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlayerEditorMediaContext;
+	static C(Other: UObject | any): MediaPlayerEditorMediaContext;
+}
+
+declare type EMediaPlayerEditorScale = 'Fill' | 'Fit' | 'Original' | 'EMediaPlayerEditorScale_MAX';
+declare var EMediaPlayerEditorScale : { Fill:'Fill',Fit:'Fit',Original:'Original',EMediaPlayerEditorScale_MAX:'EMediaPlayerEditorScale_MAX', };
+declare class MediaPlayerEditorSettings extends UObject { 
+	DesiredPlayerName: string;
+	ShowTextOverlays: boolean;
+	ViewportScale: EMediaPlayerEditorScale;
+	static Load(ResourceName: string): MediaPlayerEditorSettings;
+	static Find(Outer: UObject, ResourceName: string): MediaPlayerEditorSettings;
+	static GetDefaultObject(): MediaPlayerEditorSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlayerEditorSettings;
+	static C(Other: UObject | any): MediaPlayerEditorSettings;
+}
+
+declare class FileMediaSourceFactoryNew extends Factory { 
+	static Load(ResourceName: string): FileMediaSourceFactoryNew;
+	static Find(Outer: UObject, ResourceName: string): FileMediaSourceFactoryNew;
+	static GetDefaultObject(): FileMediaSourceFactoryNew;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): FileMediaSourceFactoryNew;
+	static C(Other: UObject | any): FileMediaSourceFactoryNew;
+}
+
+declare class MediaPlayerFactoryNew extends Factory { 
+	static Load(ResourceName: string): MediaPlayerFactoryNew;
+	static Find(Outer: UObject, ResourceName: string): MediaPlayerFactoryNew;
+	static GetDefaultObject(): MediaPlayerFactoryNew;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlayerFactoryNew;
+	static C(Other: UObject | any): MediaPlayerFactoryNew;
+}
+
+declare class MediaPlaylistFactoryNew extends Factory { 
+	static Load(ResourceName: string): MediaPlaylistFactoryNew;
+	static Find(Outer: UObject, ResourceName: string): MediaPlaylistFactoryNew;
+	static GetDefaultObject(): MediaPlaylistFactoryNew;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaPlaylistFactoryNew;
+	static C(Other: UObject | any): MediaPlaylistFactoryNew;
+}
+
+declare class MediaTextureFactoryNew extends Factory { 
+	static Load(ResourceName: string): MediaTextureFactoryNew;
+	static Find(Outer: UObject, ResourceName: string): MediaTextureFactoryNew;
+	static GetDefaultObject(): MediaTextureFactoryNew;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MediaTextureFactoryNew;
+	static C(Other: UObject | any): MediaTextureFactoryNew;
+}
+
+declare class PlatformMediaSourceFactoryNew extends Factory { 
+	static Load(ResourceName: string): PlatformMediaSourceFactoryNew;
+	static Find(Outer: UObject, ResourceName: string): PlatformMediaSourceFactoryNew;
+	static GetDefaultObject(): PlatformMediaSourceFactoryNew;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PlatformMediaSourceFactoryNew;
+	static C(Other: UObject | any): PlatformMediaSourceFactoryNew;
+}
+
+declare class StreamMediaSourceFactoryNew extends Factory { 
+	static Load(ResourceName: string): StreamMediaSourceFactoryNew;
+	static Find(Outer: UObject, ResourceName: string): StreamMediaSourceFactoryNew;
+	static GetDefaultObject(): StreamMediaSourceFactoryNew;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): StreamMediaSourceFactoryNew;
+	static C(Other: UObject | any): StreamMediaSourceFactoryNew;
+}
+
+declare class ActorFactoryMediaPlate extends ActorFactory { 
+	static Load(ResourceName: string): ActorFactoryMediaPlate;
+	static Find(Outer: UObject, ResourceName: string): ActorFactoryMediaPlate;
+	static GetDefaultObject(): ActorFactoryMediaPlate;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorFactoryMediaPlate;
+	static C(Other: UObject | any): ActorFactoryMediaPlate;
 }
 
 declare class ObjectMixerEditorListMenuContext extends UObject { 
@@ -8783,6 +8785,14 @@ declare class LightMixerObjectFilter extends ObjectMixerObjectFilter {
 	static GetDefaultObject(): LightMixerObjectFilter;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LightMixerObjectFilter;
 	static C(Other: UObject | any): LightMixerObjectFilter;
+}
+
+declare class ContentBrowserAssetDataSource extends ContentBrowserDataSource { 
+	static Load(ResourceName: string): ContentBrowserAssetDataSource;
+	static Find(Outer: UObject, ResourceName: string): ContentBrowserAssetDataSource;
+	static GetDefaultObject(): ContentBrowserAssetDataSource;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ContentBrowserAssetDataSource;
+	static C(Other: UObject | any): ContentBrowserAssetDataSource;
 }
 
 declare class ContentBrowserClassDataSource extends ContentBrowserDataSource { 
@@ -11622,6 +11632,33 @@ declare class JavascriptAssetPicker_OnSetDefaultValue__PythonCallable extends Py
 	static C(Other: UObject | any): JavascriptAssetPicker_OnSetDefaultValue__PythonCallable;
 }
 
+declare class AudioSynesthesiaNRTFactory extends Factory { 
+	AudioSynesthesiaNRTClass: UnrealEngineClass;
+	static Load(ResourceName: string): AudioSynesthesiaNRTFactory;
+	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaNRTFactory;
+	static GetDefaultObject(): AudioSynesthesiaNRTFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaNRTFactory;
+	static C(Other: UObject | any): AudioSynesthesiaNRTFactory;
+}
+
+declare class AudioSynesthesiaNRTSettingsFactory extends Factory { 
+	AudioSynesthesiaNRTSettingsClass: UnrealEngineClass;
+	static Load(ResourceName: string): AudioSynesthesiaNRTSettingsFactory;
+	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaNRTSettingsFactory;
+	static GetDefaultObject(): AudioSynesthesiaNRTSettingsFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaNRTSettingsFactory;
+	static C(Other: UObject | any): AudioSynesthesiaNRTSettingsFactory;
+}
+
+declare class AudioSynesthesiaSettingsFactory extends Factory { 
+	AudioSynesthesiaSettingsClass: UnrealEngineClass;
+	static Load(ResourceName: string): AudioSynesthesiaSettingsFactory;
+	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaSettingsFactory;
+	static GetDefaultObject(): AudioSynesthesiaSettingsFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaSettingsFactory;
+	static C(Other: UObject | any): AudioSynesthesiaSettingsFactory;
+}
+
 declare type ETakeRecorderActorRecordType = 'Possessable' | 'Spawnable' | 'ProjectDefault' | 'ETakeRecorderActorRecordType_MAX';
 declare var ETakeRecorderActorRecordType : { Possessable:'Possessable',Spawnable:'Spawnable',ProjectDefault:'ProjectDefault',ETakeRecorderActorRecordType_MAX:'ETakeRecorderActorRecordType_MAX', };
 declare class TakeRecorderActorSource extends TakeRecorderSource { 
@@ -11741,33 +11778,6 @@ declare class TakeRecorderWorldSource extends TakeRecorderWorldSourceSettings {
 	static GetDefaultObject(): TakeRecorderWorldSource;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TakeRecorderWorldSource;
 	static C(Other: UObject | any): TakeRecorderWorldSource;
-}
-
-declare class AudioSynesthesiaNRTFactory extends Factory { 
-	AudioSynesthesiaNRTClass: UnrealEngineClass;
-	static Load(ResourceName: string): AudioSynesthesiaNRTFactory;
-	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaNRTFactory;
-	static GetDefaultObject(): AudioSynesthesiaNRTFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaNRTFactory;
-	static C(Other: UObject | any): AudioSynesthesiaNRTFactory;
-}
-
-declare class AudioSynesthesiaNRTSettingsFactory extends Factory { 
-	AudioSynesthesiaNRTSettingsClass: UnrealEngineClass;
-	static Load(ResourceName: string): AudioSynesthesiaNRTSettingsFactory;
-	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaNRTSettingsFactory;
-	static GetDefaultObject(): AudioSynesthesiaNRTSettingsFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaNRTSettingsFactory;
-	static C(Other: UObject | any): AudioSynesthesiaNRTSettingsFactory;
-}
-
-declare class AudioSynesthesiaSettingsFactory extends Factory { 
-	AudioSynesthesiaSettingsClass: UnrealEngineClass;
-	static Load(ResourceName: string): AudioSynesthesiaSettingsFactory;
-	static Find(Outer: UObject, ResourceName: string): AudioSynesthesiaSettingsFactory;
-	static GetDefaultObject(): AudioSynesthesiaSettingsFactory;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AudioSynesthesiaSettingsFactory;
-	static C(Other: UObject | any): AudioSynesthesiaSettingsFactory;
 }
 
 declare class LevelInstanceActorFactory extends ActorFactory { 

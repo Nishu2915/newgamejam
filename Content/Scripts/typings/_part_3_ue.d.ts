@@ -14038,6 +14038,18 @@ declare class WaterWavesAssetReference extends WaterWavesBase {
 	static C(Other: UObject | any): WaterWavesAssetReference;
 }
 
+declare class WmfMediaSettings extends UObject { 
+	AllowNonStandardCodecs: boolean;
+	LowLatency: boolean;
+	NativeAudioOut: boolean;
+	HardwareAcceleratedVideoDecoding: boolean;
+	static Load(ResourceName: string): WmfMediaSettings;
+	static Find(Outer: UObject, ResourceName: string): WmfMediaSettings;
+	static GetDefaultObject(): WmfMediaSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): WmfMediaSettings;
+	static C(Other: UObject | any): WmfMediaSettings;
+}
+
 declare class NamedInterface { 
 	InterfaceName: string;
 	InterfaceObject: UObject;
@@ -14681,18 +14693,6 @@ declare class K2Node_LeaderboardQuery extends K2Node_BaseAsyncTask {
 	static GetDefaultObject(): K2Node_LeaderboardQuery;
 	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): K2Node_LeaderboardQuery;
 	static C(Other: UObject | any): K2Node_LeaderboardQuery;
-}
-
-declare class WmfMediaSettings extends UObject { 
-	AllowNonStandardCodecs: boolean;
-	LowLatency: boolean;
-	NativeAudioOut: boolean;
-	HardwareAcceleratedVideoDecoding: boolean;
-	static Load(ResourceName: string): WmfMediaSettings;
-	static Find(Outer: UObject, ResourceName: string): WmfMediaSettings;
-	static GetDefaultObject(): WmfMediaSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): WmfMediaSettings;
-	static C(Other: UObject | any): WmfMediaSettings;
 }
 
 declare class VariantDependency { 
@@ -17790,805 +17790,865 @@ declare class EnvironmentQueryGraphNode_Test extends EnvironmentQueryGraphNode {
 	static C(Other: UObject | any): EnvironmentQueryGraphNode_Test;
 }
 
-declare class V8Config extends UObject { 
-	bGenAltPropAccessorForAllProp: boolean;
-	bGenGetStructRefArrayFunction: boolean;
-	static Load(ResourceName: string): V8Config;
-	static Find(Outer: UObject, ResourceName: string): V8Config;
-	static GetDefaultObject(): V8Config;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): V8Config;
-	static C(Other: UObject | any): V8Config;
+declare class ActorRecordedProperty { 
+	PropertyName: string;
+	bEnabled: boolean;
+	RecorderName: string;
+	clone() : ActorRecordedProperty;
+	static C(Other: UObject | any): ActorRecordedProperty;
 }
 
-declare class DirectoryWatcher extends UObject { 
-	Added: string[];
-	Modified: string[];
-	Removed: string[];
-	OnChanged: UnrealEngineMulticastDelegate<() => void>;
-	static Load(ResourceName: string): DirectoryWatcher;
-	static Find(Outer: UObject, ResourceName: string): DirectoryWatcher;
-	static GetDefaultObject(): DirectoryWatcher;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): DirectoryWatcher;
-	Watch(Directory: string): void;
-	Unwatch(): void;
-	Contains(File: string): boolean;
-	static C(Other: UObject | any): DirectoryWatcher;
+declare class ActorRecorderPropertyMap extends UObject { 
+	RecordedObject: UObject;
+	Properties: ActorRecordedProperty[];
+	Children: ActorRecorderPropertyMap[];
+	static Load(ResourceName: string): ActorRecorderPropertyMap;
+	static Find(Outer: UObject, ResourceName: string): ActorRecorderPropertyMap;
+	static GetDefaultObject(): ActorRecorderPropertyMap;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorRecorderPropertyMap;
+	static C(Other: UObject | any): ActorRecorderPropertyMap;
 }
 
-declare class JavascriptContext extends UObject { 
-	Paths: string[];
-	static Load(ResourceName: string): JavascriptContext;
-	static Find(Outer: UObject, ResourceName: string): JavascriptContext;
-	static GetDefaultObject(): JavascriptContext;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptContext;
-	WriteDTS(Target: string,bIncludingTooltip: boolean): boolean;
-	WriteAliases(Target: string): boolean;
-	UnregisterConsoleCommand(Command: string): void;
-	SetContextId(Name: string): void;
-	RunScript(Script: string,bOutput: boolean): string;
-	RunFileWithArgs(Filename: string,Args: string[]): string;
-	RunFile(Filename: string): string;
-	ResetUnrealConsoleDelegate(): void;
-	RequestV8GarbageCollection(): void;
-	RegisterConsoleCommand(Command: string,Help: string,UFunction: JavascriptFunction): void;
-	ReadScriptFile(Filename: string): string;
-	IsDebugContext(): boolean;
-	GetScriptFileFullPath(Filename: string): string;
-	FindPathFile(TargetRootPath: string,TargetFileName: string,OutFiles?: string[]): {OutFiles: string[]};
-	Expose(Name: string,UObject: UObject): void;
-	DestroyInspector(): void;
-	CreateInspector(Port: number): void;
-	static C(Other: UObject | any): JavascriptContext;
+declare class TakesCoreBlueprintLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): TakesCoreBlueprintLibrary;
+	static Find(Outer: UObject, ResourceName: string): TakesCoreBlueprintLibrary;
+	static GetDefaultObject(): TakesCoreBlueprintLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TakesCoreBlueprintLibrary;
+	static FindTakes(Slate: string,TakeNumber: number): AssetData[];
+	static ComputeNextTakeNumber(Slate: string): number;
+	static C(Other: UObject | any): TakesCoreBlueprintLibrary;
 }
 
-declare class JavascriptHeapStatistics { 
-	TotalHeapSize: number;
-	TotalHeapSizeExecutable: number;
-	TotalPhysicalSize: number;
-	TotalAvailableSize: number;
-	UsedHeapSize: number;
-	HeapSizeLimit: number;
-	MallocedMemory: number;
-	bDoesZapGarbage: boolean;
-	clone() : JavascriptHeapStatistics;
-	static C(Other: UObject | any): JavascriptHeapStatistics;
+declare class MovieSceneTakeSection extends MovieSceneSection { 
+	HoursCurve: MovieSceneIntegerChannel;
+	MinutesCurve: MovieSceneIntegerChannel;
+	SecondsCurve: MovieSceneIntegerChannel;
+	FramesCurve: MovieSceneIntegerChannel;
+	SubFramesCurve: MovieSceneFloatChannel;
+	Slate: MovieSceneStringChannel;
+	static Load(ResourceName: string): MovieSceneTakeSection;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneTakeSection;
+	static GetDefaultObject(): MovieSceneTakeSection;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneTakeSection;
+	static C(Other: UObject | any): MovieSceneTakeSection;
 }
 
-declare class JavascriptIsolate extends UObject { 
-	static Load(ResourceName: string): JavascriptIsolate;
-	static Find(Outer: UObject, ResourceName: string): JavascriptIsolate;
-	static GetDefaultObject(): JavascriptIsolate;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptIsolate;
-	Init(bIsEditor: boolean): void;
-	GetHeapStatistics(Statistics?: JavascriptHeapStatistics): {Statistics: JavascriptHeapStatistics};
-	CreateContext(): JavascriptContext;
-	static C(Other: UObject | any): JavascriptIsolate;
+declare class MovieSceneTakeSettings extends UObject { 
+	HoursName: string;
+	MinutesName: string;
+	SecondsName: string;
+	FramesName: string;
+	SubFramesName: string;
+	SlateName: string;
+	static Load(ResourceName: string): MovieSceneTakeSettings;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneTakeSettings;
+	static GetDefaultObject(): MovieSceneTakeSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneTakeSettings;
+	static C(Other: UObject | any): MovieSceneTakeSettings;
 }
 
-declare class JavascriptAsset { 
-	Name: string;
-	Asset: SoftObjectPath;
-	clone() : JavascriptAsset;
-	static C(Other: UObject | any): JavascriptAsset;
+declare class MovieSceneTakeTrack extends MovieSceneNameableTrack { 
+	Sections: MovieSceneSection[];
+	static Load(ResourceName: string): MovieSceneTakeTrack;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneTakeTrack;
+	static GetDefaultObject(): MovieSceneTakeTrack;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneTakeTrack;
+	static C(Other: UObject | any): MovieSceneTakeTrack;
 }
 
-declare class JavascriptClassAsset { 
-	Name: string;
-	Class: UnrealEngineClass;
-	clone() : JavascriptClassAsset;
-	static C(Other: UObject | any): JavascriptClassAsset;
+declare class MovieSceneTrackRecorder extends UObject { 
+	static Load(ResourceName: string): MovieSceneTrackRecorder;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneTrackRecorder;
+	static GetDefaultObject(): MovieSceneTrackRecorder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneTrackRecorder;
+	static C(Other: UObject | any): MovieSceneTrackRecorder;
 }
 
-declare class JavascriptComponent extends ActorComponent { 
-	ScriptSourceFile: string;
-	bActiveWithinEditor: boolean;
-	JavascriptContext: JavascriptContext;
-	JavascriptIsolate: JavascriptIsolate;
-	OnTick: UnrealEngineDelegate<(DeltaSeconds: number) => void>;
-	OnBeginPlay: UnrealEngineDelegate<() => void>;
-	OnEndPlay: UnrealEngineDelegate<() => void>;
-	OnInvoke: UnrealEngineDelegate<(Name: string) => void>;
-	Assets: JavascriptAsset[];
-	ClassAssets: JavascriptClassAsset[];
-	static Load(ResourceName: string): JavascriptComponent;
-	static Find(Outer: UObject, ResourceName: string): JavascriptComponent;
-	static GetDefaultObject(): JavascriptComponent;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptComponent;
-	ResolveClass(Name: string): UnrealEngineClass;
-	ResolveAsset(Name: string,bTryLoad: boolean): UObject;
-	Invoke(Name: string): void;
-	ForceGC(): void;
-	Expose(ExposedAs: string,UObject: UObject): void;
-	static C(Other: UObject | any): JavascriptComponent;
+declare class MovieSceneTrackRecorderSettings extends UObject { 
+	static Load(ResourceName: string): MovieSceneTrackRecorderSettings;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneTrackRecorderSettings;
+	static GetDefaultObject(): MovieSceneTrackRecorderSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneTrackRecorderSettings;
+	static C(Other: UObject | any): MovieSceneTrackRecorderSettings;
 }
 
-declare class JavascriptDelegate extends UObject { 
-	static Load(ResourceName: string): JavascriptDelegate;
-	static Find(Outer: UObject, ResourceName: string): JavascriptDelegate;
-	static GetDefaultObject(): JavascriptDelegate;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptDelegate;
-	Fire(): void;
-	static C(Other: UObject | any): JavascriptDelegate;
+declare class MovieScene3DAttachTrackRecorder extends MovieSceneTrackRecorder { 
+	static Load(ResourceName: string): MovieScene3DAttachTrackRecorder;
+	static Find(Outer: UObject, ResourceName: string): MovieScene3DAttachTrackRecorder;
+	static GetDefaultObject(): MovieScene3DAttachTrackRecorder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieScene3DAttachTrackRecorder;
+	static C(Other: UObject | any): MovieScene3DAttachTrackRecorder;
 }
 
-declare class JavascriptGeneratedClass extends BlueprintGeneratedClass { 
-	static Load(ResourceName: string): JavascriptGeneratedClass;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGeneratedClass;
-	static GetDefaultObject(): JavascriptGeneratedClass;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGeneratedClass;
-	static C(Other: UObject | any): JavascriptGeneratedClass;
+declare class MovieScene3DTransformTrackRecorder extends MovieSceneTrackRecorder { 
+	static Load(ResourceName: string): MovieScene3DTransformTrackRecorder;
+	static Find(Outer: UObject, ResourceName: string): MovieScene3DTransformTrackRecorder;
+	static GetDefaultObject(): MovieScene3DTransformTrackRecorder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieScene3DTransformTrackRecorder;
+	static C(Other: UObject | any): MovieScene3DTransformTrackRecorder;
 }
 
-declare class JavascriptGeneratedClass_Native extends BlueprintGeneratedClass { 
-	static Load(ResourceName: string): JavascriptGeneratedClass_Native;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGeneratedClass_Native;
-	static GetDefaultObject(): JavascriptGeneratedClass_Native;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGeneratedClass_Native;
-	static C(Other: UObject | any): JavascriptGeneratedClass_Native;
+declare class MovieSceneAnimationTrackRecorder extends MovieSceneTrackRecorder { 
+	static Load(ResourceName: string): MovieSceneAnimationTrackRecorder;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneAnimationTrackRecorder;
+	static GetDefaultObject(): MovieSceneAnimationTrackRecorder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneAnimationTrackRecorder;
+	static C(Other: UObject | any): MovieSceneAnimationTrackRecorder;
 }
 
-declare class JavascriptGeneratedFunction extends UFunction { 
-	static Load(ResourceName: string): JavascriptGeneratedFunction;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGeneratedFunction;
-	static GetDefaultObject(): JavascriptGeneratedFunction;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGeneratedFunction;
-	static C(Other: UObject | any): JavascriptGeneratedFunction;
+declare type ETimecodeBoneMode = 'All' | 'Root' | 'UserDefined' | 'MAX';
+declare var ETimecodeBoneMode : { All:'All',Root:'Root',UserDefined:'UserDefined',MAX:'MAX', };
+declare class TimecodeBoneMethod { 
+	BoneMode: ETimecodeBoneMode;
+	BoneName: string;
+	clone() : TimecodeBoneMethod;
+	static C(Other: UObject | any): TimecodeBoneMethod;
 }
 
-declare class JavascriptGlobalDelegates extends UObject { 
-	static Load(ResourceName: string): JavascriptGlobalDelegates;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGlobalDelegates;
-	static GetDefaultObject(): JavascriptGlobalDelegates;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGlobalDelegates;
-	UnbindAll(): void;
-	Unbind(Key: string): void;
-	RedirectorFollowed(PackageName: string,Redirector: UObject): void;
-	PreLoadMap(MapName: string): void;
-	PreGarbageCollectDelegate(): void;
-	PostLoadMapWithWorld(World: World): void;
-	PostGarbageCollect(): void;
-	PostDemoPlay(): void;
-	PostApplyLevelOffset(Level: Level,World: World,Offset: Vector,Flag: boolean): void;
-	PackageCreatedForLoad(InPackage: Package): void;
-	OnWorldCleanup(World: World,bSessionEnded: boolean,bCleanupResources: boolean): void;
-	OnPreWorldInitialization_Friendly(World: World): void;
-	OnPreWorldFinishDestroy(World: World): void;
-	OnPreObjectPropertyChanged_Friendly(InObject: UObject,Property: any,MemberProperty: any): void;
-	OnPostWorldInitialization_Friendly(World: World): void;
-	OnPostWorldCreation(World: World): void;
-	OnPostDuplicate_Friendly(World: World,bDuplicateForPIE: boolean): void;
-	OnObjectPropertyChanged_Friendly(InObject: UObject,Property: any,MemberProperty: any,ChangeType: number): void;
-	OnObjectPreSave_Friendly(ObjectSaved: UObject): void;
-	OnObjectModified(UObject: UObject): void;
-	OnAssetLoaded(UObject: UObject): void;
-	OnActorLabelChanged(Actor: Actor): void;
-	LevelRemovedFromWorld(Level: Level,World: World): void;
-	LevelAddedToWorld(Level: Level,World: World): void;
-	Bind(Key: string): void;
-	static C(Other: UObject | any): JavascriptGlobalDelegates;
+declare class MovieSceneAnimationTrackRecorderEditorSettings extends MovieSceneTrackRecorderSettings { 
+	AnimationTrackName: string;
+	AnimationAssetName: string;
+	AnimationSubDirectory: string;
+	InterpMode: ERichCurveInterpMode;
+	TangentMode: ERichCurveTangentMode;
+	bRemoveRootAnimation: boolean;
+	TimecodeBoneMethod: TimecodeBoneMethod;
+	static Load(ResourceName: string): MovieSceneAnimationTrackRecorderEditorSettings;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneAnimationTrackRecorderEditorSettings;
+	static GetDefaultObject(): MovieSceneAnimationTrackRecorderEditorSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneAnimationTrackRecorderEditorSettings;
+	static C(Other: UObject | any): MovieSceneAnimationTrackRecorderEditorSettings;
 }
 
-declare class JavascriptStaticCache extends UObject { 
-	Isolates: JavascriptIsolate[];
-	bExecuteTestModePIE: boolean;
-	static Load(ResourceName: string): JavascriptStaticCache;
-	static Find(Outer: UObject, ResourceName: string): JavascriptStaticCache;
-	static GetDefaultObject(): JavascriptStaticCache;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptStaticCache;
-	static C(Other: UObject | any): JavascriptStaticCache;
+declare class MovieSceneAnimationTrackRecorderSettings extends MovieSceneAnimationTrackRecorderEditorSettings { 
+	static Load(ResourceName: string): MovieSceneAnimationTrackRecorderSettings;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneAnimationTrackRecorderSettings;
+	static GetDefaultObject(): MovieSceneAnimationTrackRecorderSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneAnimationTrackRecorderSettings;
+	static C(Other: UObject | any): MovieSceneAnimationTrackRecorderSettings;
 }
 
-declare class JavascriptRow { 
-	Values: string[];
-	clone() : JavascriptRow;
-	static C(Other: UObject | any): JavascriptRow;
+declare class MovieSceneParticleTrackRecorder extends MovieSceneTrackRecorder { 
+	static Load(ResourceName: string): MovieSceneParticleTrackRecorder;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneParticleTrackRecorder;
+	static GetDefaultObject(): MovieSceneParticleTrackRecorder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneParticleTrackRecorder;
+	OnTriggered(Component: ParticleSystemComponent,bActivating: boolean): void;
+	static C(Other: UObject | any): MovieSceneParticleTrackRecorder;
 }
 
-declare class JavascriptStreamableManager { 
-	clone() : JavascriptStreamableManager;
-	static C(Other: UObject | any): JavascriptStreamableManager;
-	IsAsyncLoadComplete(Target: SoftObjectPath): boolean;
-	RequestAsyncLoad(TargetsToStream: SoftObjectPath[],DelegateToCall: JavascriptFunction,Priority: number): void;
-	SimpleAsyncLoad(Target: SoftObjectPath,Priority: number): void;
-	Unload(Target: SoftObjectPath): void;
-	static IsAsyncLoadComplete(Manager: JavascriptStreamableManager,Target: SoftObjectPath): boolean;
-	static RequestAsyncLoad(Manager: JavascriptStreamableManager,TargetsToStream: SoftObjectPath[],DelegateToCall: JavascriptFunction,Priority: number): void;
-	static SimpleAsyncLoad(Manager: JavascriptStreamableManager,Target: SoftObjectPath,Priority: number): void;
-	static Unload(Manager: JavascriptStreamableManager,Target: SoftObjectPath): void;
-	static CreateStreamableManager(): JavascriptStreamableManager;
+declare class MovieScenePropertyTrackRecorder extends MovieSceneTrackRecorder { 
+	static Load(ResourceName: string): MovieScenePropertyTrackRecorder;
+	static Find(Outer: UObject, ResourceName: string): MovieScenePropertyTrackRecorder;
+	static GetDefaultObject(): MovieScenePropertyTrackRecorder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieScenePropertyTrackRecorder;
+	static C(Other: UObject | any): MovieScenePropertyTrackRecorder;
 }
 
-declare class JavascriptInternetAddr { 
-	clone() : JavascriptInternetAddr;
-	static C(Other: UObject | any): JavascriptInternetAddr;
-	SetIp(ResolvedAddress?: string,bValid?: boolean): {Addr: JavascriptInternetAddr, bValid: boolean};
-	SetPort(Port?: number): {Addr: JavascriptInternetAddr};
-	static SetIp(Addr?: JavascriptInternetAddr,ResolvedAddress?: string,bValid?: boolean): {Addr: JavascriptInternetAddr, bValid: boolean};
-	static SetPort(Addr?: JavascriptInternetAddr,Port?: number): {Addr: JavascriptInternetAddr};
-	static CreateInternetAddr(): JavascriptInternetAddr;
+declare class MovieSceneSpawnTrackRecorder extends MovieSceneTrackRecorder { 
+	static Load(ResourceName: string): MovieSceneSpawnTrackRecorder;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneSpawnTrackRecorder;
+	static GetDefaultObject(): MovieSceneSpawnTrackRecorder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneSpawnTrackRecorder;
+	static C(Other: UObject | any): MovieSceneSpawnTrackRecorder;
 }
 
-declare class JavascriptSocket { 
-	clone() : JavascriptSocket;
-	static C(Other: UObject | any): JavascriptSocket;
-	SendMemoryTo(ToAddr?: JavascriptInternetAddr,NumBytes?: number,BytesSent?: number): {Socket: JavascriptSocket, BytesSent: number, $: boolean};
-	static SendMemoryTo(Socket?: JavascriptSocket,ToAddr?: JavascriptInternetAddr,NumBytes?: number,BytesSent?: number): {Socket: JavascriptSocket, BytesSent: number, $: boolean};
-	static CreateSocket(SocketType: string,Description: string,bForceUDP: boolean): JavascriptSocket;
+declare class MovieSceneVisibilityTrackRecorder extends MovieSceneTrackRecorder { 
+	static Load(ResourceName: string): MovieSceneVisibilityTrackRecorder;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneVisibilityTrackRecorder;
+	static GetDefaultObject(): MovieSceneVisibilityTrackRecorder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneVisibilityTrackRecorder;
+	static C(Other: UObject | any): MovieSceneVisibilityTrackRecorder;
 }
 
-declare type EJavascriptStatDataType = 'Invalid' | 'ST_None' | 'ST_int64' | 'ST_double' | 'ST_FName' | 'ST_Ptr' | 'EJavascriptStatDataType_MAX';
-declare var EJavascriptStatDataType : { Invalid:'Invalid',ST_None:'ST_None',ST_int64:'ST_int64',ST_double:'ST_double',ST_FName:'ST_FName',ST_Ptr:'ST_Ptr',EJavascriptStatDataType_MAX:'EJavascriptStatDataType_MAX', };
-declare type EJavascriptStatOperation = 'Invalid' | 'SetLongName' | 'AdvanceFrameEventGameThread' | 'AdvanceFrameEventRenderThread' | 'CycleScopeStart' | 'CycleScopeEnd' | 'SpecialMessageMarker' | 'Set' | 'Clear' | 'Add' | 'Subtract' | 'ChildrenStart' | 'ChildrenEnd' | 'Leaf' | 'MaxVal' | 'Memory' | 'EJavascriptStatOperation_MAX';
-declare var EJavascriptStatOperation : { Invalid:'Invalid',SetLongName:'SetLongName',AdvanceFrameEventGameThread:'AdvanceFrameEventGameThread',AdvanceFrameEventRenderThread:'AdvanceFrameEventRenderThread',CycleScopeStart:'CycleScopeStart',CycleScopeEnd:'CycleScopeEnd',SpecialMessageMarker:'SpecialMessageMarker',Set:'Set',Clear:'Clear',Add:'Add',Subtract:'Subtract',ChildrenStart:'ChildrenStart',ChildrenEnd:'ChildrenEnd',Leaf:'Leaf',MaxVal:'MaxVal',Memory:'Memory',EJavascriptStatOperation_MAX:'EJavascriptStatOperation_MAX', };
-declare class JavascriptStat { 
-	clone() : JavascriptStat;
-	static C(Other: UObject | any): JavascriptStat;
-	AddMessage(InStatOperation: EJavascriptStatOperation): void;
-	AddMessage_float(InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	AddMessage_int(InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static AddMessage(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation): void;
-	static AddMessage_float(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static AddMessage_int(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static NewStat(InStatName: string,InStatDesc: string,InGroupName: string,InGroupCategory: string,InGroupDesc: string,bDefaultEnable: boolean,bShouldClearEveryFrame: boolean,InStatType: EJavascriptStatDataType,bCycleStat: boolean,bSortByName: boolean): JavascriptStat;
+declare type ETakeRecorderPanelMode = 'NewRecording' | 'RecordingInto' | 'EditingPreset' | 'ReviewingRecording' | 'ETakeRecorderPanelMode_MAX';
+declare var ETakeRecorderPanelMode : { NewRecording:'NewRecording',RecordingInto:'RecordingInto',EditingPreset:'EditingPreset',ReviewingRecording:'ReviewingRecording',ETakeRecorderPanelMode_MAX:'ETakeRecorderPanelMode_MAX', };
+declare class TakeRecorderPanel extends UObject { 
+	static Load(ResourceName: string): TakeRecorderPanel;
+	static Find(Outer: UObject, ResourceName: string): TakeRecorderPanel;
+	static GetDefaultObject(): TakeRecorderPanel;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TakeRecorderPanel;
+	StopRecording(): void;
+	StartRecording(): void;
+	SetupForViewing(LevelSequenceAsset: LevelSequence): void;
+	SetupForRecordingInto_LevelSequence(LevelSequenceAsset: LevelSequence): void;
+	SetupForRecording_TakePreset(TakePresetAsset: TakePreset): void;
+	SetupForRecording_LevelSequence(LevelSequenceAsset: LevelSequence): void;
+	SetupForEditing(TakePreset: TakePreset): void;
+	SetFrameRateFromTimecode(bInFromTimecode: boolean): void;
+	SetFrameRate(InFrameRate: FrameRate): void;
+	NewTake(): void;
+	GetTakeMetaData(): TakeMetaData;
+	GetSources(): TakeRecorderSources;
+	GetMode(): ETakeRecorderPanelMode;
+	GetLevelSequence(): LevelSequence;
+	GetLastRecordedLevelSequence(): LevelSequence;
+	GetFrameRate(): FrameRate;
+	ClearPendingTake(): void;
+	CanStartRecording(OutErrorText?: string): {OutErrorText: string, $: boolean};
+	static C(Other: UObject | any): TakeRecorderPanel;
 }
 
-declare type ELogVerbosity_JS = 'NoLogging' | 'Fatal' | 'Error' | 'Warning' | 'Display' | 'Log' | 'Verbose' | 'VeryVerbose' | 'ELogVerbosity_MAX';
-declare var ELogVerbosity_JS : { NoLogging:'NoLogging',Fatal:'Fatal',Error:'Error',Warning:'Warning',Display:'Display',Log:'Log',Verbose:'Verbose',VeryVerbose:'VeryVerbose',ELogVerbosity_MAX:'ELogVerbosity_MAX', };
-declare class JavascriptLogCategory { 
-	clone() : JavascriptLogCategory;
-	static C(Other: UObject | any): JavascriptLogCategory;
-	GetCategoryName(): string;
-	IsSuppressed(Verbosity: ELogVerbosity_JS): boolean;
-	Log(Verbosity: ELogVerbosity_JS,Message: string,Filename: string,LineNumber: number): void;
-	static GetCategoryName(Category: JavascriptLogCategory): string;
-	static IsSuppressed(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS): boolean;
-	static Log(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS,Message: string,Filename: string,LineNumber: number): void;
-	static CreateLogCategory(CategoryName: string,InDefaultVerbosity: ELogVerbosity_JS): JavascriptLogCategory;
+declare class TakeRecorderBlueprintLibrary extends BlueprintFunctionLibrary { 
+	static Load(ResourceName: string): TakeRecorderBlueprintLibrary;
+	static Find(Outer: UObject, ResourceName: string): TakeRecorderBlueprintLibrary;
+	static GetDefaultObject(): TakeRecorderBlueprintLibrary;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TakeRecorderBlueprintLibrary;
+	static StopRecording(): void;
+	static StartRecording(LevelSequence: LevelSequence,Sources: TakeRecorderSources,MetaData: TakeMetaData,Parameters: TakeRecorderParameters): TakeRecorder;
+	static SetDefaultParameters(DefaultParameters: TakeRecorderParameters): void;
+	static OpenTakeRecorderPanel(): TakeRecorderPanel;
+	static IsTakeRecorderEnabled(): boolean;
+	static IsRecording(): boolean;
+	static GetTakeRecorderPanel(): TakeRecorderPanel;
+	static GetDefaultParameters(): TakeRecorderParameters;
+	static GetActiveRecorder(): TakeRecorder;
+	static CancelRecording(): void;
+	static C(Other: UObject | any): TakeRecorderBlueprintLibrary;
 }
 
-declare class JavscriptProperty { 
-	Type: string;
-	Name: string;
-	clone() : JavscriptProperty;
-	static C(Other: UObject | any): JavscriptProperty;
+declare class TakeRecorderUserSettings extends UObject { 
+	Settings: TakeRecorderUserParameters;
+	PresetSaveDir: DirectoryPath;
+	LastOpenedPreset: TakePreset;
+	bIsSequenceOpen: boolean;
+	bShowUserSettingsOnUI: boolean;
+	static Load(ResourceName: string): TakeRecorderUserSettings;
+	static Find(Outer: UObject, ResourceName: string): TakeRecorderUserSettings;
+	static GetDefaultObject(): TakeRecorderUserSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TakeRecorderUserSettings;
+	static C(Other: UObject | any): TakeRecorderUserSettings;
 }
 
-declare class JavascriptProfileNode { 
-	clone() : JavascriptProfileNode;
-	static C(Other: UObject | any): JavascriptProfileNode;
-	GetBailoutReason(): string;
-	GetChild(Index: number): JavascriptProfileNode;
-	GetChildrenCount(): number;
-	GetColumnNumber(): number;
-	GetDeoptInfo_Reason(Index: number): string;
-	GetDeoptInfo_Stack(Index: number): string;
-	GetDeoptInfosCount(Index: number): number;
-	GetFunctionName(): string;
-	GetHitCount(): number;
-	GetHitLineCount(): number;
-	GetLineNumber(): number;
-	GetNodeId(): number;
-	GetScriptId(): number;
-	GetScriptResourceName(): string;
-	static GetBailoutReason(UNode: JavascriptProfileNode): string;
-	static GetChild(UNode: JavascriptProfileNode,Index: number): JavascriptProfileNode;
-	static GetChildrenCount(UNode: JavascriptProfileNode): number;
-	static GetColumnNumber(UNode: JavascriptProfileNode): number;
-	static GetDeoptInfo_Reason(UNode: JavascriptProfileNode,Index: number): string;
-	static GetDeoptInfo_Stack(UNode: JavascriptProfileNode,Index: number): string;
-	static GetDeoptInfosCount(UNode: JavascriptProfileNode,Index: number): number;
-	static GetFunctionName(UNode: JavascriptProfileNode): string;
-	static GetHitCount(UNode: JavascriptProfileNode): number;
-	static GetHitLineCount(UNode: JavascriptProfileNode): number;
-	static GetLineNumber(UNode: JavascriptProfileNode): number;
-	static GetNodeId(UNode: JavascriptProfileNode): number;
-	static GetScriptId(UNode: JavascriptProfileNode): number;
-	static GetScriptResourceName(UNode: JavascriptProfileNode): string;
+declare class TakeRecorderProjectSettings extends UObject { 
+	Settings: TakeRecorderProjectParameters;
+	static Load(ResourceName: string): TakeRecorderProjectSettings;
+	static Find(Outer: UObject, ResourceName: string): TakeRecorderProjectSettings;
+	static GetDefaultObject(): TakeRecorderProjectSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TakeRecorderProjectSettings;
+	static C(Other: UObject | any): TakeRecorderProjectSettings;
 }
 
-declare class JavascriptLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): JavascriptLibrary;
-	static Find(Outer: UObject, ResourceName: string): JavascriptLibrary;
-	static GetDefaultObject(): JavascriptLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptLibrary;
-	static WriteStringToFile(UObject: UObject,Filename: string,Data: string,EncodingOptions: EJavascriptEncodingOptions): boolean;
-	static WriteFile(UObject: UObject,Filename: string): boolean;
-	static WriteCSV(InPath: string,InData?: JavascriptRow[],EncodingOptions?: EJavascriptEncodingOptions): {InData: JavascriptRow[], $: boolean};
-	static V8_SetIdleTaskBudget(BudgetInSeconds: number): void;
-	static V8_SetFlagsFromString(V8Flags: string): void;
-	static V8_IsEnableHotReload(): boolean;
-	static UnregisterComponent(ActorComponent: ActorComponent): void;
-	static Unload(Manager: JavascriptStreamableManager,Target: SoftObjectPath): void;
-	static TryLoadByPath(Path: string): UObject;
-	static SimpleAsyncLoad(Manager: JavascriptStreamableManager,Target: SoftObjectPath,Priority: number): void;
-	static SetRootComponent(Actor: Actor,Component: SceneComponent): void;
-	static SetPort(Addr?: JavascriptInternetAddr,Port?: number): {Addr: JavascriptInternetAddr};
-	static SetObjectFlags(Obj: UObject,Flags: number): void;
-	static SetMobility(SceneComponent: SceneComponent,Type: EComponentMobility): void;
-	static SetMobile(SceneComponent: SceneComponent): void;
-	static SetIp(Addr?: JavascriptInternetAddr,ResolvedAddress?: string,bValid?: boolean): {Addr: JavascriptInternetAddr, bValid: boolean};
-	static SetClientTravel(Engine: Engine,InWorld: World,NextURL: string,InTravelType: ETravelType): void;
-	static SetActorFlags(Actor: Actor,Flags: number): void;
-	static SendMemoryTo(Socket?: JavascriptSocket,ToAddr?: JavascriptInternetAddr,NumBytes?: number,BytesSent?: number): {Socket: JavascriptSocket, BytesSent: number, $: boolean};
-	static SegmentIntersection2D(SegmentStartA: Vector,SegmentEndA: Vector,SegmentStartB: Vector,SegmentEndB: Vector,IntersectionPoint?: Vector): {IntersectionPoint: Vector, $: boolean};
-	static ResolveIp(HostName: string,OutIp?: string): {OutIp: string, $: boolean};
-	static ReregisterComponent(ActorComponent: ActorComponent): void;
-	static ReregisterAllComponents(Actor: Actor): void;
-	static RequestAsyncLoad(Manager: JavascriptStreamableManager,TargetsToStream: SoftObjectPath[],DelegateToCall: JavascriptFunction,Priority: number): void;
-	static RegisterComponent(ActorComponent: ActorComponent): void;
-	static ReadStringFromFileAsync(UObject: UObject,Filename: string,UFunction: JavascriptFunction): ReadStringFromFileHandle;
-	static ReadStringFromFile(UObject: UObject,Filename: string,ReadFlags: EFileRead_JS): string;
-	static ReadFile(UObject: UObject,Filename: string): boolean;
-	static ReadDirectory(UObject: UObject,Directory: string,OutItems?: DirectoryItem[]): {OutItems: DirectoryItem[], $: boolean};
-	static ReadCSV(InPath: string,OutData?: JavascriptRow[],ReadFlags?: EFileRead_JS): {OutData: JavascriptRow[], $: boolean};
-	static NewStat(InStatName: string,InStatDesc: string,InGroupName: string,InGroupCategory: string,InGroupDesc: string,bDefaultEnable: boolean,bShouldClearEveryFrame: boolean,InStatType: EJavascriptStatDataType,bCycleStat: boolean,bSortByName: boolean): JavascriptStat;
-	static MarkRenderStateDirty(Component: ActorComponent): void;
-	static MakeDirectory(Path: string,Tree: boolean): boolean;
-	static Log(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS,Message: string,Filename: string,LineNumber: number): void;
-	static LoadPackage(InOuter: Package,PackageName: string): Package;
-	static IsSuppressed(Category: JavascriptLogCategory,Verbosity: ELogVerbosity_JS): boolean;
-	static IsRegistered(ActorComponent: ActorComponent): boolean;
-	static IsPlayInPreview(World: World): boolean;
-	static IsPlayInEditor(World: World): boolean;
-	static IsPendingKill(InActor: Actor): boolean;
-	static IsGeneratedByBlueprint(InClass: UnrealEngineClass): boolean;
-	static IsGameWorld(World: World): boolean;
-	static IsAsyncLoadComplete(Manager: JavascriptStreamableManager,Target: SoftObjectPath): boolean;
-	static HasUndo(Engine: Engine): boolean;
-	static HasAnyPackageFlags(Package: Package,Flags: number): boolean;
-	static HasAnyFlags(UObject: UObject,Flags: number): boolean;
-	static HandleSeamlessTravelPlayer(GameMode: GameModeBase,C?: Controller): {C: Controller};
-	static GetWorldBounds(InWorld: World): Box;
-	static GetSuperClasses(InClass: UnrealEngineClass): UnrealEngineClass[];
-	static GetStructProperties(StructName: string,bIncludeSuper: boolean): JavscriptProperty[];
-	static GetScriptResourceName(UNode: JavascriptProfileNode): string;
-	static GetScriptId(UNode: JavascriptProfileNode): number;
-	static GetPlatformName(): string;
-	static GetOutermost(UObject: UObject): UObject;
-	static GetOuter(UObject: UObject): UObject;
-	static GetObjectsWithOuter(Outer: UObject,Results?: UObject[],bIncludeNestedObjects?: boolean,ExclusionFlags?: number,ExclusionInternalFlags?: number): {Results: UObject[]};
-	static GetObjectsOfClass(ClassToLookFor: UnrealEngineClass,Results?: UObject[],bIncludeDerivedClasses?: boolean,ExcludeFlags?: number,ExclusionInternalFlags?: number): {Results: UObject[]};
-	static GetNodeId(UNode: JavascriptProfileNode): number;
-	static GetName(UObject: UObject): string;
-	static GetModel(World: World): Model;
-	static GetMetaData(Field: Field,Key: string): string;
-	static GetLineNumber(UNode: JavascriptProfileNode): number;
-	static GetLevels(World: World): Level[];
-	static GetLevel(Actor: Actor): Level;
-	static GetLastRenderTime(Actor: Actor): number;
-	static GetHitLineCount(UNode: JavascriptProfileNode): number;
-	static GetHitCount(UNode: JavascriptProfileNode): number;
-	static GetFunctionParmsSize(UFunction: UFunction): number;
-	static GetFunctionName(UNode: JavascriptProfileNode): string;
-	static GetFileSize(UObject: UObject,Filename: string): number;
-	static GetFields(UObject: UObject,bIncludeSuper: boolean): Field[];
-	static GetEnumListByEnumName(EnumName: string): string[];
-	static GetDynamicBinding(Outer: UnrealEngineClass,BindingObjectClass: UnrealEngineClass): DynamicBlueprintBinding;
-	static GetDir(UObject: UObject,WhichDir: string): string;
-	static GetDerivedClasses(ClassToLookFor: UnrealEngineClass,Results?: UnrealEngineClass[],bRecursive?: boolean): {Results: UnrealEngineClass[]};
-	static GetDeoptInfosCount(UNode: JavascriptProfileNode,Index: number): number;
-	static GetDeoptInfo_Stack(UNode: JavascriptProfileNode,Index: number): string;
-	static GetDeoptInfo_Reason(UNode: JavascriptProfileNode,Index: number): string;
-	static GetCurrentProcessId(): number;
-	static GetComponentsByClass(Actor: Actor,ComponentClass: UnrealEngineClass): ActorComponent[];
-	static GetColumnNumber(UNode: JavascriptProfileNode): number;
-	static GetClassPathName(Class: UnrealEngineClass): string;
-	static GetChildrenCount(UNode: JavascriptProfileNode): number;
-	static GetChild(UNode: JavascriptProfileNode,Index: number): JavascriptProfileNode;
-	static GetCategoryName(Category: JavascriptLogCategory): string;
-	static GetBlueprintGeneratedClassFromPath(Path: string): UnrealEngineClass;
-	static GetBlueprintGeneratedClass(Blueprint: Blueprint): UnrealEngineClass;
-	static GetBailoutReason(UNode: JavascriptProfileNode): string;
-	static GetArchetypePathName(UObject: UObject): string;
-	static GetAllActorsOfClassAndTagsInCurrentLevel(WorldContextObject: UObject,ActorClass: UnrealEngineClass,Tags_Accept: string[],Tags_Deny: string[],OutActors?: Actor[]): {OutActors: Actor[]};
-	static GetAllActorsOfClassAndTags(WorldContextObject: UObject,ActorClass: UnrealEngineClass,Tags_Accept: string[],Tags_Deny: string[],OutActors?: Actor[]): {OutActors: Actor[]};
-	static GenerateNavigation(InWorld: World,NavData: RecastNavMesh): void;
-	static FindPackage(InOuter: UObject,PackageName: string): Package;
-	static FindObjectWithOuter(Outer: UObject,ClassToLookFor: UnrealEngineClass,NameToLookFor: string): UObject;
-	static FileExists(Filename: string): boolean;
-	static Duplicate(UObject: UObject,Outer: UObject,Name: string): UObject;
-	static DirectoryExists(InDirectory: string): boolean;
-	static DeleteFile(Filename: string,ReadOnly: boolean): boolean;
-	static DeleteDirectory(Path: string,RequireExists: boolean,Tree: boolean): boolean;
-	static CreateStreamableManager(): JavascriptStreamableManager;
-	static CreateSocket(SocketType: string,Description: string,bForceUDP: boolean): JavascriptSocket;
-	static CreatePackage(Outer: UObject,PackageName: string): Package;
-	static CreateLogCategory(CategoryName: string,InDefaultVerbosity: ELogVerbosity_JS): JavascriptLogCategory;
-	static CreateInternetAddr(): JavascriptInternetAddr;
-	static CreateEnum(Outer: UObject,Name: string,DisplayNames: string[],Flags: string[]): Enum;
-	static ConvertRelativePathToFull(UObject: UObject,RelativePath: string): string;
-	static ClipboardPaste(): string;
-	static ClipboardCopy(string: string): void;
-	static CallJS(UFunction: JavascriptFunction,CustomStruct: JavascriptStubStruct): void;
-	static AddMessage_int(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static AddMessage_float(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation,Value: number,bIsCycle: boolean): void;
-	static AddMessage(Stat: JavascriptStat,InStatOperation: EJavascriptStatOperation): void;
-	static AddDynamicBinding(Outer: UnrealEngineClass,BindingObject: DynamicBlueprintBinding): void;
-	static Actor_GetWorld(Actor: Actor): World;
-	static C(Other: UObject | any): JavascriptLibrary;
+declare class ActorFactoryCacheManager extends ActorFactory { 
+	static Load(ResourceName: string): ActorFactoryCacheManager;
+	static Find(Outer: UObject, ResourceName: string): ActorFactoryCacheManager;
+	static GetDefaultObject(): ActorFactoryCacheManager;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ActorFactoryCacheManager;
+	static C(Other: UObject | any): ActorFactoryCacheManager;
 }
 
-declare class JavascriptMemoryObject extends UObject { 
-	static Load(ResourceName: string): JavascriptMemoryObject;
-	static Find(Outer: UObject, ResourceName: string): JavascriptMemoryObject;
-	static GetDefaultObject(): JavascriptMemoryObject;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptMemoryObject;
-	static C(Other: UObject | any): JavascriptMemoryObject;
+declare class CacheCollectionFactory extends Factory { 
+	static Load(ResourceName: string): CacheCollectionFactory;
+	static Find(Outer: UObject, ResourceName: string): CacheCollectionFactory;
+	static GetDefaultObject(): CacheCollectionFactory;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): CacheCollectionFactory;
+	static C(Other: UObject | any): CacheCollectionFactory;
 }
 
-declare class JavascriptRef { 
-	clone() : JavascriptRef;
-	static C(Other: UObject | any): JavascriptRef;
+declare class MovieSceneChaosCacheTrackRecorder extends MovieSceneTrackRecorder { 
+	static Load(ResourceName: string): MovieSceneChaosCacheTrackRecorder;
+	static Find(Outer: UObject, ResourceName: string): MovieSceneChaosCacheTrackRecorder;
+	static GetDefaultObject(): MovieSceneChaosCacheTrackRecorder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): MovieSceneChaosCacheTrackRecorder;
+	static C(Other: UObject | any): MovieSceneChaosCacheTrackRecorder;
 }
 
-declare class JavascriptObject extends UObject { 
-	Ref: JavascriptRef;
-	Func: JavascriptFunction;
-	static Load(ResourceName: string): JavascriptObject;
-	static Find(Outer: UObject, ResourceName: string): JavascriptObject;
-	static GetDefaultObject(): JavascriptObject;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptObject;
-	static C(Other: UObject | any): JavascriptObject;
+declare class TakeRecorderChaosCacheSource extends TakeRecorderSource { 
+	ChaosCacheManager: ChaosCacheManager;
+	TrackRecorder: MovieSceneChaosCacheTrackRecorder;
+	static Load(ResourceName: string): TakeRecorderChaosCacheSource;
+	static Find(Outer: UObject, ResourceName: string): TakeRecorderChaosCacheSource;
+	static GetDefaultObject(): TakeRecorderChaosCacheSource;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TakeRecorderChaosCacheSource;
+	static C(Other: UObject | any): TakeRecorderChaosCacheSource;
 }
 
-declare class JavascriptOutputDevice extends UObject { 
-	static Load(ResourceName: string): JavascriptOutputDevice;
-	static Find(Outer: UObject, ResourceName: string): JavascriptOutputDevice;
-	static GetDefaultObject(): JavascriptOutputDevice;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptOutputDevice;
-	OnMessage(Message: string,Verbosity: ELogVerbosity_JS,Category: string): void;
-	static Log(Category: string,Verbosity: ELogVerbosity_JS,Filename: string,LineNumber: number,Message: string): void;
-	Kill(): void;
-	static C(Other: UObject | any): JavascriptOutputDevice;
+declare class InternationalizationExportSettings extends UObject { 
+	CulturesToGenerate: string[];
+	CommandletClass: string;
+	SourcePath: string;
+	DestinationPath: string;
+	PortableObjectName: string;
+	ManifestName: string;
+	ArchiveName: string;
+	bExportLoc: boolean;
+	bImportLoc: boolean;
+	bUseCultureDirectory: boolean;
+	static Load(ResourceName: string): InternationalizationExportSettings;
+	static Find(Outer: UObject, ResourceName: string): InternationalizationExportSettings;
+	static GetDefaultObject(): InternationalizationExportSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): InternationalizationExportSettings;
+	static C(Other: UObject | any): InternationalizationExportSettings;
 }
 
-declare class JavascriptProcess extends UObject { 
-	static Load(ResourceName: string): JavascriptProcess;
-	static Find(Outer: UObject, ResourceName: string): JavascriptProcess;
-	static GetDefaultObject(): JavascriptProcess;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptProcess;
-	WriteToPipe(Message: string,OutWritten?: string): {OutWritten: string, $: boolean};
-	Wait(): void;
-	Terminate(KillTree: boolean): void;
-	static Sleep(Seconds: number): void;
-	static SimulateKeypress(KeyEvent: number): void;
-	static SetEnvironmentVar(VarName: string,VarValue: string): void;
-	ReadFromPipe(): string;
-	ReadArrayFromPipe(Array?: number[]): {Array: number[], $: boolean};
-	static Open_PID(ProcessId: number): JavascriptProcess;
-	static Open(ProcName: string): JavascriptProcess;
-	static LaunchURL(URL: string,Parms: string,Error?: string): {Error: string};
-	IsRunning(): boolean;
-	static IsApplicationRunning_PID(ProcessId: number): boolean;
-	static IsApplicationRunning(ProcName: string): boolean;
-	static GetString(Key: string,bFlag: boolean): string;
-	GetReturnCode(ReturnCode?: number): {ReturnCode: number, $: boolean};
-	static GetEnvironmentVar(VarName: string): string;
-	static GetCurrentProcessId(): number;
-	static GetApplicationName(ProcessId: number): string;
-	static Create(URL: string,Parms: string,bLaunchDetached: boolean,bLaunchHidden: boolean,bLaunchReallyHidden: boolean,PriorityModifier: number,OptionalWorkingDirectory: string,bUsePipe: boolean): JavascriptProcess;
-	Close(): void;
-	static CanLaunchURL(URL: string): boolean;
-	static C(Other: UObject | any): JavascriptProcess;
+declare class TranslationPickerSettings extends UObject { 
+	bSubmitTranslationPickerChangesToLocalizationService: boolean;
+	static Load(ResourceName: string): TranslationPickerSettings;
+	static Find(Outer: UObject, ResourceName: string): TranslationPickerSettings;
+	static GetDefaultObject(): TranslationPickerSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TranslationPickerSettings;
+	static C(Other: UObject | any): TranslationPickerSettings;
 }
 
-declare class JavascriptCpuProfiler { 
-	clone() : JavascriptCpuProfiler;
-	static C(Other: UObject | any): JavascriptCpuProfiler;
+declare class TranslationChange { 
+	Version: string;
+	DateAndTime: DateTime;
+	Source: string;
+	Translation: string;
+	clone() : TranslationChange;
+	static C(Other: UObject | any): TranslationChange;
 }
 
-declare class JavascriptProfile extends UObject { 
-	static Load(ResourceName: string): JavascriptProfile;
-	static Find(Outer: UObject, ResourceName: string): JavascriptProfile;
-	static GetDefaultObject(): JavascriptProfile;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptProfile;
-	static Stop(Profiler: JavascriptCpuProfiler,Title: string): JavascriptProfile;
-	static Start(Title: string,bRecordSamples: boolean): JavascriptCpuProfiler;
-	static SetSamplingInterval(Profiler: JavascriptCpuProfiler,us: number): void;
-	static SetIdle(Profiler: JavascriptCpuProfiler,is_idle: boolean): void;
-	GetTopDownRoot(): JavascriptProfileNode;
-	GetSampleTimestamp(Index: number): number;
-	GetSamplesCount(): number;
-	GetSample(Index: number): JavascriptProfileNode;
-	static C(Other: UObject | any): JavascriptProfile;
-}
-
-declare class JavascriptSemaphore extends UObject { 
-	static Load(ResourceName: string): JavascriptSemaphore;
-	static Find(Outer: UObject, ResourceName: string): JavascriptSemaphore;
-	static GetDefaultObject(): JavascriptSemaphore;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSemaphore;
-	Unlock(): void;
-	TryLock(NanosecondsToWait: number): boolean;
-	Lock(): void;
-	Dispose(): void;
-	static Create(Name: string,bCreate: boolean,MaxLocks: number): JavascriptSemaphore;
-	static C(Other: UObject | any): JavascriptSemaphore;
-}
-
-declare class JavascriptSettings extends UObject { 
-	V8Flags: string;
-	bEnableHotReload: boolean;
-	static Load(ResourceName: string): JavascriptSettings;
-	static Find(Outer: UObject, ResourceName: string): JavascriptSettings;
-	static GetDefaultObject(): JavascriptSettings;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSettings;
-	static C(Other: UObject | any): JavascriptSettings;
-}
-
-declare class JavascriptSharedMemoryRegion extends JavascriptMemoryObject { 
-	static Load(ResourceName: string): JavascriptSharedMemoryRegion;
-	static Find(Outer: UObject, ResourceName: string): JavascriptSharedMemoryRegion;
-	static GetDefaultObject(): JavascriptSharedMemoryRegion;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptSharedMemoryRegion;
-	Dispose(): void;
-	static Create(Name: string,bCreate: boolean,bRead: boolean,bWrite: boolean,Size: number): JavascriptSharedMemoryRegion;
-	static C(Other: UObject | any): JavascriptSharedMemoryRegion;
-}
-
-declare class JavascriptAutomatedTestInstance { 
-	clone() : JavascriptAutomatedTestInstance;
-	static C(Other: UObject | any): JavascriptAutomatedTestInstance;
-	AddAnalyticsItem(InAnalyticsItem: string): void;
-	AddError(InError: string): void;
-	AddLogItem(InLogItem: string): void;
-	AddWarning(InWarning: string): void;
-	ClearExecutionInfo(): void;
-	Destroy(): {Test: JavascriptAutomatedTestInstance};
-	SetContinue(bInContinue: boolean): void;
-	static AddAnalyticsItem(Test: JavascriptAutomatedTestInstance,InAnalyticsItem: string): void;
-	static AddError(Test: JavascriptAutomatedTestInstance,InError: string): void;
-	static AddLogItem(Test: JavascriptAutomatedTestInstance,InLogItem: string): void;
-	static AddWarning(Test: JavascriptAutomatedTestInstance,InWarning: string): void;
-	static ClearExecutionInfo(Test: JavascriptAutomatedTestInstance): void;
-	static Destroy(Test?: JavascriptAutomatedTestInstance): {Test: JavascriptAutomatedTestInstance};
-	static SetContinue(Test: JavascriptAutomatedTestInstance,bInContinue: boolean): void;
-}
-
-declare class JavascriptAutomatedTest { 
-	Name: string;
-	bComplexTask: boolean;
-	TestFlags: number;
-	RequiredDeviceNum: number;
-	TestFunctionNames: string[];
-	UFunction: JavascriptFunction;
-	clone() : JavascriptAutomatedTest;
-	static C(Other: UObject | any): JavascriptAutomatedTest;
-	Create(): JavascriptAutomatedTestInstance;
-	static Create(Test: JavascriptAutomatedTest): JavascriptAutomatedTestInstance;
-}
-
-declare class JavascriptTestLibrary extends BlueprintFunctionLibrary { 
-	static Load(ResourceName: string): JavascriptTestLibrary;
-	static Find(Outer: UObject, ResourceName: string): JavascriptTestLibrary;
-	static GetDefaultObject(): JavascriptTestLibrary;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTestLibrary;
-	static SetContinue(Test: JavascriptAutomatedTestInstance,bInContinue: boolean): void;
-	static PushFrameCounter(): void;
-	static PopFrameCounter(): void;
-	static NewWorld(): World;
-	static InitializeActorsForPlay(World: World,URL: URL): void;
-	static DestroyWorld(World: World): void;
-	static DestroyUObject(UObject: UObject): void;
-	static Destroy(Test?: JavascriptAutomatedTestInstance): {Test: JavascriptAutomatedTestInstance};
-	static Create(Test: JavascriptAutomatedTest): JavascriptAutomatedTestInstance;
-	static ClearExecutionInfo(Test: JavascriptAutomatedTestInstance): void;
-	static BeginPlay(World: World): void;
-	static AddWarning(Test: JavascriptAutomatedTestInstance,InWarning: string): void;
-	static AddLogItem(Test: JavascriptAutomatedTestInstance,InLogItem: string): void;
-	static AddError(Test: JavascriptAutomatedTestInstance,InError: string): void;
-	static AddAnalyticsItem(Test: JavascriptAutomatedTestInstance,InAnalyticsItem: string): void;
-	static C(Other: UObject | any): JavascriptTestLibrary;
-}
-
-declare class JavascriptComboButton extends ContentWidget { 
-	ComboButtonStyle: ComboButtonStyle;
-	ButtonStyle: ButtonStyle;
-	OnGetMenuContent: UnrealEngineDelegate<() => JavascriptSlateWidget>;
-	OnMenuOpenChanged: UnrealEngineDelegate<(Value: boolean) => void>;
-	OnComboBoxOpened: UnrealEngineDelegate<() => void>;
-	bIsFocusable: boolean;
-	bHasDownArrow: boolean;
-	ForegroundColor: SlateColor;
-	ButtonColorAndOpacity: SlateColor;
-	ContentPadding: Margin;
-	MenuPlacement: EMenuPlacement;
-	HAlign: EHorizontalAlignment;
-	VAlign: EVerticalAlignment;
-	static Load(ResourceName: string): JavascriptComboButton;
-	static Find(Outer: UObject, ResourceName: string): JavascriptComboButton;
-	static GetDefaultObject(): JavascriptComboButton;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptComboButton;
-	SetIsOpen(InIsOpen: boolean,bFocusMenu: boolean): void;
-	static C(Other: UObject | any): JavascriptComboButton;
-}
-
-declare class JavascriptSlateIcon { 
-	StyleSetName: string;
-	StyleName: string;
-	SmallStyleName: string;
-	clone() : JavascriptSlateIcon;
-	static C(Other: UObject | any): JavascriptSlateIcon;
-}
-
-declare class JavascriptComboButtonContext extends UObject { 
-	OnGetLabel: UnrealEngineDelegate<() => string>;
-	OnGetTooltip: UnrealEngineDelegate<() => string>;
-	OnGetIcon: UnrealEngineDelegate<() => JavascriptSlateIcon>;
-	OnGetWidget: UnrealEngineDelegate<(EditingObject: UObject) => JavascriptSlateWidget>;
-	OnCanExecute: UnrealEngineDelegate<() => boolean>;
-	static Load(ResourceName: string): JavascriptComboButtonContext;
-	static Find(Outer: UObject, ResourceName: string): JavascriptComboButtonContext;
-	static GetDefaultObject(): JavascriptComboButtonContext;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptComboButtonContext;
-	UnmarkReferencedObject(): void;
-	MarkReferencedObject(): void;
-	static C(Other: UObject | any): JavascriptComboButtonContext;
-}
-
-declare class JavascriptTextProperty { 
+declare class TranslationContextInfo { 
 	Key: string;
+	Context: string;
+	Changes: TranslationChange[];
+	clone() : TranslationContextInfo;
+	static C(Other: UObject | any): TranslationContextInfo;
+}
+
+declare class TranslationUnit extends UObject { 
 	Namespace: string;
-	Value: string;
-	TableId: string;
-	clone() : JavascriptTextProperty;
-	static C(Other: UObject | any): JavascriptTextProperty;
-	static FromStringTable(InTableId: string,InKey: string): JavascriptTextProperty;
+	Key: string;
+	Source: string;
+	Translation: string;
+	Contexts: TranslationContextInfo[];
+	HasBeenReviewed: boolean;
+	TranslationBeforeImport: string;
+	LocresPath: string;
+	static Load(ResourceName: string): TranslationUnit;
+	static Find(Outer: UObject, ResourceName: string): TranslationUnit;
+	static GetDefaultObject(): TranslationUnit;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): TranslationUnit;
+	static C(Other: UObject | any): TranslationUnit;
 }
 
-declare class JavascriptFTextBox extends Widget { 
-	OnIsReadOnly: UnrealEngineDelegate<() => boolean>;
-	OnIsValidText: UnrealEngineDelegate<(TextValue: string) => string>;
-	OnGetDefaultValue: UnrealEngineDelegate<() => JavascriptTextProperty>;
-	OnTextCommitted: UnrealEngineMulticastDelegate<(TextProperty: JavascriptTextProperty) => void>;
-	WidgetStyle: EditableTextBoxStyle;
-	WrapTextAt: number;
-	AutoWrapText: boolean;
-	static Load(ResourceName: string): JavascriptFTextBox;
-	static Find(Outer: UObject, ResourceName: string): JavascriptFTextBox;
-	static GetDefaultObject(): JavascriptFTextBox;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptFTextBox;
-	SetText(JavascriptTextProperty?: JavascriptTextProperty): {JavascriptTextProperty: JavascriptTextProperty};
-	static C(Other: UObject | any): JavascriptFTextBox;
+declare class UndoHistorySettings extends UObject { 
+	bShowTransactionDetails: boolean;
+	static Load(ResourceName: string): UndoHistorySettings;
+	static Find(Outer: UObject, ResourceName: string): UndoHistorySettings;
+	static GetDefaultObject(): UndoHistorySettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): UndoHistorySettings;
+	static C(Other: UObject | any): UndoHistorySettings;
 }
 
-declare class JavascriptGameViewport extends ContentWidget { 
-	BackgroundColor: LinearColor;
-	static Load(ResourceName: string): JavascriptGameViewport;
-	static Find(Outer: UObject, ResourceName: string): JavascriptGameViewport;
-	static GetDefaultObject(): JavascriptGameViewport;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptGameViewport;
-	Spawn(ActorClass: UnrealEngineClass): Actor;
-	SetViewRotation(Rotation: Rotator): void;
-	SetViewLocation(Location: Vector): void;
-	GetViewRotation(): Rotator;
-	GetViewportWorld(): World;
-	GetViewLocation(): Vector;
-	static C(Other: UObject | any): JavascriptGameViewport;
+declare class LevelAssetEditor extends AssetEditor { 
+	static Load(ResourceName: string): LevelAssetEditor;
+	static Find(Outer: UObject, ResourceName: string): LevelAssetEditor;
+	static GetDefaultObject(): LevelAssetEditor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): LevelAssetEditor;
+	static C(Other: UObject | any): LevelAssetEditor;
 }
 
-declare class JavascriptIntSpinBox extends Widget { 
-	Value: number;
-	ValueDelegate: UnrealEngineDelegate<() => number>;
-	WidgetStyle: SpinBoxStyle;
-	Style: SlateWidgetStyleAsset;
-	Delta: number;
-	SliderExponent: number;
-	Font: SlateFontInfo;
-	Justification: ETextJustify;
-	MinDesiredWidth: number;
-	ClearKeyboardFocusOnCommit: boolean;
-	SelectAllTextOnCommit: boolean;
-	ForegroundColor: SlateColor;
-	OnValueChanged: UnrealEngineMulticastDelegate<(InValue: number) => void>;
-	OnValueCommitted: UnrealEngineMulticastDelegate<(InValue: number, CommitMethod: ETextCommit) => void>;
-	OnBeginSliderMovement: UnrealEngineMulticastDelegate<() => void>;
-	OnEndSliderMovement: UnrealEngineMulticastDelegate<(InValue: number) => void>;
-	bOverride_MinValue: boolean;
-	bOverride_MaxValue: boolean;
-	bOverride_MinSliderValue: boolean;
-	bOverride_MaxSliderValue: boolean;
-	MinValue: number;
-	MaxValue: number;
-	MinSliderValue: number;
-	MaxSliderValue: number;
-	static Load(ResourceName: string): JavascriptIntSpinBox;
-	static Find(Outer: UObject, ResourceName: string): JavascriptIntSpinBox;
-	static GetDefaultObject(): JavascriptIntSpinBox;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptIntSpinBox;
-	SetValue(NewValue: number): void;
-	SetMinValue(NewValue: number): void;
-	SetMinSliderValue(NewValue: number): void;
-	SetMaxValue(NewValue: number): void;
-	SetMaxSliderValue(NewValue: number): void;
-	SetForegroundColor(InForegroundColor: SlateColor): void;
-	GetValue(): number;
-	GetMinValue(): number;
-	GetMinSliderValue(): number;
-	GetMaxValue(): number;
-	GetMaxSliderValue(): number;
-	ClearMinValue(): void;
-	ClearMinSliderValue(): void;
-	ClearMaxValue(): void;
-	ClearMaxSliderValue(): void;
-	static C(Other: UObject | any): JavascriptIntSpinBox;
+declare class PixelInspectorView extends UObject { 
+	FinalColor: LinearColor;
+	SceneColor: LinearColor;
+	PreExposure: number;
+	Luminance: number;
+	HdrColor: LinearColor;
+	Normal: Vector;
+	PerObjectGBufferData: number;
+	Metallic: number;
+	Specular: number;
+	Roughness: number;
+	MaterialShadingModel: EMaterialShadingModel;
+	SelectiveOutputMask: number;
+	BaseColor: LinearColor;
+	IndirectIrradiance: number;
+	AmbientOcclusion: number;
+	SubsurfaceColor: LinearColor;
+	SubsurfaceProfile: Vector;
+	Opacity: number;
+	ClearCoat: number;
+	ClearCoatRoughness: number;
+	WorldNormal: Vector;
+	Backlit: number;
+	Cloth: number;
+	EyeTangent: Vector;
+	IrisMask: number;
+	IrisDistance: number;
+	static Load(ResourceName: string): PixelInspectorView;
+	static Find(Outer: UObject, ResourceName: string): PixelInspectorView;
+	static GetDefaultObject(): PixelInspectorView;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PixelInspectorView;
+	static C(Other: UObject | any): PixelInspectorView;
 }
 
-declare class TableColumnHeaderStyle extends SlateWidgetStyle { 
-	SortPrimaryAscendingImage: SlateBrush;
-	SortPrimaryDescendingImage: SlateBrush;
-	SortSecondaryAscendingImage: SlateBrush;
-	SortSecondaryDescendingImage: SlateBrush;
-	NormalBrush: SlateBrush;
-	HoveredBrush: SlateBrush;
-	MenuDropdownImage: SlateBrush;
-	MenuDropdownNormalBorderBrush: SlateBrush;
-	MenuDropdownHoveredBorderBrush: SlateBrush;
-	clone() : TableColumnHeaderStyle;
-	static C(Other: UObject | any): TableColumnHeaderStyle;
+declare class RigVMMemoryStorageGeneratorClass extends Class { 
+	static Load(ResourceName: string): RigVMMemoryStorageGeneratorClass;
+	static Find(Outer: UObject, ResourceName: string): RigVMMemoryStorageGeneratorClass;
+	static GetDefaultObject(): RigVMMemoryStorageGeneratorClass;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RigVMMemoryStorageGeneratorClass;
+	static C(Other: UObject | any): RigVMMemoryStorageGeneratorClass;
 }
 
-declare class SplitterStyle extends SlateWidgetStyle { 
-	HandleNormalBrush: SlateBrush;
-	HandleHighlightBrush: SlateBrush;
-	clone() : SplitterStyle;
-	static C(Other: UObject | any): SplitterStyle;
+declare class RigVMNativized extends RigVM { 
+	static Load(ResourceName: string): RigVMNativized;
+	static Find(Outer: UObject, ResourceName: string): RigVMNativized;
+	static GetDefaultObject(): RigVMNativized;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RigVMNativized;
+	static C(Other: UObject | any): RigVMNativized;
 }
 
-declare class HeaderRowStyle extends SlateWidgetStyle { 
-	ColumnStyle: TableColumnHeaderStyle;
-	LastColumnStyle: TableColumnHeaderStyle;
-	ColumnSplitterStyle: SplitterStyle;
-	SplitterHandleSize: number;
-	BackgroundBrush: SlateBrush;
-	ForegroundColor: SlateColor;
-	HorizontalSeparatorBrush: SlateBrush;
-	HorizontalSeparatorThickness: number;
-	clone() : HeaderRowStyle;
-	static C(Other: UObject | any): HeaderRowStyle;
+declare class RigVMCompiler extends UObject { 
+	Settings: RigVMCompileSettings;
+	static Load(ResourceName: string): RigVMCompiler;
+	static Find(Outer: UObject, ResourceName: string): RigVMCompiler;
+	static GetDefaultObject(): RigVMCompiler;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RigVMCompiler;
+	Compile(InGraphs: RigVMGraph[],InController: RigVMController,OutVM: RigVM): boolean;
+	static C(Other: UObject | any): RigVMCompiler;
 }
 
-declare class JavascriptColumn { 
-	ID: string;
-	Width: number;
-	Widget: Widget;
-	clone() : JavascriptColumn;
-	static C(Other: UObject | any): JavascriptColumn;
+declare class RigVMAggregateNode extends RigVMCollapseNode { 
+	static Load(ResourceName: string): RigVMAggregateNode;
+	static Find(Outer: UObject, ResourceName: string): RigVMAggregateNode;
+	static GetDefaultObject(): RigVMAggregateNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RigVMAggregateNode;
+	static C(Other: UObject | any): RigVMAggregateNode;
 }
 
-declare class JavascriptTreeView extends ListViewBase { 
-	OnGenerateRowEvent: UnrealEngineDelegate<(UObject: UObject, ID: string, Instance: JavascriptTreeView) => Widget>;
-	OnExpansionChanged: UnrealEngineDelegate<(Item: UObject, bExpanded: boolean, Instance: JavascriptTreeView) => void>;
-	OnContextMenuOpening: UnrealEngineDelegate<(Instance: JavascriptTreeView) => Widget>;
-	OnGetChildren: UnrealEngineDelegate<(Item: UObject, Instance: JavascriptTreeView) => void>;
-	JavascriptContext: JavascriptContext;
-	Items: UObject[];
-	HeaderRowStyle: HeaderRowStyle;
-	TableRowStyle: TableRowStyle;
-	ScrollBarStyle: ScrollBarStyle;
-	SelectionMode: ESelectionMode;
-	Children: UObject[];
-	Columns: JavascriptColumn[];
-	ColumnWidgets: Widget[];
-	static Load(ResourceName: string): JavascriptTreeView;
-	static Find(Outer: UObject, ResourceName: string): JavascriptTreeView;
-	static GetDefaultObject(): JavascriptTreeView;
-	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): JavascriptTreeView;
-	SetSingleExpandedItem(InItem: UObject): void;
-	SetSelection(SoleSelectedItem: UObject): void;
-	SetItemSelection(MultiSelectedItems: UObject[],bIsSelected: boolean): void;
-	SetItemExpansion(InItem: UObject,InShouldExpandItem: boolean): void;
-	SetDoubleClickSelection(SelectedItem: UObject): void;
-	RequestTreeRefresh(): void;
-	RequestNavigateToItem(Item: UObject): void;
-	OnSelectionChanged(UObject: UObject,Type: ESelectInfo): void;
-	OnDoubleClick(UObject: UObject): void;
-	IsItemExpanded(InItem: UObject): boolean;
-	IsDoubleClickSelection(SelectedItem: UObject): boolean;
-	GetSelectedItems(OutItems?: UObject[]): {OutItems: UObject[], $: boolean};
-	GetDoubleClickedItems(OutItems?: UObject[]): {OutItems: UObject[]};
-	ClearSelection(): void;
-	ClearDoubleClickSelection(): void;
-	static C(Other: UObject | any): JavascriptTreeView;
+declare class RigVMDispatchNode extends RigVMTemplateNode { 
+	static Load(ResourceName: string): RigVMDispatchNode;
+	static Find(Outer: UObject, ResourceName: string): RigVMDispatchNode;
+	static GetDefaultObject(): RigVMDispatchNode;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RigVMDispatchNode;
+	static C(Other: UObject | any): RigVMDispatchNode;
+}
+
+declare class RigVMClientHost extends Interface { 
+	static Load(ResourceName: string): RigVMClientHost;
+	static Find(Outer: UObject, ResourceName: string): RigVMClientHost;
+	static GetDefaultObject(): RigVMClientHost;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RigVMClientHost;
+	static C(Other: UObject | any): RigVMClientHost;
+}
+
+declare class RigVMEditorSideObject extends Interface { 
+	static Load(ResourceName: string): RigVMEditorSideObject;
+	static Find(Outer: UObject, ResourceName: string): RigVMEditorSideObject;
+	static GetDefaultObject(): RigVMEditorSideObject;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RigVMEditorSideObject;
+	static C(Other: UObject | any): RigVMEditorSideObject;
+}
+
+declare class RigVMController_CommonTypePerTemplate { 
+	Counts: Map<string, number>;
+	clone() : RigVMController_CommonTypePerTemplate;
+	static C(Other: UObject | any): RigVMController_CommonTypePerTemplate;
+}
+
+declare class RigVMControllerSettings extends UObject { 
+	bAutoResolveTemplateNodesWhenLinkingExecute: boolean;
+	TemplateDefaultTypes: Map<string, RigVMController_CommonTypePerTemplate>;
+	static Load(ResourceName: string): RigVMControllerSettings;
+	static Find(Outer: UObject, ResourceName: string): RigVMControllerSettings;
+	static GetDefaultObject(): RigVMControllerSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RigVMControllerSettings;
+	static C(Other: UObject | any): RigVMControllerSettings;
+}
+
+declare class RigVMUserWorkflowRegistry extends UObject { 
+	static Load(ResourceName: string): RigVMUserWorkflowRegistry;
+	static Find(Outer: UObject, ResourceName: string): RigVMUserWorkflowRegistry;
+	static GetDefaultObject(): RigVMUserWorkflowRegistry;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): RigVMUserWorkflowRegistry;
+	UnregisterProvider(InHandle: number): void;
+	GetWorkflows(InType: ERigVMUserWorkflowType,InStruct: ScriptStruct,InSubject: UObject): RigVMUserWorkflow[];
+	static Get(): RigVMUserWorkflowRegistry;
+	static C(Other: UObject | any): RigVMUserWorkflowRegistry;
+}
+
+declare class ControlRigAnimInstance extends AnimInstance { 
+	static Load(ResourceName: string): ControlRigAnimInstance;
+	static Find(Outer: UObject, ResourceName: string): ControlRigAnimInstance;
+	static GetDefaultObject(): ControlRigAnimInstance;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigAnimInstance;
+	static C(Other: UObject | any): ControlRigAnimInstance;
+}
+
+declare class ControlRigBlueprintGeneratedClass extends BlueprintGeneratedClass { 
+	static Load(ResourceName: string): ControlRigBlueprintGeneratedClass;
+	static Find(Outer: UObject, ResourceName: string): ControlRigBlueprintGeneratedClass;
+	static GetDefaultObject(): ControlRigBlueprintGeneratedClass;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigBlueprintGeneratedClass;
+	static C(Other: UObject | any): ControlRigBlueprintGeneratedClass;
+}
+
+declare type EControlRigComponentMapDirection = 'Input' | 'Output' | 'EControlRigComponentMapDirection_MAX';
+declare var EControlRigComponentMapDirection : { Input:'Input',Output:'Output',EControlRigComponentMapDirection_MAX:'EControlRigComponentMapDirection_MAX', };
+declare type EControlRigComponentSpace = 'WorldSpace' | 'ActorSpace' | 'ComponentSpace' | 'RigSpace' | 'LocalSpace' | 'Max' | 'EControlRigComponentSpace_MAX';
+declare var EControlRigComponentSpace : { WorldSpace:'WorldSpace',ActorSpace:'ActorSpace',ComponentSpace:'ComponentSpace',RigSpace:'RigSpace',LocalSpace:'LocalSpace',Max:'Max',EControlRigComponentSpace_MAX:'EControlRigComponentSpace_MAX', };
+declare class ControlRigComponentMappedElement { 
+	ComponentReference: ComponentReference;
+	TransformIndex: number;
+	TransformName: string;
+	ElementType: ERigElementType;
+	ElementName: string;
+	Direction: EControlRigComponentMapDirection;
+	Offset: Transform;
+	Weight: number;
+	Space: EControlRigComponentSpace;
+	SceneComponent: SceneComponent;
+	ElementIndex: number;
+	SubIndex: number;
+	clone() : ControlRigComponentMappedElement;
+	static C(Other: UObject | any): ControlRigComponentMappedElement;
+}
+
+declare class ControlRigComponentMappedBone { 
+	Source: string;
+	Target: string;
+	clone() : ControlRigComponentMappedBone;
+	static C(Other: UObject | any): ControlRigComponentMappedBone;
+}
+
+declare class ControlRigComponentMappedCurve { 
+	Source: string;
+	Target: string;
+	clone() : ControlRigComponentMappedCurve;
+	static C(Other: UObject | any): ControlRigComponentMappedCurve;
+}
+
+declare class ControlRigComponentMappedComponent { 
+	Component: SceneComponent;
+	ElementName: string;
+	ElementType: ERigElementType;
+	Direction: EControlRigComponentMapDirection;
+	clone() : ControlRigComponentMappedComponent;
+	static C(Other: UObject | any): ControlRigComponentMappedComponent;
+}
+
+declare class ControlRigComponent extends PrimitiveComponent { 
+	ControlRigClass: UnrealEngineClass;
+	OnPreInitializeDelegate: UnrealEngineMulticastDelegate<(Component: ControlRigComponent) => void>;
+	OnPostInitializeDelegate: UnrealEngineMulticastDelegate<(Component: ControlRigComponent) => void>;
+	OnPreConstructionDelegate: UnrealEngineMulticastDelegate<(Component: ControlRigComponent) => void>;
+	OnPostConstructionDelegate: UnrealEngineMulticastDelegate<(Component: ControlRigComponent) => void>;
+	OnPreForwardsSolveDelegate: UnrealEngineMulticastDelegate<(Component: ControlRigComponent) => void>;
+	OnPostForwardsSolveDelegate: UnrealEngineMulticastDelegate<(Component: ControlRigComponent) => void>;
+	UserDefinedElements: ControlRigComponentMappedElement[];
+	MappedElements: ControlRigComponentMappedElement[];
+	bEnableLazyEvaluation: boolean;
+	LazyEvaluationPositionThreshold: number;
+	LazyEvaluationRotationThreshold: number;
+	LazyEvaluationScaleThreshold: number;
+	bResetTransformBeforeTick: boolean;
+	bResetInitialsBeforeConstruction: boolean;
+	bUpdateRigOnTick: boolean;
+	bUpdateInEditor: boolean;
+	bDrawBones: boolean;
+	bShowDebugDrawing: boolean;
+	ControlRig: ControlRig;
+	static Load(ResourceName: string): ControlRigComponent;
+	static Find(Outer: UObject, ResourceName: string): ControlRigComponent;
+	static GetDefaultObject(): ControlRigComponent;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigComponent;
+	Update(DeltaTime: number): void;
+	SetObjectBinding(InObjectToBind: UObject): void;
+	SetMappedElements(NewMappedElements: ControlRigComponentMappedElement[]): void;
+	SetInitialSpaceTransform(SpaceName: string,InitialTransform: Transform,Space: EControlRigComponentSpace): void;
+	SetInitialBoneTransform(BoneName: string,InitialTransform: Transform,Space: EControlRigComponentSpace,bPropagateToChildren: boolean): void;
+	SetControlVector2D(ControlName: string,Value: Vector2D): void;
+	SetControlTransform(ControlName: string,Value: Transform,Space: EControlRigComponentSpace): void;
+	SetControlScale(ControlName: string,Value: Vector,Space: EControlRigComponentSpace): void;
+	SetControlRotator(ControlName: string,Value: Rotator,Space: EControlRigComponentSpace): void;
+	SetControlRigClass(InControlRigClass: UnrealEngineClass): void;
+	SetControlPosition(ControlName: string,Value: Vector,Space: EControlRigComponentSpace): void;
+	SetControlOffset(ControlName: string,OffsetTransform: Transform,Space: EControlRigComponentSpace): void;
+	SetControlInt(ControlName: string,Value: number): void;
+	SetControlFloat(ControlName: string,Value: number): void;
+	SetControlBool(ControlName: string,Value: boolean): void;
+	SetBoneTransform(BoneName: string,Transform: Transform,Space: EControlRigComponentSpace,Weight: number,bPropagateToChildren: boolean): void;
+	SetBoneInitialTransformsFromSkeletalMesh(InSkeletalMesh: SkeletalMesh): void;
+	OnPreInitialize(Component: ControlRigComponent): void;
+	OnPreForwardsSolve(Component: ControlRigComponent): void;
+	OnPreConstruction(Component: ControlRigComponent): void;
+	OnPostInitialize(Component: ControlRigComponent): void;
+	OnPostForwardsSolve(Component: ControlRigComponent): void;
+	OnPostConstruction(Component: ControlRigComponent): void;
+	Initialize(): void;
+	GetSpaceTransform(SpaceName: string,Space: EControlRigComponentSpace): Transform;
+	GetInitialSpaceTransform(SpaceName: string,Space: EControlRigComponentSpace): Transform;
+	GetInitialBoneTransform(BoneName: string,Space: EControlRigComponentSpace): Transform;
+	GetElementNames(ElementType: ERigElementType): string[];
+	GetControlVector2D(ControlName: string): Vector2D;
+	GetControlTransform(ControlName: string,Space: EControlRigComponentSpace): Transform;
+	GetControlScale(ControlName: string,Space: EControlRigComponentSpace): Vector;
+	GetControlRotator(ControlName: string,Space: EControlRigComponentSpace): Rotator;
+	GetControlRig(): ControlRig;
+	GetControlPosition(ControlName: string,Space: EControlRigComponentSpace): Vector;
+	GetControlOffset(ControlName: string,Space: EControlRigComponentSpace): Transform;
+	GetControlInt(ControlName: string): number;
+	GetControlFloat(ControlName: string): number;
+	GetControlBool(ControlName: string): boolean;
+	GetBoneTransform(BoneName: string,Space: EControlRigComponentSpace): Transform;
+	GetAbsoluteTime(): number;
+	DoesElementExist(Name: string,ElementType: ERigElementType): boolean;
+	ClearMappedElements(): void;
+	CanExecute(): boolean;
+	AddMappedSkeletalMesh(SkeletalMeshComponent: SkeletalMeshComponent,Bones: ControlRigComponentMappedBone[],Curves: ControlRigComponentMappedCurve[]): void;
+	AddMappedElements(NewMappedElements: ControlRigComponentMappedElement[]): void;
+	AddMappedComponents(Components: ControlRigComponentMappedComponent[]): void;
+	AddMappedCompleteSkeletalMesh(SkeletalMeshComponent: SkeletalMeshComponent): void;
+	static C(Other: UObject | any): ControlRigComponent;
+}
+
+declare class ControlRigControlActor extends Actor { 
+	ActorToTrack: Actor;
+	ControlRigClass: UnrealEngineClass;
+	bRefreshOnTick: boolean;
+	bIsSelectable: boolean;
+	MaterialOverride: MaterialInterface;
+	ColorParameter: string;
+	bCastShadows: boolean;
+	ActorRootComponent: SceneComponent;
+	ControlRig: ControlRig;
+	ControlNames: string[];
+	ShapeTransforms: Transform[];
+	Components: StaticMeshComponent[];
+	Materials: MaterialInstanceDynamic[];
+	ColorParameterName: string;
+	static GetDefaultObject(): ControlRigControlActor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigControlActor;
+	ResetControlActor(): void;
+	Refresh(): void;
+	Clear(): void;
+	static C(Other: UObject | any): ControlRigControlActor;
+}
+
+declare class ControlRigShapeActor extends Actor { 
+	ActorRootComponent: SceneComponent;
+	StaticMeshComponent: StaticMeshComponent;
+	ControlRigIndex: number;
+	ControlRig: ControlRig;
+	ControlName: string;
+	ShapeName: string;
+	ColorParameterName: string;
+	bSelected: boolean;
+	bHovered: boolean;
+	static GetDefaultObject(): ControlRigShapeActor;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigShapeActor;
+	SetSelected(bInSelected: boolean): void;
+	SetSelectable(bInSelectable: boolean): void;
+	SetHovered(bInHovered: boolean): void;
+	SetGlobalTransform(InTransform: Transform): void;
+	SetEnabled(bInEnabled: boolean): void;
+	OnTransformChanged(NewTransform: Transform): void;
+	OnSelectionChanged(bIsSelected: boolean): void;
+	OnManipulatingChanged(bIsManipulating: boolean): void;
+	OnHoveredChanged(bIsSelected: boolean): void;
+	OnEnabledChanged(bIsEnabled: boolean): void;
+	IsSelectedInEditor(): boolean;
+	IsHovered(): boolean;
+	IsEnabled(): boolean;
+	GetGlobalTransform(): Transform;
+	static C(Other: UObject | any): ControlRigShapeActor;
+}
+
+declare class AdditiveControlRig extends ControlRig { 
+	static Load(ResourceName: string): AdditiveControlRig;
+	static Find(Outer: UObject, ResourceName: string): AdditiveControlRig;
+	static GetDefaultObject(): AdditiveControlRig;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): AdditiveControlRig;
+	static C(Other: UObject | any): AdditiveControlRig;
+}
+
+declare type EControlRigFKRigExecuteMode = 'Replace' | 'Additive' | 'Direct' | 'Max' | 'EControlRigFKRigExecuteMode_MAX';
+declare var EControlRigFKRigExecuteMode : { Replace:'Replace',Additive:'Additive',Direct:'Direct',Max:'Max',EControlRigFKRigExecuteMode_MAX:'EControlRigFKRigExecuteMode_MAX', };
+declare class FKControlRig extends ControlRig { 
+	IsControlActive: boolean[];
+	ApplyMode: EControlRigFKRigExecuteMode;
+	static Load(ResourceName: string): FKControlRig;
+	static Find(Outer: UObject, ResourceName: string): FKControlRig;
+	static GetDefaultObject(): FKControlRig;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): FKControlRig;
+	static C(Other: UObject | any): FKControlRig;
+}
+
+declare class ControlRigLayerInstance extends AnimInstance { 
+	static Load(ResourceName: string): ControlRigLayerInstance;
+	static Find(Outer: UObject, ResourceName: string): ControlRigLayerInstance;
+	static GetDefaultObject(): ControlRigLayerInstance;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigLayerInstance;
+	static C(Other: UObject | any): ControlRigLayerInstance;
+}
+
+declare class ControlRigObjectHolder extends UObject { 
+	Objects: UObject[];
+	static Load(ResourceName: string): ControlRigObjectHolder;
+	static Find(Outer: UObject, ResourceName: string): ControlRigObjectHolder;
+	static GetDefaultObject(): ControlRigObjectHolder;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigObjectHolder;
+	static C(Other: UObject | any): ControlRigObjectHolder;
+}
+
+declare class ControlRigSequence extends LevelSequence { 
+	LastExportedToAnimationSequence: AnimSequence;
+	LastExportedUsingSkeletalMesh: SkeletalMesh;
+	LastExportedFrameRate: number;
+	static Load(ResourceName: string): ControlRigSequence;
+	static Find(Outer: UObject, ResourceName: string): ControlRigSequence;
+	static GetDefaultObject(): ControlRigSequence;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigSequence;
+	static C(Other: UObject | any): ControlRigSequence;
+}
+
+declare class ControlRigSettings extends DeveloperSettings { 
+	DefaultShapeLibrary: ControlRigShapeLibrary;
+	static Load(ResourceName: string): ControlRigSettings;
+	static Find(Outer: UObject, ResourceName: string): ControlRigSettings;
+	static GetDefaultObject(): ControlRigSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigSettings;
+	static C(Other: UObject | any): ControlRigSettings;
+}
+
+declare class ControlRigSettingsPerPinBool { 
+	Values: Map<string, boolean>;
+	clone() : ControlRigSettingsPerPinBool;
+	static C(Other: UObject | any): ControlRigSettingsPerPinBool;
+}
+
+declare class ControlRigEditorSettings extends DeveloperSettings { 
+	bAutoLinkMutableNodes: boolean;
+	bResetControlsOnCompile: boolean;
+	bResetControlsOnPinValueInteraction: boolean;
+	bEnableUndoForPoseInteraction: boolean;
+	bResetControlTransformsOnCompile: boolean;
+	RigUnitPinExpansion: Map<string, ControlRigSettingsPerPinBool>;
+	ConstructionEventBorderColor: LinearColor;
+	BackwardsSolveBorderColor: LinearColor;
+	BackwardsAndForwardsBorderColor: LinearColor;
+	bShowStackedHierarchy: boolean;
+	MaxStackSize: number;
+	NodeSnippet_1: string;
+	NodeSnippet_2: string;
+	NodeSnippet_3: string;
+	NodeSnippet_4: string;
+	NodeSnippet_5: string;
+	NodeSnippet_6: string;
+	NodeSnippet_7: string;
+	NodeSnippet_8: string;
+	NodeSnippet_9: string;
+	NodeSnippet_0: string;
+	static Load(ResourceName: string): ControlRigEditorSettings;
+	static Find(Outer: UObject, ResourceName: string): ControlRigEditorSettings;
+	static GetDefaultObject(): ControlRigEditorSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigEditorSettings;
+	static C(Other: UObject | any): ControlRigEditorSettings;
+}
+
+declare class RigControlCopy { 
+	Name: string;
+	ControlType: ERigControlType;
+	Value: RigControlValue;
+	ParentKey: RigElementKey;
+	OffsetTransform: Transform;
+	ParentTransform: Transform;
+	LocalTransform: Transform;
+	GlobalTransform: Transform;
+	clone() : RigControlCopy;
+	static C(Other: UObject | any): RigControlCopy;
+}
+
+declare class ControlRigControlPose { 
+	CopyOfControls: RigControlCopy[];
+	clone() : ControlRigControlPose;
+	static C(Other: UObject | any): ControlRigControlPose;
+}
+
+declare class ControlRigPoseAsset extends UObject { 
+	Pose: ControlRigControlPose;
+	static Load(ResourceName: string): ControlRigPoseAsset;
+	static Find(Outer: UObject, ResourceName: string): ControlRigPoseAsset;
+	static GetDefaultObject(): ControlRigPoseAsset;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigPoseAsset;
+	SelectControls(InControlRig: ControlRig,bDoMirror: boolean): void;
+	SavePose(InControlRig: ControlRig,bUseAll: boolean): void;
+	ReplaceControlName(CurrentName: string,NewName: string): void;
+	PastePose(InControlRig: ControlRig,bDoKey: boolean,bDoMirror: boolean): void;
+	GetCurrentPose(InControlRig: ControlRig,OutPose?: ControlRigControlPose): {OutPose: ControlRigControlPose};
+	GetControlNames(): string[];
+	DoesMirrorMatch(ControlRig: ControlRig,ControlName: string): boolean;
+	static C(Other: UObject | any): ControlRigPoseAsset;
+}
+
+declare class ControlRigPoseMirrorSettings extends UObject { 
+	RightSide: string;
+	LeftSide: string;
+	MirrorAxis: EAxis;
+	AxisToFlip: EAxis;
+	static Load(ResourceName: string): ControlRigPoseMirrorSettings;
+	static Find(Outer: UObject, ResourceName: string): ControlRigPoseMirrorSettings;
+	static GetDefaultObject(): ControlRigPoseMirrorSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigPoseMirrorSettings;
+	static C(Other: UObject | any): ControlRigPoseMirrorSettings;
+}
+
+declare class ControlRigPoseProjectSettings extends UObject { 
+	RootSaveDirs: DirectoryPath[];
+	static Load(ResourceName: string): ControlRigPoseProjectSettings;
+	static Find(Outer: UObject, ResourceName: string): ControlRigPoseProjectSettings;
+	static GetDefaultObject(): ControlRigPoseProjectSettings;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigPoseProjectSettings;
+	static C(Other: UObject | any): ControlRigPoseProjectSettings;
+}
+
+declare class ControlRigWorkflowOptions extends RigVMUserWorkflowOptions { 
+	Hierarchy: RigHierarchy;
+	USelection: RigElementKey[];
+	static Load(ResourceName: string): ControlRigWorkflowOptions;
+	static Find(Outer: UObject, ResourceName: string): ControlRigWorkflowOptions;
+	static GetDefaultObject(): ControlRigWorkflowOptions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigWorkflowOptions;
+	EnsureAtLeastOneRigElementSelected(): boolean;
+	static C(Other: UObject | any): ControlRigWorkflowOptions;
+}
+
+declare type ERigTransformType = 'InitialLocal' | 'CurrentLocal' | 'InitialGlobal' | 'CurrentGlobal' | 'NumTransformTypes' | 'ERigTransformType_MAX';
+declare var ERigTransformType : { InitialLocal:'InitialLocal',CurrentLocal:'CurrentLocal',InitialGlobal:'InitialGlobal',CurrentGlobal:'CurrentGlobal',NumTransformTypes:'NumTransformTypes',ERigTransformType_MAX:'ERigTransformType_MAX', };
+declare class ControlRigTransformWorkflowOptions extends ControlRigWorkflowOptions { 
+	TransformType: ERigTransformType;
+	static Load(ResourceName: string): ControlRigTransformWorkflowOptions;
+	static Find(Outer: UObject, ResourceName: string): ControlRigTransformWorkflowOptions;
+	static GetDefaultObject(): ControlRigTransformWorkflowOptions;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigTransformWorkflowOptions;
+	ProvideWorkflows(InSubject: UObject): RigVMUserWorkflow[];
+	static C(Other: UObject | any): ControlRigTransformWorkflowOptions;
+}
+
+declare class ControlRigNumericalValidationPass extends ControlRigValidationPass { 
+	bCheckControls: boolean;
+	bCheckBones: boolean;
+	bCheckCurves: boolean;
+	TranslationPrecision: number;
+	RotationPrecision: number;
+	ScalePrecision: number;
+	CurvePrecision: number;
+	EventNameA: string;
+	EventNameB: string;
+	Pose: RigPose;
+	static Load(ResourceName: string): ControlRigNumericalValidationPass;
+	static Find(Outer: UObject, ResourceName: string): ControlRigNumericalValidationPass;
+	static GetDefaultObject(): ControlRigNumericalValidationPass;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ControlRigNumericalValidationPass;
+	static C(Other: UObject | any): ControlRigNumericalValidationPass;
+}
+
+declare class ContentBrowserFileDataSource extends ContentBrowserDataSource { 
+	static Load(ResourceName: string): ContentBrowserFileDataSource;
+	static Find(Outer: UObject, ResourceName: string): ContentBrowserFileDataSource;
+	static GetDefaultObject(): ContentBrowserFileDataSource;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): ContentBrowserFileDataSource;
+	static C(Other: UObject | any): ContentBrowserFileDataSource;
+}
+
+declare class PyTestInterface extends Interface { 
+	static Load(ResourceName: string): PyTestInterface;
+	static Find(Outer: UObject, ResourceName: string): PyTestInterface;
+	static GetDefaultObject(): PyTestInterface;
+	static CreateDefaultSubobject(Name: string, Transient?: boolean, Required?: boolean, Abstract?: boolean): PyTestInterface;
+	FuncInterface(InValue: number): number;
+	static C(Other: UObject | any): PyTestInterface;
 }
 

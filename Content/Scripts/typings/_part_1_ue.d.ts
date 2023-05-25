@@ -1585,6 +1585,11 @@ declare class World extends UObject {
 	GetDefaultBrush(): Brush;
 	InvalidateModelGeometry(InLevel: Level): void;
 	RemoveLevelInstance(): void;
+	ExportAnimSequence(Sequence: LevelSequence,AnimSequence: AnimSequence,ExportOption: AnimSeqExportOption,Binding: MovieSceneBindingProxy,bCreateLink: boolean): boolean;
+	GetBoundObjects(InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
+	GetObjectBindings(InSequence: LevelSequence,InObject: UObject[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
+	ImportFBXToControlRig(InSequence: LevelSequence,ActorWithControlRigTrack: string,SelectedControlRigNames: string[],ImportFBXControlRigSettings: MovieSceneUserImportFBXControlRigSettings,ImportFilename: string): boolean;
+	ImportLevelSequenceFBX(InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InImportFBXSettings: MovieSceneUserImportFBXSettings,InImportFilename: string): boolean;
 	GetAvailableAudioInputDevices(OnObtainDevicesEvent: UnrealEngineDelegate<(AvailableDevices: AudioInputDeviceInfo[]) => void>): void;
 	GetActors(ActorLayer: ActorLayer): Actor[];
 	BakeConstraint(Constraint: TickableConstraint,Frames: FrameNumber[],TimeUnit: ESequenceTimeUnit): boolean;
@@ -1592,11 +1597,6 @@ declare class World extends UObject {
 	FindOrCreateControlRigComponentTrack(LevelSequence: LevelSequence,InBinding: MovieSceneBindingProxy): MovieSceneTrack[];
 	FindOrCreateControlRigTrack(LevelSequence: LevelSequence,ControlRigClass: UnrealEngineClass,InBinding: MovieSceneBindingProxy): MovieSceneTrack;
 	ImportFBXToControlRigTrack(InSequence: LevelSequence,InTrack: MovieSceneControlRigParameterTrack,InSection: MovieSceneControlRigParameterSection,SelectedControlRigNames: string[],ImportFBXControlRigSettings: MovieSceneUserImportFBXControlRigSettings,ImportFilename: string): boolean;
-	ExportAnimSequence(Sequence: LevelSequence,AnimSequence: AnimSequence,ExportOption: AnimSeqExportOption,Binding: MovieSceneBindingProxy,bCreateLink: boolean): boolean;
-	GetBoundObjects(InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
-	GetObjectBindings(InSequence: LevelSequence,InObject: UObject[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
-	ImportFBXToControlRig(InSequence: LevelSequence,ActorWithControlRigTrack: string,SelectedControlRigNames: string[],ImportFBXControlRigSettings: MovieSceneUserImportFBXControlRigSettings,ImportFilename: string): boolean;
-	ImportLevelSequenceFBX(InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InImportFBXSettings: MovieSceneUserImportFBXSettings,InImportFilename: string): boolean;
 	BeginPlay(): void;
 	DestroyWorld(): void;
 	InitializeActorsForPlay(URL: URL): void;
@@ -1901,6 +1901,11 @@ declare class World extends UObject {
 	static GetDefaultBrush(World: World): Brush;
 	static InvalidateModelGeometry(World: World,InLevel: Level): void;
 	static RemoveLevelInstance(World: World): void;
+	static ExportAnimSequence(World: World,Sequence: LevelSequence,AnimSequence: AnimSequence,ExportOption: AnimSeqExportOption,Binding: MovieSceneBindingProxy,bCreateLink: boolean): boolean;
+	static GetBoundObjects(InWorld: World,InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
+	static GetObjectBindings(InWorld: World,InSequence: LevelSequence,InObject: UObject[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
+	static ImportFBXToControlRig(World: World,InSequence: LevelSequence,ActorWithControlRigTrack: string,SelectedControlRigNames: string[],ImportFBXControlRigSettings: MovieSceneUserImportFBXControlRigSettings,ImportFilename: string): boolean;
+	static ImportLevelSequenceFBX(InWorld: World,InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InImportFBXSettings: MovieSceneUserImportFBXSettings,InImportFilename: string): boolean;
 	static GetAvailableAudioInputDevices(WorldContextObject: UObject,OnObtainDevicesEvent: UnrealEngineDelegate<(AvailableDevices: AudioInputDeviceInfo[]) => void>): void;
 	static GetActors(WorldContextObject: UObject,ActorLayer: ActorLayer): Actor[];
 	static BakeConstraint(World: World,Constraint: TickableConstraint,Frames: FrameNumber[],TimeUnit: ESequenceTimeUnit): boolean;
@@ -1908,11 +1913,6 @@ declare class World extends UObject {
 	static FindOrCreateControlRigComponentTrack(World: World,LevelSequence: LevelSequence,InBinding: MovieSceneBindingProxy): MovieSceneTrack[];
 	static FindOrCreateControlRigTrack(World: World,LevelSequence: LevelSequence,ControlRigClass: UnrealEngineClass,InBinding: MovieSceneBindingProxy): MovieSceneTrack;
 	static ImportFBXToControlRigTrack(World: World,InSequence: LevelSequence,InTrack: MovieSceneControlRigParameterTrack,InSection: MovieSceneControlRigParameterSection,SelectedControlRigNames: string[],ImportFBXControlRigSettings: MovieSceneUserImportFBXControlRigSettings,ImportFilename: string): boolean;
-	static ExportAnimSequence(World: World,Sequence: LevelSequence,AnimSequence: AnimSequence,ExportOption: AnimSeqExportOption,Binding: MovieSceneBindingProxy,bCreateLink: boolean): boolean;
-	static GetBoundObjects(InWorld: World,InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
-	static GetObjectBindings(InWorld: World,InSequence: LevelSequence,InObject: UObject[],InRange: SequencerScriptingRange): SequencerBoundObjects[];
-	static ImportFBXToControlRig(World: World,InSequence: LevelSequence,ActorWithControlRigTrack: string,SelectedControlRigNames: string[],ImportFBXControlRigSettings: MovieSceneUserImportFBXControlRigSettings,ImportFilename: string): boolean;
-	static ImportLevelSequenceFBX(InWorld: World,InSequence: LevelSequence,InBindings: MovieSceneBindingProxy[],InImportFBXSettings: MovieSceneUserImportFBXSettings,InImportFilename: string): boolean;
 	static BeginPlay(World: World): void;
 	static DestroyWorld(World: World): void;
 	static InitializeActorsForPlay(World: World,URL: URL): void;
@@ -3064,9 +3064,9 @@ declare class Vector {
 	GetCursorWorldRay(RayOrigin?: Vector,RayDirection?: Vector): {CameraLocation: Vector, RayOrigin: Vector, RayDirection: Vector, $: boolean};
 	GetLevelViewportCameraInfo(CameraRotation?: Rotator): {CameraLocation: Vector, CameraRotation: Rotator, $: boolean};
 	SetLevelViewportCameraInfo(CameraRotation: Rotator): void;
+	SegmentIntersection2D(SegmentEndA: Vector,SegmentStartB: Vector,SegmentEndB: Vector,IntersectionPoint?: Vector): {IntersectionPoint: Vector, $: boolean};
 	GenerateBoxMesh(Vertices?: Vector[],Triangles?: number[],Normals?: Vector[],UVs?: Vector2D[],Tangents?: ProcMeshTangent[]): {Vertices: Vector[], Triangles: number[], Normals: Vector[], UVs: Vector2D[], Tangents: ProcMeshTangent[]};
 	GetSelectionBounds(BoxExtent?: Vector,SphereRadius?: number): {Origin: Vector, BoxExtent: Vector, SphereRadius: number};
-	SegmentIntersection2D(SegmentEndA: Vector,SegmentStartB: Vector,SegmentEndB: Vector,IntersectionPoint?: Vector): {IntersectionPoint: Vector, $: boolean};
 	Conv_VectorToString(): string;
 	Add_VectorFloat(B: number): Vector;
 	Add_VectorInt(B: number): Vector;
@@ -3213,9 +3213,9 @@ declare class Vector {
 	static GetCursorWorldRay(CameraLocation?: Vector,RayOrigin?: Vector,RayDirection?: Vector): {CameraLocation: Vector, RayOrigin: Vector, RayDirection: Vector, $: boolean};
 	static GetLevelViewportCameraInfo(CameraLocation?: Vector,CameraRotation?: Rotator): {CameraLocation: Vector, CameraRotation: Rotator, $: boolean};
 	static SetLevelViewportCameraInfo(CameraLocation: Vector,CameraRotation: Rotator): void;
+	static SegmentIntersection2D(SegmentStartA: Vector,SegmentEndA: Vector,SegmentStartB: Vector,SegmentEndB: Vector,IntersectionPoint?: Vector): {IntersectionPoint: Vector, $: boolean};
 	static GenerateBoxMesh(BoxRadius: Vector,Vertices?: Vector[],Triangles?: number[],Normals?: Vector[],UVs?: Vector2D[],Tangents?: ProcMeshTangent[]): {Vertices: Vector[], Triangles: number[], Normals: Vector[], UVs: Vector2D[], Tangents: ProcMeshTangent[]};
 	static GetSelectionBounds(Origin?: Vector,BoxExtent?: Vector,SphereRadius?: number): {Origin: Vector, BoxExtent: Vector, SphereRadius: number};
-	static SegmentIntersection2D(SegmentStartA: Vector,SegmentEndA: Vector,SegmentStartB: Vector,SegmentEndB: Vector,IntersectionPoint?: Vector): {IntersectionPoint: Vector, $: boolean};
 	static Conv_VectorToString(InVec: Vector): string;
 	static Add_VectorFloat(A: Vector,B: number): Vector;
 	static Add_VectorInt(A: Vector,B: number): Vector;
@@ -5409,7 +5409,6 @@ declare class UObject {
 	SaveLoadedAsset(bOnlyIfIsDirty: boolean): boolean;
 	SetMetadataTag(Tag: string,Value: string): void;
 	GetCapturableProperties(): string[];
-	RenameAsset(NewName: string): void;
 	DestroyUObject(): void;
 	ConvertRelativePathToFull(RelativePath: string): string;
 	CreateEnum(Name: string,DisplayNames: string[],Flags: string[]): Enum;
@@ -5433,6 +5432,7 @@ declare class UObject {
 	SetObjectFlags(Flags: number): void;
 	WriteFile(Filename: string): boolean;
 	WriteStringToFile(Filename: string,Data: string,EncodingOptions: EJavascriptEncodingOptions): boolean;
+	RenameAsset(NewName: string): void;
 	GetDatasmithUserData(): DatasmithAssetUserData;
 	GetDatasmithUserDataKeysAndValuesForValue(StringToMatch: string,OutKeys?: string[],OutValues?: string[]): {OutKeys: string[], OutValues: string[]};
 	GetDatasmithUserDataValueForKey(Key: string,bPartialMatchKey: boolean): string;
@@ -5534,7 +5534,6 @@ declare class UObject {
 	static SaveLoadedAsset(AssetToSave: UObject,bOnlyIfIsDirty: boolean): boolean;
 	static SetMetadataTag(UObject: UObject,Tag: string,Value: string): void;
 	static GetCapturableProperties(ActorOrClass: UObject): string[];
-	static RenameAsset(Asset: UObject,NewName: string): void;
 	static DestroyUObject(UObject: UObject): void;
 	static ConvertRelativePathToFull(UObject: UObject,RelativePath: string): string;
 	static CreateEnum(Outer: UObject,Name: string,DisplayNames: string[],Flags: string[]): Enum;
@@ -5558,6 +5557,7 @@ declare class UObject {
 	static SetObjectFlags(Obj: UObject,Flags: number): void;
 	static WriteFile(UObject: UObject,Filename: string): boolean;
 	static WriteStringToFile(UObject: UObject,Filename: string,Data: string,EncodingOptions: EJavascriptEncodingOptions): boolean;
+	static RenameAsset(Asset: UObject,NewName: string): void;
 	static GetDatasmithUserData(UObject: UObject): DatasmithAssetUserData;
 	static GetDatasmithUserDataKeysAndValuesForValue(UObject: UObject,StringToMatch: string,OutKeys?: string[],OutValues?: string[]): {OutKeys: string[], OutValues: string[]};
 	static GetDatasmithUserDataValueForKey(UObject: UObject,Key: string,bPartialMatchKey: boolean): string;

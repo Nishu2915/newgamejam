@@ -16,5 +16,6 @@ class SURVIVALUDEMY_API UA_SaveGame : public USaveGame
 public:
 	int NoOfPagesSave;
 	int NoOfDragonSave;
+	int CurrentIndexSave;
 	TArray<int> CollectedPagesSave;
 };

@@ -46,6 +46,9 @@ void AIgnoreActor::ResumeFunc()
 {
 	SaveGameptr = Cast<UA_SaveGame>(UGameplayStatics::LoadGameFromSlot(FString("data"), 0));
 	if (SaveGameptr) {
+		NoOfWinOnDragonCpp = SaveGameptr->NoOfDragonSave ;
+		NoOfPagesCollectedCpp = SaveGameptr->NoOfPagesSave;
+		CurrentIndex = SaveGameptr->CurrentIndexSave;
 		if (SaveGameptr->NoOfDragonSave = SaveGameptr->NoOfPagesSave) {
 			AsurvivaludemyCharacter* Character =  Cast<AsurvivaludemyCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 			if (Character) {

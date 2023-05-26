@@ -5376,9 +5376,9 @@ declare class AnimSequence extends AnimSequenceBase {
 	AddBoneIntegerCustomAttribute(BoneName: string,AttributeName: string,TimeKeys: number[],ValueKeys: number[]): void;
 	AddBoneFloatCustomAttribute(BoneName: string,AttributeName: string,TimeKeys: number[],ValueKeys: number[]): void;
 	static C(Other: UObject | any): AnimSequence;
-	GetLevelSequenceLinkFromAnimSequence(): AnimSequenceLevelSequenceLink;
 	GetMovingRangesFromRootMotion(StopSpeedThreshold: number,SampleRate: number): Vector2D[];
 	GetStoppedRangesFromRootMotion(StopSpeedThreshold: number,SampleRate: number): Vector2D[];
+	GetLevelSequenceLinkFromAnimSequence(): AnimSequenceLevelSequenceLink;
 	AddAnimationSyncMarker(MarkerName: string,Time: number,NotifyTrackName: string): void;
 	AddCurve(CurveName: string,CurveType: ERawCurveTrackTypes,bMetaDataCurve: boolean): void;
 	AddFloatCurveKey(CurveName: string,Time: number,Value: number): void;
@@ -5425,9 +5425,9 @@ declare class AnimSequence extends AnimSequenceBase {
 	SetIsRootMotionLockForced(bForced: boolean): void;
 	SetRootMotionEnabled(bEnabled: boolean): void;
 	SetRootMotionLockType(RootMotionLockType: ERootMotionRootLock): void;
-	static GetLevelSequenceLinkFromAnimSequence(InAnimSequence: AnimSequence): AnimSequenceLevelSequenceLink;
 	static GetMovingRangesFromRootMotion(AnimSequence: AnimSequence,StopSpeedThreshold: number,SampleRate: number): Vector2D[];
 	static GetStoppedRangesFromRootMotion(AnimSequence: AnimSequence,StopSpeedThreshold: number,SampleRate: number): Vector2D[];
+	static GetLevelSequenceLinkFromAnimSequence(InAnimSequence: AnimSequence): AnimSequenceLevelSequenceLink;
 	static AddAnimationSyncMarker(AnimationSequence: AnimSequence,MarkerName: string,Time: number,NotifyTrackName: string): void;
 	static AddCurve(AnimationSequence: AnimSequence,CurveName: string,CurveType: ERawCurveTrackTypes,bMetaDataCurve: boolean): void;
 	static AddFloatCurveKey(AnimationSequence: AnimSequence,CurveName: string,Time: number,Value: number): void;

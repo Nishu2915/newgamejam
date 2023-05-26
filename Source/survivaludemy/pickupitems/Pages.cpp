@@ -2,6 +2,8 @@
 
 
 #include "Pages.h"
+#include "..\IgnoreActor.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 APages::APages()
@@ -15,6 +17,10 @@ APages::APages()
 void APages::BeginPlay()
 {
 	Super::BeginPlay();
+	TSubclassOf<AActor> ActorClass = AIgnoreActor::StaticClass();
+	TArray<AActor*> OutActor;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ActorClass ,OutActor);
+	IgnoreActorCpp = Cast<AIgnoreActor>(OutActor[0]);
 	
 }
 
@@ -23,5 +29,27 @@ void APages::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void APages::Starting()
+{
+
+	//IgnoreActorCpp->CppActor[indexCpp]->OverlappedCpp = true;
+	IgnoreActorCpp->CurrentIndex = indexCpp;
+	//IgnoreActorCpp->WhichPagesCollected[IgnoreActorCpp->NoOfPagesCollectedCpp] = indexCpp;
+	IgnoreActorCpp->WhichPagesCollected.AddUnique(indexCpp);
+	IgnoreActorCpp->NoOfPagesCollectedCpp = +1;
+	switch (indexCpp) {
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	}
 }
 

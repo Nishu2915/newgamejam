@@ -23,4 +23,15 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(BlueprintReadWrite)
+	class AIgnoreActor* IgnoreActorCpp;
+	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int indexCpp;
+
+	//UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	//bool OverlappedCpp;
+
+	UFUNCTION(BlueprintCallable)
+	void Starting();
 };
